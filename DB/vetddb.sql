@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `Location` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `city` VARCHAR(45) NULL,
   `state` VARCHAR(45) NULL,
-  `zipcode` INT NULL,
+  `zipcode` VARCHAR(5) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -180,11 +180,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Occupation`
+-- Table `Job`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `Occupation` ;
+DROP TABLE IF EXISTS `Job` ;
 
-CREATE TABLE IF NOT EXISTS `Occupation` (
+CREATE TABLE IF NOT EXISTS `Job` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `Sector_id` INT NOT NULL,
@@ -196,20 +196,20 @@ CREATE TABLE IF NOT EXISTS `Occupation` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_Occupation_Sector1_idx` ON `Occupation` (`Sector_id` ASC);
+CREATE INDEX `fk_Occupation_Sector1_idx` ON `Job` (`Sector_id` ASC);
 
 
 -- -----------------------------------------------------
--- Table `Mentee_Occupation`
+-- Table `Mentee_Job`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `Mentee_Occupation` ;
+DROP TABLE IF EXISTS `Mentee_Job` ;
 
-CREATE TABLE IF NOT EXISTS `Mentee_Occupation` (
+CREATE TABLE IF NOT EXISTS `Mentee_Job` (
   `Occupation_id` INT NOT NULL,
   `Mentee_id` INT NOT NULL,
   CONSTRAINT `fk_table1_Occupation1`
     FOREIGN KEY (`Occupation_id`)
-    REFERENCES `Occupation` (`id`)
+    REFERENCES `Job` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_table1_Mentee1`
@@ -219,20 +219,20 @@ CREATE TABLE IF NOT EXISTS `Mentee_Occupation` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_table1_Mentee1_idx` ON `Mentee_Occupation` (`Mentee_id` ASC);
+CREATE INDEX `fk_table1_Mentee1_idx` ON `Mentee_Job` (`Mentee_id` ASC);
 
 
 -- -----------------------------------------------------
--- Table `Mentor_Occupation`
+-- Table `Mentor_Job`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `Mentor_Occupation` ;
+DROP TABLE IF EXISTS `Mentor_Job` ;
 
-CREATE TABLE IF NOT EXISTS `Mentor_Occupation` (
+CREATE TABLE IF NOT EXISTS `Mentor_Job` (
   `Occupation_id` INT NOT NULL,
   `Mentor_id` INT NOT NULL,
   CONSTRAINT `fk_table2_Occupation1`
     FOREIGN KEY (`Occupation_id`)
-    REFERENCES `Occupation` (`id`)
+    REFERENCES `Job` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_table2_Mentor1`
@@ -242,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `Mentor_Occupation` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_table2_Mentor1_idx` ON `Mentor_Occupation` (`Mentor_id` ASC);
+CREATE INDEX `fk_table2_Mentor1_idx` ON `Mentor_Job` (`Mentor_id` ASC);
 
 GRANT SELECT, INSERT, TRIGGER ON TABLE `vetddb`.* TO 'user'@'localhost';
 GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE `vetddb`.* TO 'user'@'localhost';
