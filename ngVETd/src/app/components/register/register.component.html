@@ -1,0 +1,23 @@
+<div>
+  <form #addUserForm="ngForm">
+    <input
+      type="text"
+      name="email"
+      placeholder="Email"
+      [(ngModel)]="newUser.email"
+    />
+    <input
+      type="text"
+      name="username"
+      placeholder="Username"
+      [(ngModel)]="newUser.username"
+    />
+    <input
+      type="password"
+      name="password"
+      placeholder="Password"
+      [(ngModel)]="newUser.password"
+    />
+    <input type="submit" value="Register" (click)="register(addUserForm)" />
+  </form>
+</div>
