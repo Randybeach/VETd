@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `Location` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `city` VARCHAR(45) NULL,
   `state` VARCHAR(45) NULL,
-  `zipcode` INT NULL,
+  `zipcode` VARCHAR(5) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
