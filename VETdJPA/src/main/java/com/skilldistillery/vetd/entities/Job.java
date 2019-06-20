@@ -11,6 +11,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Job {
 	
@@ -26,6 +28,7 @@ public class Job {
 	private List<Mentor> mentors;
 	@ManyToMany
 	@JoinTable(name = "mentee_job", joinColumns = @JoinColumn(name = "job_id"), inverseJoinColumns = @JoinColumn(name = "mentee_id"))
+	@JsonIgnore
 	private List<Mentee> mentees;
 	
 	
