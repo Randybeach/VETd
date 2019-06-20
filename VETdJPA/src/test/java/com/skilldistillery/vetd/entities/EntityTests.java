@@ -48,6 +48,7 @@ class EntityTests {
 	}
 	@Test
 	void test_user_mapping() {
+		System.out.println(user.getUsername());
 		assertEquals("bob", user.getUsername());
 	}
 }

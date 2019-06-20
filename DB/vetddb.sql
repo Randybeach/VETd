@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `User` (
   `email` VARCHAR(45) NULL,
   `password` VARCHAR(45) NULL,
   `role` VARCHAR(45) NULL,
-  `enamble` TINYINT NULL,
+  `enabled` TINYINT NULL,
   `Profile_id` INT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_User_Profile`
@@ -256,8 +256,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `vetddb`;
-INSERT INTO `User` (`id`, `username`, `email`, `password`, `role`, `enamble`, `Profile_id`) VALUES (1, 'bob', 'bob@bob.com', 'bob', 'user', true, NULL);
-INSERT INTO `User` (`id`, `username`, `email`, `password`, `role`, `enamble`, `Profile_id`) VALUES (2, 'sue', 'sue@sue.com', 'sue', 'user', true, NULL);
+INSERT INTO `User` (`id`, `username`, `email`, `password`, `role`, `enabled`, `Profile_id`) VALUES (1, 'bob', 'bob@bob.com', 'bob', 'user', true, NULL);
+INSERT INTO `User` (`id`, `username`, `email`, `password`, `role`, `enabled`, `Profile_id`) VALUES (2, 'sue', 'sue@sue.com', 'sue', 'user', true, NULL);
 
 COMMIT;
 
