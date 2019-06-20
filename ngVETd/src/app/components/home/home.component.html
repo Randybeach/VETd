@@ -1,43 +1,57 @@
 <div class='container-fluid'>
-<div class='text-center background'>
-  <div><h1>VETd</h1><p>Veterans helping veterans</p></div>
-  <div class='row'>
-    <div class='col-12'>
-      <span class='border border-0'>
-      <div class='card'>
+  <div class='text-center background' >
+      <div><h1>VETd</h1><p>Veterans helping veterans</p></div>
+  <div class='row' style='margin:5%'>
+    <div class='col-sm -3 col-md-4 col-lg-4'></div>
+    <div class='col-sm -3 col-md-4 col-lg-4'>
+      <div class='card border-0'>
         <div class='card-body'>
-          <h3>Become a Mentor</h3>
+          <h3>BECOME A MENTOR</h3>
           <p>Share your journey and experience with fellow veterans.</p>
           <button class='btn btn-warning'>Sign up</button>
         </div>
       </div>
-    </span>
   </div>
+  <div class='col-sm -3 col-md-4 col-lg-4'></div>
 </div>
-<div class='row'>
-  <div class='col-12'>
-    <span class='border border-0'>
-      <div class='card'>
-        <div class='card-body'>
-          <h3>Become a Mentee</h3>
-          <p>Gain insight from those who have gone before you.</p>
-          <button class='btn btn-warning'>Sign up</button>
-        </div>
+<div class='row' style='margin:5%'>
+  <div class='col-4'></div>
+  <div class='col-sm -3 col-md-4 col-lg-4'>
+    <div class='card border-0'>
+      <div class='card-body'>
+        <h3>FIND A MENTOR</h3>
+        <p>Gain insight from those who have gone before you.</p>
+        <button class='btn btn-warning'>Sign up</button>
       </div>
-    </span>
     </div>
   </div>
-  <div>
-  </div>
+  <div class='col-sm -3 col-md-4 col-lg-4'></div>
+</div>
+<div>
+</div>
 </div>
 </div>
 
 <mdb-carousel [isControls]="false" [animation]="'slide'">
-<h1>Welcome to VET'd</h1>
-<h6>Where vets help other vets</h6>
+  <h1>Welcome to VET'd</h1>
+    <h6>Where vets help other vets</h6>
 <mdb-carousel class="caro" [isControls]="false" [animation]="'slide'">
   <mdb-carousel-item>
-    <p>wow</p>
+    <div class='card border-0 text-left'>
+      <div class='card-body'>
+        <span id='reviewText'><p>
+          "Great experience using VETd.  Bob was terrific!"
+        </p></span>
+
+<span id="rateMe">
+    <i class="fas fa-star py-2 px-1 rate-popover" data-index="0" data-html="true" data-toggle="popover" data-placement="top" title="Very bad"></i>
+    <i class="fas fa-star py-2 px-1 rate-popover" data-index="1" data-html="true" data-toggle="popover" data-placement="top" title="Poor"></i>
+    <i class="fas fa-star py-2 px-1 rate-popover" data-index="2" data-html="true" data-toggle="popover" data-placement="top" title="OK"></i>
+    <i class="fas fa-star py-2 px-1 rate-popover" data-index="3" data-html="true" data-toggle="popover" data-placement="top" title="Good"></i>
+    <i class="fas fa-star py-2 px-1 rate-popover" data-index="4" data-html="true" data-toggle="popover" data-placement="top" title="Excellent"></i>
+  </span>
+      </div>
+    </div>
   </mdb-carousel-item>
   <mdb-carousel-item> <p>so</p> </mdb-carousel-item>
   <mdb-carousel-item> <p>cool</p> </mdb-carousel-item>
