@@ -5,10 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.vetd.repositories.MenteeRepository;
-import com.skilldistillery.vetd.repositories.UserRepository;
 import com.skilldistillery.vetd.entities.Mentee;
+import com.skilldistillery.vetd.entities.Mentor;
+import com.skilldistillery.vetd.entities.MentorMentee;
 import com.skilldistillery.vetd.entities.User;
+import com.skilldistillery.vetd.repositories.MenteeRepository;
+import com.skilldistillery.vetd.repositories.MentorMenteeRepository;
+import com.skilldistillery.vetd.repositories.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -17,6 +20,8 @@ public class UserServiceImpl implements UserService {
 	private UserRepository uRepo;
 	@Autowired
 	private MenteeRepository mRepo;
+	@Autowired
+	private MentorMenteeRepository mmRepo;
 	
 	@Override
 	public List<User> index() {
@@ -36,6 +41,18 @@ public class UserServiceImpl implements UserService {
 	public Mentee getMenteeById(int id) {
 		
 		return mRepo.findMenteeById(id);
+	}
+
+
+	@Override
+	public List<MentorMentee> getMentorsByMenteeId(int id) {
+		return mmRepo.findByMenteeId(id);
+	}
+
+
+	@Override
+	public List<MentorMentee> getMenteesByMentorId(int id) {
+		return mmRepo.findByMentorId(id);
 	}
 
 }
