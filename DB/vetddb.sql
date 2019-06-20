@@ -16,6 +16,22 @@ CREATE SCHEMA IF NOT EXISTS `vetddb` DEFAULT CHARACTER SET utf8 ;
 USE `vetddb` ;
 
 -- -----------------------------------------------------
+-- Table `user`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `user` ;
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(45) NULL,
+  `email` VARCHAR(45) NULL,
+  `password` VARCHAR(500) NULL,
+  `role` VARCHAR(45) NULL,
+  `enabled` TINYINT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `location`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `location` ;
@@ -30,32 +46,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mentor`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mentor` ;
-
-CREATE TABLE IF NOT EXISTS `mentor` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `story` VARCHAR(500) NULL,
-  `created_at` DATETIME NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `mentee`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mentee` ;
-
-CREATE TABLE IF NOT EXISTS `mentee` (
-  `id` INT NOT NULL,
-  `story` VARCHAR(500) NULL,
-  `created_at` DATETIME NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `profile`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `profile` ;
@@ -64,60 +54,30 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
-  `summary` VARCHAR(200) NULL,
+  `summary` TEXT NULL,
   `created_at` DATETIME NULL,
   `location_id` INT NULL,
-  `mentor_id` INT NULL,
-  `mentee_id` INT NULL,
-  `picture` VARCHAR(200) NULL,
-  `resume` VARCHAR(200) NULL,
+  `picture_url` VARCHAR(1000) NULL,
+  `resume_url` VARCHAR(1000) NULL,
+  `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_Profile_Location1`
     FOREIGN KEY (`location_id`)
     REFERENCES `location` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Profile_Mentor1`
-    FOREIGN KEY (`mentor_id`)
-    REFERENCES `mentor` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Profile_Mentee1`
-    FOREIGN KEY (`mentee_id`)
-    REFERENCES `mentee` (`id`)
+  CONSTRAINT `fk_profile_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 CREATE INDEX `fk_Profile_Location1_idx` ON `profile` (`location_id` ASC);
 
-CREATE INDEX `fk_Profile_Mentor1_idx` ON `profile` (`mentor_id` ASC);
+CREATE UNIQUE INDEX `picture_url_UNIQUE` ON `profile` (`picture_url` ASC);
 
-CREATE INDEX `fk_Profile_Mentee1_idx` ON `profile` (`mentee_id` ASC);
-
-
--- -----------------------------------------------------
--- Table `user`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `user` ;
-
-CREATE TABLE IF NOT EXISTS `user` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(45) NULL,
-  `email` VARCHAR(45) NULL,
-  `password` VARCHAR(500) NULL,
-  `role` VARCHAR(45) NULL,
-  `enabled` TINYINT NULL,
-  `profile_id` INT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_User_Profile`
-    FOREIGN KEY (`profile_id`)
-    REFERENCES `profile` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-CREATE INDEX `fk_User_Profile_idx` ON `user` (`profile_id` ASC);
+CREATE INDEX `fk_profile_user1_idx` ON `profile` (`user_id` ASC);
 
 
 -- -----------------------------------------------------
@@ -127,9 +87,10 @@ DROP TABLE IF EXISTS `review` ;
 
 CREATE TABLE IF NOT EXISTS `review` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `content` VARCHAR(500) NULL,
+  `content` TEXT NULL,
   `rating` INT NULL,
   `profile_id` INT NULL,
+  `reviewed_id` INT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_Review_Profile1`
     FOREIGN KEY (`profile_id`)
@@ -139,6 +100,48 @@ CREATE TABLE IF NOT EXISTS `review` (
 ENGINE = InnoDB;
 
 CREATE INDEX `fk_Review_Profile1_idx` ON `review` (`profile_id` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `mentor`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mentor` ;
+
+CREATE TABLE IF NOT EXISTS `mentor` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `story` TEXT NULL,
+  `created_at` DATETIME NULL,
+  `profile_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_mentor_profile1`
+    FOREIGN KEY (`profile_id`)
+    REFERENCES `profile` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_mentor_profile1_idx` ON `mentor` (`profile_id` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `mentee`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mentee` ;
+
+CREATE TABLE IF NOT EXISTS `mentee` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `story` TEXT NULL,
+  `created_at` DATETIME NULL,
+  `profile_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_mentee_profile1`
+    FOREIGN KEY (`profile_id`)
+    REFERENCES `profile` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_mentee_profile1_idx` ON `mentee` (`profile_id` ASC);
 
 
 -- -----------------------------------------------------
@@ -258,8 +261,39 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `vetddb`;
-INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`, `enabled`, `profile_id`) VALUES (1, 'bob', 'bob@bob.com', '$2a$10$nFSSHSJ5h7bBldsNNiam4OtBilCPqN7AwKrFPyEbSgc.iG9vmMNlS', 'user', true, NULL);
-INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`, `enabled`, `profile_id`) VALUES (2, 'sue', 'sue@sue.com', '$2a$10$/04TjBk9I69J3gdQZnOGte4H3EsO.2604taVoLqfgdZpVGniUG8yO', 'user', true, NULL);
+INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`, `enabled`) VALUES (1, 'bob', 'bob@bob.com', '$2a$10$nFSSHSJ5h7bBldsNNiam4OtBilCPqN7AwKrFPyEbSgc.iG9vmMNlS', 'user', true);
+INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`, `enabled`) VALUES (2, 'sue', 'sue@sue.com', '$2a$10$/04TjBk9I69J3gdQZnOGte4H3EsO.2604taVoLqfgdZpVGniUG8yO', 'user', true);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `profile`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `vetddb`;
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `summary`, `created_at`, `location_id`, `picture_url`, `resume_url`, `user_id`) VALUES (1, 'bob', 'bobby', 'this is so great', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `summary`, `created_at`, `location_id`, `picture_url`, `resume_url`, `user_id`) VALUES (2, 'sue', 'susie', 'Help me', NULL, NULL, NULL, NULL, 2);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `mentor`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `vetddb`;
+INSERT INTO `mentor` (`id`, `story`, `created_at`, `profile_id`) VALUES (1, 'this is a good story', NULL, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `mentee`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `vetddb`;
+INSERT INTO `mentee` (`id`, `story`, `created_at`, `profile_id`) VALUES (1, 'I need help', NULL, 2);
 
 COMMIT;
 

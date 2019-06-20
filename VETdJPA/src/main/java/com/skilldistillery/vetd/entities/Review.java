@@ -1,6 +1,7 @@
 package com.skilldistillery.vetd.entities;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +20,17 @@ public class Review {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "profile_id")
 	private Profile profile;
+	@Column(name = "reviewed_id")
+	private int reviewedId;
 	
+	
+	
+	public int getReviewedId() {
+		return reviewedId;
+	}
+	public void setReviewedId(int reviewedId) {
+		this.reviewedId = reviewedId;
+	}
 	public Review(int id, String content, int rating) {
 		super();
 		this.id = id;

@@ -8,10 +8,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Mentor {
@@ -24,10 +29,29 @@ public class Mentor {
 	@CreationTimestamp
 	private Date createdAt;
 	@OneToMany(mappedBy = "mentor")
+	@JsonIgnore
 	private List<MentorMentee> mentorMentees;
 	@ManyToMany(mappedBy = "mentors")
+	@JsonIgnore
 	private List<Job> jobs;
+	@OneToOne
+	@JoinColumn(name = "profile_id")
+	private Profile profile;
 	
+	
+	
+	public List<Job> getJobs() {
+		return jobs;
+	}
+	public void setJobs(List<Job> jobs) {
+		this.jobs = jobs;
+	}
+	public Profile getProfile() {
+		return profile;
+	}
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
 	public int getId() {
 		return id;
 	}
