@@ -69,6 +69,8 @@ CREATE TABLE IF NOT EXISTS `Profile` (
   `Location_id` INT NULL,
   `Mentor_id` INT NULL,
   `Mentee_id` INT NULL,
+  `pic` VARCHAR(200) NULL,
+  `resume` VARCHAR(200) NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_Profile_Location1`
     FOREIGN KEY (`Location_id`)
