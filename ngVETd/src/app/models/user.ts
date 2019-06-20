@@ -5,6 +5,7 @@ export class User {
   password: string;
   enabled: boolean;
   role: string;
+  profileId: number;
 
   constructor(
     id?: number,
@@ -12,7 +13,8 @@ export class User {
     username?: string,
     password?: string,
     enabled?: boolean,
-    role?: string
+    role?: string,
+    profileId?: number
   ) {
     this.id = id;
     this.email = email;
@@ -20,5 +22,6 @@ export class User {
     this.password = password;
     this.enabled = enabled;
     this.role = role;
+    this.profileId = profileId;
   }
 }
