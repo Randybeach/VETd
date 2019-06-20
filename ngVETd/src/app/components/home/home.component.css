@@ -1,5 +1,7 @@
 .card {
-  background-color: transparent;
+  background-color: oldlace;
+  /* opacity: .2;*/
+    background: rgba(255, 252, 252, 0.3);
 }
 
 .card-body {
