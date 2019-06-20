@@ -16,4 +16,6 @@
   text-align: center;
   background-position: relative;
   background-attachment: fixed;
+  overflow:scroll;
 }
+
