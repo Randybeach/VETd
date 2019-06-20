@@ -2,7 +2,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { CarouselModule } from 'angular-bootstrap-md'
+import { CarouselModule } from 'angular-bootstrap-md';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
