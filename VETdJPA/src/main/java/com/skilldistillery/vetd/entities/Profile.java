@@ -40,8 +40,41 @@ public class Profile {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "mentee_id")
 	private Mentee mentee;
+	private String pic;
+	private String resume;
 	
 	
+	
+	public List<Review> getReviews() {
+		return reviews;
+	}
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+	public Mentor getMentor() {
+		return mentor;
+	}
+	public void setMentor(Mentor mentor) {
+		this.mentor = mentor;
+	}
+	public Mentee getMentee() {
+		return mentee;
+	}
+	public void setMentee(Mentee mentee) {
+		this.mentee = mentee;
+	}
+	public String getPic() {
+		return pic;
+	}
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
+	public String getResume() {
+		return resume;
+	}
+	public void setResume(String resume) {
+		this.resume = resume;
+	}
 	public int getId() {
 		return id;
 	}

@@ -19,6 +19,7 @@ class EntityTests {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
 	private User user;
+	private Job job;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -34,6 +35,7 @@ class EntityTests {
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
 		user = em.find(User.class, 1);
+		job = em.find(Job.class, 1);
 	}
 
 	@AfterEach
@@ -50,5 +52,10 @@ class EntityTests {
 	void test_user_mapping() {
 		System.out.println(user.getUsername());
 		assertEquals("bob", user.getUsername());
+	}
+	@Test
+	void test_job_mapping() {
+		System.out.println(job.getName());
+		assertEquals("Chief Executives", job.getName());
 	}
 }
