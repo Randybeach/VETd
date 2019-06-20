@@ -1,0 +1,26 @@
+.card {
+  background-color: aliceblue;
+}
+
+.row {
+  padding: 15px;
+}
+
+.container-fluid {
+  width: 100%;
+  padding-right: none;
+  padding-left: none;
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+div {
+  color: black;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.card-header {
+  padding-top: 20px;
+  align-content: center;
+  background-color: aliceblue;
+}

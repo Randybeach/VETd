@@ -7,8 +7,8 @@ export class Profile {
   locationId: number;
   mentorId: number;
   menteeId: number;
-  picture: string;
-  resume: string;
+  pictureUrl: string;
+  resumeUrl: string;
 
   constructor(
     id?: number,
@@ -19,8 +19,8 @@ export class Profile {
     locationId?: number,
     mentorId?: number,
     menteeId?: number,
-    picture?: string,
-    resume?: string
+    pictureUrl?: string,
+    resumeUrl?: string
   ) {
     this.id = id;
     this.firstName = firstName;
@@ -30,7 +30,7 @@ export class Profile {
     this.locationId = locationId;
     this.mentorId = mentorId;
     this.menteeId = menteeId;
-    this.picture = picture;
-    this.resume = resume;
+    this.pictureUrl = pictureUrl;
+    this.resumeUrl = resumeUrl;
   }
 }

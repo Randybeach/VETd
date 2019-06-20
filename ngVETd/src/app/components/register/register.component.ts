@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
   //
   // F E I L D S
   //
+  user: User = null;
   newUser = new User();
   newProfile = new Profile();
   newLocation = new Location();
@@ -28,7 +29,6 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {}
-
   //
   // M E T H O D S
   //
@@ -46,7 +46,10 @@ export class RegisterComponent implements OnInit {
             console.log(
               'RegisterComponent.register(): user logged in, routing to /CHANGEME.'
             );
-            this.router.navigateByUrl('/CHANGEME');
+            // this.user = next;
+            if (this.user != null) {
+              this.router.navigateByUrl('/CHANGEME TO EDIT');
+            }
           },
           error => {
             console.error('RegisterComponent.register(): error logging in.');

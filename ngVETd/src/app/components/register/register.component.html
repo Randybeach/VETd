@@ -1,82 +1,159 @@
-<div>
-  <form #addUserForm="ngForm">
-    <input
-      type="text"
-      name="email"
-      placeholder="Email"
-      [(ngModel)]="newUser.email"
-    />
-    <input
-      type="text"
-      name="username"
-      placeholder="Username"
-      [(ngModel)]="newUser.username"
-    />
-    <input
-      type="password"
-      name="password"
-      placeholder="Password"
-      [(ngModel)]="newUser.password"
-    />
-    <button value="Register" (click)="register(addUserForm)"></button>
-  </form>
-</div>
+<div class="container-fluid background">
+  <div class="row ">
+    <div class="col-2"></div>
+    <div class="card col-8">
+      <div class="card-header text-center">
+        <h1 class="h1 mb-4">Sign Up</h1>
+        <hr>
+      </div>
+      <div class="card-body">
+        <!-- ---------------------------------------------------------------- -->
+        <!-- User Form -->
+        <!-- ---------------------------------------------------------------- -->
+        <form class="text-center border border-light p-3">
+          <h5 class="text-center">Login Information</h5>
+          <!-- Email -->
+          <input
+            type="email"
+            id="defaultLoginFormEmail"
+            class="form-control mb-4 text-center"
+            name="email"
+            placeholder="Email"
+            ngModel
+          />
 
-<div>
-  <form #addProfileForm="ngForm">
-<input
-      type="text"
-      name="firstName"
-      placeholder="First Name"
-      [(ngModel)]="newProfile.firstName"
-    />
-    <input
-      type="text"
-      name="lastName"
-      placeholder="Last Name"
-      [(ngModel)]="newProfile.lastName"
-    />
-    <input
-      type="text"
-      name="summary"
-      placeholder="Summary"
-      [(ngModel)]="newProfile.summary"
-    />
-    <input
-      type="text"
-      name="picture"
-      placeholder="Picture Url"
-      [(ngModel)]="newProfile.picture"
-    />
-    <input
-      type="text"
-      name="resume"
-      placeholder="Resume Url"
-      [(ngModel)]="newProfile.resume"
-    />
-  </form>
-</div>
+          <!-- Username -->
+          <input
+            type="text"
+            id="defaultLoginFormPassword"
+            class="form-control mb-4 text-center"
+            name="username"
+            placeholder="Username"
+            ngModel
+          />
 
-<div>
-  <form #addLocationForm="ngForm">
-<input
-      type="text"
-      name="city"
-      placeholder="City"
-      [(ngModel)]="newLocation.city"
-    />
-    <input
-      type="text"
-      name="state"
-      placeholder="State"
-      [(ngModel)]="newLocation.state"
-    />
-    <input
-      type="text"
-      name="zip"
-      placeholder="Zip"
-      [(ngModel)]="newLocation.zip"
-    />
-  </form>
-</div>
+          <!-- Password -->
+          <input
+            type="password"
+            id="defaultLoginFormEmail"
+            class="form-control mb-4 text-center"
+            name="password"
+            placeholder="Password"
+            ngModel
+          />
+        </form>
 
+        <!-- ---------------------------------------------------------------- -->
+        <!-- Profile Form -->
+        <!-- ---------------------------------------------------------------- -->
+        <form class="text-center border border-light p-3">
+          <h5 class="text-center">About You</h5>
+          <!-- First Name -->
+          <input
+            type="text"
+            id="defaultLoginFormEmail"
+            class="form-control mb-4 text-center"
+            name="firstName"
+            placeholder="First Name"
+            ngModel
+          />
+
+          <!-- Last Name -->
+          <input
+            type="text"
+            id="defaultLoginFormPassword"
+            class="form-control mb-4 text-center"
+            name="lastName"
+            placeholder="Last Name"
+            ngModel
+          />
+
+          <!-- Summary -->
+          <input
+            type="text"
+            id="defaultLoginFormPassword"
+            class="form-control mb-4 text-center"
+            name="summary"
+            placeholder="Summary"
+            ngModel
+          />
+
+          <!-- Picture Url -->
+          <input
+            type="text"
+            id="defaultLoginFormPassword"
+            class="form-control mb-4 text-center"
+            name="pictureUrl"
+            placeholder="Picture Url"
+            ngModel
+          />
+
+          <!-- Resume Url -->
+          <input
+            type="text"
+            id="defaultLoginFormPassword"
+            class="form-control mb-4 text-center"
+            name="resumeUrl"
+            placeholder="Resume Url"
+            ngModel
+          />
+        </form>
+
+        <!-- ---------------------------------------------------------------- -->
+        <!-- Location Form -->
+        <!-- ---------------------------------------------------------------- -->
+        <form class="text-center border border-light p-3">
+          <h5 class="text-center">Location</h5>
+          <!-- City -->
+          <input
+            type="text"
+            id="defaultLoginFormEmail"
+            class="form-control mb-4 text-center"
+            name="city"
+            placeholder="City"
+            ngModel
+          />
+
+          <!-- State -->
+          <input
+            type="text"
+            id="defaultLoginFormPassword"
+            class="form-control mb-4 text-center"
+            name="state"
+            placeholder="State"
+            ngModel
+          />
+
+          <!-- Zip -->
+          <input
+            type="text"
+            id="defaultLoginFormEmail"
+            class="form-control mb-4 text-center"
+            name="zip"
+            placeholder="Zip"
+            ngModel
+          />
+        </form>
+
+        <div class="d-flex justify-content-around text-center"></div>
+
+        <!-- Sign in button -->
+        <div class="text-center subDiv">
+          <button
+            mdbBtn
+            color="info"
+            block="true"
+            class="my-4 text-center btn btn-warning"
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-4"></div>
+  </div>
+</div>
+<!-- Default form login -->
+
+<!-- ------------------------------------------------------------------------ -->
