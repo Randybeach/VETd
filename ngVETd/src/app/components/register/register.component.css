@@ -3,7 +3,7 @@
 }
 
 .row {
-  padding: 15px;
+  padding: 60px;
 }
 
 .container-fluid {
@@ -20,7 +20,7 @@ div {
 }
 
 .card-header {
-  padding-top: 20px;
+  padding-top: 35px;
   align-content: center;
   background-color: aliceblue;
 }
