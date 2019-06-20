@@ -3,14 +3,14 @@
     <div class="col-3"></div>
     <div class="card col-6">
       <div class="card-header text-center">
-        <h1 class="h1 mb-4">Sign Up</h1>
+        <h1 class="h1 mb-4">Edit Profile</h1>
         <!-- <hr> -->
       </div>
       <div class="card-body">
         <!-- ---------------------------------------------------------------- -->
         <!-- User Form -->
         <!-- ---------------------------------------------------------------- -->
-        <form #editUserForm="ngForm" class="text-center">
+        <form class="text-center">
           <!-- <h5 class="text-center">Login Information</h5> -->
           <!-- Email -->
           <input
@@ -19,7 +19,7 @@
             class="form-control mb-4 text-center"
             name="email"
             placeholder="Email"
-            ngModel
+            [(ngModel)] = "editUser.email"
           />
 
           <!-- Username -->
@@ -29,7 +29,7 @@
             class="form-control mb-4 text-center"
             name="username"
             placeholder="Username"
-            ngModel
+            [(ngModel)] = "editUser.username"
           />
 
           <!-- Password -->
@@ -39,14 +39,14 @@
             class="form-control mb-4 text-center"
             name="password"
             placeholder="Password"
-            ngModel
+            [(ngModel)] = "editUser.password"
           />
         </form>
 
         <!-- ---------------------------------------------------------------- -->
         <!-- Profile Form -->
         <!-- ---------------------------------------------------------------- -->
-        <form #editProfileForm="ngForm" class="text-center">
+        <form class="text-center">
           <!-- <h5 class="text-center">About You</h5> -->
           <!-- First Name -->
           <input
@@ -55,7 +55,7 @@
             class="form-control mb-4 text-center"
             name="firstName"
             placeholder="First Name"
-            ngModel
+            [(ngModel)] = "editProfile.firstName"
           />
 
           <!-- Last Name -->
@@ -65,7 +65,7 @@
             class="form-control mb-4 text-center"
             name="lastName"
             placeholder="Last Name"
-            ngModel
+            [(ngModel)] = "editProfile.lastName"
           />
 
           <!-- Summary -->
@@ -75,7 +75,7 @@
             class="form-control mb-4 text-center"
             name="summary"
             placeholder="Summary"
-            ngModel
+            [(ngModel)] = "editProfile.summary"
           />
 
           <!-- Picture Url -->
@@ -85,7 +85,7 @@
             class="form-control mb-4 text-center"
             name="pictureUrl"
             placeholder="Picture Url"
-            ngModel
+            [(ngModel)] = "editProfile.pictureUrl"
           />
 
           <!-- Resume Url -->
@@ -95,14 +95,14 @@
             class="form-control mb-4 text-center"
             name="resumeUrl"
             placeholder="Resume Url"
-            ngModel
+            [(ngModel)] = "editProfile.resumeUrl"
           />
         </form>
 
         <!-- ---------------------------------------------------------------- -->
         <!-- Location Form -->
         <!-- ---------------------------------------------------------------- -->
-        <form #editLocationForm="ngForm" class="text-center">
+        <form class="text-center">
           <!-- <h5 class="text-center">Location</h5> -->
           <!-- City -->
           <input
@@ -111,7 +111,7 @@
             class="form-control mb-4 text-center"
             name="city"
             placeholder="City"
-            ngModel
+            [(ngModel)] = "editLocation.city"
           />
 
           <!-- State -->
@@ -121,7 +121,7 @@
             class="form-control mb-4 text-center"
             name="state"
             placeholder="State"
-            ngModel
+            [(ngModel)] = "editLocation.state"
           />
 
           <!-- Zip -->
@@ -131,7 +131,7 @@
             class="form-control mb-4 text-center"
             name="zip"
             placeholder="Zip"
-            ngModel
+            [(ngModel)] = "editLocation.zip"
           />
         </form>
 

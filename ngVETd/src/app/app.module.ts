@@ -13,6 +13,7 @@ import { NavbarModule, WavesModule } from 'angular-bootstrap-md';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './components/register/register.component';
+import { EditComponent } from './components/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { RegisterComponent } from './components/register/register.component';
     LogoutComponent,
     NavigationComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
