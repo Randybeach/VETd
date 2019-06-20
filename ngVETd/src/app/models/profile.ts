@@ -7,7 +7,7 @@ export class Profile {
   locationId: number;
   mentorId: number;
   menteeId: number;
-  pic: string;
+  picture: string;
   resume: string;
 
   constructor(
@@ -19,7 +19,7 @@ export class Profile {
     locationId?: number,
     mentorId?: number,
     menteeId?: number,
-    pic?: string,
+    picture?: string,
     resume?: string
   ) {
     this.id = id;
@@ -30,7 +30,7 @@ export class Profile {
     this.locationId = locationId;
     this.mentorId = mentorId;
     this.menteeId = menteeId;
-    this.pic = pic;
+    this.picture = picture;
     this.resume = resume;
   }
 }
