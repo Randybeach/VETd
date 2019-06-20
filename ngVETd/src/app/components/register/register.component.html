@@ -18,9 +18,65 @@
       placeholder="Password"
       [(ngModel)]="newUser.password"
     />
+    <button value="Register" (click)="register(addUserForm)"></button>
   </form>
-  <form #add>
-
-  </form>
-  <button value="Register" (click)="register(addUserForm)" ></button>
 </div>
+
+<div>
+  <form #addProfileForm="ngForm">
+<input
+      type="text"
+      name="firstName"
+      placeholder="First Name"
+      [(ngModel)]="newProfile.firstName"
+    />
+    <input
+      type="text"
+      name="lastName"
+      placeholder="Last Name"
+      [(ngModel)]="newProfile.lastName"
+    />
+    <input
+      type="text"
+      name="summary"
+      placeholder="Summary"
+      [(ngModel)]="newProfile.summary"
+    />
+    <input
+      type="text"
+      name="picture"
+      placeholder="Picture Url"
+      [(ngModel)]="newProfile.picture"
+    />
+    <input
+      type="text"
+      name="resume"
+      placeholder="Resume Url"
+      [(ngModel)]="newProfile.resume"
+    />
+  </form>
+</div>
+
+<div>
+  <form #addLocationForm="ngForm">
+<input
+      type="text"
+      name="city"
+      placeholder="City"
+      [(ngModel)]="newLocation.city"
+    />
+    <input
+      type="text"
+      name="state"
+      placeholder="State"
+      [(ngModel)]="newLocation.state"
+    />
+    <input
+      type="text"
+      name="zip"
+      placeholder="Zip"
+      [(ngModel)]="newLocation.zip"
+    />
+  </form>
+</div>
+

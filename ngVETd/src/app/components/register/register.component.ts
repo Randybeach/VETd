@@ -1,3 +1,4 @@
+import { Location } from './../../models/location';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -5,6 +6,7 @@ import { User } from 'src/app/models/user';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Mentor } from 'src/app/models/mentor';
 import { Mentee } from 'src/app/models/mentee';
+import { Profile } from 'src/app/models/profile';
 
 @Component({
   selector: 'app-register',
@@ -12,10 +14,12 @@ import { Mentee } from 'src/app/models/mentee';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-//
-// F E I L D S
-//
+  //
+  // F E I L D S
+  //
   newUser = new User();
+  newProfile = new Profile();
+  newLocation = new Location();
   newMentor = new Mentor();
   newMentee = new Mentee();
 
@@ -31,7 +35,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {}
 
   register(form: NgForm) {
-    console.log(this.newUser.email);
+    this.newUser.role = 'user';
+    this.newUser.enabled = true;
 
     this.auth.register(this.newUser).subscribe(
       data => {
