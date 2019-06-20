@@ -8,4 +8,4 @@ bin
 .gradle
 *.war
 *.bak
-VETdJPA/.classpath
+.classpath
