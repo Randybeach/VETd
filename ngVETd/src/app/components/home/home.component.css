@@ -1,3 +1,15 @@
+.card {
+  background-color: transparent;
+}
+
+.card-body {
+  color: white;
+  border: none;
+}
+
+.card-header {
+  color: white;
+
 .caro {
   position: absolute;
   bottom: 0;
