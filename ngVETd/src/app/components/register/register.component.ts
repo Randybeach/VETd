@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { User } from 'src/app/models/user';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Mentor } from 'src/app/models/mentor';
+import { Mentee } from 'src/app/models/mentee';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +12,12 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+//
+// F E I L D S
+//
   newUser = new User();
+  newMentor = new Mentor();
+  newMentee = new Mentee();
 
   constructor(
     private auth: AuthService,
@@ -18,6 +25,9 @@ export class RegisterComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
+  //
+  // M E T H O D S
+  //
   ngOnInit() {}
 
   register(form: NgForm) {
