@@ -40,7 +40,7 @@ public class Profile {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "mentee_id")
 	private Mentee mentee;
-	private String pic;
+	private String picture;
 	private String resume;
 	
 	
@@ -64,10 +64,10 @@ public class Profile {
 		this.mentee = mentee;
 	}
 	public String getPic() {
-		return pic;
+		return picture;
 	}
 	public void setPic(String pic) {
-		this.pic = pic;
+		this.picture = pic;
 	}
 	public String getResume() {
 		return resume;
