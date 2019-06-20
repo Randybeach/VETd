@@ -7,17 +7,29 @@
 
   <!-- Collapsible content -->
   <links>
-
       <!-- Links -->
       <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-              <a class="nav-link waves-light" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
+              <!-- <a class="nav-link waves-light" mdbWavesEffect>Home<span class="sr-only">(current)</span></a> -->
+              <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/home']">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/login']">Login <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/logout']">Logout <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-              <a class="nav-link waves-light" mdbWavesEffect>Features</a>
+            <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/profile']">Profile <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-              <a class="nav-link waves-light" mdbWavesEffect>Pricing</a>
+            <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/about']">About <span class="sr-only">(current)</span></a>
+          </li>
+            <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/contact']">Contact <span class="sr-only">(current)</span></a>
+          </li>
+            <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/admin']">Admin <span class="sr-only">(current)</span></a>
           </li>
       </ul>
       <!-- Links -->
@@ -26,3 +38,6 @@
 
 </mdb-navbar>
 <!--/.Navbar-->
+
+
+
