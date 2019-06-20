@@ -15,6 +15,8 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Profile {
 	
@@ -34,17 +36,42 @@ public class Profile {
 	private Date createdAt;
 	@OneToMany(mappedBy = "profile")
 	private List<Review> reviews;
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "mentor_id")
+	@OneToOne(mappedBy = "profile")
+	@JsonIgnore
 	private Mentor mentor;
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "mentee_id")
+	@OneToOne(mappedBy = "profile")
+	@JsonIgnore
 	private Mentee mentee;
-	private String picture;
-	private String resume;
+	@Column(name = "picture_url")
+	private String pictureUrl;
+	@Column(name = "resume_url")
+	private String resumeUrl;
+	@OneToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 	
 	
 	
+	
+	
+	public String getPictureUrl() {
+		return pictureUrl;
+	}
+	public void setPictureUrl(String pictureUrl) {
+		this.pictureUrl = pictureUrl;
+	}
+	public String getResumeUrl() {
+		return resumeUrl;
+	}
+	public void setResumeUrl(String resumeUrl) {
+		this.resumeUrl = resumeUrl;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public List<Review> getReviews() {
 		return reviews;
 	}
@@ -64,16 +91,16 @@ public class Profile {
 		this.mentee = mentee;
 	}
 	public String getPic() {
-		return picture;
+		return pictureUrl;
 	}
 	public void setPic(String pic) {
-		this.picture = pic;
+		this.pictureUrl = pic;
 	}
 	public String getResume() {
-		return resume;
+		return resumeUrl;
 	}
 	public void setResume(String resume) {
-		this.resume = resume;
+		this.resumeUrl = resume;
 	}
 	public int getId() {
 		return id;
