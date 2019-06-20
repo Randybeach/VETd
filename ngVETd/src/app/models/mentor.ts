@@ -1,5 +1,15 @@
 export class Mentor {
   id: number;
-  stroy: string;
-  date: string;
+  story: string;
+  createdAt: string;
+
+  constructor(
+    id?: number,
+    story?: string,
+    createdAt?: string
+    ) {
+    this.id = id;
+    this.story = story;
+    this.createdAt = createdAt;
+  }
 }
