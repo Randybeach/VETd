@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
             );
             // this.user = next;
             if (this.user != null) {
-              this.router.navigateByUrl('/CHANGEME TO EDIT');
+              this.router.navigateByUrl('/profile');
             }
           },
           error => {
