@@ -1,3 +1,4 @@
+import { Location } from './location';
 import { User } from './user';
 
 export class Profile {
@@ -6,7 +7,7 @@ export class Profile {
   lastName: string;
   summary: string;
   createdAt: string;
-  locationId: number;
+  location: Location;
   mentorId: number;
   menteeId: number;
   pictureUrl: string;
@@ -19,7 +20,7 @@ export class Profile {
     lastName?: string,
     summary?: string,
     createdAt?: string,
-    locationId?: number,
+    location?: Location,
     mentorId?: number,
     menteeId?: number,
     pictureUrl?: string,
@@ -31,7 +32,7 @@ export class Profile {
     this.lastName = lastName;
     this.summary = summary;
     this.createdAt = createdAt;
-    this.locationId = locationId;
+    this.location = location;
     this.mentorId = mentorId;
     this.menteeId = menteeId;
     this.pictureUrl = pictureUrl;
