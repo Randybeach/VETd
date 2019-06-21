@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit {
   //
   ngOnInit() {}
 
-  register(form1: NgForm,form2: NgForm,form3: NgForm) {
+  register(form1: NgForm, form2: NgForm, form3: NgForm) {
     let url = this.router.url;
     url = url.substring(url.length - 6);
     console.log(url);
@@ -49,8 +49,6 @@ export class RegisterComponent implements OnInit {
     this.newProfile.user = this.newUser;
     this.newMentee.profile = this.newProfile;
 
-
-
     this.auth.register(this.newMentee, url).subscribe(
       data => {
         console.log('RegisterComponent.register(): user registered.');
@@ -59,7 +57,7 @@ export class RegisterComponent implements OnInit {
             console.log(
               'RegisterComponent.register(): user logged in, routing to /CHANGEME.'
             );
-            console.log("going to profile");
+            console.log('going to profile');
             this.router.navigateByUrl('/profile');
           },
           error => {
