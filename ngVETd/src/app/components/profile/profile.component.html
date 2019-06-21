@@ -12,4 +12,10 @@
 
   </div>
 </div>
-<!--/Dropdown primary-->
+<select  [(ngModel)]="currentSector" (ngModelChange) = 'getJobBySector()'>
+  <option *ngFor="let sector of sectors"  name='currentSector' ngDefaultControl value={{sector.id}}>{{sector.name}}</option>
+</select><br>
+
+<select *ngIf="currentSector">
+  <option *ngFor="let job of jobsForSector">{{job.name}}</option>
+</select>

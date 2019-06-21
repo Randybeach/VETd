@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
   jobs: Job[] = [];
 
   jobsForSector: Job[] = [];
+  currentSector = null;
 
   constructor(private router: Router, private route: ActivatedRoute, private profileService: ProfileService) {}
   //
@@ -34,6 +35,7 @@ export class ProfileComponent implements OnInit {
   reloadSectors() {
     this.profileService.getSectors().subscribe(
       good => {
+
         this.sectors = good;
       },
       err => {
@@ -46,6 +48,8 @@ export class ProfileComponent implements OnInit {
     this.profileService.getJobs().subscribe(
       good => {
         this.jobs = good;
+        console.log(this.jobs);
+
       },
       err => {
         console.log(err);
@@ -53,11 +57,16 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  getJobBySector(sector) {
-// tslint:disable-next-line: prefer-for-of
+  getJobBySector() {
+    this.jobsForSector = [];
+    console.log("clicked");
+    console.log(this.currentSector);
+  console.log(this.jobs);
+
+
     for (let i = 0; i < this.jobs.length; i++) {
       const job = this.jobs[i];
-      if (job.sector.id === sector.id) {
+      if (job.sector.id == this.currentSector) {
         this.jobsForSector.push(job);
       }
     }
