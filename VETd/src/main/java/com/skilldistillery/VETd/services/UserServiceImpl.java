@@ -9,10 +9,12 @@ import com.skilldistillery.vetd.entities.Job;
 import com.skilldistillery.vetd.entities.Mentee;
 import com.skilldistillery.vetd.entities.Mentor;
 import com.skilldistillery.vetd.entities.MentorMentee;
+import com.skilldistillery.vetd.entities.Profile;
 import com.skilldistillery.vetd.entities.User;
 import com.skilldistillery.vetd.repositories.MenteeRepository;
 import com.skilldistillery.vetd.repositories.MentorMenteeRepository;
 import com.skilldistillery.vetd.repositories.MentorRepository;
+import com.skilldistillery.vetd.repositories.ProfileRepository;
 import com.skilldistillery.vetd.repositories.UserRepository;
 
 @Service
@@ -26,6 +28,8 @@ public class UserServiceImpl implements UserService {
 	private MentorRepository mentorRepo;
 	@Autowired
 	private MentorMenteeRepository mmRepo;
+	@Autowired
+	private ProfileRepository pRepo;
 	
 	@Override
 	public List<User> index() {
@@ -77,8 +81,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Mentee addJobstoMentee(List<Job> jobs, int id) {
-	Mentee mentee =	menteeRepo.findMenteeById(id);
+	public Mentee addJobstoMentee(List<Job> jobs, String username) {
+		User user = uRepo.findUserByUsername(username);
+		Mentee mentee =	user.getProfile().getMentee();
+	 System.out.println(mentee);
 	for (Job job : jobs) {
 		if(job == null) {
 			continue;
@@ -96,6 +102,13 @@ public class UserServiceImpl implements UserService {
 			mentee.removeJob(job);
 		}
 		return mentee;
+	}
+
+
+	@Override
+	public Profile getProfileById(int id) {
+		
+		return pRepo.findProfileById(id);
 	}
 
 }

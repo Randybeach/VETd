@@ -53,6 +53,8 @@ export class AuthService {
   }
 
   logout() {
+    console.log(sessionStorage.getItem('username'));
+
     localStorage.removeItem("credentials");
   }
 

@@ -1,5 +1,6 @@
 package com.skilldistillery.vetd.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import com.skilldistillery.vetd.entities.Job;
 import com.skilldistillery.vetd.entities.Mentee;
 import com.skilldistillery.vetd.entities.Mentor;
 import com.skilldistillery.vetd.entities.MentorMentee;
+import com.skilldistillery.vetd.entities.Profile;
 import com.skilldistillery.vetd.entities.User;
 import com.skilldistillery.vetd.services.UserService;
 
@@ -57,15 +59,19 @@ public class UserController {
 		return svc.updateMentor(mentor, id);
 	}
 	//Add Job to Mentee
-	@PutMapping("mentee/{id}/add/jobs")
-	public Mentee addJobsToMentee(@RequestBody List<Job> jobs, @PathVariable int id) {
-		Mentee ment = svc.addJobstoMentee(jobs, id);
+	@PutMapping("mentee/add/jobs")
+	public Mentee addJobsToMentee(@RequestBody List<Job> jobs, Principal principal) {
+		Mentee ment = svc.addJobstoMentee(jobs, principal.getName());
 		return ment;
 	}
 	//Remove Job from mentee
 	@PutMapping("mentee/{id}/remove/jobs")
 	public Mentee removeJobsToMentee(@RequestBody List<Job> jobs, @PathVariable int id) {
 		return svc.removeJobsFromMentee(jobs, id);
+	}
+	@GetMapping("profile/{id}")
+	public Profile getProfile(@PathVariable int id) {
+		return svc.getProfileById(id);
 	}
 	
 }
