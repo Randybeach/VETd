@@ -17,7 +17,7 @@
   <option *ngFor="let sector of sectors"  name='currentSector' ngDefaultControl value={{sector.id}}>{{sector.name}}</option>
 </select><br>
 
-<select *ngIf="currentSector">
-  <option *ngFor="let job of jobsForSector">{{job.name}}</option>
+<select *ngIf="currentSector" [(ngModel)]="jobName" (ngModelChange) = 'addJob1()'>
+  <option *ngFor="let job of jobsForSector" value={{job.name}} name='job1' ngDefaultControl>{{job.name}}</option>
 </select>
 

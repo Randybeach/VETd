@@ -21,6 +21,8 @@ export class ProfileComponent implements OnInit {
 
   jobsForSector: Job[] = [];
   currentSector = null;
+  jobName = 'nothing';
+  job1 = null;
 
   constructor(private router: Router, private route: ActivatedRoute, private profileService: ProfileService) {}
   //
@@ -62,7 +64,7 @@ export class ProfileComponent implements OnInit {
     this.jobsForSector = [];
     console.log("clicked");
     console.log(this.currentSector);
-  console.log(this.jobs);
+    console.log(this.jobs);
 
 
     for (let i = 0; i < this.jobs.length; i++) {
@@ -71,5 +73,15 @@ export class ProfileComponent implements OnInit {
         this.jobsForSector.push(job);
       }
     }
+  }
+  addJob1() {
+    for(let job of this.jobsForSector){
+      if(job.name === this.jobName){
+        this.job1 = job;
+      }
+    }
+  console.log(this.job1);
+
+
   }
 }
