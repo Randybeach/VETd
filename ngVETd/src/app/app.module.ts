@@ -14,6 +14,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './components/register/register.component';
 import { EditComponent } from './components/edit/edit.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { EditComponent } from './components/edit/edit.component';
     NavigationComponent,
     HomeComponent,
     RegisterComponent,
-    EditComponent
+    EditComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
