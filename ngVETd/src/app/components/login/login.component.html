@@ -1,21 +1,32 @@
-<div>
+<div class="container-fluid background">
+    <div class="row ">
+      <div class='col-sm-1 col-md-3 col-lg-4'></div>
+      <div class="card col-sm-10 col-md-6 col-lg-4">
+        <div class="card-header text-center">
+          <h1 class="h1 mb-4">Login</h1>
+        </div>
+        <div class="card-body">
   <form #loginForm="ngForm">
-    <input
+    <input class="form-control mb-4 text-center"
       type="text"
       name="username"
       placeholder="Username"
       [(ngModel)]="user.username"
     />
-    <input
+    <input class="form-control mb-4 text-center"
       type="password"
       name="password"
       placeholder="Password"
       [(ngModel)]="user.password"
     />
-    <input
+    <input class='btn btn-warning btn-sm'
       type="submit"
       value="Login"
       (click)="login(loginForm)"
     />
   </form>
+  </div>
+  </div>
+  <div class='col-sm-1 col-md-3 col-lg-4'></div>
+</div>
 </div>
