@@ -10,5 +10,5 @@ import com.skilldistillery.vetd.entities.Job;
 @Repository
 public interface JobRepository extends JpaRepository<Job, Integer> {
 
-//	public List<Job> findJobsbySectorId(int id);
+	public List<Job> findBySectorId(int id);
 }
