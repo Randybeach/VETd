@@ -22,6 +22,7 @@ public class Job {
 	private String name;
 	@ManyToOne
 	@JoinColumn(name = "sector_id")
+	@JsonIgnore
 	private Sector sector;
 	@ManyToMany
 	@JoinTable(name = "mentor_job", joinColumns=@JoinColumn(name = "job_id"), inverseJoinColumns = @JoinColumn(name = "mentor_id"))
