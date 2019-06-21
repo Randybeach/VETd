@@ -29,6 +29,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.reloadSectors();
     this.reloadJobs();
+    console.log(this.reloadSectors());
   }
 
   reloadSectors() {
