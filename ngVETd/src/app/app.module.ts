@@ -2,7 +2,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { CarouselModule } from 'angular-bootstrap-md';
+import { CarouselModule, IconsModule } from 'angular-bootstrap-md';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,6 +13,7 @@ import { NavbarModule, WavesModule } from 'angular-bootstrap-md';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './components/register/register.component';
+import { MatExpansionModule, MatButtonModule, MatInputModule, MatFormFieldModule } from '@angular/material';
 import { EditComponent } from './components/edit/edit.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
@@ -34,7 +35,13 @@ import { ProfileComponent } from './components/profile/profile.component';
     HttpClientModule,
     NgbModule,
     NavbarModule,
-    CarouselModule
+    CarouselModule,
+    MatExpansionModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    IconsModule,
+    WavesModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
