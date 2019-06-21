@@ -1,8 +1,11 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { ProfileService } from "./../../services/profile.service";
 import { Component, OnInit } from "@angular/core";
 import { Sector } from "src/app/models/sector";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Job } from "src/app/models/job";
+import { Mentee } from "src/app/models/mentee";
+import { Mentor } from 'src/app/models/mentor';
 
 @Component({
   selector: "app-profile",
@@ -22,12 +25,21 @@ export class ProfileComponent implements OnInit {
 
   currentSector = null;
 
+  jobName = "nothing";
+
+  currJobs = [];
+
   selectedJob = new Job();
+
+  mentee = new Mentee();
+
+  mentor = new Mentor();
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private auth: AuthService
   ) {}
   //
   // M E T H O D S
@@ -36,8 +48,22 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.reloadSectors();
     this.reloadJobs();
-    console.log(this.reloadSectors());
+    console.log(this.auth.getCredentials());
+
   }
+
+  // getProfile() {
+
+  //   this.profileService.getProfile(id).subscribe(
+  //     good => {
+  //       console.log(good);
+
+  //     },
+  //     err => {
+  //       console.log(err);
+  //     }
+  //   );
+  // }
 
   reloadSectors() {
     this.profileService.getSectors().subscribe(
@@ -75,13 +101,24 @@ export class ProfileComponent implements OnInit {
       }
     }
   }
-  setJob(job) {
-    this.selectedJob = job;
-    console.log(this.selectedJob);
 
+  setJob() {
+    for (let job of this.jobsForSector) {
+      if (job.name === this.jobName) {
+        this.currJobs.push(job);
+      }
+    }
+    console.log(this.currJobs);
   }
 
-  addJob() {
-
+  addJobs() {
+    this.profileService.addJobs(this.currJobs).subscribe(
+      good => {
+        console.log(good);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 }
