@@ -45,7 +45,7 @@ export class ProfileService {
       Authorization: "Basic " + this.auth.getCredentials(),
       "Content-Type": "application/json"
     };
-    return this.http.put<Job[]>(this.url + "mentee/add/jobs", newJobs, {
+    return this.http.put<Job[]>(this.url + "/mentee/add/jobs", newJobs, {
       headers: myHeaders
     });
   }
