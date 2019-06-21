@@ -75,8 +75,6 @@ ENGINE = InnoDB;
 
 CREATE INDEX `fk_Profile_Location1_idx` ON `profile` (`location_id` ASC);
 
-CREATE UNIQUE INDEX `picture_url_UNIQUE` ON `profile` (`picture_url` ASC);
-
 CREATE INDEX `fk_profile_user1_idx` ON `profile` (`user_id` ASC);
 
 
