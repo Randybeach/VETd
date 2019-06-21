@@ -1,3 +1,23 @@
-<p>
-  profile works!
-</p>
+
+<br><br><br><br>
+<!--Dropdown primary-->
+<div class="dropdown">
+
+  <!--Trigger-->
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+    aria-haspopup="true" aria-expanded="false">Material dropdown</button>
+
+  <!--Menu-->
+  <div class="dropdown-menu dropdown-primary" *ngFor="let sector of sectors">
+    <a class="dropdown-item" href="#">{{ sector.name }}</a>
+
+  </div>
+</div>
+<select  [(ngModel)]="currentSector" (ngModelChange) = 'getJobBySector()'>
+  <option *ngFor="let sector of sectors"  name='currentSector' ngDefaultControl value={{sector.id}}>{{sector.name}}</option>
+</select><br>
+
+<select *ngIf="currentSector">
+  <option *ngFor="let job of jobsForSector">{{job.name}}</option>
+</select>
+

@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Sector {
 	
@@ -16,6 +18,7 @@ public class Sector {
 	private int id;
 	private String name;
 	@OneToMany(mappedBy = "sector")
+	@JsonIgnore
 	private List<Job> jobs;
 	
 	
