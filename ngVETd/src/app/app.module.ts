@@ -13,9 +13,10 @@ import { NavbarModule, WavesModule } from 'angular-bootstrap-md';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './components/register/register.component';
-import { MatExpansionModule, MatButtonModule, MatInputModule, MatFormFieldModule } from '@angular/material';
+import { MatExpansionModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatIconModule } from '@angular/material';
 import { EditComponent } from './components/edit/edit.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     MatInputModule,
     MatFormFieldModule,
     IconsModule,
-    WavesModule
+    WavesModule,
+    MatIconModule,
+    FontAwesomeModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
