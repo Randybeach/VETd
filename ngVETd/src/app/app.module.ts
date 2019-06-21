@@ -16,7 +16,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { MatExpansionModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatIconModule } from '@angular/material';
 import { EditComponent } from './components/edit/edit.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AdminComponent } from './components/admin/admin.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HomeComponent,
     RegisterComponent,
     EditComponent,
-    ProfileComponent
+    ProfileComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
