@@ -37,7 +37,6 @@ public class Profile {
 	@OneToMany(mappedBy = "profile")
 	private List<Review> reviews;
 	@OneToOne(mappedBy = "profile")
-	@JsonIgnore
 	private Mentor mentor;
 	@OneToOne(mappedBy = "profile")
 	@JsonIgnore

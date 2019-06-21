@@ -6,6 +6,7 @@ import com.skilldistillery.vetd.entities.Job;
 import com.skilldistillery.vetd.entities.Mentee;
 import com.skilldistillery.vetd.entities.Mentor;
 import com.skilldistillery.vetd.entities.MentorMentee;
+import com.skilldistillery.vetd.entities.Profile;
 import com.skilldistillery.vetd.entities.User;
 
 public interface UserService {
@@ -24,7 +25,9 @@ public interface UserService {
 
 	public Mentor updateMentor(Mentor mentor, int id);
 
-	public Mentee addJobstoMentee(List<Job> jobs, int id);
+	public Mentee addJobstoMentee(List<Job> jobs, String username);
 
 	public Mentee removeJobsFromMentee(List<Job> jobs, int id);
+
+	public Profile getProfileById(int id);
 }
