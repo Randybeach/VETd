@@ -1,11 +1,26 @@
+<br /><br /><br /><br />
+<form action="">
+  <select [(ngModel)]="currentSector" (ngModelChange)="getJobBySector()" name="sector">
+    <option
+      *ngFor="let sector of sectors"
+      name="currentSector"
+      ngDefaultControl
+      value="{{ sector.id }}"
+      >{{ sector.name }}</option
+    > </select
+  ><br />
 
-<br><br><br><br>
-
-<select  [(ngModel)]="currentSector" (ngModelChange) = 'getJobBySector()'>
-  <option *ngFor="let sector of sectors"  name='currentSector' ngDefaultControl value={{sector.id}}>{{sector.name}}</option>
-</select><br>
-
-<select *ngIf="currentSector">
-  <option *ngFor="let job of jobsForSector">{{job.name}}</option>
-</select>
-
+  <select *ngIf="currentSector">
+    <option *ngFor="let job of jobsForSector" (ngModelChange)="setJob(job.name)" value="job.name">{{ job.name }}</option>
+  </select>
+    <button
+    mdbBtn
+    color="info"
+    block="true"
+    class="my-4 text-center btn btn-warning"
+    type="submit"
+    (click)="addJob()"
+    >
+    Submit
+  </button>
+</form>
