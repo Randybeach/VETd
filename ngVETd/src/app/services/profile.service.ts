@@ -50,12 +50,4 @@ export class ProfileService {
     });
   }
 
-  // getProfile(id: string): Observable<Profile> {
-  //   const credentials = this.auth.getCredentials();
-  //   const myHeaders = {
-  //     "X-Requested-With": "XMLHttpRequest",
-  //     Authorization: "Basic " + this.auth.getCredentials()
-  //   };
-  //   return this.http.get<Profile>(this.url + "/profile" + id, { headers: myHeaders });
-  // }
 }
