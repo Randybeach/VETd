@@ -13,7 +13,7 @@ export class ProfileService {
   //
   // F E I L D S
   //
-  private url = environment.baseUrl + 'api';
+  private url = environment.baseUrl + 'api/';
   constructor(private http: HttpClient, private auth: AuthService) {}
   //
   // M E T H O D S
@@ -24,7 +24,7 @@ export class ProfileService {
       'X-Requested-With': 'XMLHttpRequest',
       Authorization: 'Basic ' + this.auth.getCredentials()
     };
-    return this.http.get<Sector[]>(this.url + '/sectors', {
+    return this.http.get<Sector[]>(this.url + 'sectors', {
       headers: myHeaders
     });
   }
@@ -35,6 +35,6 @@ export class ProfileService {
       'X-Requested-With': 'XMLHttpRequest',
       Authorization: 'Basic ' + this.auth.getCredentials()
     };
-    return this.http.get<Job[]>(this.url + '/jobs', { headers: myHeaders });
+    return this.http.get<Job[]>(this.url + 'jobs', { headers: myHeaders });
   }
 }
