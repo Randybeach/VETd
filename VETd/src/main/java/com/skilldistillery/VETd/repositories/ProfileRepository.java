@@ -6,4 +6,6 @@ import com.skilldistillery.vetd.entities.Profile;
 
 public interface ProfileRepository extends JpaRepository<Profile, Integer> {
 
+	Profile findProfileById(int id);
+
 }
