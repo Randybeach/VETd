@@ -1,22 +1,12 @@
-.card {
+#signupCard {
   background-color: oldlace;
   /* opacity: .2;*/
     background: rgba(255, 252, 252, 0.3);
 }
 
-.card-body {
+#signupCard {
   color: white;
   border: none;
-}
-
-.card-header {
-  color: white;
-}
-
-.caro {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
 }
 
 #reviewText {
@@ -24,6 +14,27 @@
   color: white;
 }
 
-img {
+#backgroundColor {
+  background-color: rgb(62, 67, 73);
+}
+
+#reviewImg {
+  height: 200px;
+  border-radius: 40%;
   width: 100%;
+  opacity: .05;
+}
+
+#aboutRow {
+  padding: 60px 0px 100px 0px;
+  color: black;
+}
+
+#homeHeader {
+  color: white;
+}
+
+#aboutCard {
+  background-color: oldlace;
+  background: rgba(255, 252, 252, 0.7);
 }

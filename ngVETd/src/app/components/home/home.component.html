@@ -1,14 +1,14 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+<div id='backgroundColor'>
   <div class='container-fluid' id='backgroundImg'>
   <div class='row'>
   <div class='text-center background'  style='padding: 70px 0px 0px 0px'>
-      <div><h1>VETd</h1><h3>Veterans helping veterans</h3></div>
+      <div id='homeHeader'><h1>VETd</h1><h3>Veterans helping veterans</h3></div>
   <div class='row' style='margin:5%'>
-    <div class='col-sm -3 col-md-4 col-lg-2'></div>
-    <div class='col-sm -3 col-md-4 col-lg-4'>
+    <div class='col-sm-1 col-md-2 col-lg-2'></div>
+    <div class='col-sm-5 col-md-4 col-lg-4'>
       <div style='padding: 10px 0px 0px 0px'>
-      <div class='card border-0'>
+      <div class='card border-0' id='signupCard'>
         <div class='card-body'>
           <h3>BE A MENTOR</h3>
           <p>Share your journey and experience with fellow veterans.</p>
@@ -17,9 +17,9 @@
       </div>
     </div>
   </div>
-  <div class='col-sm -3 col-md-4 col-lg-4' >
+  <div class='col-sm-5 col-md-4 col-lg-4' >
     <div style='padding: 10px 0px 0px 0px'>
-    <div class='card border-0'>
+    <div class='card border-0' id='signupCard'>
       <div class='card-body'>
         <h3>FIND A MENTOR</h3>
         <p>Gain insight from those who have gone before you.</p>
@@ -28,14 +28,14 @@
     </div>
   </div>
   </div>
-  <div class='col-sm -3 col-md-4 col-lg-2'></div>
+  <div class='col-sm-1 col-md-2 col-lg-2'></div>
 </div>
 <div>
 </div>
 </div>
 </div>
 
-
+<!--
 <div class='row' style='padding: 200px 0px 0px 0px'>
 <div class='col-4'></div>
 <div class='col-4'>
@@ -44,29 +44,59 @@
     <div class='card-body' style='color: black'>
       <h3>Title 1</h3>
       <p>Grreat experience with VETd. Highly recommended!</p>
-
     </div>
   </div>
 </div>
 <div class='col-4'></div>
 </div>
-</div>
+</div> -->
 
 
 <div class="container">
     <div class="row">
       <div class="col-md-12 py-3">
-        <h2 class="pb-2" class='center text-center'>Upcoming Events</h2>
         <ngb-carousel *ngIf="reviewList">
           <ng-template ngbSlide *ngFor="let review of reviews">
-          <img [src]="review.img" alt="Random slide">
+            <img [src]="review.img" alt="Reviews" id='reviewImg'>
             <div class="carousel-caption">
-              <h3>{{ review.reviewTitle }}</h3>
-              <p>{{review.reviewText}}
-              <span><ngb-rating [rate]="review.reviewStars" max="5"></ngb-rating></span></p>
+              <div class='container'>
+                  <div class="card" id='signupCard'>
+                    <div class='card-body' style='color: black'>
+                      <h3><em>{{ review.reviewTitle }}</em></h3>
+                      <p>{{review.reviewText}}
+                      <span><ngb-rating [rate]="review.reviewStars" max="5"></ngb-rating></span></p>
+                    </div>
+                  </div>
+                </div>
             </div>
           </ng-template>
         </ngb-carousel>
       </div>
     </div>
   </div>
+</div>
+
+<div id='about'>
+<div class='row' id='aboutRow'>
+  <div class='col-sm-1 col-md-1'></div>
+  <div class='col-sm-5 col-md-5'>
+  <div class='container-fluid'>
+    <div class='card shadow' id='aboutCard'>
+      <div class='card-body text-left'>
+          <h2><em>About</em></h2>
+        <p style='color:darkgoldenrod'><b>We help transitioning military, veterans connect with veteran subject matter experts who have successfully traversed the transition journey.</b></p>
+        <p>Whether you have already been released from active, guard, or reserve duty or if you are nearing the end of your service, you can benefit from VETd services.</p>
+        ********************************************
+
+            <p>I'm speaking with myself, number one, because I have a very good brain and I've said a lot of things.</p>
+
+            <p>This placeholder text is gonna be HUGE. You have so many different things placeholder text has to be able to do, and I don't believe Lorem Ipsum has the stamina. We are going to make placeholder text great again. Greater than ever before. Does everybody know that pig named Lorem Ipsum? She's a disgusting pig, right?</p>
+
+            <p>Does everybody know that pig named Lorem Ipsum? She's a disgusting pig, right? Be careful, or I will spill the beans on your placeholder text. All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected.</p>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class='col-sm-6 col-md-6'></div>
+</div>
+</div>
