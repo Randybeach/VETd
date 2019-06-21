@@ -38,3 +38,13 @@
   background-color: oldlace;
   background: rgba(255, 252, 252, 0.7);
 }
+
+path:hover {
+  fill: #007bff;
+}
+
+#aboutCard-header {
+  padding-top: 35px;
+  background-color: oldlace;
+  background: rgba(255, 252, 252, 0.3);
+}
