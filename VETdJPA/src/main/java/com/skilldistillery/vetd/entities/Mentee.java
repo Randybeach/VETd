@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,7 +32,7 @@ public class Mentee {
 	@OneToMany(mappedBy = "mentee")
 	@JsonIgnore
 	private List<MentorMentee> mentorMentee;
-	@ManyToMany(mappedBy = "mentees")
+	@ManyToMany(mappedBy = "mentees", cascade = CascadeType.ALL)
 	private List<Job> jobs;
 	@OneToOne
 	@JoinColumn(name = "profile_id")
@@ -64,12 +65,14 @@ public class Mentee {
 			this.jobs = new ArrayList<Job>();
 		}
 		this.jobs.add(job);
+		job.getMentees().add(this);
 	}
 	public void removeJob(Job job) {
 		if(this.jobs == null) {
 			return;
 		}
 		this.jobs.remove(job);
+		job.getMentees().remove(this);
 	}
 	public int getId() {
 		return id;

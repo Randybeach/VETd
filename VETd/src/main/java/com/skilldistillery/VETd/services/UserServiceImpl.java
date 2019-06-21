@@ -81,18 +81,33 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Mentee addJobstoMentee(List<Job> jobs, String username) {
+	public Object addJobstoMentee(List<Job> jobs, String username) {
 		User user = uRepo.findUserByUsername(username);
-		Mentee mentee =	user.getProfile().getMentee();
-	 System.out.println(mentee);
-	for (Job job : jobs) {
-		if(job == null) {
-			continue;
+		
+		if(user.getProfile().getMentee() != null) {
+			Mentee mentee =	user.getProfile().getMentee();
+			for (Job job : jobs) {
+				if(job == null) {
+					continue;
+				}
+				mentee.addJob(job);
+			}
+			System.out.println(mentee);
+			menteeRepo.saveAndFlush(mentee);
+			return mentee;
+			
+		}else {
+			Mentor mentor = user.getProfile().getMentor();
+			for (Job job : jobs) {
+				if(job == null) {
+					continue;
+				}
+				mentor.addJob(job);
+			}
+			System.out.println(mentor);
+			mentorRepo.saveAndFlush(mentor);
+			return mentor;
 		}
-		mentee.addJob(job);
-	}
-	menteeRepo.saveAndFlush(mentee);
-		return mentee;
 	}
 
 	@Override

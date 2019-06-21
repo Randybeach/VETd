@@ -1,5 +1,6 @@
 package com.skilldistillery.vetd.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -32,13 +33,27 @@ public class Mentor {
 	@JsonIgnore
 	private List<MentorMentee> mentorMentees;
 	@ManyToMany(mappedBy = "mentors")
-	@JsonIgnore
 	private List<Job> jobs;
 	@OneToOne
 	@JoinColumn(name = "profile_id")
 	private Profile profile;
 	
 	
+	public void addJob(Job job) {
+		if(this.jobs == null) {
+			this.jobs = new ArrayList<Job>();
+		}
+		this.jobs.add(job);
+		job.getMentors().add(this);
+		
+	}
+	public void removeJob(Job job) {
+		if(this.jobs == null) {
+			return;
+		}
+		this.jobs.remove(job);
+		job.getMentors().remove(this);
+	}
 	
 	public List<Job> getJobs() {
 		return jobs;

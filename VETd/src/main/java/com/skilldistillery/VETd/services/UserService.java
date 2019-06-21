@@ -25,7 +25,7 @@ public interface UserService {
 
 	public Mentor updateMentor(Mentor mentor, int id);
 
-	public Mentee addJobstoMentee(List<Job> jobs, String username);
+	public Object addJobstoMentee(List<Job> jobs, String username);
 
 	public Mentee removeJobsFromMentee(List<Job> jobs, int id);
 

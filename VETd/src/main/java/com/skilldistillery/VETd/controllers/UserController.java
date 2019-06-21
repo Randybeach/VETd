@@ -60,14 +60,15 @@ public class UserController {
 	}
 	//Add Job to Mentee
 	@PutMapping("mentee/add/jobs")
-	public Mentee addJobsToMentee(@RequestBody List<Job> jobs, Principal principal) {
-		Mentee ment = svc.addJobstoMentee(jobs, principal.getName());
-		return ment;
+	public Object addJobsToMentee(@RequestBody List<Job> jobs, Principal principal) {
+		System.out.println(jobs);
+		System.out.println(principal.getName());
+		return svc.addJobstoMentee(jobs, principal.getName());
 	}
 	//Remove Job from mentee
-	@PutMapping("mentee/{id}/remove/jobs")
-	public Mentee removeJobsToMentee(@RequestBody List<Job> jobs, @PathVariable int id) {
-		return svc.removeJobsFromMentee(jobs, id);
+	@PutMapping("mentee/remove/jobs")
+	public void removeJobsToMentee(@RequestBody List<Job> jobs, @PathVariable int id) {
+		svc.removeJobsFromMentee(jobs, id);
 	}
 	@GetMapping("profile/{id}")
 	public Profile getProfile(@PathVariable int id) {
