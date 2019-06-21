@@ -1,3 +1,5 @@
+import { User } from './user';
+
 export class Profile {
   id: number;
   firstName: string;
@@ -9,7 +11,7 @@ export class Profile {
   menteeId: number;
   pictureUrl: string;
   resumeUrl: string;
-  userId: number;
+  user: User;
 
   constructor(
     id?: number,
@@ -22,7 +24,7 @@ export class Profile {
     menteeId?: number,
     pictureUrl?: string,
     resumeUrl?: string,
-    userId?: number
+    user?: User
   ) {
     this.id = id;
     this.firstName = firstName;
@@ -34,6 +36,6 @@ export class Profile {
     this.menteeId = menteeId;
     this.pictureUrl = pictureUrl;
     this.resumeUrl = resumeUrl;
-    this.userId = userId;
+    this.user = user;
   }
 }

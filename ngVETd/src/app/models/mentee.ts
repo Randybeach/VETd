@@ -1,18 +1,20 @@
+import { Profile } from './profile';
+
 export class Mentee {
   id: number;
   story: string;
   createdAt: string;
-  profileId: number;
+  profile: Profile;
 
   constructor(
     id?: number,
     story?: string,
     createdAt?: string,
-    profileId?: number
+    profile?: Profile
   ) {
     this.id = id;
     this.story = story;
     this.createdAt = createdAt;
-    this.profileId = profileId;
+    this.profile = profile;
   }
 }
