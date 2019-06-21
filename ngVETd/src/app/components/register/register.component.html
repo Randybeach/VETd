@@ -10,7 +10,7 @@
         <!-- ---------------------------------------------------------------- -->
         <!-- User Form -->
         <!-- ---------------------------------------------------------------- -->
-        <form #editUserForm="ngForm" class="text-center">
+        <form #addUserForm="ngForm" class="text-center">
           <!-- <h5 class="text-center">Login Information</h5> -->
           <!-- Email -->
           <input
@@ -46,7 +46,7 @@
         <!-- ---------------------------------------------------------------- -->
         <!-- Profile Form -->
         <!-- ---------------------------------------------------------------- -->
-        <form #editProfileForm="ngForm" class="text-center">
+        <form #addProfileForm="ngForm" class="text-center">
           <!-- <h5 class="text-center">About You</h5> -->
           <!-- First Name -->
           <input
@@ -102,7 +102,7 @@
         <!-- ---------------------------------------------------------------- -->
         <!-- Location Form -->
         <!-- ---------------------------------------------------------------- -->
-        <form #editLocationForm="ngForm" class="text-center">
+        <form #addLocationForm="ngForm" class="text-center">
           <!-- <h5 class="text-center">Location</h5> -->
           <!-- City -->
           <input
@@ -145,6 +145,7 @@
             block="true"
             class="my-4 text-center btn btn-warning"
             type="submit"
+            (click)="register(addUserForm, addProfileForm, addLocationForm)"
           >
             Submit
           </button>
