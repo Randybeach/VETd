@@ -14,16 +14,13 @@
         <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/home']">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/register']">Register <span class="sr-only"></span></a>
+        <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/login']" *ngIf="!isLoggedIn()">Login <span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/login']">Login <span class="sr-only"></span></a>
+        <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/logout']" *ngIf="isLoggedIn()">Logout <span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/logout']">Logout <span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/profile']">Profile <span class="sr-only"></span></a>
+        <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/profile']" *ngIf="isLoggedIn()">Profile <span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/about']">About <span class="sr-only"></span></a>
