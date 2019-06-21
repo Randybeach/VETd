@@ -39,9 +39,12 @@ export class AuthService {
     );
   }
 
-  register(user) {
+  register(mentee, url) {
+
+
+
     // create request to register a new account
-    return this.http.post(this.baseUrl + "register", user).pipe(
+    return this.http.post(this.baseUrl + "register/" + url , mentee).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError("AuthService.register(): error registering user.");

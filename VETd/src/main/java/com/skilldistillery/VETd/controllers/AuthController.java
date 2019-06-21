@@ -17,7 +17,7 @@ import com.skilldistillery.vetd.entities.User;
 import com.skilldistillery.vetd.services.AuthService;
 
 @RestController
-@CrossOrigin({"*", "http://localhost:4201"})
+@CrossOrigin({"*", "http://localhost:4202"})
 public class AuthController {
 
 	@Autowired

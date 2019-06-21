@@ -16,7 +16,7 @@ import { Profile } from 'src/app/models/profile';
 export class RegisterComponent implements OnInit {
   //
   // F E I L D S
-  //
+  // //
   user: User = null;
   newUser = new User();
   newProfile = new Profile();
@@ -34,11 +34,24 @@ export class RegisterComponent implements OnInit {
   //
   ngOnInit() {}
 
-  register(form: NgForm) {
+  register(form1: NgForm,form2: NgForm,form3: NgForm) {
+    let url = this.router.url;
+    url = url.substring(url.length - 6);
+    console.log(url);
+    this.newUser = form1.value;
     this.newUser.role = 'user';
     this.newUser.enabled = true;
 
-    this.auth.register(this.newUser).subscribe(
+    this.newProfile = form2.value;
+    this.newLocation = form3.value;
+
+    this.newProfile.location = this.newLocation;
+    this.newProfile.user = this.newUser;
+    this.newMentee.profile = this.newProfile;
+
+
+
+    this.auth.register(this.newMentee, url).subscribe(
       data => {
         console.log('RegisterComponent.register(): user registered.');
         this.auth.login(this.newUser.username, this.newUser.password).subscribe(
