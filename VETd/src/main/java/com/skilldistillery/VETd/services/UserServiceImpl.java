@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.vetd.entities.Job;
 import com.skilldistillery.vetd.entities.Mentee;
 import com.skilldistillery.vetd.entities.Mentor;
 import com.skilldistillery.vetd.entities.MentorMentee;
@@ -67,13 +68,31 @@ public class UserServiceImpl implements UserService {
 		return mentee;
 	}
 
-
 	@Override
 	public Mentor updateMentor(Mentor mentor, int id) {
 		mentor.setId(id);
 		mentorRepo.saveAndFlush(mentor);
 		
 		return mentor;
+	}
+
+	@Override
+	public Mentee addJobstoMentee(List<Job> jobs, int id) {
+	Mentee mentee =	menteeRepo.findMenteeById(id);
+	for (Job job : jobs) {
+		mentee.addJob(job);
+	}
+	menteeRepo.saveAndFlush(mentee);
+		return mentee;
+	}
+
+	@Override
+	public Mentee removeJobsFromMentee(List<Job> jobs, int id) {
+		Mentee mentee = menteeRepo.findMenteeById(id);
+		for (Job job : jobs) {
+			mentee.removeJob(job);
+		}
+		return mentee;
 	}
 
 }

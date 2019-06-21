@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.vetd.entities.Job;
 import com.skilldistillery.vetd.entities.Mentee;
 import com.skilldistillery.vetd.entities.Mentor;
 import com.skilldistillery.vetd.entities.MentorMentee;
@@ -54,6 +55,17 @@ public class UserController {
 	@PutMapping("mentor/{id}")
 	public Mentor updateMentor(@RequestBody Mentor mentor, @PathVariable int id) {
 		return svc.updateMentor(mentor, id);
+	}
+	//Add Job to Mentee
+	@PutMapping("mentee/{id}/add/jobs")
+	public Mentee addJobsToMentee(@RequestBody List<Job> jobs, @PathVariable int id) {
+		Mentee ment = svc.addJobstoMentee(jobs, id);
+		return ment;
+	}
+	//Remove Job from mentee
+	@PutMapping("mentee/{id}/remove/jobs")
+	public Mentee removeJobsToMentee(@RequestBody List<Job> jobs, @PathVariable int id) {
+		return svc.removeJobsFromMentee(jobs, id);
 	}
 	
 }
