@@ -80,6 +80,9 @@ public class UserServiceImpl implements UserService {
 	public Mentee addJobstoMentee(List<Job> jobs, int id) {
 	Mentee mentee =	menteeRepo.findMenteeById(id);
 	for (Job job : jobs) {
+		if(job == null) {
+			continue;
+		}
 		mentee.addJob(job);
 	}
 	menteeRepo.saveAndFlush(mentee);
