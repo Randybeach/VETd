@@ -1,15 +1,16 @@
+import { Sector } from './sector';
 export class Job {
   id: number;
-  sectorId: number;
+  sector: Sector;
   name: string;
 
   constructor(
     id?: number,
-    sectorId?: number,
+    sector?: Sector,
     name?: string
     ) {
     this.id = id;
-    this.sectorId = sectorId;
+    this.sector = sector;
     this.name = name;
   }
 }
