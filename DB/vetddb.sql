@@ -75,8 +75,6 @@ ENGINE = InnoDB;
 
 CREATE INDEX `fk_Profile_Location1_idx` ON `profile` (`location_id` ASC);
 
-CREATE UNIQUE INDEX `picture_url_UNIQUE` ON `profile` (`picture_url` ASC);
-
 CREATE INDEX `fk_profile_user1_idx` ON `profile` (`user_id` ASC);
 
 
@@ -249,8 +247,14 @@ ENGINE = InnoDB;
 
 CREATE INDEX `fk_table2_Mentor1_idx` ON `mentor_job` (`mentor_id` ASC);
 
-GRANT SELECT, INSERT, TRIGGER ON TABLE `vetddb`.* TO 'user'@'localhost';
-GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE `vetddb`.* TO 'user'@'localhost';
+SET SQL_MODE = '';
+GRANT USAGE ON *.* TO vet@localhost;
+ DROP USER vet@localhost;
+SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+CREATE USER 'vet'@'localhost' IDENTIFIED BY 'vet';
+
+GRANT SELECT, INSERT, TRIGGER ON TABLE * TO 'vet'@'localhost';
+GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'vet'@'localhost';
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

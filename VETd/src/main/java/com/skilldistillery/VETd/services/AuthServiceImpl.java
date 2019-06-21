@@ -4,10 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.vetd.entities.Location;
 import com.skilldistillery.vetd.entities.Mentee;
 import com.skilldistillery.vetd.entities.Mentor;
 import com.skilldistillery.vetd.entities.Profile;
 import com.skilldistillery.vetd.entities.User;
+import com.skilldistillery.vetd.repositories.LocationRepository;
 import com.skilldistillery.vetd.repositories.MenteeRepository;
 import com.skilldistillery.vetd.repositories.MentorRepository;
 import com.skilldistillery.vetd.repositories.ProfileRepository;
@@ -26,6 +28,8 @@ public class AuthServiceImpl implements AuthService {
 	private MenteeRepository menteeRepo;
 	@Autowired
 	private ProfileRepository pRepo;
+	@Autowired
+	private LocationRepository lRepo;
 
 	@Override
 	public User register(User user) {
@@ -44,10 +48,14 @@ public class AuthServiceImpl implements AuthService {
 	public Mentee registerMentee(Mentee mentee) {
 		
 		Profile profile = mentee.getProfile();
-		User user = profile.getUser();
+		Location location = profile.getLocation();
 		
+		User user = profile.getUser();
 		repo.saveAndFlush(user);
 		profile.setUser(user);
+		
+		lRepo.saveAndFlush(location);
+		profile.setLocation(location);
 		
 		pRepo.saveAndFlush(profile);
 		mentee.setProfile(profile);
@@ -66,10 +74,14 @@ public class AuthServiceImpl implements AuthService {
 	public Mentor registerMentor(Mentor mentor) {
 		
 		Profile profile = mentor.getProfile();
+		Location location = profile.getLocation();
 		User user = profile.getUser();
 		
 		repo.saveAndFlush(user);
 		profile.setUser(user);
+		
+		lRepo.saveAndFlush(location);
+		profile.setLocation(location);
 		
 		pRepo.saveAndFlush(profile);
 		mentor.setProfile(profile);

@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { AuthService } from 'src/app/services/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: "app-home",
@@ -91,10 +93,21 @@ export class HomeComponent implements OnInit {
   // ];
   reviews =  this.reviewList;
 
-  constructor() {}
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   //
   // M E T H O D S
   //
   ngOnInit() {}
+
+  addMentor() {
+    this.router.navigateByUrl("/register/mentor");
+  }
+  addMentee() {
+    this.router.navigateByUrl("/register/mentee");
+  }
 }

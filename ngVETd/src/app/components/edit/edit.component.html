@@ -1,0 +1,155 @@
+<div class="container-fluid background">
+  <div class="row ">
+    <div class="col-3"></div>
+    <div class="card col-6">
+      <div class="card-header text-center">
+        <h1 class="h1 mb-4">Edit Profile</h1>
+      </div>
+      <div class="card-body">
+
+        <!-- ---------------------------------------------------------------- -->
+        <!-- User Form -->
+        <!-- ---------------------------------------------------------------- -->
+        <form class="text-center">
+          <!-- Email -->
+          <input
+            type="email"
+            id="defaultLoginFormEmail"
+            class="form-control mb-4 text-center"
+            name="email"
+            placeholder="Email"
+            [(ngModel)]="editUser.email"
+          />
+
+          <!-- Username -->
+          <input
+            type="text"
+            id="defaultLoginFormPassword"
+            class="form-control mb-4 text-center"
+            name="username"
+            placeholder="Username"
+            [(ngModel)]="editUser.username"
+          />
+
+          <!-- Password -->
+          <input
+            type="password"
+            id="defaultLoginFormEmail"
+            class="form-control mb-4 text-center"
+            name="password"
+            placeholder="Password"
+            [(ngModel)]="editUser.password"
+          />
+        </form>
+
+        <!-- ---------------------------------------------------------------- -->
+        <!-- Profile Form -->
+        <!-- ---------------------------------------------------------------- -->
+
+        <form class="text-center">
+          <!-- First Name -->
+          <input
+            type="text"
+            id="defaultLoginFormEmail"
+            class="form-control mb-4 text-center"
+            name="firstName"
+            placeholder="First Name"
+            [(ngModel)]="editProfile.firstName"
+          />
+
+          <!-- Last Name -->
+          <input
+            type="text"
+            id="defaultLoginFormPassword"
+            class="form-control mb-4 text-center"
+            name="lastName"
+            placeholder="Last Name"
+            [(ngModel)]="editProfile.lastName"
+          />
+
+          <!-- Summary -->
+          <input
+            type="text"
+            id="defaultLoginFormPassword"
+            class="form-control mb-4 text-center"
+            name="summary"
+            placeholder="Summary"
+            [(ngModel)]="editProfile.summary"
+          />
+
+          <!-- Picture Url -->
+          <input
+            type="text"
+            id="defaultLoginFormPassword"
+            class="form-control mb-4 text-center"
+            name="pictureUrl"
+            placeholder="Picture Url"
+            [(ngModel)]="editProfile.pictureUrl"
+          />
+
+          <!-- Resume Url -->
+          <input
+            type="text"
+            id="defaultLoginFormPassword"
+            class="form-control mb-4 text-center"
+            name="resumeUrl"
+            placeholder="Resume Url"
+            [(ngModel)]="editProfile.resumeUrl"
+          />
+        </form>
+
+        <!-- ---------------------------------------------------------------- -->
+        <!-- Location Form -->
+        <!-- ---------------------------------------------------------------- -->
+
+        <form class="text-center">
+          <!-- City -->
+          <input
+            type="text"
+            id="defaultLoginFormEmail"
+            class="form-control mb-4 text-center"
+            name="city"
+            placeholder="City"
+            [(ngModel)]="editLocation.city"
+          />
+
+          <!-- State -->
+          <input
+            type="text"
+            id="defaultLoginFormPassword"
+            class="form-control mb-4 text-center"
+            name="state"
+            placeholder="State"
+            [(ngModel)]="editLocation.state"
+          />
+
+          <!-- Zip -->
+          <input
+            type="text"
+            id="defaultLoginFormEmail"
+            class="form-control mb-4 text-center"
+            name="zip"
+            placeholder="Zip"
+            [(ngModel)]="editLocation.zipcode"
+          />
+        </form>
+
+        <div class="d-flex justify-content-around text-center"></div>
+
+        <!-- Sign in button -->
+        <div class="text-center subDiv">
+          <button
+            mdbBtn
+            color="info"
+            block="true"
+            class="my-4 text-center btn btn-warning"
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-4"></div>
+  </div>
+</div>

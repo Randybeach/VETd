@@ -4,14 +4,15 @@
     <div class="card col-6">
       <div class="card-header text-center">
         <h1 class="h1 mb-4">Sign Up</h1>
-        <!-- <hr> -->
       </div>
       <div class="card-body">
+
         <!-- ---------------------------------------------------------------- -->
         <!-- User Form -->
         <!-- ---------------------------------------------------------------- -->
-        <form class="text-center">
+        <form #addUserForm="ngForm" class="text-center">
           <!-- <h5 class="text-center">Login Information</h5> -->
+
           <!-- Email -->
           <input
             type="email"
@@ -46,8 +47,9 @@
         <!-- ---------------------------------------------------------------- -->
         <!-- Profile Form -->
         <!-- ---------------------------------------------------------------- -->
-        <form class="text-center">
+        <form #addProfileForm="ngForm" class="text-center">
           <!-- <h5 class="text-center">About You</h5> -->
+
           <!-- First Name -->
           <input
             type="text"
@@ -102,8 +104,8 @@
         <!-- ---------------------------------------------------------------- -->
         <!-- Location Form -->
         <!-- ---------------------------------------------------------------- -->
-        <form class="text-center">
-          <!-- <h5 class="text-center">Location</h5> -->
+        <form #addLocationForm="ngForm" class="text-center">
+
           <!-- City -->
           <input
             type="text"
@@ -145,6 +147,7 @@
             block="true"
             class="my-4 text-center btn btn-warning"
             type="submit"
+            (click)="register(addUserForm, addProfileForm, addLocationForm)"
           >
             Submit
           </button>
@@ -154,6 +157,3 @@
     <div class="col-4"></div>
   </div>
 </div>
-<!-- Default form login -->
-
-<!-- ------------------------------------------------------------------------ -->

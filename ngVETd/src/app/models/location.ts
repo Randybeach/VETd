@@ -2,17 +2,17 @@ export class Location {
   id: number;
   city: string;
   state: string;
-  zip: string;
+  zipcode: string;
 
   constructor(
     id?: number,
     city?: string,
     state?: string,
-    zip?: string
+    zipcode?: string
   ) {
     this.id = id;
     this.city = city;
     this.state = state;
-    this.zip = zip;
+    this.zipcode = zipcode;
   }
 }

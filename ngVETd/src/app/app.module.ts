@@ -14,6 +14,8 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './components/register/register.component';
 import { MatExpansionModule, MatButtonModule, MatInputModule, MatFormFieldModule } from '@angular/material';
+import { EditComponent } from './components/edit/edit.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { MatExpansionModule, MatButtonModule, MatInputModule, MatFormFieldModule
     LogoutComponent,
     NavigationComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    EditComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
