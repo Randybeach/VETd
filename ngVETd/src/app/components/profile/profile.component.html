@@ -3,7 +3,17 @@
   <div *ngIf='profile.mentee != null'>
     <div class='row mt-4'>
       <div class='col-sm-1 col-md-2 col-lg-2'></div>
-      <div class='col-2'></div>
+          <div class='col-sm-3 col-md-2 col-lg-2 mt-4'>
+              <div class='card shadow' id='menteeProfile'>
+                <img class="card-img-top" [src]="profile.pictureUrl" alt="Mentee Profile Picture" style='min-height: 200px'>
+                <div class='card-header'>
+                  <!-- {{ mentee.fistname }} {{ mentee.lastname }} --> First Last
+                </div>
+                <div class='card-body'>
+                  <p>City, State </p>
+                </div>
+              </div>
+          </div>
       <div class='col-sm-3 col-md-6 col-lg-6'>
         <div clas='card' id='profileJobsCard'>
           <div class='card-header text-center'>
@@ -41,11 +51,12 @@
               <div>
                 <button mdbBtn color="info" block="false" class="my-4 text-center btn btn-warning ml-1 float-center" type="submit" (click)="editProfile()">Edit Profile</button>
               </div>
-              <div *ngIf='profileJobs.length > 0'>
+              <div *ngIf='profileJobs.length > 0' class='text-left'>
               <hr>
               <h2>Saved Jobs</h2>
 
-              <div *ngFor='let job of profileJobs'>{{job.name}} <span><i class="material-icons" (click)='removeJob(job)' ngbTooltip="Delete" id='delete'>delete</i></span>
+              <div *ngFor='let job of profileJobs'>{{job.name}} <span><i class="material-icons float-right" (click)='removeJob(job)' ngbTooltip="Delete" id='delete'>delete</i></span>
+                <hr>
             </div>
             </div>
           </div>
@@ -53,6 +64,21 @@
       </div>
       <div class='col-sm-31 col-md-2 col-lg-2'></div>
     </div>
+    <div class='row'>
+        <div class='col-sm-1 col-md-1 col-lg-1'></div>
+          <div class='col-sm-5 col-md-5 col-lg-5 mt-2'>
+              <div class='card shadow' id='menteeStory'>
+                <div class='card-body'>
+                    <h4>Story</h4>
+                    <p>This is the mentee's story</p>
+
+              </div>
+            </div>
+
+          </div>
+        <div class='col-sm-6 col-md-5 col-lg-4'></div>
+
+      </div>
 
 </div>
 
