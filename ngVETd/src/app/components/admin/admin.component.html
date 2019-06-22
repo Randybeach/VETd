@@ -6,12 +6,13 @@
         <h1 class="h1 mb-4">Admin</h1>
       </div>
       <div class="card-body">
-        <form action="">
+        <form #searchUserForm action="">
           <input
             class="form-control mb-4 text-center"
             type="text"
             name="keyword"
-            placeholder="Search Users By Id"
+            placeholder="Search Users By Username"
+            ngModel
           />
           <button
             mdbBtn
@@ -24,12 +25,13 @@
             Submit
           </button>
         </form>
-        <form action="">
+        <!-- <form #searchChatForm action="">
           <input
             class="form-control mb-4 text-center"
             type="text"
             name="keyword"
             placeholder="Search Chatrooms By Id"
+            ngModel
           />
           <button
             mdbBtn
@@ -37,13 +39,20 @@
             block="true"
             class="my-4 text-center btn btn-warning button button2"
             type="submit"
-            (click)="searchChatrooms()"
+            (click)="searchChatrooms(searchChatForm)"
           >
             Submit
           </button>
-        </form>
+        </form> -->
       </div>
     </div>
     <div class="col-sm-1 col-md-3 col-lg-4"></div>
+  </div>
+
+  <div>
+    <ul *ngFor="let user of users">
+      <li>{{ user.username }}</li>
+      <input type="submit" />
+    </ul>
   </div>
 </div>
