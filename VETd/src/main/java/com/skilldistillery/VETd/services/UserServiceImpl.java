@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.vetd.entities.Job;
+import com.skilldistillery.vetd.entities.Location;
 import com.skilldistillery.vetd.entities.Mentee;
 import com.skilldistillery.vetd.entities.Mentor;
 import com.skilldistillery.vetd.entities.MentorMentee;
@@ -64,6 +65,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Profile updateMentee(Profile profile) {
+		User user = uRepo.findUserByUsername(profile.getUser().getUsername());
+		Location l = user.getProfile().getLocation();
+		user.getProfile().setLocation(profile.getLocation());
+		
+		user.setProfile(profile);
+		uRepo.saveAndFlush(user);
 		pRepo.saveAndFlush(profile);
 		return profile;
 	}
