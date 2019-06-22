@@ -45,7 +45,7 @@ export class ProfileService {
       Authorization: "Basic " + this.auth.getCredentials(),
       "Content-Type": "application/json"
     };
-    return this.http.put<Job[]>(this.url + "/mentee/add/jobs", newJobs, {
+    return this.http.put<Job[]>(this.url + "/add/jobs", newJobs, {
       headers: myHeaders
     });
   }
@@ -58,5 +58,15 @@ export class ProfileService {
     };
     return this.http.get<Profile>(this.url + "/profile", {headers: myHeaders});
   }
+
+  removeJob(job){
+    const myHeaders = {
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials(),
+      "Content-Type": "application/json"
+    };
+    return this.http.put<Profile>(this.url + "/remove/jobs", job, {headers: myHeaders});
+  }
+
 
 }

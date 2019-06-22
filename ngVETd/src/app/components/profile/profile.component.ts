@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
   jobName = "nothing";
   sectors: Sector[] = [];
   profile = null;
-
+  profileJobs = [];
 
 
 
@@ -108,6 +108,7 @@ export class ProfileComponent implements OnInit {
     this.profileService.addJobs(this.currJobs).subscribe(
       good => {
         console.log(good);
+        this.getProfile();
 
       },
       err => {
@@ -118,8 +119,19 @@ export class ProfileComponent implements OnInit {
   getProfile() {
     this.profileService.getProfile().subscribe(
       good => {
+        this.profileJobs = [];
         console.log(good);
         this.profile = good;
+        if(this.profile.mentee){
+          this.profileJobs = this.profile.mentee.jobs;
+          console.log("mentee jobs" + this.profileJobs);
+
+        }else{
+          this.profileJobs = [];
+          this.profileJobs = this.profile.mentor.jobs;
+          console.log("mentor jobs" + this.profileJobs);
+        }
+
 
       },
       bad => {
@@ -130,5 +142,16 @@ export class ProfileComponent implements OnInit {
   }
   editProfile(){
     this.router.navigateByUrl('edit');
+  }
+  removeJob(job){
+    this.profileService.removeJob(job).subscribe(
+      good => {
+        this.getProfile();
+        // this.profile = good;
+        // this.profileJobs.filt
+        console.log("removed job " + good);
+
+      }
+    )
   }
 }
