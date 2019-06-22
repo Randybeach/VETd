@@ -109,4 +109,12 @@ export class ProfileService {
       headers: myHeaders
     });
   }
+  getListOfMenteesWithChosenJobs(){
+    const myHeaders = {
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials(),
+      "Content-Type": "application/json"
+    };
+    return this.http.get<Mentee[]>(this.url + '/mentee/job', {headers: myHeaders})
+  }
 }
