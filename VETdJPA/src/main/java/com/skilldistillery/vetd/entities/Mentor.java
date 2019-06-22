@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,10 +33,11 @@ public class Mentor {
 	@OneToMany(mappedBy = "mentor")
 	@JsonIgnore
 	private List<MentorMentee> mentorMentees;
-	@ManyToMany(mappedBy = "mentors")
+	@ManyToMany(mappedBy = "mentors", cascade = CascadeType.ALL)
 	private List<Job> jobs;
 	@OneToOne
 	@JoinColumn(name = "profile_id")
+	@JsonIgnore
 	private Profile profile;
 	
 	

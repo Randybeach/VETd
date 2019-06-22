@@ -21,13 +21,15 @@ public interface UserService {
 
 	public List<MentorMentee> getMenteesByMentorId(int id);
 
-	public Mentee updateMentee(Mentee mentee, int id);
+	public Profile updateMentee(Profile profile);
 
-	public Mentor updateMentor(Mentor mentor, int id);
+	public Profile addJobstoMentee(List<Job> jobs, String username);
 
-	public Object addJobstoMentee(List<Job> jobs, String username);
-
-	public Mentee removeJobsFromMentee(List<Job> jobs, int id);
+	public Profile removeJobsFromMentee(Job job, String name);
 
 	public Profile getProfileById(int id);
+
+	public Profile getProfile(String name);
+
+	public List<User> getUsersByUsername(String name);
 }

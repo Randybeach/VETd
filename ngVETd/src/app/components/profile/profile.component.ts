@@ -1,11 +1,11 @@
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from "src/app/services/auth.service";
 import { ProfileService } from "./../../services/profile.service";
 import { Component, OnInit } from "@angular/core";
 import { Sector } from "src/app/models/sector";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Job } from "src/app/models/job";
 import { Mentee } from "src/app/models/mentee";
-import { Mentor } from 'src/app/models/mentor';
+import { Mentor } from "src/app/models/mentor";
 
 @Component({
   selector: "app-profile",
@@ -16,24 +16,15 @@ export class ProfileComponent implements OnInit {
   //
   // F E I L D S
   // //
-
-  sectors: Sector[] = [];
-
-  jobs: Job[] = [];
-
-  jobsForSector: Job[] = [];
-
   currentSector = null;
-
-  jobName = "nothing";
-
   currJobs = [];
+  jobs: Job[] = [];
+  jobsForSector: Job[] = [];
+  jobName = "nothing";
+  sectors: Sector[] = [];
+  profile = null;
+  profileJobs = [];
 
-  selectedJob = new Job();
-
-  mentee = new Mentee();
-
-  mentor = new Mentor();
 
   constructor(
     private router: Router,
@@ -48,8 +39,8 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.reloadSectors();
     this.reloadJobs();
-    console.log(this.auth.getCredentials());
-
+    // console.log(this.auth.getCredentials());
+    this.getProfile();
   }
 
   // getProfile() {
@@ -80,7 +71,7 @@ export class ProfileComponent implements OnInit {
     this.profileService.getJobs().subscribe(
       good => {
         this.jobs = good;
-        console.log(this.jobs);
+        // console.log(this.jobs);
       },
       err => {
         console.log(err);
@@ -92,7 +83,6 @@ export class ProfileComponent implements OnInit {
     this.jobsForSector = [];
     console.log("clicked");
     console.log(this.currentSector);
-    console.log(this.jobs);
 
     for (let i = 0; i < this.jobs.length; i++) {
       const job = this.jobs[i];
@@ -115,10 +105,48 @@ export class ProfileComponent implements OnInit {
     this.profileService.addJobs(this.currJobs).subscribe(
       good => {
         console.log(good);
+        this.getProfile();
       },
       err => {
         console.log(err);
       }
     );
+  }
+  getProfile() {
+    this.profileService.getProfile().subscribe(
+      good => {
+        this.profileJobs = [];
+        console.log(good);
+        this.profile = good;
+
+        if(this.profile.mentee){
+          this.profileJobs = this.profile.mentee.jobs;
+          console.log("mentee jobs" + this.profileJobs);
+
+        }else{
+          this.profileJobs = [];
+          this.profileJobs = this.profile.mentor.jobs;
+          console.log("mentor jobs" + this.profileJobs);
+        }
+
+      },
+      bad => {
+        console.log("OOPS");
+      }
+    );
+  }
+  editProfile() {
+    this.router.navigateByUrl("edit");
+  }
+  removeJob(job){
+    this.profileService.removeJob(job).subscribe(
+      good => {
+        this.getProfile();
+        // this.profile = good;
+        // this.profileJobs.filt
+        console.log("removed job " + good);
+
+      }
+    )
   }
 }

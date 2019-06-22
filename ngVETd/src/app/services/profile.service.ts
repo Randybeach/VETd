@@ -1,11 +1,14 @@
-import { environment } from 'src/environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Sector } from '../models/sector';
-import { AuthService } from './auth.service';
-import { Job } from '../models/job';
-import { Profile } from '../models/profile';
+import { environment } from "src/environments/environment";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { Sector } from "../models/sector";
+import { AuthService } from "./auth.service";
+import { Job } from "../models/job";
+import { Profile } from "../models/profile";
+import { Mentor } from "../models/mentor";
+import { Mentee } from "../models/mentee";
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: "root"
@@ -39,15 +42,60 @@ export class ProfileService {
     return this.http.get<Job[]>(this.url + "/jobs", { headers: myHeaders });
   }
 
+  getUsers(): Observable<User[]> {
+    const credentials = this.auth.getCredentials();
+    const myHeaders = {
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials()
+    };
+    return this.http.get<User[]>(this.url + "/users", { headers: myHeaders });
+  }
+
   addJobs(newJobs: Job[]) {
     const myHeaders = {
       "X-Requested-With": "XMLHttpRequest",
       Authorization: "Basic " + this.auth.getCredentials(),
       "Content-Type": "application/json"
     };
-    return this.http.put<Job[]>(this.url + "/mentee/add/jobs", newJobs, {
+    return this.http.put<Job[]>(this.url + "/add/jobs", newJobs, {
       headers: myHeaders
     });
   }
 
+  update(editProfile) {
+    // const upUrl = this.url + "/" + updateTodo.id;
+    const myHeaders = {
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials(),
+      "Content-Type": "application/json"
+    };
+    return this.http.put<Profile>(this.url + "/profile", editProfile, {
+      headers: myHeaders
+    });
+  }
+
+
+  removeJob(job){
+    const myHeaders = {
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials(),
+      "Content-Type": "application/json"
+    };
+
+    return this.http.put<Profile>(this.url + "/remove/jobs", job, {headers: myHeaders});
+  }
+
+
+
+  getProfile() {
+    const myHeaders = {
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials(),
+      "Content-Type": "application/json"
+    };
+
+    return this.http.get<Profile>(this.url + "/profile", {
+      headers: myHeaders
+    });
+  }
 }

@@ -1,6 +1,11 @@
 
   <br><br><br><br>
-  <!--Dropdown primary-->
+  <div *ngIf='profile.mentee != null'>
+    Welcome mentee {{profile.firstName}}, what jobs would you like to receive mentorship on?
+  </div>
+  <div *ngIf='profile.mentee === null'>
+    Welcome mentor {{profile.firstName}}, what jobs are you qualified to mentor on?
+  </div>
   <div class="dropdown">
 
   <!--Menu-->
@@ -27,19 +32,22 @@ type="submit"
 >
 Submit
 </button>
+<button
+mdbBtn
+color="info"
+block="true"
+class="my-4 text-center btn btn-warning"
+type="submit"
+(click)="editProfile()"
+>
+Edit Profile
+</button>
+<br>
 
+<h2>jobs you have saved</h2>
 
+<div *ngFor='let job of profileJobs'>{{job.name}} <span (click)='removeJob(job)'> Delete X</span>
 
-<!-- <br /><br /><br /><br />
-<form action="">
-  <select [(ngModel)]="currentSector" (ngModelChange)="getJobBySector()" name="sector">
-    <option
-      *ngFor="let sector of sectors"
-      name="currentSector"
-      ngDefaultControl
-      value="{{ sector.id }}"
-      >{{ sector.name }}</option
-      > </select
-      ><br />
-    </form> -->
+</div>
+
 

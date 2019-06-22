@@ -36,6 +36,7 @@ public class Mentee {
 	private List<Job> jobs;
 	@OneToOne
 	@JoinColumn(name = "profile_id")
+	@JsonIgnore
 	private Profile profile;
 	
 	
@@ -68,11 +69,23 @@ public class Mentee {
 		job.getMentees().add(this);
 	}
 	public void removeJob(Job job) {
+		System.out.println(job);
 		if(this.jobs == null) {
 			return;
 		}
-		this.jobs.remove(job);
+		for (int i = 0; i < jobs.size(); i++) {
+			if(job.getId() == jobs.get(i).getId()) {
+				jobs.remove(i);
+			}
+		}
+//		System.out.println(" REMOVING *** " + this.jobs.remove(job));
 		job.getMentees().remove(this);
+		for(int i = 0; i < job.getMentees().size(); i++) {
+			if(this.getId() == job.getMentees().get(i).getId()) {
+				job.getMentees().remove(i);
+			}
+		}
+		System.out.println(this.jobs);
 	}
 	public int getId() {
 		return id;

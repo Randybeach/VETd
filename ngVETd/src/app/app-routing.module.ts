@@ -1,3 +1,4 @@
+import { AdminComponent } from './components/admin/admin.component';
 import { EditComponent } from './components/edit/edit.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
@@ -10,6 +11,7 @@ import { MenteeProfileComponent } from './components/mentee-profile/mentee-profi
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
+  { path: 'admin', component: AdminComponent },
   { path: 'edit', component: EditComponent },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
