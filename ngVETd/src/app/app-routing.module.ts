@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { ProfileComponent } from './components/profile/profile.component';
 import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './components/register/register.component';
+import { MenteeProfileComponent } from './components/mentee-profile/mentee-profile.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'register/mentee', component: RegisterComponent },
-  { path: 'register/mentor', component: RegisterComponent }
+  { path: 'register/mentor', component: RegisterComponent },
+  { path: 'mentee_profile', component: MenteeProfileComponent}
 ];
 
 @NgModule({

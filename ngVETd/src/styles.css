@@ -20,5 +20,26 @@
   overflow: scroll;
 }
 
+#menteeProfileBackground {
+  width: 100%;
+  height: 100vh;
+  background: url('assets/helmet.jpg') no-repeat;
+  background-size: cover;
+  background-position: relative;
+  background-attachment: fixed;
+  overflow: scroll;
+}
+
+.overlay-mf {
+  background-color:oldlace;
+  position: absolute;
+  top: 66px;
+  left: 0px;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  opacity: .3;
+}
+
 
 
