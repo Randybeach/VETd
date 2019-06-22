@@ -6,6 +6,8 @@ import { Sector } from '../models/sector';
 import { AuthService } from './auth.service';
 import { Job } from '../models/job';
 import { Profile } from '../models/profile';
+import { Mentor } from '../models/mentor';
+import { Mentee } from '../models/mentee';
 
 @Injectable({
   providedIn: "root"
@@ -50,4 +52,16 @@ export class ProfileService {
     });
   }
 
+  update(editVet) {
+    // const upUrl = this.url + "/" + updateTodo.id;
+    const myHeaders = {
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials(),
+      "Content-Type": "application/json"
+    };
+
+    return this.http.put<Mentee>(this.url + "/" + editVet.id, editVet, {
+      headers: myHeaders
+    });
+  }
 }

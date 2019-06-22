@@ -12,7 +12,7 @@
         <!-- ---------------------------------------------------------------- -->
         <form class="text-center">
           <!-- Email -->
-          <input
+          <!-- <input
             type="email"
             id="defaultLoginFormEmail"
             class="form-control mb-4 text-center"
@@ -21,7 +21,7 @@
             [(ngModel)]="editUser.email"
           />
 
-          <!-- Username -->
+          Username -->
           <input
             type="text"
             id="defaultLoginFormPassword"
@@ -39,6 +39,20 @@
             name="password"
             placeholder="Password"
             [(ngModel)]="editUser.password"
+          />
+        </form>
+        <!-- ---------------------------------------------------------------- -->
+        <!-- User Form -->
+        <!-- ---------------------------------------------------------------- -->
+        <form class="text-center">
+          <!-- Story -->
+          <input
+            type="text"
+            id="defaultLoginFormEmail"
+            class="form-control mb-4 text-center"
+            name="story"
+            placeholder="Background Story"
+            [(ngModel)]="editVet.story"
           />
         </form>
 
