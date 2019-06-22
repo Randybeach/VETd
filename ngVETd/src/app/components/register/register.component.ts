@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
     this.newProfile.user = this.newUser;
     this.newMentee.profile = this.newProfile;
 
-    this.auth.register(this.newMentee, url).subscribe(
+    this.auth.register(this.newProfile, url).subscribe(
       data => {
         console.log('RegisterComponent.register(): user registered.');
         this.auth.login(this.newUser.username, this.newUser.password).subscribe(
@@ -57,6 +57,11 @@ export class RegisterComponent implements OnInit {
             console.log(
               'RegisterComponent.register(): user logged in, routing to /CHANGEME.'
             );
+            this.newUser = new User();
+            this.newProfile = new Profile();
+            this.newLocation = new Location();
+            this.newMentor = new Mentor();
+            this.newMentee = new Mentee();
             console.log('going to profile');
             this.router.navigateByUrl('/profile');
           },
@@ -66,6 +71,11 @@ export class RegisterComponent implements OnInit {
         );
       },
       err => {
+        this.newUser = new User();
+        this.newProfile = new Profile();
+        this.newLocation = new Location();
+        this.newMentor = new Mentor();
+        this.newMentee = new Mentee();
         console.error('RegisterComponent.register(): error registering.');
         console.error(err);
       }

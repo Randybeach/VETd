@@ -67,12 +67,13 @@ public class AuthServiceImpl implements AuthService {
 		mentee.getProfile().getUser().setRole("standard");
 
 		menteeRepo.saveAndFlush(mentee);
+		System.out.println(" *** " + mentee);
 		return mentee;
 	}
 
 	@Override
 	public Mentor registerMentor(Mentor mentor) {
-		
+		System.out.println(mentor.getProfile());
 		Profile profile = mentor.getProfile();
 		Location location = profile.getLocation();
 		User user = profile.getUser();
