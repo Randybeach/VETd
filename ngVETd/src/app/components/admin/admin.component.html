@@ -1,3 +1,49 @@
-<p>
-  admin works!
-</p>
+<div class="container-fluid background">
+  <div class="row ">
+    <div class="col-sm-1 col-md-3 col-lg-4"></div>
+    <div class="card col-sm-10 col-md-6 col-lg-4">
+      <div class="card-header text-center">
+        <h1 class="h1 mb-4">Admin</h1>
+      </div>
+      <div class="card-body">
+        <form action="">
+          <input
+            class="form-control mb-4 text-center"
+            type="text"
+            name="keyword"
+            placeholder="Search Users By Id"
+          />
+          <button
+            mdbBtn
+            color="info"
+            block="true"
+            class="my-4 text-center btn btn-warning button"
+            type="submit"
+            (click)="searchUsers()"
+          >
+            Submit
+          </button>
+        </form>
+        <form action="">
+          <input
+            class="form-control mb-4 text-center"
+            type="text"
+            name="keyword"
+            placeholder="Search Chatrooms By Id"
+          />
+          <button
+            mdbBtn
+            color="info"
+            block="true"
+            class="my-4 text-center btn btn-warning button button2"
+            type="submit"
+            (click)="searchChatrooms()"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="col-sm-1 col-md-3 col-lg-4"></div>
+  </div>
+</div>

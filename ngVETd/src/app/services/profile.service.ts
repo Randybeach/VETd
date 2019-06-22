@@ -1,11 +1,13 @@
-import { environment } from 'src/environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Sector } from '../models/sector';
-import { AuthService } from './auth.service';
-import { Job } from '../models/job';
-import { Profile } from '../models/profile';
+import { environment } from "src/environments/environment";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { Sector } from "../models/sector";
+import { AuthService } from "./auth.service";
+import { Job } from "../models/job";
+import { Profile } from "../models/profile";
+import { Mentor } from "../models/mentor";
+import { Mentee } from "../models/mentee";
 
 @Injectable({
   providedIn: "root"
@@ -50,14 +52,18 @@ export class ProfileService {
     });
   }
 
-  getProfile() {
+  update(editProfile) {
+    // const upUrl = this.url + "/" + updateTodo.id;
     const myHeaders = {
       "X-Requested-With": "XMLHttpRequest",
       Authorization: "Basic " + this.auth.getCredentials(),
       "Content-Type": "application/json"
     };
-    return this.http.get<Profile>(this.url + "/profile", {headers: myHeaders});
+    return this.http.put<Profile>(this.url + "/" + editProfile.id, editProfile, {
+      headers: myHeaders
+    });
   }
+
 
   removeJob(job){
     const myHeaders = {
@@ -65,8 +71,15 @@ export class ProfileService {
       Authorization: "Basic " + this.auth.getCredentials(),
       "Content-Type": "application/json"
     };
+
     return this.http.put<Profile>(this.url + "/remove/jobs", job, {headers: myHeaders});
   }
 
 
+
+  getProfile() {
+    return this.http.get<Profile>(this.url + "/profile", {
+      headers: myHeaders
+    });
+  }
 }
