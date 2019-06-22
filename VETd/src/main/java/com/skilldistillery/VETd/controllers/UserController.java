@@ -40,30 +40,37 @@ public class UserController {
 		
 		return svc.getMenteeById(id);
 	}
+	
 	//Get list of Mentors for mentee by Id
 	@GetMapping("mentee/{id}/mentor")
 	public List<MentorMentee> getMentorsByMenteeId(@PathVariable int id){
 		return svc.getMentorsByMenteeId(id);
 	}
+	
 	//Get list of Mentees for mentor by Id
 	@GetMapping("mentor/{id}/mentee")
 	public List<MentorMentee> getMenteesByMentorId(@PathVariable int id){
 		return svc.getMenteesByMentorId(id);
 	}
+	
 	@GetMapping("search/{name}")
 	public List<User> getUsersByUsername(@PathVariable String name){
 		return svc.getUsersByUsername(name);
 	}
+	
 	//Update Profile
 	@PutMapping("profile")
 	public Profile updateMentee(@RequestBody Profile profile) {
+		System.out.println(profile);
 			return svc.updateMentee(profile);
 	}
+	
 	//Add Job to Mentee
 	@PutMapping("add/jobs")
 	public Profile addJobsToMentee(@RequestBody List<Job> jobs, Principal principal) {
 		return svc.addJobstoMentee(jobs, principal.getName());
 	}
+	
 	//Remove Job from mentee
 	@PutMapping("remove/jobs")
 	public Profile removeJobsFromMentee(@RequestBody Job job, Principal p) {
@@ -71,6 +78,7 @@ public class UserController {
 		System.out.println(po.getMentee());
 		return po;
 	}
+	
 	@GetMapping("profile")
 	public Profile getProfile(Principal p, HttpServletResponse response) {
 		System.out.println(p.getName());

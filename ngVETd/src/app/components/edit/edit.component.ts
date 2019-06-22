@@ -61,6 +61,7 @@ export class EditComponent implements OnInit {
         console.log(good);
         this.editProfile = good;
         this.editVet = good.mentee;
+        this.editLocation = good.location;
         console.log(this.editProfile.mentee);
       },
       bad => {
