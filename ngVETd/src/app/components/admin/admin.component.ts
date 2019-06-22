@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
-import { User } from 'src/app/models/user';
-import { ProfileService } from 'src/app/services/profile.service';
+import { User } from "src/app/models/user";
+import { ProfileService } from "src/app/services/profile.service";
 
 @Component({
   selector: "app-admin",
@@ -14,6 +14,8 @@ export class AdminComponent implements OnInit {
   //
   users: User[] = [];
 
+  keyword = "";
+
   constructor(private profileService: ProfileService) {}
 
   //
@@ -21,11 +23,21 @@ export class AdminComponent implements OnInit {
   //
 
   ngOnInit() {
-    this.reloadUsers();
+    // this.reloadUsers();
   }
 
-  searchUsers(form: NgForm) {}
-  searchChatrooms(form: NgForm) {}
+  searchUsers() {
+    this.profileService.searchUsers(this.keyword).subscribe(
+      good => {
+        this.users = good;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  // searchChatrooms(form: NgForm) {}
 
   reloadUsers() {
     this.profileService.getUsers().subscribe(
@@ -37,4 +49,6 @@ export class AdminComponent implements OnInit {
       }
     );
   }
+
+  gotoProfile() {}
 }

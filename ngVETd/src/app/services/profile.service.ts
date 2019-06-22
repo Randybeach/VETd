@@ -8,7 +8,7 @@ import { Job } from "../models/job";
 import { Profile } from "../models/profile";
 import { Mentor } from "../models/mentor";
 import { Mentee } from "../models/mentee";
-import { User } from '../models/user';
+import { User } from "../models/user";
 
 @Injectable({
   providedIn: "root"
@@ -74,18 +74,17 @@ export class ProfileService {
     });
   }
 
-
-  removeJob(job){
+  removeJob(job) {
     const myHeaders = {
       "X-Requested-With": "XMLHttpRequest",
       Authorization: "Basic " + this.auth.getCredentials(),
       "Content-Type": "application/json"
     };
 
-    return this.http.put<Profile>(this.url + "/remove/jobs", job, {headers: myHeaders});
+    return this.http.put<Profile>(this.url + "/remove/jobs", job, {
+      headers: myHeaders
+    });
   }
-
-
 
   getProfile() {
     const myHeaders = {
@@ -95,6 +94,18 @@ export class ProfileService {
     };
 
     return this.http.get<Profile>(this.url + "/profile", {
+      headers: myHeaders
+    });
+  }
+
+  searchUsers(keyword) {
+    const myHeaders = {
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials(),
+      "Content-Type": "application/json"
+    };
+
+    return this.http.get<User[]>(this.url + "/search/" + keyword, {
       headers: myHeaders
     });
   }
