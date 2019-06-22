@@ -1,10 +1,6 @@
 #signupCard {
   background-color: oldlace;
-  /* opacity: .2;*/
-    background: rgba(255, 252, 252, 0.3);
-}
-
-#signupCard {
+  background: rgba(255, 252, 252, 0.3);
   color: white;
   border: none;
 }
@@ -19,14 +15,28 @@
 }
 
 #reviewImg {
-  height: 200px;
-  border-radius: 40%;
+  height: 250px;
+  border-radius: 5%;
   width: 100%;
-  opacity: .05;
+  opacity: .8;
+}
+
+#reviewCard {
+  color: white;
+  border: none;
+  background-color: oldlace;
+  background: rgba(255, 252, 252, 0.6);
+  /* border-radius: 10%; */
+  height: 190px;
+
+}
+
+#reviewCarousel {
+  padding: 100px 0px 0px 0px;
 }
 
 #aboutRow {
-  padding: 60px 0px 100px 0px;
+  padding: 100px 0px 200px 0px;
   color: black;
 }
 
@@ -39,8 +49,9 @@
   background: rgba(255, 252, 252, 0.7);
 }
 
-path:hover {
-  fill: #007bff;
+#socialIcon:hover {
+  background-color: #007bff;
+  border-radius: 100%;
 }
 
 #aboutCard-header {

@@ -14,20 +14,20 @@ export class HomeComponent implements OnInit {
 
     reviewList = [
       {
-      reviewTitle: 'Title 1',
-      reviewText: 'Wonderful experience with VETd!',
+      reviewTitle: 'Bob B.',
+      reviewText: '"Wonderful experience with VETd!"',
       reviewStars: 4,
       img: 'assets/blank.jpg'
       },
       {
-      reviewTitle: 'Title 2',
-      reviewText: 'Wonderful experience with VETd! Superb',
-      reviewStars: 4,
+      reviewTitle: 'Sue S.',
+      reviewText: '"Wonderful experience with VETd! Superb"',
+      reviewStars: 3,
       img: 'assets/blank.jpg'
       },
       {
-      reviewTitle: 'Title 3',
-      reviewText: 'Wonderful experience with VETd! Highly recommended!',
+      reviewTitle: 'John J.',
+      reviewText: '"Wonderful experience with VETd! Highly recommended!"',
       reviewStars: 5,
       img: 'assets/blank.jpg'
       }
