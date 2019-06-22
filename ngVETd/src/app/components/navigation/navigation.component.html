@@ -29,7 +29,7 @@
         <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/contact']">Contact <span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/admin']">Admin <span class="sr-only"></span></a>
+        <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/admin']" *ngIf="isAdmin()">Admin <span class="sr-only"></span></a>
       </li>
 
       <!-- Dropdown -->
