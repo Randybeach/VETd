@@ -1,3 +1,5 @@
+import { Mentee } from 'src/app/models/mentee';
+import { Mentor } from 'src/app/models/mentor';
 import { Location } from './location';
 import { User } from './user';
 
@@ -8,8 +10,8 @@ export class Profile {
   summary: string;
   createdAt: string;
   location: Location;
-  mentorId: number;
-  menteeId: number;
+  mentor: Mentor;
+  mentee: Mentee;
   pictureUrl: string;
   resumeUrl: string;
   user: User;
@@ -21,8 +23,8 @@ export class Profile {
     summary?: string,
     createdAt?: string,
     location?: Location,
-    mentorId?: number,
-    menteeId?: number,
+    mentor?: Mentor,
+    mentee?: Mentee,
     pictureUrl?: string,
     resumeUrl?: string,
     user?: User
@@ -33,8 +35,8 @@ export class Profile {
     this.summary = summary;
     this.createdAt = createdAt;
     this.location = location;
-    this.mentorId = mentorId;
-    this.menteeId = menteeId;
+    this.mentor = mentor;
+    this.mentee = mentee;
     this.pictureUrl = pictureUrl;
     this.resumeUrl = resumeUrl;
     this.user = user;

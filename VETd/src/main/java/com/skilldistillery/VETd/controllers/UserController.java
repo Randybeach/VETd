@@ -3,6 +3,8 @@ package com.skilldistillery.vetd.controllers;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -60,7 +62,7 @@ public class UserController {
 	}
 	//Add Job to Mentee
 	@PutMapping("mentee/add/jobs")
-	public Object addJobsToMentee(@RequestBody List<Job> jobs, Principal principal) {
+	public Profile addJobsToMentee(@RequestBody List<Job> jobs, Principal principal) {
 		System.out.println(jobs);
 		System.out.println(principal.getName());
 		return svc.addJobstoMentee(jobs, principal.getName());
@@ -70,9 +72,10 @@ public class UserController {
 	public void removeJobsToMentee(@RequestBody List<Job> jobs, @PathVariable int id) {
 		svc.removeJobsFromMentee(jobs, id);
 	}
-	@GetMapping("profile/{id}")
-	public Profile getProfile(@PathVariable int id) {
-		return svc.getProfileById(id);
+	@GetMapping("profile")
+	public Profile getProfile(Principal p, HttpServletResponse response) {
+		System.out.println(p.getName());
+		return svc.getProfile(p.getName());
 	}
 	
 }
