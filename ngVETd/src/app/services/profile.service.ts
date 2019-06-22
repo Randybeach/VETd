@@ -5,15 +5,16 @@ import { Observable } from 'rxjs';
 import { Sector } from '../models/sector';
 import { AuthService } from './auth.service';
 import { Job } from '../models/job';
+import { Profile } from '../models/profile';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class ProfileService {
   //
   // F E I L D S
   //
-  private url = environment.baseUrl + 'api';
+  private url = environment.baseUrl + "api";
   constructor(private http: HttpClient, private auth: AuthService) {}
   //
   // M E T H O D S
@@ -21,10 +22,10 @@ export class ProfileService {
   getSectors(): Observable<Sector[]> {
     const credentials = this.auth.getCredentials();
     const myHeaders = {
-      'X-Requested-With': 'XMLHttpRequest',
-      Authorization: 'Basic ' + this.auth.getCredentials()
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials()
     };
-    return this.http.get<Sector[]>(this.url + '/sectors', {
+    return this.http.get<Sector[]>(this.url + "/sectors", {
       headers: myHeaders
     });
   }
@@ -32,9 +33,21 @@ export class ProfileService {
   getJobs(): Observable<Job[]> {
     const credentials = this.auth.getCredentials();
     const myHeaders = {
-      'X-Requested-With': 'XMLHttpRequest',
-      Authorization: 'Basic ' + this.auth.getCredentials()
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials()
     };
-    return this.http.get<Job[]>(this.url + '/jobs', { headers: myHeaders });
+    return this.http.get<Job[]>(this.url + "/jobs", { headers: myHeaders });
   }
+
+  addJobs(newJobs: Job[]) {
+    const myHeaders = {
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials(),
+      "Content-Type": "application/json"
+    };
+    return this.http.put<Job[]>(this.url + "/mentee/add/jobs", newJobs, {
+      headers: myHeaders
+    });
+  }
+
 }

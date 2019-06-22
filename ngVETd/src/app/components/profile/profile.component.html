@@ -1,11 +1,7 @@
 
-<br><br><br><br>
-<!--Dropdown primary-->
-<div class="dropdown">
-
-  <!--Trigger-->
-  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-    aria-haspopup="true" aria-expanded="false">Material dropdown</button>
+  <br><br><br><br>
+  <!--Dropdown primary-->
+  <div class="dropdown">
 
   <!--Menu-->
   <div class="dropdown-menu dropdown-primary" *ngFor="let sector of sectors">
@@ -17,7 +13,33 @@
   <option *ngFor="let sector of sectors"  name='currentSector' ngDefaultControl value={{sector.id}}>{{sector.name}}</option>
 </select><br>
 
-<select *ngIf="currentSector">
-  <option *ngFor="let job of jobsForSector">{{job.name}}</option>
+<select *ngIf="currentSector" [(ngModel)]="jobName" (ngModelChange) = 'setJob()'>
+  <option *ngFor="let job of jobsForSector" value={{job.name}} name='job1' ngDefaultControl>{{job.name}}</option>
 </select>
+<br>
+<button
+mdbBtn
+color="info"
+block="true"
+class="my-4 text-center btn btn-warning"
+type="submit"
+(click)="addJobs()"
+>
+Submit
+</button>
+
+
+
+<!-- <br /><br /><br /><br />
+<form action="">
+  <select [(ngModel)]="currentSector" (ngModelChange)="getJobBySector()" name="sector">
+    <option
+      *ngFor="let sector of sectors"
+      name="currentSector"
+      ngDefaultControl
+      value="{{ sector.id }}"
+      >{{ sector.name }}</option
+      > </select
+      ><br />
+    </form> -->
 

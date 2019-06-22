@@ -1,8 +1,10 @@
 package com.skilldistillery.vetd.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,8 +32,7 @@ public class Mentee {
 	@OneToMany(mappedBy = "mentee")
 	@JsonIgnore
 	private List<MentorMentee> mentorMentee;
-	@ManyToMany(mappedBy = "mentees")
-	@JsonIgnore
+	@ManyToMany(mappedBy = "mentees", cascade = CascadeType.ALL)
 	private List<Job> jobs;
 	@OneToOne
 	@JoinColumn(name = "profile_id")
@@ -58,6 +59,20 @@ public class Mentee {
 	}
 	public void setJobs(List<Job> jobs) {
 		this.jobs = jobs;
+	}
+	public void addJob(Job job) {
+		if(this.jobs == null) {
+			this.jobs = new ArrayList<Job>();
+		}
+		this.jobs.add(job);
+		job.getMentees().add(this);
+	}
+	public void removeJob(Job job) {
+		if(this.jobs == null) {
+			return;
+		}
+		this.jobs.remove(job);
+		job.getMentees().remove(this);
 	}
 	public int getId() {
 		return id;
@@ -88,7 +103,8 @@ public class Mentee {
 	}
 	@Override
 	public String toString() {
-		return "Mentee [id=" + id + ", story=" + story + ", createdAt=" + createdAt + "]";
+		return "Mentee [id=" + id + ", story=" + story + ", createdAt=" + createdAt + ", jobs=" + jobs + ", profile="
+				+ profile + "]";
 	}
 	@Override
 	public int hashCode() {

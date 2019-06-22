@@ -8,4 +8,6 @@ import com.skilldistillery.vetd.entities.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer>{
 
+	User findUserByUsername(String username);
+
 }

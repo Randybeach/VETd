@@ -1,5 +1,6 @@
 package com.skilldistillery.vetd.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -25,6 +26,7 @@ public class Job {
 	private Sector sector;
 	@ManyToMany
 	@JoinTable(name = "mentor_job", joinColumns=@JoinColumn(name = "job_id"), inverseJoinColumns = @JoinColumn(name = "mentor_id"))
+	@JsonIgnore
 	private List<Mentor> mentors;
 	@ManyToMany
 	@JoinTable(name = "mentee_job", joinColumns = @JoinColumn(name = "job_id"), inverseJoinColumns = @JoinColumn(name = "mentee_id"))
@@ -51,18 +53,37 @@ public class Job {
 		this.sector = sector;
 	}
 	public Job() {
+		
 		super();
+		this.mentees = new ArrayList<Mentee>();
+		this.mentors = new ArrayList<Mentor>();
 	}
 	public Job(int id, String name, Sector sector) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.sector = sector;
+		this.mentees = new ArrayList<Mentee>();
+		this.mentors = new ArrayList<Mentor>();
 	}
 	@Override
 	public String toString() {
 		return "Job [id=" + id + ", name=" + name + ", sector=" + sector + "]";
 	}
+	public List<Mentor> getMentors() {
+		return mentors;
+	}
+	public void setMentors(List<Mentor> mentors) {
+		this.mentors = mentors;
+	}
+	public List<Mentee> getMentees() {
+		return mentees;
+	}
+	public void setMentees(List<Mentee> mentees) {
+		this.mentees = mentees;
+	}
+	
+	
 	
 	
 
