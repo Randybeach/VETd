@@ -10,37 +10,32 @@
         <!-- ---------------------------------------------------------------- -->
         <!-- User Form -->
         <!-- ---------------------------------------------------------------- -->
-        <form class="text-center">
+        <!-- <form class="text-center"> -->
           <!-- Email -->
-          <input
+          <!-- <input
             type="email"
             id="defaultLoginFormEmail"
             class="form-control mb-4 text-center"
             name="email"
             placeholder="Email"
-            [(ngModel)]="editUser.email"
-          />
+            [(ngModel)]="editProfile.user.email"
+          /> -->
+          <!-- </form> -->
 
-          <!-- Username -->
-          <input
+        <!-- ---------------------------------------------------------------- -->
+        <!-- Vet Form -->
+        <!-- ---------------------------------------------------------------- -->
+        <!-- <form class="text-center"> -->
+          <!-- Story -->
+          <!-- <input
             type="text"
-            id="defaultLoginFormPassword"
-            class="form-control mb-4 text-center"
-            name="username"
-            placeholder="Username"
-            [(ngModel)]="editUser.username"
-          />
-
-          <!-- Password -->
-          <input
-            type="password"
             id="defaultLoginFormEmail"
             class="form-control mb-4 text-center"
-            name="password"
-            placeholder="Password"
-            [(ngModel)]="editUser.password"
+            name="story"
+            placeholder="Background Story"
+            [(ngModel)]="editProfile.mentee.story"
           />
-        </form>
+        </form> -->
 
         <!-- ---------------------------------------------------------------- -->
         <!-- Profile Form -->
@@ -110,7 +105,7 @@
             class="form-control mb-4 text-center"
             name="city"
             placeholder="City"
-            [(ngModel)]="editLocation.city"
+            [(ngModel)]="editProfile.location.city"
           />
 
           <!-- State -->
@@ -120,7 +115,7 @@
             class="form-control mb-4 text-center"
             name="state"
             placeholder="State"
-            [(ngModel)]="editLocation.state"
+            [(ngModel)]="editProfile.location.state"
           />
 
           <!-- Zip -->
@@ -128,9 +123,9 @@
             type="text"
             id="defaultLoginFormEmail"
             class="form-control mb-4 text-center"
-            name="zip"
+            name="zipcode"
             placeholder="Zip"
-            [(ngModel)]="editLocation.zipcode"
+            [(ngModel)]="editProfile.location.zipcode"
           />
         </form>
 
@@ -144,6 +139,7 @@
             block="true"
             class="my-4 text-center btn btn-warning"
             type="submit"
+            (click)="updateProfile(editProfile)"
           >
             Submit
           </button>
