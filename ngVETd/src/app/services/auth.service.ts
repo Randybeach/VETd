@@ -5,6 +5,7 @@ import { Observable, throwError } from "rxjs";
 import { User } from "../models/user";
 import { environment } from "src/environments/environment";
 import { Mentee } from "../models/mentee";
+import { Profile } from '../models/profile';
 
 @Injectable({
   providedIn: "root"
@@ -76,4 +77,5 @@ export class AuthService {
   getCredentials() {
     return localStorage.getItem("credentials");
   }
+
 }

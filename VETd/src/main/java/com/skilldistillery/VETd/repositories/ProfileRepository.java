@@ -8,4 +8,6 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer> {
 
 	Profile findProfileById(int id);
 
+	Profile findByUser_Username(String name);
+
 }
