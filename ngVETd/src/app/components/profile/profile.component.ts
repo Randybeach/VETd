@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
   jobsForSector: Job[] = [];
   jobName = "nothing";
   sectors: Sector[] = [];
-
+  profile = null;
 
 
 
@@ -119,6 +119,7 @@ export class ProfileComponent implements OnInit {
     this.profileService.getProfile().subscribe(
       good => {
         console.log(good);
+        this.profile = good;
 
       },
       bad => {

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.vetd.entities.Mentee;
 import com.skilldistillery.vetd.entities.Mentor;
-import com.skilldistillery.vetd.entities.User;
+import com.skilldistillery.vetd.entities.Profile;
 import com.skilldistillery.vetd.services.AuthService;
 
 @RestController
@@ -24,21 +24,24 @@ public class AuthController {
 	private AuthService svc;
 	
 	@PostMapping("/register/mentee")
-	public Mentee registerMentee(@RequestBody Mentee mentee, HttpServletResponse res) {
-	    if (mentee == null) {
+	public Mentee registerMentee(@RequestBody Profile profile, HttpServletResponse res) {
+	    if (profile == null) {
 	        res.setStatus(400);
 	    }
-	    	System.out.println(mentee);
+	    Mentee mentee = new Mentee();
+	    mentee.setProfile(profile);
 	    mentee = svc.registerMentee(mentee);
+	    System.out.println(mentee);
 
 	    return mentee;
 	}
 	@PostMapping("/register/mentor")
-	public Mentor registerMentor(@RequestBody Mentor mentor, HttpServletResponse res) {
-		if (mentor == null) {
+	public Mentor registerMentor(@RequestBody Profile profile, HttpServletResponse res) {
+		if (profile == null) {
 			res.setStatus(400);
 		}
-		System.out.println(mentor);
+		Mentor mentor = new Mentor();
+		mentor.setProfile(profile);
 		mentor = svc.registerMentor(mentor);
 		
 		return mentor;
