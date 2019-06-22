@@ -81,8 +81,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Object addJobstoMentee(List<Job> jobs, String username) {
+	public Profile addJobstoMentee(List<Job> jobs, String username) {
 		User user = uRepo.findUserByUsername(username);
+		Profile p = user.getProfile();
 		
 		if(user.getProfile().getMentee() != null) {
 			Mentee mentee =	user.getProfile().getMentee();
@@ -94,7 +95,8 @@ public class UserServiceImpl implements UserService {
 			}
 			System.out.println(mentee);
 			menteeRepo.saveAndFlush(mentee);
-			return mentee;
+			p.setMentee(mentee);
+			return p;
 			
 		}else {
 			Mentor mentor = user.getProfile().getMentor();
@@ -106,7 +108,8 @@ public class UserServiceImpl implements UserService {
 			}
 			System.out.println(mentor);
 			mentorRepo.saveAndFlush(mentor);
-			return mentor;
+			p.setMentor(mentor);
+			return p;
 		}
 	}
 
@@ -124,6 +127,12 @@ public class UserServiceImpl implements UserService {
 	public Profile getProfileById(int id) {
 		
 		return pRepo.findProfileById(id);
+	}
+
+
+	@Override
+	public Profile getProfile(String name) {
+		return pRepo.findByUser_Username(name);
 	}
 
 }

@@ -1,13 +1,13 @@
-import { environment } from 'src/environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Sector } from '../models/sector';
-import { AuthService } from './auth.service';
-import { Job } from '../models/job';
-import { Profile } from '../models/profile';
-import { Mentor } from '../models/mentor';
-import { Mentee } from '../models/mentee';
+import { environment } from "src/environments/environment";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { Sector } from "../models/sector";
+import { AuthService } from "./auth.service";
+import { Job } from "../models/job";
+import { Profile } from "../models/profile";
+import { Mentor } from "../models/mentor";
+import { Mentee } from "../models/mentee";
 
 @Injectable({
   providedIn: "root"
@@ -59,8 +59,18 @@ export class ProfileService {
       Authorization: "Basic " + this.auth.getCredentials(),
       "Content-Type": "application/json"
     };
-
     return this.http.put<Mentee>(this.url + "/" + editVet.id, editVet, {
+      headers: myHeaders
+    });
+  }
+
+  getProfile() {
+    const myHeaders = {
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials(),
+      "Content-Type": "application/json"
+    };
+    return this.http.get<Profile>(this.url + "/profile", {
       headers: myHeaders
     });
   }

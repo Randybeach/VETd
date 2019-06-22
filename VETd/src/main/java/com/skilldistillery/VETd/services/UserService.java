@@ -25,9 +25,11 @@ public interface UserService {
 
 	public Mentor updateMentor(Mentor mentor, int id);
 
-	public Object addJobstoMentee(List<Job> jobs, String username);
+	public Profile addJobstoMentee(List<Job> jobs, String username);
 
 	public Mentee removeJobsFromMentee(List<Job> jobs, int id);
 
 	public Profile getProfileById(int id);
+
+	public Profile getProfile(String name);
 }
