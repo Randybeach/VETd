@@ -29,7 +29,7 @@ export class NavigationComponent implements OnInit {
     if (!this.auth.checkLogin()) {
       return false;
     }
-    this.profile = this.profileService.getProfile().subscribe(
+    this.profileService.getProfile().subscribe(
       data => {
         this.profile = data;
       },
