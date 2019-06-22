@@ -26,9 +26,20 @@ export class NavigationComponent implements OnInit {
     return this.auth.checkLogin();
   }
   isAdmin() {
+    console.log("in nave bar admin");
+
     if (!this.auth.checkLogin()) {
       return false;
     }
+    if(this.profile === null){
+      this.getProfile();
+    }
+
+    console.log(this.profile);
+
+    return this.profile.user.role === "admin";
+  }
+  getProfile() {
     this.profileService.getProfile().subscribe(
       data => {
         this.profile = data;
@@ -37,8 +48,5 @@ export class NavigationComponent implements OnInit {
         console.log(err);
       }
     );
-    console.log(this.profile);
-
-    return this.profile.user.role === "admin";
   }
 }
