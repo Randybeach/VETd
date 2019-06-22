@@ -88,6 +88,12 @@ export class ProfileService {
 
 
   getProfile() {
+    const myHeaders = {
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials(),
+      "Content-Type": "application/json"
+    };
+
     return this.http.get<Profile>(this.url + "/profile", {
       headers: myHeaders
     });
