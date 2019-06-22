@@ -18,6 +18,7 @@ import { EditComponent } from './components/edit/edit.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MenteeProfileComponent } from './components/mentee-profile/mentee-profile.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     RegisterComponent,
     EditComponent,
     ProfileComponent,
-    AdminComponent
+    AdminComponent,
+    MenteeProfileComponent
   ],
   imports: [
     BrowserModule,
