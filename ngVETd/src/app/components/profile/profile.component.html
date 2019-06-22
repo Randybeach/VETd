@@ -1,52 +1,58 @@
-
-  <br><br><br><br>
+<div class='container-fluid' id='profileBackground'>
+    <div class='overlay-mf'></div>
   <div *ngIf='profile.mentee != null'>
-    Welcome mentee {{profile.firstName}}, what jobs would you like to receive mentorship on?
-  </div>
-  <div *ngIf='profile.mentee === null'>
-    Welcome mentor {{profile.firstName}}, what jobs are you qualified to mentor on?
-  </div>
-  <div class="dropdown">
+    <div class='row mt-4'>
+      <div class='col-sm-1 col-md-2 col-lg-2'></div>
+      <div class='col-2'></div>
+      <div class='col-sm-3 col-md-6 col-lg-6'>
+        <div clas='card' id='profileJobsCard'>
+          <div class='card-header text-center'>
+            <h2>{{ profile.firstName }} {{ profile.lastName }}</h2>
+          </div>
+          <div class='card-body text-center'>
+              <div class='mt-3' *ngIf='profile.mentor === null'>
+                <h4>Welcome mentee {{profile.firstName}}, what jobs would you like to receive mentorship on?</h4>
+                </div>
+              <div class='mt-3' *ngIf='profile.mentee === null'>
+                <h4>Welcome mentor {{profile.firstName}}, what jobs are you qualified to mentor on?</h4>
+              </div>
+              <div class="dropdown pt-2">
+              <!--Menu-->
+              <div class="dropdown-menu dropdown-primary" *ngFor="let sector of sectors">
+                <a class="dropdown-item" href="#">{{ sector.name }}</a>
+              </div>
+              <div>
+                <h5>Select a sector...</h5>
+                <select [(ngModel)]="currentSector" (ngModelChange) = 'getJobBySector()'>
+                  <option *ngFor="let sector of sectors"  name='currentSector' ngDefaultControl value={{sector.id}}>{{sector.name}}</option>
+                </select>
+              </div>
+              <div class='pt-2' *ngIf='currentSector'>
+                <h5>Select a Job for the chosen sector...</h5>
+                <select *ngIf="currentSector" [(ngModel)]="jobName" (ngModelChange) = 'setJob()'>
+                  <option *ngFor="let job of jobsForSector" value={{job.name}} name='job1' ngDefaultControl>{{job.name}}</option>
+                </select>
+            </div>
+            </div>
+              <div>
+                <button mdbBtn color="info" block="true" class="my-2 text-center btn btn-warning mr-1 float-center" type="submit" (click)="addJobs()">Save</button>
+              </div>
+              <hr>
+              <div>
+                <button mdbBtn color="info" block="false" class="my-4 text-center btn btn-warning ml-1 float-center" type="submit" (click)="editProfile()">Edit Profile</button>
+              </div>
+              <div *ngIf='profileJobs.length > 0'>
+              <hr>
+              <h2>Saved Jobs</h2>
 
-  <!--Menu-->
-  <div class="dropdown-menu dropdown-primary" *ngFor="let sector of sectors">
-    <a class="dropdown-item" href="#">{{ sector.name }}</a>
-
-  </div>
-</div>
-<select  [(ngModel)]="currentSector" (ngModelChange) = 'getJobBySector()'>
-  <option *ngFor="let sector of sectors"  name='currentSector' ngDefaultControl value={{sector.id}}>{{sector.name}}</option>
-</select><br>
-
-<select *ngIf="currentSector" [(ngModel)]="jobName" (ngModelChange) = 'setJob()'>
-  <option *ngFor="let job of jobsForSector" value={{job.name}} name='job1' ngDefaultControl>{{job.name}}</option>
-</select>
-<br>
-<button
-mdbBtn
-color="info"
-block="true"
-class="my-4 text-center btn btn-warning"
-type="submit"
-(click)="addJobs()"
->
-Submit
-</button>
-<button
-mdbBtn
-color="info"
-block="true"
-class="my-4 text-center btn btn-warning"
-type="submit"
-(click)="editProfile()"
->
-Edit Profile
-</button>
-<br>
-
-<h2>jobs you have saved</h2>
-
-<div *ngFor='let job of profileJobs'>{{job.name}} <span (click)='removeJob(job)'> Delete X</span>
+              <div *ngFor='let job of profileJobs'>{{job.name}} <span><i class="material-icons" (click)='removeJob(job)' ngbTooltip="Delete" id='delete'>delete</i></span>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='col-sm-31 col-md-2 col-lg-2'></div>
+    </div>
 
 </div>
 
