@@ -1,11 +1,11 @@
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from "src/app/services/auth.service";
 import { ProfileService } from "./../../services/profile.service";
 import { Component, OnInit } from "@angular/core";
 import { Sector } from "src/app/models/sector";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Job } from "src/app/models/job";
 import { Mentee } from "src/app/models/mentee";
-import { Mentor } from 'src/app/models/mentor';
+import { Mentor } from "src/app/models/mentor";
 
 @Component({
   selector: "app-profile",
@@ -24,9 +24,6 @@ export class ProfileComponent implements OnInit {
   sectors: Sector[] = [];
   profile = null;
 
-
-
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -42,7 +39,6 @@ export class ProfileComponent implements OnInit {
     this.reloadJobs();
     // console.log(this.auth.getCredentials());
     this.getProfile();
-
   }
 
   // getProfile() {
@@ -86,7 +82,6 @@ export class ProfileComponent implements OnInit {
     console.log("clicked");
     console.log(this.currentSector);
 
-
     for (let i = 0; i < this.jobs.length; i++) {
       const job = this.jobs[i];
       if (job.sector.id == this.currentSector) {
@@ -108,7 +103,6 @@ export class ProfileComponent implements OnInit {
     this.profileService.addJobs(this.currJobs).subscribe(
       good => {
         console.log(good);
-
       },
       err => {
         console.log(err);
@@ -120,15 +114,13 @@ export class ProfileComponent implements OnInit {
       good => {
         console.log(good);
         this.profile = good;
-
       },
       bad => {
         console.log("OOPS");
-
       }
     );
   }
-  editProfile(){
-    this.router.navigateByUrl('edit');
+  editProfile() {
+    this.router.navigateByUrl("edit");
   }
 }

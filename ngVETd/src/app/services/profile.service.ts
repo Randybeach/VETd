@@ -8,6 +8,7 @@ import { Job } from "../models/job";
 import { Profile } from "../models/profile";
 import { Mentor } from "../models/mentor";
 import { Mentee } from "../models/mentee";
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: "root"
@@ -41,6 +42,15 @@ export class ProfileService {
     return this.http.get<Job[]>(this.url + "/jobs", { headers: myHeaders });
   }
 
+  getUsers(): Observable<User[]> {
+    const credentials = this.auth.getCredentials();
+    const myHeaders = {
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials()
+    };
+    return this.http.get<User[]>(this.url + "/users", { headers: myHeaders });
+  }
+
   addJobs(newJobs: Job[]) {
     const myHeaders = {
       "X-Requested-With": "XMLHttpRequest",
@@ -59,7 +69,7 @@ export class ProfileService {
       Authorization: "Basic " + this.auth.getCredentials(),
       "Content-Type": "application/json"
     };
-    return this.http.put<Profile>(this.url + "/" + editProfile.id, editProfile, {
+    return this.http.put<Profile>(this.url + "/profile", editProfile, {
       headers: myHeaders
     });
   }
