@@ -104,6 +104,7 @@ export class ProfileComponent implements OnInit {
     this.profileService.addJobs(this.currJobs).subscribe(
       good => {
         console.log(good);
+        this.getProfile();
       },
       err => {
         console.log(err);
@@ -116,6 +117,15 @@ export class ProfileComponent implements OnInit {
         this.profileJobs = [];
         console.log(good);
         this.profile = good;
+        if(this.profile.mentee){
+          this.profileJobs = this.profile.mentee.jobs;
+          console.log("mentee jobs" + this.profileJobs);
+
+         }else{
+          this.profileJobs = [];
+          this.profileJobs = this.profile.mentor.jobs;
+          console.log("mentor jobs" + this.profileJobs);
+        }
       },
       bad => {
         console.log("OOPS");
