@@ -33,25 +33,37 @@ export class EditComponent implements OnInit {
   //
   // M E T H O D S
   //
-  ngOnInit() {}
+  ngOnInit() {
+    this.getProfile();
+  }
 
-  updateProfile(form1: NgForm, form2: NgForm, form3: NgForm, form4: NgForm) {
+  updateProfile(form1: NgForm, form2: NgForm, form3: NgForm) {
     console.log();
-    this.editUser = form1.value;
-    this.editVet = form2.value;
-    this.editProfile = form3.value;
-    this.editLocation = form4.value;
+    this.editVet = form1.value;
+    this.editProfile = form2.value;
+    this.editLocation = form3.value;
 
     this.editProfile.location = this.editLocation;
-    this.editProfile.user = this.editUser;
-    this.editVet.profile = this.editProfile;
+    this.editProfile.mentee = this.editVet;
 
-    this.profileService.update(this.editVet).subscribe(
+    this.profileService.update(this.editProfile).subscribe(
       data => {
         console.log(this.editVet);
       },
       err => {
         console.log(err);
+      }
+    );
+  }
+
+  getProfile() {
+    this.profileService.getProfile().subscribe(
+      good => {
+        console.log(good);
+        this.editProfile = good;
+      },
+      bad => {
+        console.log("OOPS");
       }
     );
   }
