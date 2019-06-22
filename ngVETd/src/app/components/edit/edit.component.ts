@@ -47,7 +47,8 @@ export class EditComponent implements OnInit {
 
     this.profileService.update(this.editProfile).subscribe(
       data => {
-        console.log(this.editVet);
+        console.log(data);
+        this.router.navigateByUrl('profile');
       },
       err => {
         console.log(err);

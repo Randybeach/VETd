@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.vetd.entities.Job;
-import com.skilldistillery.vetd.entities.Location;
 import com.skilldistillery.vetd.entities.Mentee;
 import com.skilldistillery.vetd.entities.Mentor;
 import com.skilldistillery.vetd.entities.MentorMentee;
 import com.skilldistillery.vetd.entities.Profile;
 import com.skilldistillery.vetd.entities.User;
 import com.skilldistillery.vetd.repositories.JobRepository;
+import com.skilldistillery.vetd.repositories.LocationRepository;
 import com.skilldistillery.vetd.repositories.MenteeRepository;
 import com.skilldistillery.vetd.repositories.MentorMenteeRepository;
 import com.skilldistillery.vetd.repositories.MentorRepository;
@@ -34,6 +34,8 @@ public class UserServiceImpl implements UserService {
 	private ProfileRepository pRepo;
 	@Autowired
 	private JobRepository jRepo;
+	@Autowired
+	private LocationRepository lRepo;
 
 	@Override
 	public List<User> index() {
@@ -65,13 +67,31 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Profile updateMentee(Profile profile) {
-		User user = uRepo.findUserByUsername(profile.getUser().getUsername());
-		Location l = user.getProfile().getLocation();
-		user.getProfile().setLocation(profile.getLocation());
+		System.out.println(profile);
 		
-		user.setProfile(profile);
-		uRepo.saveAndFlush(user);
-		pRepo.saveAndFlush(profile);
+		if(profile.getMentee() != null) {
+			profile.getMentee().setProfile(profile);
+			pRepo.saveAndFlush(profile);
+			menteeRepo.saveAndFlush(profile.getMentee());
+			if(profile.getMentee().getJobs() != null) {
+				List<Job> jobs = profile.getMentee().getJobs();
+				for (Job job : jobs) {
+					profile = this.removeJobsFromMentee(job, profile.getUser().getUsername());
+				}
+				profile = this.addJobstoMentee(jobs, profile.getUser().getUsername());
+			}
+			
+			
+		}else {
+			profile.getMentor().setProfile(profile);
+			pRepo.saveAndFlush(profile);
+			mentorRepo.saveAndFlush(profile.getMentor());
+			
+		}
+		lRepo.saveAndFlush(profile.getLocation());
+		uRepo.saveAndFlush(profile.getUser());
+		System.out.println("* " + profile);
+		
 		return profile;
 	}
 
