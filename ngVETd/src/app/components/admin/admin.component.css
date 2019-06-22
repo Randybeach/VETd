@@ -33,6 +33,15 @@ div {
   margin-bottom: 0px !important;
 }
 
+hr {
+  color: black;
+  border: 1px solid white;
+}
+
+p {
+  font-size: 20px;
+}
+
 /* .button2 {
   margin-bottom: 0px !important;
 } */

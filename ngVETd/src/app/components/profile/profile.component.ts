@@ -23,19 +23,8 @@ export class ProfileComponent implements OnInit {
   jobName = "nothing";
   sectors: Sector[] = [];
   profile = null;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
   profileJobs = [];
 
-
->>>>>>> 19975d9a38d7ff72102ec2d5291be7a5a976be49
-
-=======
-  profileJobs = [];
-
-
->>>>>>> d5ec70264007458c05ab4a91ee64d8565676da54
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -115,15 +104,6 @@ export class ProfileComponent implements OnInit {
     this.profileService.addJobs(this.currJobs).subscribe(
       good => {
         console.log(good);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        this.getProfile();
-
->>>>>>> 19975d9a38d7ff72102ec2d5291be7a5a976be49
-=======
-        this.getProfile();
->>>>>>> d5ec70264007458c05ab4a91ee64d8565676da54
       },
       err => {
         console.log(err);
@@ -136,27 +116,6 @@ export class ProfileComponent implements OnInit {
         this.profileJobs = [];
         console.log(good);
         this.profile = good;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-
->>>>>>> d5ec70264007458c05ab4a91ee64d8565676da54
-        if(this.profile.mentee){
-          this.profileJobs = this.profile.mentee.jobs;
-          console.log("mentee jobs" + this.profileJobs);
-
-        }else{
-          this.profileJobs = [];
-          this.profileJobs = this.profile.mentor.jobs;
-          console.log("mentor jobs" + this.profileJobs);
-        }
-
-<<<<<<< HEAD
-
->>>>>>> 19975d9a38d7ff72102ec2d5291be7a5a976be49
-=======
->>>>>>> d5ec70264007458c05ab4a91ee64d8565676da54
       },
       bad => {
         console.log("OOPS");
@@ -175,6 +134,6 @@ export class ProfileComponent implements OnInit {
         console.log("removed job " + good);
 
       }
-    )
+    );
   }
 }

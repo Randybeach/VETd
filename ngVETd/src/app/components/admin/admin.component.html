@@ -6,13 +6,13 @@
         <h1 class="h1 mb-4">Admin</h1>
       </div>
       <div class="card-body">
-        <form #searchUserForm action="">
+        <form>
           <input
             class="form-control mb-4 text-center"
             type="text"
-            name="keyword"
+            name="username"
             placeholder="Search Users By Username"
-            ngModel
+            [(ngModel)]="keyword"
           />
           <button
             mdbBtn
@@ -45,14 +45,25 @@
           </button>
         </form> -->
       </div>
+      <div>
+        <div class="text-left" *ngFor="let user of users">
+          <p>
+            {{ user.username }}
+            <button
+              mdbBtn
+              color="info"
+              block="true"
+              class="my-4 btn btn-sm btn-warning button float-right"
+              type="Go to Profile"
+              (click)="gotoProfile()"
+            >
+              Submit
+            </button>
+          </p>
+          <hr />
+        </div>
+      </div>
     </div>
     <div class="col-sm-1 col-md-3 col-lg-4"></div>
-  </div>
-
-  <div>
-    <ul *ngFor="let user of users">
-      <li>{{ user.username }}</li>
-      <input type="submit" />
-    </ul>
   </div>
 </div>
