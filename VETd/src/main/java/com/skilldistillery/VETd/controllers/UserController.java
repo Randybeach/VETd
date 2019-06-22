@@ -50,27 +50,26 @@ public class UserController {
 	public List<MentorMentee> getMenteesByMentorId(@PathVariable int id){
 		return svc.getMenteesByMentorId(id);
 	}
-	//Update mentee
-	@PutMapping("mentee/{id}")
-	public Mentee updateMentee(@RequestBody Mentee mentee, @PathVariable int id) {
-			return svc.updateMentee(mentee, id);
+	@GetMapping("search/{name}")
+	public List<User> getUsersByUsername(@PathVariable String name){
+		return svc.getUsersByUsername(name);
 	}
-	//Update mentor
-	@PutMapping("mentor/{id}")
-	public Mentor updateMentor(@RequestBody Mentor mentor, @PathVariable int id) {
-		return svc.updateMentor(mentor, id);
+	//Update Profile
+	@PutMapping("profile")
+	public Profile updateMentee(@RequestBody Profile profile) {
+			return svc.updateMentee(profile);
 	}
 	//Add Job to Mentee
-	@PutMapping("mentee/add/jobs")
+	@PutMapping("add/jobs")
 	public Profile addJobsToMentee(@RequestBody List<Job> jobs, Principal principal) {
-		System.out.println(jobs);
-		System.out.println(principal.getName());
 		return svc.addJobstoMentee(jobs, principal.getName());
 	}
 	//Remove Job from mentee
-	@PutMapping("mentee/remove/jobs")
-	public void removeJobsToMentee(@RequestBody List<Job> jobs, @PathVariable int id) {
-		svc.removeJobsFromMentee(jobs, id);
+	@PutMapping("remove/jobs")
+	public Profile removeJobsFromMentee(@RequestBody Job job, Principal p) {
+		Profile po = svc.removeJobsFromMentee(job, p.getName());
+		System.out.println(po.getMentee());
+		return po;
 	}
 	@GetMapping("profile")
 	public Profile getProfile(Principal p, HttpServletResponse response) {

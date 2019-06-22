@@ -23,6 +23,12 @@ export class ProfileComponent implements OnInit {
   jobName = "nothing";
   sectors: Sector[] = [];
   profile = null;
+<<<<<<< HEAD
+=======
+  profileJobs = [];
+
+
+>>>>>>> 19975d9a38d7ff72102ec2d5291be7a5a976be49
 
   constructor(
     private router: Router,
@@ -103,6 +109,11 @@ export class ProfileComponent implements OnInit {
     this.profileService.addJobs(this.currJobs).subscribe(
       good => {
         console.log(good);
+<<<<<<< HEAD
+=======
+        this.getProfile();
+
+>>>>>>> 19975d9a38d7ff72102ec2d5291be7a5a976be49
       },
       err => {
         console.log(err);
@@ -112,8 +123,23 @@ export class ProfileComponent implements OnInit {
   getProfile() {
     this.profileService.getProfile().subscribe(
       good => {
+        this.profileJobs = [];
         console.log(good);
         this.profile = good;
+<<<<<<< HEAD
+=======
+        if(this.profile.mentee){
+          this.profileJobs = this.profile.mentee.jobs;
+          console.log("mentee jobs" + this.profileJobs);
+
+        }else{
+          this.profileJobs = [];
+          this.profileJobs = this.profile.mentor.jobs;
+          console.log("mentor jobs" + this.profileJobs);
+        }
+
+
+>>>>>>> 19975d9a38d7ff72102ec2d5291be7a5a976be49
       },
       bad => {
         console.log("OOPS");
@@ -122,5 +148,16 @@ export class ProfileComponent implements OnInit {
   }
   editProfile() {
     this.router.navigateByUrl("edit");
+  }
+  removeJob(job){
+    this.profileService.removeJob(job).subscribe(
+      good => {
+        this.getProfile();
+        // this.profile = good;
+        // this.profileJobs.filt
+        console.log("removed job " + good);
+
+      }
+    )
   }
 }

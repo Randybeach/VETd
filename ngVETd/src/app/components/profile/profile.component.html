@@ -1,10 +1,10 @@
 
   <br><br><br><br>
   <div *ngIf='profile.mentee != null'>
-    Welcome mentee
+    Welcome mentee {{profile.firstName}}, what jobs would you like to receive mentorship on?
   </div>
   <div *ngIf='profile.mentee === null'>
-    Welcome mentor
+    Welcome mentor {{profile.firstName}}, what jobs are you qualified to mentor on?
   </div>
   <div class="dropdown">
 
@@ -42,5 +42,12 @@ type="submit"
 >
 Edit Profile
 </button>
+<br>
+
+<h2>jobs you have saved</h2>
+
+<div *ngFor='let job of profileJobs'>{{job.name}} <span (click)='removeJob(job)'> Delete X</span>
+
+</div>
 
 
