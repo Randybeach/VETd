@@ -52,14 +52,14 @@ export class ProfileService {
     });
   }
 
-  update(editVet) {
+  update(editProfile) {
     // const upUrl = this.url + "/" + updateTodo.id;
     const myHeaders = {
       "X-Requested-With": "XMLHttpRequest",
       Authorization: "Basic " + this.auth.getCredentials(),
       "Content-Type": "application/json"
     };
-    return this.http.put<Mentee>(this.url + "/" + editVet.id, editVet, {
+    return this.http.put<Profile>(this.url + "/" + editProfile.id, editProfile, {
       headers: myHeaders
     });
   }

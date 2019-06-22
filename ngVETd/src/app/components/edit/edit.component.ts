@@ -37,14 +37,13 @@ export class EditComponent implements OnInit {
     this.getProfile();
   }
 
-  updateProfile(form1: NgForm, form2: NgForm, form3: NgForm) {
+  updateProfile() {
     console.log();
-    this.editVet = form1.value;
-    this.editProfile = form2.value;
-    this.editLocation = form3.value;
+    // this.editVet = form1.value;
+    // this.editProfile = form2.value;
+    // this.editLocation = form3.value;
 
     this.editProfile.location = this.editLocation;
-    this.editProfile.mentee = this.editVet;
 
     this.profileService.update(this.editProfile).subscribe(
       data => {
@@ -61,6 +60,8 @@ export class EditComponent implements OnInit {
       good => {
         console.log(good);
         this.editProfile = good;
+        this.editVet = good.mentee;
+        console.log(this.editProfile.mentee);
       },
       bad => {
         console.log("OOPS");
