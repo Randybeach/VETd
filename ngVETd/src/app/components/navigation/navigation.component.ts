@@ -26,7 +26,6 @@ export class NavigationComponent implements OnInit {
     return this.auth.checkLogin();
   }
   isAdmin() {
-    console.log("in nave bar admin");
 
     if (!this.auth.checkLogin()) {
       return false;

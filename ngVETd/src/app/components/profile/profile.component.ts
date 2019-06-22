@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
   sectors: Sector[] = [];
   profile = null;
   profileJobs = [];
+  menteeJobList = [];
 
   constructor(
     private router: Router,
@@ -145,5 +146,13 @@ export class ProfileComponent implements OnInit {
 
       }
     );
+  }
+  getListOfMenteesWithSelectedJobs(){
+    this.profileService.getListOfMenteesWithChosenJobs().subscribe(
+      good => {
+
+      }
+    )
+
   }
 }
