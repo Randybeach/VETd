@@ -148,7 +148,7 @@ CREATE INDEX `fk_mentee_profile1_idx` ON `mentee` (`profile_id` ASC);
 DROP TABLE IF EXISTS `mentor_mentee` ;
 
 CREATE TABLE IF NOT EXISTS `mentor_mentee` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `created_at` DATETIME NULL,
   `mentee_id` INT NOT NULL,
   `mentor_id` INT NOT NULL,
