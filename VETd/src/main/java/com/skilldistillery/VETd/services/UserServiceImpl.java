@@ -1,8 +1,9 @@
 package com.skilldistillery.vetd.services;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -107,6 +108,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Profile addJobstoMentee(Collection<Job> jobs, String username) {
+		
 		User user = uRepo.findUserByUsername(username);
 		Profile p = user.getProfile();
 
@@ -117,7 +119,9 @@ public class UserServiceImpl implements UserService {
 					continue;
 				}
 				System.out.println("This jobs mentors"+job.getMentors());
-				mentee.addJob(job);
+				Job j = jRepo.findById(job.getId()).get();
+				System.out.println("adding " + j + " to " + mentee);
+				mentee.addJob(j);
 			}
 			System.out.println(mentee);
 			menteeRepo.save(mentee);
@@ -131,7 +135,8 @@ public class UserServiceImpl implements UserService {
 				if (job == null) {
 					continue;
 				}
-				mentor.addJob(job);
+				Job j = jRepo.findById(job.getId()).get();
+				mentor.addJob(j);
 			}
 			System.out.println(mentor);
 			mentorRepo.save(mentor);
@@ -188,11 +193,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<Profile> getMenteesWithJobs(String name) {
+	public Set<Profile> getMenteesWithJobs(String name) {
 		User user = uRepo.findUserByUsername(name);
 		Collection<Job> jobs =  user.getProfile().getMentor().getJobs();
 		System.out.println(jobs);
-		List<Profile> profiles = new ArrayList<>();
+		Set<Profile> profiles = new HashSet();
 		
 		for (Job job : jobs) {
 			System.out.println(job);
@@ -212,8 +217,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Profile addMenteeToMentorList(Profile profile, String name) {
+		System.out.println(profile);
 		Profile menteeProfile = pRepo.findProfileById(profile.getId());
 		User mentorUser = uRepo.findUserByUsername(name);
+		System.out.println(menteeProfile);
+		System.out.println(mentorUser);
 		MentorMentee mm = new MentorMentee();
 		mm.setMentee(menteeProfile.getMentee());
 		mm.setMentor(mentorUser.getProfile().getMentor());

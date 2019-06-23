@@ -78,9 +78,12 @@ public class Job {
 		this.mentees = new HashSet<Mentee>();
 		this.mentors = new HashSet<Mentor>();
 	}
+	
+
 	@Override
 	public String toString() {
-		return "Job [id=" + id + ", name=" + name + ", sector=" + sector + "]";
+		return "Job [id=" + id + ", name=" + name + ", sector=" + sector + ", mentors=" + mentors.size() + ", mentees="
+				+ mentees.size() + "]";
 	}
 	public Set<Mentor> getMentors() {
 		return mentors;

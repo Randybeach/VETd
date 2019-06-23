@@ -32,7 +32,6 @@ public class Mentor {
 	@CreationTimestamp
 	private Date createdAt;
 	@OneToMany(mappedBy = "mentor")
-	@JsonIgnore
 	private Set<MentorMentee> mentorMentees;
 	@ManyToMany(mappedBy = "mentors", cascade = CascadeType.ALL)
 	private Set<Job> jobs;

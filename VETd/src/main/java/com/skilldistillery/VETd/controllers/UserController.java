@@ -2,6 +2,7 @@ package com.skilldistillery.vetd.controllers;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.vetd.entities.Job;
 import com.skilldistillery.vetd.entities.Mentee;
-import com.skilldistillery.vetd.entities.Mentor;
 import com.skilldistillery.vetd.entities.MentorMentee;
 import com.skilldistillery.vetd.entities.Profile;
 import com.skilldistillery.vetd.entities.User;
@@ -87,13 +87,13 @@ public class UserController {
 	
 	//Get a list of Mentees that desire mentorship for chosen jobs
 	@GetMapping("mentee/job")
-	public List<Profile> getMenteesWithChosenJobs(Principal p){
+	public Set<Profile> getMenteesWithChosenJobs(Principal p){
 		return svc.getMenteesWithJobs(p.getName());
 	}
 	
 	@PutMapping("mentormentee")
 	public Profile addMenteeToMentorshipList(@RequestBody Profile profile, Principal principal){
-		
+		System.out.println("trying to add mentor mentee");
 		return svc.addMenteeToMentorList(profile, principal.getName());
 	}
 	
