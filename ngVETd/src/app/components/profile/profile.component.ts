@@ -188,6 +188,10 @@ export class ProfileComponent implements OnInit {
     console.log("added " +  profile.firstName + " to list");
     this.profileService.addMenteeToMentorList(profile).subscribe(
       good => {
+        this.profile = good;
+      },
+      bad => {
+        console.log(bad);
 
       }
     );
