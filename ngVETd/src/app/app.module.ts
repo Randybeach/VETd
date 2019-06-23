@@ -19,6 +19,10 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MenteeProfileComponent } from './components/mentee-profile/mentee-profile.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
+import { ModalComponent } from './modal/modal.component';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -32,7 +36,8 @@ import { MenteeProfileComponent } from './components/mentee-profile/mentee-profi
     EditComponent,
     ProfileComponent,
     AdminComponent,
-    MenteeProfileComponent
+    MenteeProfileComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -49,9 +54,14 @@ import { MenteeProfileComponent } from './components/mentee-profile/mentee-profi
     IconsModule,
     WavesModule,
     MatIconModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    MatSelectModule
   ],
   providers: [AuthService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ModalComponent]
 })
 export class AppModule {}

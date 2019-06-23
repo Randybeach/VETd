@@ -91,13 +91,17 @@
         <div class='col-sm-5 col-md-3 col-lg-3'>
             <div class='card shadow' id='menteeProfile'>
               <img class="card-img-top" [src]="profile.pictureUrl" alt="Mentor Profile Picture">
-              <div class='card-header'>
-                <h5>{{ profile.firstName }} {{ profile.lastName }}</h5>
-              </div>
+              <h5>{{ profile.firstName }} {{ profile.lastName }}</h5>
               <div class='card-body'>
                 <p>{{ profile.location.city }}, {{ profile.location.state }} {{ profile.location.zip }}</p>
                 <p>{{ profile.pictureUrl }}</p>
                 <p>{{ profile.resumeUrl }}</p>
+                <hr>
+                <div><u>Potential Mentees</u>: <br>
+                  <div *ngFor='let profile of menteeJobList'>{{profile.firstName}} {{profile.lastName}}
+                          <span><i class="material-icons float-right" ngbTooltip="View Profile" id='viewProfile' (click)='openDialog(profile)'>visibility</i></span>
+                    </div>
+                </div>
               </div>
               <div class='card-footer'>
                   <button mdbBtn color="info" block="false" class="my-1 text-center btn btn-warning ml-1 float-center" type="submit" (click)="editProfile()">Edit Profile</button>
@@ -107,29 +111,38 @@
 
     <div class='col-sm-5 col-md-5 col-lg-5'>
       <div class='card shadow' id='profileJobsCard'>
-        <div class='card-header text-center'>
-          <h2>{{ profile.firstName }} {{ profile.lastName }}</h2>
-        </div>
           <div class='card-body text-center'>
             <h6>Welcome mentor {{profile.firstName}}!</h6>
-            <p>Select jobs for which you would like to provide mentorship.</p>
+            <p>Select jobs on which you feel qualified to provide mentorship.</p>
             <div class='form-group'>
               <div class="dropdown">
                 <div class="dropdown-menu dropdown-primary" *ngFor="let sector of sectors">
                   <a class="dropdown-item" href="#">{{ sector.name }}</a>
                 </div>
                 <p>Select a sector...</p>
-                <div>
-                  <select class='form-control-sm' [(ngModel)]="currentSector" (ngModelChange) = 'getJobBySector()'>
-                    <option *ngFor="let sector of sectors"  name='currentSector' ngDefaultControl value={{sector.id}}>{{sector.name}}</option>
-                  </select>
+                <div class='selectFields'>
+                  <mat-form-field>
+                    <mat-label>Sector</mat-label>
+                    <mat-select [(ngModel)]="currentSector" (ngModelChange) = 'getJobBySector()'>
+                      <mat-option *ngFor="let sector of sectors" name='currentSector' ngDefaultControl value={{sector.id}} id='option'>
+                        {{ sector.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
                 </div>
                 <div class='pt-1' *ngIf='currentSector'>
+                  <div class='selectFields'>
                   <p>Select a Job for the chosen sector...</p>
-                  <select class='form-control-sm' *ngIf="currentSector" [(ngModel)]="jobName" (ngModelChange) = 'setJob()'>
-                    <option *ngFor="let job of jobsForSector" value={{job.name}} name='job1' ngDefaultControl>{{job.name}}</option>
-                  </select>
+                  <mat-form-field>
+                    <mat-label>Job</mat-label>
+                    <mat-select  *ngIf="currentSector" [(ngModel)]="jobName" (ngModelChange) = 'setJob()'>
+                      <mat-option *ngFor="let job of jobsForSector" [value]="job.name">
+                        {{ job.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
                 </div>
+              </div>
               </div>
             </div>
             <div>
@@ -150,19 +163,7 @@
     </div>
   </div>
     <div class='col-sm-1 col-md-2 col-lg-2'></div>
-  </div>
-
-
-
-          <br>
-
-        <div style='color: aliceblue'>Potential Mentees who seek your experience <br>
-          <div *ngFor='let profile of menteeJobList'>Name: {{profile.firstName}}</div>
-          <div>
-              <button mdbBtn color="info" block="true" class="my-2 text-center btn btn-warning mr-1 float-center" type="submit" (click)="addMenteeToMentorMenteeList(profile)">Mentor this person</button>
-            </div>
-        </div>
-
+</div>
 
   <div class='row'>
     <div class='col-sm-1 col-md-2 col-lg-2'></div>

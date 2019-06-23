@@ -19,6 +19,10 @@ overflow: scroll;
   color: red;
 }
 
+#viewProfile:hover {
+  color: blue;
+}
+
 #menteeProfile {
   min-height: 550px;
   background-color: oldlace;
@@ -33,6 +37,11 @@ overflow: scroll;
   color: black;
 }
 
-select {
-  max-width: 350px;
+.selectFields {
+  display: flex;
+  flex-direction: column;
+}
+
+.selectFields > * {
+  width: 100%;
 }
