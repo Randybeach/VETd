@@ -3,6 +3,7 @@ import { Mentor } from 'src/app/models/mentor';
 import { Mentee } from 'src/app/models/mentee';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'app-mentee-profile',
@@ -12,11 +13,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class MenteeProfileComponent implements OnInit {
   mentor = new Mentor();
   mentee = new Mentee();
+  profile = null;
 
 
   constructor(
     private auth: AuthService,
     private router: Router,
+    private profileService: ProfileService,
     private route: ActivatedRoute
 
   ) { }
@@ -31,6 +34,18 @@ export class MenteeProfileComponent implements OnInit {
   }
   getMentor() {
     // call auth service
+  }
+  addMenteeToMentorMenteeList(profile){
+    console.log("added " +  profile.firstName + " to list");
+    this.profileService.addMenteeToMentorList(profile).subscribe(
+      good => {
+        this.profile = good;
+      },
+      bad => {
+        console.log(bad);
+
+      }
+    );
   }
 
 }

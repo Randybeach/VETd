@@ -120,7 +120,8 @@ public class UserServiceImpl implements UserService {
 				mentee.addJob(job);
 			}
 			System.out.println(mentee);
-			menteeRepo.saveAndFlush(mentee);
+			menteeRepo.save(mentee);
+			menteeRepo.flush();
 			p.setMentee(mentee);
 			return p;
 
@@ -133,7 +134,8 @@ public class UserServiceImpl implements UserService {
 				mentor.addJob(job);
 			}
 			System.out.println(mentor);
-			mentorRepo.saveAndFlush(mentor);
+			mentorRepo.save(mentor);
+			mentorRepo.flush();
 			p.setMentor(mentor);
 			return p;
 		}
@@ -209,12 +211,18 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<Profile> addMenteeToMentorList(Profile profile, String name) {
+	public Profile addMenteeToMentorList(Profile profile, String name) {
 		Profile menteeProfile = pRepo.findProfileById(profile.getId());
 		User mentorUser = uRepo.findUserByUsername(name);
-		
-		
-		return null;
+		MentorMentee mm = new MentorMentee();
+		mm.setMentee(menteeProfile.getMentee());
+		mm.setMentor(mentorUser.getProfile().getMentor());
+		mentorUser.getProfile().getMentor().addMentorMentees(mm);
+		menteeProfile.getMentee().addMentorMentees(mm);
+		mmRepo.saveAndFlush(mm);
+		pRepo.saveAndFlush(menteeProfile);
+		pRepo.saveAndFlush(mentorUser.getProfile());
+		return mentorUser.getProfile();
 	}
 
 }
