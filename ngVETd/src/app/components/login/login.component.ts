@@ -3,11 +3,12 @@ import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { User } from 'src/app/models/user';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   //
@@ -15,8 +16,9 @@ export class LoginComponent implements OnInit {
   //
 
   user = new User();
+  profile = null;
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router, private profileService: ProfileService) {}
 
   //
   // M E T H O D S
@@ -31,7 +33,8 @@ export class LoginComponent implements OnInit {
 
     this.auth.login(this.user.username, this.user.password).subscribe(
       data => {
-        this.router.navigateByUrl("profile");
+
+        this.router.navigateByUrl('profile');
       },
       err => {
         console.error(err);
