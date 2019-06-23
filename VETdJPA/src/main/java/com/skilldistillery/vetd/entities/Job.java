@@ -1,7 +1,9 @@
 package com.skilldistillery.vetd.entities;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -25,14 +27,14 @@ public class Job {
 	@ManyToOne
 	@JoinColumn(name = "sector_id")
 	private Sector sector;
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.MERGE)
 	@JoinTable(name = "mentor_job", joinColumns=@JoinColumn(name = "job_id"), inverseJoinColumns = @JoinColumn(name = "mentor_id"))
 	@JsonIgnore
-	private List<Mentor> mentors;
-	@ManyToMany(cascade = CascadeType.ALL)
+	private Set<Mentor> mentors;
+	@ManyToMany(cascade = CascadeType.MERGE)
 	@JoinTable(name = "mentee_job", joinColumns = @JoinColumn(name = "job_id"), inverseJoinColumns = @JoinColumn(name = "mentee_id"))
 	@JsonIgnore
-	private List<Mentee> mentees;
+	private Set<Mentee> mentees;
 	
 	
 	public int getId() {
@@ -56,34 +58,69 @@ public class Job {
 	public Job() {
 		
 		super();
-		this.mentees = new ArrayList<Mentee>();
-		this.mentors = new ArrayList<Mentor>();
+		this.mentees = new HashSet<Mentee>();
+		this.mentors = new HashSet<Mentor>();
 	}
 	public Job(int id, String name, Sector sector) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.sector = sector;
-		this.mentees = new ArrayList<Mentee>();
-		this.mentors = new ArrayList<Mentor>();
+		this.mentees = new HashSet<Mentee>();
+		this.mentors = new HashSet<Mentor>();
 	}
 	@Override
 	public String toString() {
 		return "Job [id=" + id + ", name=" + name + ", sector=" + sector + "]";
 	}
-	public List<Mentor> getMentors() {
+	public Set<Mentor> getMentors() {
 		return mentors;
 	}
-	public void setMentors(List<Mentor> mentors) {
+	public void setMentors(Set<Mentor> mentors) {
 		this.mentors = mentors;
 	}
-	public List<Mentee> getMentees() {
+	public Set<Mentee> getMentees() {
 		return mentees;
 	}
-	public void setMentees(List<Mentee> mentees) {
+	public void setMentees(Set<Mentee> mentees) {
 		this.mentees = mentees;
 	}
 	
+	public void addMentor(Mentor m) {
+		if (mentors == null) {
+			mentors = new HashSet<Mentor>();
+		}
+		if (!mentors.contains(m)) {
+			mentors.add(m);
+			m.addJob(this);
+		}
+		
+	}
+	public void addMentee(Mentee m) {
+		if (mentees == null) {
+			mentees = new HashSet<Mentee>();
+		}
+		if (!mentees.contains(m)) {
+			mentees.add(m);
+			m.addJob(this);
+		}
+		
+	}
+	
+	public void removeMentor(Mentor m) {
+		if (mentors != null && mentors.contains(m)) {
+			mentors.remove(m);
+			m.removeJob(this);
+		}
+		
+	}
+	public void removeMentee(Mentee m) {
+		if (mentees != null && mentees.contains(m)) {
+			mentees.remove(m);
+			m.removeJob(this);
+		}
+		
+	}
 	
 	
 	

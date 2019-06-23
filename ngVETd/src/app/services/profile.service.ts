@@ -1,3 +1,4 @@
+import { IconsModule } from 'angular-bootstrap-md';
 import { environment } from "src/environments/environment";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
@@ -109,7 +110,7 @@ export class ProfileService {
       headers: myHeaders
     });
   }
-  getListOfMenteesWithChosenJobs(){
+  getListOfMenteesWithChosenJobs() {
     const myHeaders = {
       "X-Requested-With": "XMLHttpRequest",
       Authorization: "Basic " + this.auth.getCredentials(),

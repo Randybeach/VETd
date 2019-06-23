@@ -1,5 +1,7 @@
 package com.skilldistillery.vetd.services;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,7 +76,7 @@ public class UserServiceImpl implements UserService {
 			pRepo.saveAndFlush(profile);
 			menteeRepo.saveAndFlush(profile.getMentee());
 			if(profile.getMentee().getJobs() != null) {
-				List<Job> jobs = profile.getMentee().getJobs();
+				Collection<Job> jobs = profile.getMentee().getJobs();
 				for (Job job : jobs) {
 					profile = this.removeJobsFromMentee(job, profile.getUser().getUsername());
 				}
@@ -97,7 +99,7 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public Profile addJobstoMentee(List<Job> jobs, String username) {
+	public Profile addJobstoMentee(Collection<Job> jobs, String username) {
 		User user = uRepo.findUserByUsername(username);
 		Profile p = user.getProfile();
 
@@ -173,6 +175,29 @@ public class UserServiceImpl implements UserService {
 	public List<User> getUsersByUsername(String name) {
 		name = "%" + name + "%";
 		return uRepo.findUserByUsernameLike(name);
+	}
+
+	@Override
+	public List<Profile> getMenteesWithJobs(String name) {
+		User user = uRepo.findUserByUsername(name);
+		Collection<Job> jobs =  user.getProfile().getMentor().getJobs();
+		System.out.println(jobs);
+		List<Profile> profiles = new ArrayList<>();
+		
+		for (Job job : jobs) {
+			System.out.println(job);
+			try {
+				System.out.println("finding mentees with sector " + job.getSector());
+				Mentee mentee = menteeRepo.findByJobs_SectorId(job.getSector().getId());
+				System.out.println(mentee);
+				Profile p = pRepo.findByMenteeId(mentee.getId());
+				profiles.add(p);
+			} catch (Exception e) {
+				System.out.println("no jobs");
+				continue;
+			}
+		}
+		return profiles;
 	}
 
 }
