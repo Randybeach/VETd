@@ -2,12 +2,14 @@
     <div class='overlay-mf'></div>
 
     <!-- BEGIN Mentee Profile -->
-    <div *ngIf='profile.mentee != null'>
+    <div *ngIf='profile.mentte != null'>
     <div class='row mt-4'>
       <div class='col-sm-1 col-md-2 col-lg-2'></div>
           <div class='col-sm-5 col-md-3 col-lg-3'>
               <div class='card shadow' id='menteeProfile'>
-                <img class="card-img-top" [src]="profile.pictureUrl" alt="Mentee Profile Picture" style='height: 200px'>
+                <div id='profilePic'>
+                <img class="card-img-top" [src]="profile.pictureUrl" alt="Mentee Profile Picture" >
+                </div>
                 <h6 class='text-center'>{{ profile.firstName }} {{ profile.lastName }}
                     <span><i class="material-icons float-right mr-2" ngbTooltip="Edit Profile" id='viewProfile' (click)='editProfile()'>edit</i></span>
                 </h6>
@@ -115,11 +117,12 @@
                 <div class='card-footer' id='footerHeight'>
                     <div *ngFor='let profile of menteeJobList'>{{profile.firstName}} {{profile.lastName}}
                           <span><i class="material-icons float-right" ngbTooltip="View Profile" id='viewProfile' (click)='openDialog(profile)'>visibility</i></span>
+                          <span><i class="material-icons float-right" (click)='addMenteeToMentorMenteeList(profile)' ngbTooltip="Add Mentee" id='add'>add</i></span>
                   </div>
               </div>
               <div class='card-body text-center'><u><b>Current Mentees</b></u></div>
               <div class='card-footer' id='footerHeight'>
-                  <div *ngFor='let profile of menteeJobList'>{{profile.firstName}} {{profile.lastName}}
+                  <div *ngFor='let profile of profile.mentor.mentorMentees'>{{profile.firstName}} {{profile.lastName}}
                   <span><i class="material-icons float-right" ngbTooltip="View Profile" id='viewProfile' (click)='openDialog(profile)'>visibility</i></span>
                   </div>
               </div>

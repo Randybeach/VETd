@@ -24,7 +24,6 @@ public class MentorMentee {
 	private Date createdAt;
 	@ManyToOne
 	@JoinColumn(name = "mentee_id")
-	@JsonIgnore
 	private Mentee mentee;
 	@ManyToOne
 	@JoinColumn(name = "mentor_id")

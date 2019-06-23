@@ -33,6 +33,7 @@ export class ProfileComponent implements OnInit {
   animal: string;
   name: string;
   selectedProfile: Profile = null;
+  mentorMenteesList = [];
 
   constructor(
     private router: Router,
@@ -197,8 +198,12 @@ export class ProfileComponent implements OnInit {
     this.profileService.addMenteeToMentorList(profile).subscribe(
       good => {
         this.profile = good;
+        console.log(this.profile);
+
       },
       bad => {
+        console.log('error adding mentee');
+
         console.log(bad);
 
       }

@@ -32,6 +32,12 @@
   max-height: 80px;
 }
 
+#profilePic {
+
+  height: 200px;
+  border-radius: 100%;
+}
+
 #menteeProfile {
   height: 600px;
   background-color: oldlace;
