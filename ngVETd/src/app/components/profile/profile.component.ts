@@ -1,11 +1,15 @@
 import { AuthService } from "src/app/services/auth.service";
 import { ProfileService } from "./../../services/profile.service";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
 import { Sector } from "src/app/models/sector";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Job } from "src/app/models/job";
 import { Mentee } from "src/app/models/mentee";
 import { Mentor } from "src/app/models/mentor";
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { ModalComponent } from 'src/app/modal/modal.component';
+import { DialogData } from 'src/app/DialogData';
+import { Profile } from 'src/app/models/profile';
 
 @Component({
   selector: "app-profile",
@@ -25,25 +29,44 @@ export class ProfileComponent implements OnInit {
   profile = null;
   profileJobs = [];
   menteeJobList = [];
+  animal: string;
+  name: string;
+  selectedProfile: Profile = null;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private profileService: ProfileService,
-    private auth: AuthService
+    private auth: AuthService,
+    public dialog: MatDialog
   ) {}
   //
   // M E T H O D S
   //
 
-  ngOnInit() {
-    this.reloadSectors();
-    this.reloadJobs();
-    // console.log(this.auth.getCredentials());
-    this.getProfile();
-    this.getListOfMenteesWithSelectedJobs();
+    ngOnInit() {
+      this.reloadSectors();
+      this.reloadJobs();
+      // console.log(this.auth.getCredentials());
+      this.getProfile();
+      this.getListOfMenteesWithSelectedJobs();
+    }
+
+  openDialog(profile: Profile): void {
+    const dialogRef = this.dialog.open(ModalComponent, {
+      width: '99%',
+      height: '99%',
+      data: {profile}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.animal = result;
+    });
   }
 
+  viewMenteeProfile(profile: Profile) {
+    this.router.navigateByUrl('mentee_profile');
+  }
   // getProfile() {
 
   //   this.profileService.getProfile(id).subscribe(

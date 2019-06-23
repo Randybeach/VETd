@@ -25,7 +25,8 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "src/styles.css",
+              "src/unicorn-app-theme.scss"
             ],
             "scripts": ["node_modules/jquery/dist/jquery.min.js"]
           },
