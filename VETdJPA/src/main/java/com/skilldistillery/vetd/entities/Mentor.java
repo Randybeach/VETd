@@ -2,7 +2,9 @@ package com.skilldistillery.vetd.entities;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,7 +19,6 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -33,8 +34,8 @@ public class Mentor {
 	@OneToMany(mappedBy = "mentor")
 	@JsonIgnore
 	private List<MentorMentee> mentorMentees;
-	@ManyToMany(mappedBy = "mentors", cascade = CascadeType.ALL)
-	private List<Job> jobs;
+	@ManyToMany(mappedBy = "mentors", cascade = CascadeType.MERGE)
+	private Set<Job> jobs;
 	@OneToOne
 	@JoinColumn(name = "profile_id")
 	@JsonIgnore
@@ -43,7 +44,7 @@ public class Mentor {
 	
 	public void addJob(Job job) {
 		if(this.jobs == null) {
-			this.jobs = new ArrayList<Job>();
+			this.jobs = new HashSet();
 		}
 		this.jobs.add(job);
 		job.getMentors().add(this);
@@ -57,10 +58,10 @@ public class Mentor {
 		job.getMentors().remove(this);
 	}
 	
-	public List<Job> getJobs() {
+	public Set<Job> getJobs() {
 		return jobs;
 	}
-	public void setJobs(List<Job> jobs) {
+	public void setJobs(Set<Job> jobs) {
 		this.jobs = jobs;
 	}
 	public Profile getProfile() {
