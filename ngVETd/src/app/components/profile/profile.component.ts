@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
   currJobs = [];
   jobs: Job[] = [];
   jobsForSector: Job[] = [];
-  jobName = "nothing";
+  jobName = 'nothing';
   sectors: Sector[] = [];
   profile = null;
   profileJobs = [];
@@ -41,6 +41,7 @@ export class ProfileComponent implements OnInit {
     this.reloadJobs();
     // console.log(this.auth.getCredentials());
     this.getProfile();
+    this.getListOfMenteesWithSelectedJobs();
   }
 
   // getProfile() {
@@ -118,41 +119,45 @@ export class ProfileComponent implements OnInit {
         this.profileJobs = [];
         console.log(good);
         this.profile = good;
-        if(this.profile.mentee){
+        if (this.profile.mentee) {
           this.profileJobs = this.profile.mentee.jobs;
-          console.log("mentee jobs" + this.profileJobs);
+          console.log('mentee jobs' + this.profileJobs);
 
-         }else{
+         } else {
           this.profileJobs = [];
           this.profileJobs = this.profile.mentor.jobs;
-          console.log("mentor jobs" + this.profileJobs);
+          console.log('mentor jobs' + this.profileJobs);
         }
       },
       bad => {
-        console.log("OOPS");
+        console.log('OOPS');
       }
     );
   }
   editProfile() {
-    this.router.navigateByUrl("edit");
+    this.router.navigateByUrl('edit');
   }
-  removeJob(job){
+  removeJob(job) {
     this.profileService.removeJob(job).subscribe(
       good => {
         this.getProfile();
         // this.profile = good;
         // this.profileJobs.filt
-        console.log("removed job " + good);
+        console.log('removed job ' + good);
 
       }
     );
   }
-  getListOfMenteesWithSelectedJobs(){
+  getListOfMenteesWithSelectedJobs() {
     this.profileService.getListOfMenteesWithChosenJobs().subscribe(
       good => {
+        this.menteeJobList = good;
+      },
+      err => {
+        console.log('problem loading menteeJobList ' + err);
 
       }
-    )
+    );
 
   }
 }

@@ -85,4 +85,10 @@ public class UserController {
 		return svc.getProfile(p.getName());
 	}
 	
+	//Get a list of Mentees that desire mentorship for chosen jobs
+	@GetMapping("mentee/job")
+	public List<Profile> getMenteesWithChosenJobs(Principal p){
+		return svc.getMenteesWithJobs(p.getName());
+	}
+	
 }

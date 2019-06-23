@@ -1,6 +1,6 @@
 <div class='container-fluid' id='profileBackground'>
     <div class='overlay-mf'></div>
-  <div *ngIf='profile.mentee != null'>
+  <div *ngIf='profile.mentee != null || profile.mentor != null'>
     <div class='row mt-4'>
       <div class='col-sm-1 col-md-2 col-lg-2'></div>
           <div class='col-sm-5 col-md-3 col-lg-3'>
@@ -74,6 +74,7 @@
           </div>
         <div class='col-sm-1 col-md-2 col-lg-2'></div>
       </div>
+
 
       <div class='mt-3' *ngIf='profile.mentee === null'>
           <h4>Welcome mentor {{profile.firstName}}, what jobs are you qualified to mentor on?</h4>
