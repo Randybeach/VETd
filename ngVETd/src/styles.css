@@ -46,4 +46,8 @@
   cursor: pointer;
 }
 
+#scroll {
+  overflow: scroll;
+}
+
 

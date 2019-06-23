@@ -1,10 +1,12 @@
 import { Profile } from './profile';
+import { Job } from './job';
 
 export class Mentor {
          id: number;
          story: string;
          createdAt: string;
          profile: Profile;
+         jobs: Job[];
 
          constructor(
            id?: number,
