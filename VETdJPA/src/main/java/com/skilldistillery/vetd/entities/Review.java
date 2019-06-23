@@ -25,6 +25,15 @@ public class Review {
 	
 	
 	
+	
+	public Review(int id, String content, int rating, Profile profile, int reviewedId) {
+		super();
+		this.id = id;
+		this.content = content;
+		this.rating = rating;
+		this.profile = profile;
+		this.reviewedId = reviewedId;
+	}
 	public int getReviewedId() {
 		return reviewedId;
 	}

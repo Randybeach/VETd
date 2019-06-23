@@ -136,8 +136,9 @@ public class Profile {
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
-	public Profile(int id, String firstName, String lastName, User user, Location location, String summary,
-			Date createdAt) {
+	
+	public Profile(int id, String firstName, String lastName, Location location, String summary, Date createdAt,
+			List<Review> reviews, Mentor mentor, Mentee mentee, String pictureUrl, String resumeUrl, User user) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -145,14 +146,21 @@ public class Profile {
 		this.location = location;
 		this.summary = summary;
 		this.createdAt = createdAt;
+		this.reviews = reviews;
+		this.mentor = mentor;
+		this.mentee = mentee;
+		this.pictureUrl = pictureUrl;
+		this.resumeUrl = resumeUrl;
+		this.user = user;
 	}
 	public Profile() {
 		super();
 	}
+
 	@Override
 	public String toString() {
-		return "Profile [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName  
-				+ ", location=" + location + ", summary=" + summary + ", createdAt=" + createdAt + "]";
+		return "Profile [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", location=" + location
+				+ ", summary=" + summary + ", pictureUrl=" + pictureUrl + ", resumeUrl=" + resumeUrl + "]";
 	}
 	@Override
 	public int hashCode() {

@@ -210,6 +210,7 @@ DROP TABLE IF EXISTS `mentee_job` ;
 CREATE TABLE IF NOT EXISTS `mentee_job` (
   `job_id` INT NOT NULL,
   `mentee_id` INT NOT NULL,
+  PRIMARY KEY (`job_id`, `mentee_id`),
   CONSTRAINT `fk_table1_Occupation1`
     FOREIGN KEY (`job_id`)
     REFERENCES `job` (`id`)
@@ -233,6 +234,7 @@ DROP TABLE IF EXISTS `mentor_job` ;
 CREATE TABLE IF NOT EXISTS `mentor_job` (
   `job_id` INT NOT NULL,
   `mentor_id` INT NOT NULL,
+  PRIMARY KEY (`job_id`, `mentor_id`),
   CONSTRAINT `fk_table2_Occupation1`
     FOREIGN KEY (`job_id`)
     REFERENCES `job` (`id`)

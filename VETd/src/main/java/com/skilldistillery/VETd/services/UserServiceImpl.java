@@ -93,7 +93,7 @@ public class UserServiceImpl implements UserService {
 				for(Job job : jobs) {
 					profile = this.removeJobsFromMentee(job, profile.getUser().getUsername());
 				}
-				profile = this.addJobstoMentee(jobs, profile.getUser().getUsername());
+				profile = this.addJobstoMentee(jobs, profile.getUser().getUsername()); 
 			}
 			
 		}

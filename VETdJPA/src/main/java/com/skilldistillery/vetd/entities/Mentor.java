@@ -98,6 +98,17 @@ public class Mentor {
 		super();
 	}
 	
+	
+	public Mentor(int id, String story, Date createdAt, List<MentorMentee> mentorMentees, Set<Job> jobs,
+			Profile profile) {
+		super();
+		this.id = id;
+		this.story = story;
+		this.createdAt = createdAt;
+		this.mentorMentees = mentorMentees;
+		this.jobs = jobs;
+		this.profile = profile;
+	}
 	public List<MentorMentee> getMentorMentees() {
 		return mentorMentees;
 	}
