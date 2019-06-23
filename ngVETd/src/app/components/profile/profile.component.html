@@ -3,82 +3,81 @@
   <div *ngIf='profile.mentee != null'>
     <div class='row mt-4'>
       <div class='col-sm-1 col-md-2 col-lg-2'></div>
-          <div class='col-sm-3 col-md-2 col-lg-2 mt-4'>
+          <div class='col-sm-5 col-md-3 col-lg-3'>
               <div class='card shadow' id='menteeProfile'>
-                <img class="card-img-top" [src]="profile.pictureUrl" alt="Mentee Profile Picture" style='min-height: 200px'>
+                <img class="card-img-top" [src]="profile.pictureUrl" alt="Mentee Profile Picture">
                 <div class='card-header'>
-                  <!-- {{ mentee.fistname }} {{ mentee.lastname }} --> First Last
+                  <h5>{{ profile.fistName }} {{ profile.lastName }}</h5>
                 </div>
                 <div class='card-body'>
-                  <p>City, State </p>
+                  <p>{{ profile.location.city }}, {{ profile.location.state }} {{ profile.location.zip }}</p>
+                  <p>{{ profile.resumeUrl }}</p>
+                </div>
+                <div class='card-footer'>
+                    <button mdbBtn color="info" block="false" class="my-1 text-center btn btn-warning ml-1 float-center" type="submit" (click)="editProfile()">Edit Profile</button>
                 </div>
               </div>
           </div>
-      <div class='col-sm-3 col-md-6 col-lg-6'>
-        <div clas='card' id='profileJobsCard'>
+
+      <div class='col-sm-5 col-md-5 col-lg-5'>
+        <div class='card shadow' id='profileJobsCard'>
           <div class='card-header text-center'>
             <h2>{{ profile.firstName }} {{ profile.lastName }}</h2>
           </div>
-          <div class='card-body text-center'>
-              <div class='mt-3' *ngIf='profile.mentor === null'>
-                <h4>Welcome mentee {{profile.firstName}}, what jobs would you like to receive mentorship on?</h4>
-                </div>
-              <div class='mt-3' *ngIf='profile.mentee === null'>
-                <h4>Welcome mentor {{profile.firstName}}, what jobs are you qualified to mentor on?</h4>
-              </div>
+            <div class='card-body text-center'>
+              <h6>Welcome mentee {{profile.firstName}}, what jobs would you like to receive mentorship on?</h6>
               <div class="dropdown pt-2">
-              <!--Menu-->
-              <div class="dropdown-menu dropdown-primary" *ngFor="let sector of sectors">
-                <a class="dropdown-item" href="#">{{ sector.name }}</a>
+                <div class="dropdown-menu dropdown-primary" *ngFor="let sector of sectors">
+                  <a class="dropdown-item" href="#">{{ sector.name }}</a>
+                </div>
+                <div>
+                  <p>Select a sector...</p>
+                  <select [(ngModel)]="currentSector" (ngModelChange) = 'getJobBySector()'>
+                    <option *ngFor="let sector of sectors"  name='currentSector' ngDefaultControl value={{sector.id}}>{{sector.name}}</option>
+                  </select>
+                </div>
+                <div class='pt-2' *ngIf='currentSector'>
+                  <p>Select a Job for the chosen sector...</p>
+                  <select *ngIf="currentSector" [(ngModel)]="jobName" (ngModelChange) = 'setJob()'>
+                    <option *ngFor="let job of jobsForSector" value={{job.name}} name='job1' ngDefaultControl>{{job.name}}</option>
+                  </select>
+                </div>
               </div>
-              <div>
-                <h5>Select a sector...</h5>
-                <select [(ngModel)]="currentSector" (ngModelChange) = 'getJobBySector()'>
-                  <option *ngFor="let sector of sectors"  name='currentSector' ngDefaultControl value={{sector.id}}>{{sector.name}}</option>
-                </select>
-              </div>
-              <div class='pt-2' *ngIf='currentSector'>
-                <h5>Select a Job for the chosen sector...</h5>
-                <select *ngIf="currentSector" [(ngModel)]="jobName" (ngModelChange) = 'setJob()'>
-                  <option *ngFor="let job of jobsForSector" value={{job.name}} name='job1' ngDefaultControl>{{job.name}}</option>
-                </select>
-            </div>
-            </div>
               <div>
                 <button mdbBtn color="info" block="true" class="my-2 text-center btn btn-warning mr-1 float-center" type="submit" (click)="addJobs()">Save</button>
               </div>
               <hr>
-              <div>
-                <button mdbBtn color="info" block="false" class="my-4 text-center btn btn-warning ml-1 float-center" type="submit" (click)="editProfile()">Edit Profile</button>
-              </div>
-              <div *ngIf='profileJobs.length > 0' class='text-left'>
-              <hr>
-              <h2>Saved Jobs</h2>
-
-              <div *ngFor='let job of profileJobs'>{{job.name}} <span><i class="material-icons float-right" (click)='removeJob(job)' ngbTooltip="Delete" id='delete'>delete</i></span>
-                <hr>
-            </div>
+              <h5>Saved Jobs</h5>
+              <div class='card' id='scrollCard'>
+                <div *ngIf='profileJobs.length > 0' class='text-left'>
+                  <div *ngFor='let job of profileJobs'>{{job.name}} <span><i class="material-icons float-right" style='padding: 0px' (click)='removeJob(job)' ngbTooltip="Delete" id='delete'>delete</i></span>
+                    <hr style='padding: 0px'>
+                  </div>
+                </div>
             </div>
           </div>
-        </div>
       </div>
-      <div class='col-sm-31 col-md-2 col-lg-2'></div>
     </div>
-    <div class='row'>
-        <div class='col-sm-1 col-md-1 col-lg-1'></div>
-          <div class='col-sm-5 col-md-5 col-lg-5 mt-2'>
-              <div class='card shadow' id='menteeStory'>
-                <div class='card-body'>
+      <div class='col-sm-1 col-md-2 col-lg-2'></div>
+    </div>
+
+
+      <div class='row'>
+        <div class='col-sm-1 col-md-2 col-lg-2'></div>
+        <div class='col-sm-10 col-md-8 col-lg-8 mt-2'>
+          <div class='card shadow' id='menteeStory'>
+            <div class='card-body'>
                     <h4>Story</h4>
                     <p>This is the mentee's story</p>
-
               </div>
             </div>
-
           </div>
-        <div class='col-sm-6 col-md-5 col-lg-4'></div>
-
+        <div class='col-sm-1 col-md-2 col-lg-2'></div>
       </div>
+
+      <div class='mt-3' *ngIf='profile.mentee === null'>
+          <h4>Welcome mentor {{profile.firstName}}, what jobs are you qualified to mentor on?</h4>
+        </div>
 
 </div>
 
