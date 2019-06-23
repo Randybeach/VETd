@@ -44,10 +44,11 @@ export class EditComponent implements OnInit {
     // this.editLocation = form3.value;
 
     this.editProfile.location = this.editLocation;
+    console.log(this.editProfile);
 
     this.profileService.update(this.editProfile).subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.router.navigateByUrl('profile');
       },
       err => {
@@ -63,7 +64,7 @@ export class EditComponent implements OnInit {
         this.editProfile = good;
         this.editVet = good.mentee;
         this.editLocation = good.location;
-        console.log(this.editProfile.mentee);
+        // console.log(this.editProfile.mentee);
       },
       bad => {
         console.log("OOPS");

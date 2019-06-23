@@ -37,6 +37,15 @@ public class Job {
 	private Set<Mentee> mentees;
 	
 	
+	
+	public Job(int id, String name, Sector sector, Set<Mentor> mentors, Set<Mentee> mentees) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.sector = sector;
+		this.mentors = mentors;
+		this.mentees = mentees;
+	}
 	public int getId() {
 		return id;
 	}
