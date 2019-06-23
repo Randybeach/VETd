@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class MentorMentee {
 	
@@ -22,9 +24,11 @@ public class MentorMentee {
 	private Date createdAt;
 	@ManyToOne
 	@JoinColumn(name = "mentee_id")
+	@JsonIgnore
 	private Mentee mentee;
 	@ManyToOne
 	@JoinColumn(name = "mentor_id")
+	@JsonIgnore
 	private Mentor mentor;
 	
 	
