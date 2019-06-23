@@ -92,7 +92,7 @@ public class UserController {
 	}
 	
 	@PutMapping("mentormentee")
-	public Profile addMenteeToMentorshipList(@RequestBody Profile profile, Principal principal){
+	public Set<Profile> addMenteeToMentorshipList(@RequestBody Profile profile, Principal principal){
 		System.out.println("trying to add mentor mentee");
 		return svc.addMenteeToMentorList(profile, principal.getName());
 	}

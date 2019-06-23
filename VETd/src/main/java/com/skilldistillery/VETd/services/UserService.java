@@ -36,5 +36,5 @@ public interface UserService {
 
 	public Set<Profile> getMenteesWithJobs(String name);
 
-	public Profile addMenteeToMentorList(Profile profile, String name);
+	public Set<Profile> addMenteeToMentorList(Profile profile, String name);
 }

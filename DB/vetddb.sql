@@ -269,6 +269,7 @@ START TRANSACTION;
 USE `vetddb`;
 INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`, `enabled`) VALUES (1, 'bob', 'bob@bob.com', '$2a$10$nFSSHSJ5h7bBldsNNiam4OtBilCPqN7AwKrFPyEbSgc.iG9vmMNlS', 'user', true);
 INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`, `enabled`) VALUES (2, 'sue', 'sue@sue.com', '$2a$10$/04TjBk9I69J3gdQZnOGte4H3EsO.2604taVoLqfgdZpVGniUG8yO', 'user', true);
+INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`, `enabled`) VALUES (3, 'admin', 'admin@admin.com', '$2a$10$j.OE/jRHA6ii47n/Kzryu.YXtzuksA251SE4s5BUHcz5zRTfi8wji', 'admin', true);
 
 COMMIT;
 
@@ -280,6 +281,7 @@ START TRANSACTION;
 USE `vetddb`;
 INSERT INTO `profile` (`id`, `first_name`, `last_name`, `summary`, `created_at`, `location_id`, `picture_url`, `resume_url`, `user_id`) VALUES (1, 'bob', 'bobby', 'this is so great', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `profile` (`id`, `first_name`, `last_name`, `summary`, `created_at`, `location_id`, `picture_url`, `resume_url`, `user_id`) VALUES (2, 'sue', 'susie', 'Help me', NULL, NULL, NULL, NULL, 2);
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `summary`, `created_at`, `location_id`, `picture_url`, `resume_url`, `user_id`) VALUES (3, 'admin', NULL, NULL, NULL, NULL, NULL, NULL, 3);
 
 COMMIT;
 
