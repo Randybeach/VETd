@@ -88,6 +88,13 @@ public class UserServiceImpl implements UserService {
 			profile.getMentor().setProfile(profile);
 			pRepo.saveAndFlush(profile);
 			mentorRepo.saveAndFlush(profile.getMentor());
+			if(profile.getMentor().getJobs() != null) {
+				Collection<Job> jobs = profile.getMentor().getJobs();
+				for(Job job : jobs) {
+					profile = this.removeJobsFromMentee(job, profile.getUser().getUsername());
+				}
+				profile = this.addJobstoMentee(jobs, profile.getUser().getUsername());
+			}
 			
 		}
 		lRepo.saveAndFlush(profile.getLocation());
@@ -109,6 +116,7 @@ public class UserServiceImpl implements UserService {
 				if (job == null) {
 					continue;
 				}
+				System.out.println("This jobs mentors"+job.getMentors());
 				mentee.addJob(job);
 			}
 			System.out.println(mentee);
@@ -198,6 +206,15 @@ public class UserServiceImpl implements UserService {
 			}
 		}
 		return profiles;
+	}
+
+	@Override
+	public List<Profile> addMenteeToMentorList(Profile profile, String name) {
+		Profile menteeProfile = pRepo.findProfileById(profile.getId());
+		User mentorUser = uRepo.findUserByUsername(name);
+		
+		
+		return null;
 	}
 
 }

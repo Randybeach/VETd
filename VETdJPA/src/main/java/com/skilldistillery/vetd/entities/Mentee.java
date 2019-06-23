@@ -34,7 +34,7 @@ public class Mentee {
 	@OneToMany(mappedBy = "mentee")
 	@JsonIgnore
 	private List<MentorMentee> mentorMentee;
-	@ManyToMany(mappedBy = "mentees", cascade = CascadeType.MERGE)
+	@ManyToMany(mappedBy = "mentees", cascade = CascadeType.ALL)
 	private Set<Job> jobs;
 	@OneToOne
 	@JoinColumn(name = "profile_id")

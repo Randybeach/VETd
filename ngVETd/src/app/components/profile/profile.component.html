@@ -80,6 +80,16 @@
           <h4>Welcome mentor {{profile.firstName}}, what jobs are you qualified to mentor on?</h4>
         </div>
 
+
+          <br>
+
+        <div style='color: aliceblue'>Potential Mentees who seek your experience <br>
+          <div *ngFor='let profile of menteeJobList'>Name: {{profile.firstName}}</div>
+          <div>
+              <button mdbBtn color="info" block="true" class="my-2 text-center btn btn-warning mr-1 float-center" type="submit" (click)="addMenteeToMentorMenteeList(profile)">Mentor this person</button>
+            </div>
+        </div>
+
 </div>
 
 
