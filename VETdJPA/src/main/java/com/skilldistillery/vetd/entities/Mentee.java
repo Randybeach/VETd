@@ -2,7 +2,9 @@ package com.skilldistillery.vetd.entities;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -32,8 +34,8 @@ public class Mentee {
 	@OneToMany(mappedBy = "mentee")
 	@JsonIgnore
 	private List<MentorMentee> mentorMentee;
-	@ManyToMany(mappedBy = "mentees", cascade = CascadeType.ALL)
-	private List<Job> jobs;
+	@ManyToMany(mappedBy = "mentees", cascade = CascadeType.MERGE)
+	private Set<Job> jobs;
 	@OneToOne
 	@JoinColumn(name = "profile_id")
 	@JsonIgnore
@@ -55,36 +57,41 @@ public class Mentee {
 	public void setMentorMentee(List<MentorMentee> mentorMentee) {
 		this.mentorMentee = mentorMentee;
 	}
-	public List<Job> getJobs() {
+	public Set<Job> getJobs() {
 		return jobs;
 	}
-	public void setJobs(List<Job> jobs) {
+	public void setJobs(Set<Job> jobs) {
 		this.jobs = jobs;
 	}
 	public void addJob(Job job) {
 		if(this.jobs == null) {
-			this.jobs = new ArrayList<Job>();
+			this.jobs = new HashSet<Job>();
 		}
 		this.jobs.add(job);
 		job.getMentees().add(this);
 	}
 	public void removeJob(Job job) {
 		System.out.println(job);
+//		if(this.jobs == null) {
+//			return;
+//		}
+//		for (int i = 0; i < jobs.size(); i++) {
+//			if(job.getId() == jobs.(i).getId()) {
+//				jobs.remove(i);
+//			}
+//		}
+//		job.getMentees().remove(this);
+//		for(int i = 0; i < job.getMentees().size(); i++) {
+//			if(this.getId() == job.getMentees().get(i).getId()) {
+//				job.getMentees().remove(i);
+//			}
+//		}
 		if(this.jobs == null) {
 			return;
 		}
-		for (int i = 0; i < jobs.size(); i++) {
-			if(job.getId() == jobs.get(i).getId()) {
-				jobs.remove(i);
-			}
-		}
-//		System.out.println(" REMOVING *** " + this.jobs.remove(job));
-		job.getMentees().remove(this);
-		for(int i = 0; i < job.getMentees().size(); i++) {
-			if(this.getId() == job.getMentees().get(i).getId()) {
-				job.getMentees().remove(i);
-			}
-		}
+		this.jobs.remove(job);
+		job.getMentors().remove(this);
+	
 		System.out.println(this.jobs);
 	}
 	public int getId() {
