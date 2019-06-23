@@ -1,11 +1,8 @@
 <div class='container-fluid' id='profileBackground'>
     <div class='overlay-mf'></div>
-<<<<<<< HEAD
+
     <!-- BEGIN Mentee Profile -->
     <div *ngIf='profile.mentee != null'>
-=======
-  <div *ngIf='profile.mentee != null || profile.mentor != null'>
->>>>>>> b081c5847e47caa3096d8be5a4e972f6250f8e96
     <div class='row mt-4'>
       <div class='col-sm-1 col-md-2 col-lg-2'></div>
           <div class='col-sm-5 col-md-3 col-lg-3'>
@@ -108,16 +105,10 @@
             </div>
         </div>
 
-<<<<<<< HEAD
     <div class='col-sm-5 col-md-5 col-lg-5'>
       <div class='card shadow' id='profileJobsCard'>
         <div class='card-header text-center'>
           <h2>{{ profile.firstName }} {{ profile.lastName }}</h2>
-=======
-
-      <div class='mt-3' *ngIf='profile.mentee === null'>
-          <h4>Welcome mentor {{profile.firstName}}, what jobs are you qualified to mentor on?</h4>
->>>>>>> b081c5847e47caa3096d8be5a4e972f6250f8e96
         </div>
           <div class='card-body text-center'>
             <h6>Welcome mentor {{profile.firstName}}!</h6>
