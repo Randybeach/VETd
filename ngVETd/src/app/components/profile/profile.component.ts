@@ -1,3 +1,4 @@
+import { User } from 'src/app/models/user';
 import { AuthService } from "src/app/services/auth.service";
 import { ProfileService } from "./../../services/profile.service";
 import { Component, OnInit, Inject } from "@angular/core";
@@ -143,6 +144,11 @@ export class ProfileComponent implements OnInit {
         this.profileJobs = [];
         console.log(good);
         this.profile = good;
+        console.log(this.profile.user.role);
+        if(this.profile.user.role === 'admin'){
+          localStorage.setItem('admin', this.profile.user.role);
+        }
+
         if (this.profile.mentee) {
           this.profileJobs = this.profile.mentee.jobs;
           console.log('mentee jobs' + this.profileJobs);
@@ -152,6 +158,8 @@ export class ProfileComponent implements OnInit {
           this.profileJobs = this.profile.mentor.jobs;
           console.log('mentor jobs' + this.profileJobs);
         }
+
+
       },
       bad => {
         console.log('OOPS');

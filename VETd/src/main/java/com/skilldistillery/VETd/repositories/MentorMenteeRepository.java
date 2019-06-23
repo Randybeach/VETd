@@ -10,4 +10,5 @@ public interface MentorMenteeRepository extends JpaRepository<MentorMentee, Inte
 
 	public List<MentorMentee> findByMenteeId(int id);
 	public List<MentorMentee> findByMentorId(int id);
+	
 }

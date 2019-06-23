@@ -6,4 +6,5 @@ import com.skilldistillery.vetd.entities.Mentor;
 
 public interface MentorRepository extends JpaRepository<Mentor, Integer> {
 
+	
 }

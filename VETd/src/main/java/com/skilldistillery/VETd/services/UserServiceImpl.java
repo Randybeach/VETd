@@ -216,21 +216,25 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Profile addMenteeToMentorList(Profile profile, String name) {
-		System.out.println(profile);
+	public Set<Profile> addMenteeToMentorList(Profile profile, String name) {
 		Profile menteeProfile = pRepo.findProfileById(profile.getId());
 		User mentorUser = uRepo.findUserByUsername(name);
-		System.out.println(menteeProfile);
-		System.out.println(mentorUser);
 		MentorMentee mm = new MentorMentee();
 		mm.setMentee(menteeProfile.getMentee());
 		mm.setMentor(mentorUser.getProfile().getMentor());
 		mentorUser.getProfile().getMentor().addMentorMentees(mm);
 		menteeProfile.getMentee().addMentorMentees(mm);
+		
 		mmRepo.saveAndFlush(mm);
 		pRepo.saveAndFlush(menteeProfile);
 		pRepo.saveAndFlush(mentorUser.getProfile());
-		return mentorUser.getProfile();
+		
+		Set<Profile> profiles = new HashSet<Profile>();
+		for (MentorMentee men : mentorUser.getProfile().getMentor().getMentorMentees()) {
+			Profile p = pRepo.findByMenteeId(men.getId());
+			profiles.add(p);
+		}
+		return profiles;
 	}
 
 }

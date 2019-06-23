@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.skilldistillery.vetd.entities.Mentee;
 import com.skilldistillery.vetd.entities.Mentor;
 import com.skilldistillery.vetd.entities.Profile;
+import com.skilldistillery.vetd.entities.User;
 import com.skilldistillery.vetd.services.AuthService;
 
 @RestController
@@ -51,5 +52,9 @@ public class AuthController {
 	public Principal authenticate(Principal principal) {
 		System.out.println("AUTHENTICATING");
 	    return principal;
+	}
+	@PostMapping("/register")
+	public User registerUser(@RequestBody User user) {
+		return svc.register(user);
 	}
 }

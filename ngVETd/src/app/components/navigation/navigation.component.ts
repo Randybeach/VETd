@@ -15,7 +15,6 @@ export class NavigationComponent implements OnInit {
   //
   // F E I L D S
   //
-  profile = null;
 
   ngOnInit() {
   }
@@ -30,22 +29,13 @@ export class NavigationComponent implements OnInit {
     if (!this.auth.checkLogin()) {
       return false;
     }
-    if(this.profile === null){
-      this.getProfile();
+    if (!this.auth.checkAdmin()){
+      console.log('checking admin');
+
+      return false;
     }
 
-    console.log(this.profile);
+    return true;
+  }
 
-    return this.profile.user.role === "admin";
-  }
-  getProfile() {
-    this.profileService.getProfile().subscribe(
-      data => {
-        this.profile = data;
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
 }

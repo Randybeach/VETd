@@ -1,14 +1,14 @@
-import { Injectable } from "@angular/core";
-import { catchError, tap } from "rxjs/operators";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
-import { User } from "../models/user";
-import { environment } from "src/environments/environment";
-import { Mentee } from "../models/mentee";
+import { Injectable } from '@angular/core';
+import { catchError, tap } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { User } from '../models/user';
+import { environment } from 'src/environments/environment';
+import { Mentee } from '../models/mentee';
 import { Profile } from '../models/profile';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class AuthService {
   private baseUrl = environment.baseUrl;
@@ -16,6 +16,7 @@ export class AuthService {
   newUser = new User();
 
   mentee = new Mentee();
+  profile = null;
 
   constructor(private http: HttpClient) {}
 
@@ -26,21 +27,20 @@ export class AuthService {
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Basic ${credentials}`,
-        "X-Requested-With": "XMLHttpRequest"
+        'X-Requested-With': 'XMLHttpRequest'
       })
     };
 
     // create request to authenticate credentials
-    return this.http.get(this.baseUrl + "authenticate", httpOptions).pipe(
+    return this.http.get(this.baseUrl + 'authenticate', httpOptions).pipe(
       tap(res => {
-        localStorage.setItem("credentials", credentials);
-        console.log(res);
+        localStorage.setItem('credentials', credentials);
 
         return res;
       }),
       catchError((err: any) => {
         console.log(err);
-        return throwError("AuthService.login(): Error logging in.");
+        return throwError('AuthService.login(): Error logging in.');
       })
     );
   }
@@ -49,10 +49,10 @@ export class AuthService {
     this.mentee = mentee;
 
     // create request to register a new account
-    return this.http.post(this.baseUrl + "register/" + url, mentee).pipe(
+    return this.http.post(this.baseUrl + 'register/' + url, mentee).pipe(
       catchError((err: any) => {
         console.log(err);
-        return throwError("AuthService.register(): error registering user.");
+        return throwError('AuthService.register(): error registering user.');
       })
     );
   }
@@ -60,11 +60,19 @@ export class AuthService {
   logout() {
     console.log(sessionStorage.getItem('username'));
 
-    localStorage.removeItem("credentials");
+    localStorage.removeItem('credentials');
   }
 
   checkLogin() {
-    if (localStorage.getItem("credentials")) {
+    if (localStorage.getItem('credentials')) {
+      return true;
+    }
+    return false;
+  }
+  checkAdmin(){
+    if(localStorage.getItem('admin')){
+      console.log(localStorage.getItem('admin'));
+
       return true;
     }
     return false;
@@ -75,7 +83,7 @@ export class AuthService {
   }
 
   getCredentials() {
-    return localStorage.getItem("credentials");
+    return localStorage.getItem('credentials');
   }
 
 }
