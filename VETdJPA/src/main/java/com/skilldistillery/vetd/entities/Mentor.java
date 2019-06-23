@@ -33,7 +33,7 @@ public class Mentor {
 	private Date createdAt;
 	@OneToMany(mappedBy = "mentor")
 	@JsonIgnore
-	private List<MentorMentee> mentorMentees;
+	private Set<MentorMentee> mentorMentees;
 	@ManyToMany(mappedBy = "mentors", cascade = CascadeType.ALL)
 	private Set<Job> jobs;
 	@OneToOne
@@ -56,6 +56,22 @@ public class Mentor {
 		}
 		this.jobs.remove(job);
 		job.getMentors().remove(this);
+	}
+	
+	public void addMentorMentees(MentorMentee mm) {
+		if(this.mentorMentees == null) {
+			this.mentorMentees = new HashSet<>();
+		}
+		this.mentorMentees.add(mm);
+			
+	}
+	public void removeMentorMentees(MentorMentee mm) {
+		if(this.mentorMentees == null) {
+			return;
+		}
+		if(this.mentorMentees.contains(mm)) {
+			this.mentorMentees.remove(mm);
+		}
 	}
 	
 	public Set<Job> getJobs() {
@@ -99,7 +115,7 @@ public class Mentor {
 	}
 	
 	
-	public Mentor(int id, String story, Date createdAt, List<MentorMentee> mentorMentees, Set<Job> jobs,
+	public Mentor(int id, String story, Date createdAt, Set<MentorMentee> mentorMentees, Set<Job> jobs,
 			Profile profile) {
 		super();
 		this.id = id;
@@ -109,10 +125,10 @@ public class Mentor {
 		this.jobs = jobs;
 		this.profile = profile;
 	}
-	public List<MentorMentee> getMentorMentees() {
+	public Set<MentorMentee> getMentorMentees() {
 		return mentorMentees;
 	}
-	public void setMentorMentees(List<MentorMentee> mentorMentees) {
+	public void setMentorMentees(Set<MentorMentee> mentorMentees) {
 		this.mentorMentees = mentorMentees;
 	}
 	@Override

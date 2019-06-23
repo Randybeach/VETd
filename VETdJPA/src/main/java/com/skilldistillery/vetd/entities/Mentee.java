@@ -1,6 +1,5 @@
 package com.skilldistillery.vetd.entities;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -33,7 +32,7 @@ public class Mentee {
 	private Date createdAt;
 	@OneToMany(mappedBy = "mentee")
 	@JsonIgnore
-	private List<MentorMentee> mentorMentee;
+	private Set<MentorMentee> mentorMentee;
 	@ManyToMany(mappedBy = "mentees", cascade = CascadeType.ALL)
 	private Set<Job> jobs;
 	@OneToOne
@@ -51,10 +50,10 @@ public class Mentee {
 	public void setProfile(Profile profile) {
 		this.profile = profile;
 	}
-	public List<MentorMentee> getMentorMentee() {
+	public Set<MentorMentee> getMentorMentee() {
 		return mentorMentee;
 	}
-	public void setMentorMentee(List<MentorMentee> mentorMentee) {
+	public void setMentorMentee(Set<MentorMentee> mentorMentee) {
 		this.mentorMentee = mentorMentee;
 	}
 	public Set<Job> getJobs() {
@@ -93,6 +92,22 @@ public class Mentee {
 		job.getMentors().remove(this);
 	
 		System.out.println(this.jobs);
+	}
+	
+	public void addMentorMentees(MentorMentee mm) {
+		if(this.mentorMentee == null) {
+			this.mentorMentee = new HashSet<>();
+		}
+		this.mentorMentee.add(mm);
+			
+	}
+	public void removeMentorMentees(MentorMentee mm) {
+		if(this.mentorMentee == null) {
+			return;
+		}
+		if(this.mentorMentee.contains(mm)) {
+			this.mentorMentee.remove(mm);
+		}
 	}
 	public int getId() {
 		return id;
