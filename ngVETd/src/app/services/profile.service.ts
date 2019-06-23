@@ -125,6 +125,6 @@ export class ProfileService {
       Authorization: 'Basic ' + this.auth.getCredentials(),
       'Content-Type': 'application/json'
     };
-    return this.http.put<Profile>(this.url + 'mentormentee', profile, {headers: myHeaders});
+    return this.http.put<Profile>(this.url + '/mentormentee', profile, {headers: myHeaders});
   }
 }
