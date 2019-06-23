@@ -152,6 +152,18 @@
     <div class='col-sm-1 col-md-2 col-lg-2'></div>
   </div>
 
+
+
+          <br>
+
+        <div style='color: aliceblue'>Potential Mentees who seek your experience <br>
+          <div *ngFor='let profile of menteeJobList'>Name: {{profile.firstName}}</div>
+          <div>
+              <button mdbBtn color="info" block="true" class="my-2 text-center btn btn-warning mr-1 float-center" type="submit" (click)="addMenteeToMentorMenteeList(profile)">Mentor this person</button>
+            </div>
+        </div>
+
+
   <div class='row'>
     <div class='col-sm-1 col-md-2 col-lg-2'></div>
       <div class='col-sm-10 col-md-8 col-lg-8 mt-2'>
@@ -166,6 +178,7 @@
     </div>
 </div>
     <!-- END Mentee Profile -->
+
 </div>
 
 

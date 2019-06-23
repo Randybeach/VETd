@@ -91,4 +91,10 @@ public class UserController {
 		return svc.getMenteesWithJobs(p.getName());
 	}
 	
+	@PutMapping("mentormentee")
+	public List<Profile> addMenteeToMentorshipList(@RequestBody Profile profile, Principal principal){
+		
+		return svc.addMenteeToMentorList(profile, principal.getName());
+	}
+	
 }

@@ -160,4 +160,13 @@ export class ProfileComponent implements OnInit {
     );
 
   }
+
+  addMenteeToMentorMenteeList(profile){
+    console.log("added " +  profile.firstName + " to list");
+    this.profileService.addMenteeToMentorList(profile).subscribe(
+      good => {
+
+      }
+    );
+  }
 }

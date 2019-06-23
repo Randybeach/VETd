@@ -34,4 +34,6 @@ public interface UserService {
 	public List<User> getUsersByUsername(String name);
 
 	public List<Profile> getMenteesWithJobs(String name);
+
+	public List<Profile> addMenteeToMentorList(Profile profile, String name);
 }
