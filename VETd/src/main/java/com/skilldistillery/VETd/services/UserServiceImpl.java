@@ -59,12 +59,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<MentorMentee> getMentorsByMenteeId(int id) {
+	public Set<MentorMentee> getMentorsByMenteeId(int id) {
 		return mmRepo.findByMenteeId(id);
 	}
 
 	@Override
-	public List<MentorMentee> getMenteesByMentorId(int id) {
+	public Set<MentorMentee> getMenteesByMentorId(int id) {
 		return mmRepo.findByMentorId(id);
 	}
 
@@ -228,6 +228,24 @@ public class UserServiceImpl implements UserService {
 		mmRepo.saveAndFlush(mm);
 		pRepo.saveAndFlush(menteeProfile);
 		pRepo.saveAndFlush(mentorUser.getProfile());
+		
+		Set<Profile> profiles = new HashSet<Profile>();
+		for (MentorMentee men : mentorUser.getProfile().getMentor().getMentorMentees()) {
+			Profile p = pRepo.findByMenteeId(men.getId());
+			profiles.add(p);
+		}
+		return profiles;
+	}
+
+	@Override
+	public Set<Profile> removeMenteeFromMentorList(Profile profile, String name) {
+		Profile menteeProfile = pRepo.findProfileById(profile.getId());
+		User mentorUser = uRepo.findUserByUsername(name);
+		
+		mentorUser.getProfile().getMentor().removeMentorMentees(mmRepo.findByMenteeIdAndMentorId(menteeProfile.getMentee().getId(), mentorUser.getProfile().getMentor().getId()));
+		menteeProfile.getMentee().removeMentorMentees(mmRepo.findByMenteeIdAndMentorId(menteeProfile.getMentee().getId(), mentorUser.getProfile().getMentor().getId()));
+		pRepo.saveAndFlush(mentorUser.getProfile());
+		pRepo.saveAndFlush(menteeProfile);
 		
 		Set<Profile> profiles = new HashSet<Profile>();
 		for (MentorMentee men : mentorUser.getProfile().getMentor().getMentorMentees()) {
