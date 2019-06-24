@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-import { environment } from "src/environments/environment";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { Sector } from "../models/sector";
-import { AuthService } from "./auth.service";
-import { Job } from "../models/job";
-import { Profile } from "../models/profile";
-import { Mentor } from "../models/mentor";
-import { Mentee } from "../models/mentee";
-import { User } from "../models/user";
-=======
-import { IconsModule } from 'angular-bootstrap-md';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -20,10 +6,7 @@ import { Sector } from '../models/sector';
 import { AuthService } from './auth.service';
 import { Job } from '../models/job';
 import { Profile } from '../models/profile';
-import { Mentor } from '../models/mentor';
-import { Mentee } from '../models/mentee';
 import { User } from '../models/user';
->>>>>>> f06907e3ea4fe74ea5181ca2536f745cf16d8459
 
 @Injectable({
   providedIn: 'root'
@@ -96,18 +79,12 @@ export class ProfileService {
       'Content-Type': 'application/json'
     };
 
-<<<<<<< HEAD
-    return this.http.put<Profile>(this.url + "/remove/jobs", job, {
-=======
     return this.http.put<Profile>(this.url + '/remove/jobs', job, {
->>>>>>> f06907e3ea4fe74ea5181ca2536f745cf16d8459
       headers: myHeaders
     });
   }
 
   getProfile() {
-<<<<<<< HEAD
-=======
     const myHeaders = {
       'X-Requested-With': 'XMLHttpRequest',
       Authorization: 'Basic ' + this.auth.getCredentials(),
@@ -120,7 +97,6 @@ export class ProfileService {
   }
 
   searchUsers(keyword) {
->>>>>>> f06907e3ea4fe74ea5181ca2536f745cf16d8459
     const myHeaders = {
       'X-Requested-With': 'XMLHttpRequest',
       Authorization: 'Basic ' + this.auth.getCredentials(),
@@ -131,19 +107,6 @@ export class ProfileService {
       headers: myHeaders
     });
   }
-<<<<<<< HEAD
-
-  searchUsers(keyword) {
-    const myHeaders = {
-      "X-Requested-With": "XMLHttpRequest",
-      Authorization: "Basic " + this.auth.getCredentials(),
-      "Content-Type": "application/json"
-    };
-
-    return this.http.get<User[]>(this.url + "/search/" + keyword, {
-      headers: myHeaders
-    });
-=======
   getListOfMenteesWithChosenJobs() {
     const myHeaders = {
       'X-Requested-With': 'XMLHttpRequest',
@@ -168,6 +131,5 @@ export class ProfileService {
       'Content-Type': 'application/json'
     };
     return this.http.put<Profile[]>(this.url + '/mentormentee', profile, {headers: myHeaders});
->>>>>>> f06907e3ea4fe74ea5181ca2536f745cf16d8459
   }
 }
