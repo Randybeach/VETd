@@ -45,24 +45,22 @@
       </div>
       <div class="card-body">
         <form #loginForm="ngForm">
-          <mat-form-field>
+          <mat-form-field class="selectFields text-center">
             <input
               matInput
               name="username"
-              placeholder="Username"
               [(ngModel)]="user.username"
-            />
+            /><mat-placeholder class="placeholder">Username</mat-placeholder>
           </mat-form-field>
-          <mat-form-field>
+          <mat-form-field class="selectFields text-center">
             <input
               matInput
-              type= password
+              type="password"
               name="password"
-              placeholder="Password"
               [(ngModel)]="user.password"
-            />
+            /><mat-placeholder class="placeholder">Password</mat-placeholder>
           </mat-form-field>
-          <br>
+          <br />
           <input
             class="btn btn-warning btn-sm"
             type="submit"
