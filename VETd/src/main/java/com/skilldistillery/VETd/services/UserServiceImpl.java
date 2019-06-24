@@ -220,6 +220,7 @@ public class UserServiceImpl implements UserService {
 		User user = uRepo.findUserByUsername(name);
 		Collection<Job> jobs = user.getProfile().getMentor().getJobs();
 		System.out.println(jobs);
+
 		Set<Profile> profiles = new HashSet<>();
 
 		for (Job job : jobs) {
@@ -237,7 +238,7 @@ public class UserServiceImpl implements UserService {
 		}
 
 		Set<Profile> mentorsMenteesList = new HashSet<>();
-		
+
 		mentorsMenteesList = getMenteesByMentorUsername(name);
 		System.out.println("Mentor's Mentee's List *********************** " + mentorsMenteesList);
 		Set<Integer> profileIds = new HashSet<>(mentorsMenteesList.size());
@@ -314,7 +315,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Set<Review> getReviewsByProfileId(String name) {
-		
+
 		return rRepo.findReviewByProfileId(uRepo.findUserByUsername(name).getProfile().getId());
 	}
 
