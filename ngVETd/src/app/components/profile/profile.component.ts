@@ -34,6 +34,7 @@ export class ProfileComponent implements OnInit {
   name: string;
   selectedProfile: Profile = null;
   mentorMenteesList = [];
+  menteeMentorsList = [];
 
   constructor(
     private router: Router,
@@ -144,19 +145,23 @@ export class ProfileComponent implements OnInit {
         this.profileJobs = [];
         console.log(good);
         this.profile = good;
-        this.getListOfMenteesByMentorId(this.profile);
         console.log(this.profile.user.role);
-        if(this.profile.user.role === 'admin'){
+        if(this.profile.user.role === 'admin') {
           localStorage.setItem('admin', this.profile.user.role);
         }
 
         if (this.profile.mentee) {
+          localStorage.setItem('mentee', this.profile.user.role);
           this.profileJobs = this.profile.mentee.jobs;
+          this.getListOfMentorsByMenteeId(this.profile);
           console.log('mentee jobs' + this.profileJobs);
 
-         } else {
+
+        } else {
+          localStorage.setItem('mentor', this.profile.user.role);
           this.profileJobs = [];
           this.profileJobs = this.profile.mentor.jobs;
+          this.getListOfMenteesByMentorId(this.profile);
           console.log('mentor jobs' + this.profileJobs);
         }
 
@@ -167,6 +172,7 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
+
   editProfile() {
     this.router.navigateByUrl('edit');
   }
@@ -193,20 +199,34 @@ export class ProfileComponent implements OnInit {
     );
   }
 
+  getListOfMentorsByMenteeId(profile) {
+    this.profileService.getMentorsByMenteeId(profile.id).subscribe(
+      good => {
+        this.menteeMentorsList = good;
+        console.log(good);
+        console.log('in prof comp, get mentor list');
+      },
+      bad => {
+        console.log('error getting mentor list');
+        console.log(bad);
+      }
+    );
+  }
+
   getListOfMenteesByMentorId(profile: Profile) {
     this.profileService.getMenteesByMentorId(profile.id).subscribe(
       good => {
         this.mentorMenteesList = good;
         console.log(good);
+        console.log('in prof comp, get mentee list');
       },
       bad => {
-        console.log('error adding mentee');
-
+        console.log('error getting mentee list');
         console.log(bad);
-
       }
     );
   }
+
   addMenteeToMentorMenteeList(profile) {
     console.log("added " +  profile.firstName + " to list");
     this.profileService.addMenteeToMentorList(profile).subscribe(

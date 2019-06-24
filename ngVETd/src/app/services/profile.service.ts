@@ -115,12 +115,25 @@ export class ProfileService {
     };
     return this.http.get<Profile[]>(this.url + '/mentee/job', {headers: myHeaders});
   }
-  getMenteesByMentorId(id: number) {
+  getMentorsByMenteeId(id): Observable<Profile[]> {
     const myHeaders = {
       'X-Requested-With': 'XMLHttpRequest',
       Authorization: 'Basic ' + this.auth.getCredentials(),
       'Content-Type': 'application/json'
     };
+    console.log('In profile service for mentor list by mentee id');
+    console.log(this.http.get<Profile[]>(this.url + '/mentee/' + id + '/mentor', {headers: myHeaders}));
+    return this.http.get<Profile[]>(this.url + '/mentee/' + id + '/mentor', {headers: myHeaders});
+  }
+
+  getMenteesByMentorId(id): Observable<Profile[]> {
+    const myHeaders = {
+      'X-Requested-With': 'XMLHttpRequest',
+      Authorization: 'Basic ' + this.auth.getCredentials(),
+      'Content-Type': 'application/json'
+    };
+    console.log('In profile service for mentee list by mentor id');
+    console.log(this.http.get<Profile[]>(this.url + '/mentor/' + id + '/mentee', {headers: myHeaders}));
     return this.http.get<Profile[]>(this.url + '/mentor/' + id + '/mentee', {headers: myHeaders});
   }
 

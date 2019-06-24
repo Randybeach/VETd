@@ -7,9 +7,7 @@
       <div class='col-sm-1 col-md-2 col-lg-2'></div>
           <div class='col-sm-5 col-md-3 col-lg-3'>
               <div class='card shadow' id='menteeProfile'>
-                <div id='profilePic'>
-                <img class="card-img-top" [src]="profile.pictureUrl" alt="Mentee Profile Picture" >
-                </div>
+                <img class="card-img-top rounded-circle img-responsive img-center mt-2 mb-2" [src]="profile.pictureUrl" alt="Mentee Profile Picture">
                 <h6 class='text-center'>{{ profile.firstName }} {{ profile.lastName }}
                     <span><i class="material-icons float-right mr-2" ngbTooltip="Edit Profile" id='viewProfile' (click)='editProfile()'>edit</i></span>
                 </h6>
@@ -20,11 +18,14 @@
                     <b>Picture:</b> {{ profile.pictureUrl }}<br>
                     <b>Resume:</b> {{ profile.resumeUrl }}<br>
                 </div>
-                <!-- <div class='card-footer'>
-                    <div *ngFor='let profile of menteeJobList'>{{profile.firstName}} {{profile.lastName}}
-                        <span><i class="material-icons float-right" ngbTooltip="View Profile" id='viewProfile' (click)='openDialog(profile)'>visibility</i></span>
-                  </div>
-                </div> -->
+                <div class='card-body text-center'><u><b>Current Mentor</b></u></div>
+                <div *ngIf='menteeMentorsList.length > 0'>
+                <div class='card-footer' id='footerHeight'>
+                    <div *ngFor='let profile of menteeMentorsList'>{{profile.firstName}} {{profile.lastName}}
+                    <span><i class="material-icons float-right" ngbTooltip="View Profile" id='viewProfile' (click)='openDialog(profile)'>visibility</i></span>
+                    </div>
+                </div>
+              </div>
               </div>
           </div>
 
@@ -121,11 +122,13 @@
                   </div>
               </div>
               <div class='card-body text-center'><u><b>Current Mentees</b></u></div>
+              <div *ngIf='mentorMenteesList.length > 0'>
               <div class='card-footer' id='footerHeight'>
                   <div *ngFor='let profile of mentorMenteesList'>{{profile.firstName}} {{profile.lastName}}
                   <span><i class="material-icons float-right" ngbTooltip="View Profile" id='viewProfile' (click)='openDialog(profile)'>visibility</i></span>
                   </div>
               </div>
+            </div>
             </div>
         </div>
 
