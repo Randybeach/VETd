@@ -1,5 +1,5 @@
 #profileJobsCard {
-  height: 600px;
+  height: 650px;
   background-color: oldlace;
   background: rgba(255, 252, 252, 0.7);
   color: black;
@@ -28,18 +28,18 @@
   color: blue;
 }
 #footerHeight {
-  min-height: 60px;
-  max-height: 80px;
+  min-height: 80px;
+  max-height: 100px;
 }
 
-#profilePic {
-
-  height: 200px;
-  border-radius: 100%;
+img {
+  width: auto;
+  margin:0 auto;
+  max-height: 150px;
 }
 
 #menteeProfile {
-  height: 600px;
+  height: 650px;
   background-color: oldlace;
   background: rgba(255, 252, 252, 0.7);
   color: black;

@@ -144,6 +144,7 @@ export class ProfileComponent implements OnInit {
         this.profileJobs = [];
         console.log(good);
         this.profile = good;
+        this.getListOfMenteesByMentorId(this.profile);
         console.log(this.profile.user.role);
         if(this.profile.user.role === 'admin'){
           localStorage.setItem('admin', this.profile.user.role);
@@ -190,15 +191,28 @@ export class ProfileComponent implements OnInit {
 
       }
     );
-
   }
 
-  addMenteeToMentorMenteeList(profile){
+  getListOfMenteesByMentorId(profile: Profile) {
+    this.profileService.getMenteesByMentorId(profile.id).subscribe(
+      good => {
+        this.mentorMenteesList = good;
+        console.log(good);
+      },
+      bad => {
+        console.log('error adding mentee');
+
+        console.log(bad);
+
+      }
+    );
+  }
+  addMenteeToMentorMenteeList(profile) {
     console.log("added " +  profile.firstName + " to list");
     this.profileService.addMenteeToMentorList(profile).subscribe(
       good => {
-        this.profile = good;
-        console.log(this.profile);
+        this.mentorMenteesList = good;
+        console.log(good);
 
       },
       bad => {
