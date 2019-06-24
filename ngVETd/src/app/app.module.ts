@@ -23,7 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { ModalComponent } from './modal/modal.component';
 import {MatSelectModule} from '@angular/material/select';
-
+import { MDCTextField } from "@material/textfield";
 
 @NgModule({
   declarations: [

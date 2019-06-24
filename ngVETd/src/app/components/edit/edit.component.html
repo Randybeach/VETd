@@ -6,13 +6,12 @@
         <h1 class="h1 mb-4">Edit Profile</h1>
       </div>
       <div class="card-body">
-
         <!-- ---------------------------------------------------------------- -->
         <!-- User Form -->
         <!-- ---------------------------------------------------------------- -->
         <!-- <form class="text-center"> -->
-          <!-- Email -->
-          <!-- <input
+        <!-- Email -->
+        <!-- <input
             type="email"
             id="defaultLoginFormEmail"
             class="form-control mb-4 text-center"
@@ -20,14 +19,14 @@
             placeholder="Email"
             [(ngModel)]="editProfile.user.email"
           /> -->
-          <!-- </form> -->
+        <!-- </form> -->
 
         <!-- ---------------------------------------------------------------- -->
         <!-- Vet Form -->
         <!-- ---------------------------------------------------------------- -->
         <!-- <form class="text-center"> -->
-          <!-- Story -->
-          <!-- <input
+        <!-- Story -->
+        <!-- <input
             type="text"
             id="defaultLoginFormEmail"
             class="form-control mb-4 text-center"
@@ -43,54 +42,58 @@
 
         <form class="text-center">
           <!-- First Name -->
-          <input
-            type="text"
-            id="defaultLoginFormEmail"
-            class="form-control mb-4 text-center"
-            name="firstName"
-            placeholder="First Name"
-            [(ngModel)]="editProfile.firstName"
-          />
-
+          <mat-form-field>
+            <input
+              matInput
+              id="defaultLoginFormEmail"
+              name="firstName"
+              [(ngModel)]="editProfile.firstName"
+            /><mat-placeholder class="placeholder">First Name</mat-placeholder>
+          </mat-form-field>
+          <br />
           <!-- Last Name -->
-          <input
-            type="text"
-            id="defaultLoginFormPassword"
-            class="form-control mb-4 text-center"
-            name="lastName"
-            placeholder="Last Name"
-            [(ngModel)]="editProfile.lastName"
-          />
+          <mat-form-field>
+            <input
+              matInput
+              id="defaultLoginFormEmail"
+              name="lastName"
+              [(ngModel)]="editProfile.lastName"
+            /><mat-placeholder class="placeholder">Last Name</mat-placeholder>
+          </mat-form-field>
+          <br />
 
           <!-- Summary -->
-          <input
-            type="text"
-            id="defaultLoginFormPassword"
-            class="form-control mb-4 text-center"
-            name="summary"
-            placeholder="Summary"
-            [(ngModel)]="editProfile.summary"
-          />
+          <mat-form-field>
+            <input
+              matInput
+              id="defaultLoginFormEmail"
+              name="summary"
+              [(ngModel)]="editProfile.summary"
+            /><mat-placeholder class="placeholder">Summary</mat-placeholder>
+          </mat-form-field>
+          <br />
 
           <!-- Picture Url -->
-          <input
-            type="text"
-            id="defaultLoginFormPassword"
-            class="form-control mb-4 text-center"
-            name="pictureUrl"
-            placeholder="Picture Url"
-            [(ngModel)]="editProfile.pictureUrl"
-          />
+          <mat-form-field>
+            <input
+              matInput
+              id="defaultLoginFormEmail"
+              name="pictureUrl"
+              [(ngModel)]="editProfile.pictureUrl"
+            /><mat-placeholder class="placeholder">Picture Url</mat-placeholder>
+          </mat-form-field>
+          <br />
 
           <!-- Resume Url -->
-          <input
-            type="text"
-            id="defaultLoginFormPassword"
-            class="form-control mb-4 text-center"
-            name="resumeUrl"
-            placeholder="Resume Url"
-            [(ngModel)]="editProfile.resumeUrl"
-          />
+          <mat-form-field>
+            <input
+              matInput
+              id="defaultLoginFormEmail"
+              name="resumeUrl"
+              [(ngModel)]="editProfile.resumeUrl"
+            /><mat-placeholder class="placeholder">Resume Url</mat-placeholder>
+          </mat-form-field>
+          <br />
         </form>
 
         <!-- ---------------------------------------------------------------- -->
@@ -99,34 +102,37 @@
 
         <form class="text-center">
           <!-- City -->
-          <input
-            type="text"
-            id="defaultLoginFormEmail"
-            class="form-control mb-4 text-center"
-            name="city"
-            placeholder="City"
-            [(ngModel)]="editProfile.location.city"
-          />
+          <mat-form-field>
+            <input
+              matInput
+              id="defaultLoginFormEmail"
+              name="city"
+              [(ngModel)]="editProfile.location.city"
+            /><mat-placeholder class="placeholder">City</mat-placeholder>
+          </mat-form-field>
+          <br />
 
           <!-- State -->
-          <input
-            type="text"
-            id="defaultLoginFormPassword"
-            class="form-control mb-4 text-center"
-            name="state"
-            placeholder="State"
-            [(ngModel)]="editProfile.location.state"
-          />
+          <mat-form-field>
+            <input
+              matInput
+              id="defaultLoginFormEmail"
+              name="state"
+              [(ngModel)]="editProfile.location.state"
+            /><mat-placeholder class="placeholder">State</mat-placeholder>
+          </mat-form-field>
+          <br />
 
           <!-- Zip -->
-          <input
-            type="text"
-            id="defaultLoginFormEmail"
-            class="form-control mb-4 text-center"
-            name="zipcode"
-            placeholder="Zip"
-            [(ngModel)]="editProfile.location.zipcode"
-          />
+          <mat-form-field>
+            <input
+              matInput
+              id="defaultLoginFormEmail"
+              name="zipcode"
+              [(ngModel)]="editProfile.location.zipcode"
+            /><mat-placeholder class="placeholder">Zip</mat-placeholder>
+          </mat-form-field>
+          <br />
         </form>
 
         <div class="d-flex justify-content-around text-center"></div>

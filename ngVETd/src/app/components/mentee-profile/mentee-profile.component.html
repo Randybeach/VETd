@@ -1,90 +1,32 @@
-<div class='container-fluid' id='profileBackground'>
-  <div class='overlay-mf'></div>
-  <div class='row'>
-    <div class='col-sm-1 col-md-1 col-lg-1'></div>
-    <div class='col-sm-3 col-md-2 col-lg-2 mt-4'>
-          <div class='card shadow' id='menteeProfile'>
-            <img class="card-img-top" [src]="mentee.profile.pictureUrl" alt="Mentee Profile Picture" style='min-height: 200px'>
-            <div class='card-header'>
-              <!-- {{ mentee.fistname }} {{ mentee.lastname }} --> First Last
-            </div>
-            <div class='card-body'>
-              <p>City, State </p>
-              <ul>Sector
-                <li>Job</li>
-                <li>Job</li>
-                <li>Job</li>
-              </ul>
-              <ul>Sector
-              <li>Job</li>
-              <li>Job</li>
-              <li>Job</li>
-            </ul>
-            </div>
-          </div>
-      </div>
-      <div class='col-sm-3 col-md-2 col-lg-3 mt-4 ml-2'>
-          <div class='card shadow' id='menteeStatus'>
-              <div class='card-header text-center'>
-                Display Mentoring Status
-              </div>
-              <div class='card-body'>
-                <p>Sector / Job Matches </p>
-            </div>
-      </div>
-      <div class='text-center'>
-      <button class='btn btn-success mr-1 mt-1'>Accept</button>
-      <button class='btn btn-danger mt-1'>Decline</button>
-      <button class='btn btn-primary mr-1 mt-1'>Release</button>
-      <button class='btn btn-success mt-1'>Chat</button>
-        <hr>
-      <div class='mt-2'>
-        <div class='card shadow' id='menteeInteractions'>
-          <div class='card-header text-center'>
-            Display Past Interactions
-          </div>
-          <div class='card-body text-left'>
-            <p>Date/Time </p>
-          </div>
+<div class="container-fluid background">
+    <div class="row ">
+      <div class='col-sm-1 col-md-3 col-lg-4'></div>
+      <div class="card col-sm-10 col-md-6 col-lg-4">
+        <div class="card-header text-center">
+          <h1 class="h1 mb-4">Review</h1>
         </div>
-      </div>
-    </div>
-      </div>
-      <div class='col-sm-4 col-md-6 col-lg-5 ml-2 mt-4'>
-          <div class='card shadow' id='menteeChat'>
-            <div class='card-body'>
-                <h4>Chat window</h4>
-                <p>Appears only when chat initiated.<br>
-                    Role - First Last Date/Timestamp: Message…<br>
-                    Role - First Last Date/Timestamp: Message…<br>
-                    Role - First Last Date/Timestamp: Message…<br>
-                    Role - First Last Date/Timestamp: Message…<br>
-                    .<br>
-                    .<br>
-                    .<br>
-                    .<br>
-                    .</p>
-
-          </div>
-        </div>
-
-      </div>
-      <div class='col-sm-1 col-md-1 col-lg-1'></div>
+        <div class="card-body">
+  <form #reviewForm="ngForm">
+    <input class="form-control mb-4 text-center"
+      type="text"
+      name="content"
+      placeholder="Username"
+      [(ngModel)]="review.content"
+    />
+    <input class="form-control mb-4 text-center"
+      type="number"
+      name="rating"
+      placeholder="Rating(1-5)"
+      [(ngModel)]="review.rating"
+    />
+    <input class='btn btn-warning btn-sm'
+      type="submit"
+      value="Login"
+      (click)="submitReview(reviewForm)"
+    />
+  </form>
   </div>
-
-  <div class='row'>
-    <div class='col-sm-1 col-md-1 col-lg-1'></div>
-      <div class='col-sm-5 col-md-5 col-lg-5 mt-2'>
-          <div class='card shadow' id='menteeStory'>
-            <div class='card-body'>
-                <h4>Story</h4>
-                <p>This is the mentee's story</p>
-
-          </div>
-        </div>
-
-      </div>
-    <div class='col-sm-6 col-md-5 col-lg-4'></div>
-
   </div>
+  <div class='col-sm-1 col-md-3 col-lg-4'></div>
+</div>
 </div>

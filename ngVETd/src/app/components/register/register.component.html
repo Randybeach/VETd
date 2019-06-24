@@ -1,12 +1,11 @@
 <div class="container-fluid background">
   <div class="row ">
-    <div class='col-sm-1 col-md-4'></div>
+    <div class="col-sm-1 col-md-4"></div>
     <div class="card col-sm-10 col-md-4">
       <div class="card-header text-center">
         <h1 class="h1 mb-4">Sign Up</h1>
       </div>
       <div class="card-body">
-
         <!-- ---------------------------------------------------------------- -->
         <!-- User Form -->
         <!-- ---------------------------------------------------------------- -->
@@ -14,34 +13,35 @@
           <!-- <h5 class="text-center">Login Information</h5> -->
 
           <!-- Email -->
-          <input
-            type="email"
-            id="defaultLoginFormEmail"
-            class="form-control mb-4 text-center"
-            name="email"
-            placeholder="Email"
-            ngModel
-          />
+          <mat-form-field >
+            <input
+              matInput
+              type="email"
+              id="defaultLoginFormEmail"
+              name="email"
+              ngModel
+            /><mat-placeholder class="placeholder">Email</mat-placeholder>
+          </mat-form-field>
 
           <!-- Username -->
-          <input
-            type="text"
-            id="defaultLoginFormPassword"
-            class="form-control mb-4 text-center"
-            name="username"
-            placeholder="Username"
-            ngModel
-          />
+          <mat-form-field>
+            <input
+              matInput
+              id="defaultLoginFormEmail"
+              name="username"
+              ngModel
+            /><mat-placeholder class="placeholder">Username</mat-placeholder>
+          </mat-form-field>
 
           <!-- Password -->
-          <input
-            type="password"
-            id="defaultLoginFormEmail"
-            class="form-control mb-4 text-center"
-            name="password"
-            placeholder="Password"
-            ngModel
-          />
+          <mat-form-field>
+            <input
+              matInput
+              type="password"
+              name="password"
+              ngModel
+            /><mat-placeholder class="placeholder">Password</mat-placeholder>
+          </mat-form-field>
         </form>
 
         <!-- ---------------------------------------------------------------- -->
@@ -51,90 +51,88 @@
           <!-- <h5 class="text-center">About You</h5> -->
 
           <!-- First Name -->
-          <input
-            type="text"
-            id="defaultLoginFormEmail"
-            class="form-control mb-4 text-center"
-            name="firstName"
-            placeholder="First Name"
-            ngModel
-          />
+          <mat-form-field>
+            <input
+              matInput
+              id="defaultLoginFormEmail"
+              name="firstName"
+              ngModel
+            /><mat-placeholder class="placeholder">First Name</mat-placeholder>
+          </mat-form-field>
 
           <!-- Last Name -->
-          <input
-            type="text"
-            id="defaultLoginFormPassword"
-            class="form-control mb-4 text-center"
-            name="lastName"
-            placeholder="Last Name"
-            ngModel
-          />
-
+          <mat-form-field>
+            <input
+              matInput
+              id="defaultLoginFormEmail"
+              name="lastName"
+              ngModel
+            /><mat-placeholder class="placeholder">Last Name</mat-placeholder>
+          </mat-form-field>
           <!-- Summary -->
-          <input
-            type="text"
-            id="defaultLoginFormPassword"
-            class="form-control mb-4 text-center"
-            name="summary"
-            placeholder="Summary"
-            ngModel
-          />
+          <mat-form-field>
+            <input
+              matInput
+              id="defaultLoginFormEmail"
+              name="summary"
+              ngModel
+            /><mat-placeholder class="placeholder">Summary</mat-placeholder>
+          </mat-form-field>
 
           <!-- Picture Url -->
-          <input
-            type="text"
-            id="defaultLoginFormPassword"
-            class="form-control mb-4 text-center"
-            name="pictureUrl"
-            placeholder="Picture Url"
-            ngModel
-          />
+          <mat-form-field>
+            <input
+              matInput
+              id="defaultLoginFormEmail"
+              name="pictureUrl"
+              ngModel
+            /><mat-placeholder class="placeholder">Picture Url</mat-placeholder>
+          </mat-form-field>
 
           <!-- Resume Url -->
-          <input
-            type="text"
-            id="defaultLoginFormPassword"
-            class="form-control mb-4 text-center"
-            name="resumeUrl"
-            placeholder="Resume Url"
-            ngModel
-          />
+          <mat-form-field>
+            <input
+              matInput
+              id="defaultLoginFormEmail"
+              name="resumeUrl"
+              ngModel
+            /><mat-placeholder class="placeholder">Resume Url</mat-placeholder>
+          </mat-form-field>
         </form>
 
         <!-- ---------------------------------------------------------------- -->
         <!-- Location Form -->
         <!-- ---------------------------------------------------------------- -->
         <form #addLocationForm="ngForm" class="text-center">
-
           <!-- City -->
-          <input
-            type="text"
-            id="defaultLoginFormEmail"
-            class="form-control mb-4 text-center"
-            name="city"
-            placeholder="City"
-            ngModel
-          />
+          <mat-form-field>
+            <input
+              matInput
+              id="defaultLoginFormEmail"
+              name="city"
+              ngModel
+            /><mat-placeholder class="placeholder">City</mat-placeholder>
+          </mat-form-field>
 
           <!-- State -->
-          <input
-            type="text"
-            id="defaultLoginFormPassword"
-            class="form-control mb-4 text-center"
-            name="state"
-            placeholder="State"
-            ngModel
-          />
+          <mat-form-field>
+            <input
+              matInput
+              id="defaultLoginFormEmail"
+              name="state"
+              ngModel
+            /><mat-placeholder class="placeholder">State</mat-placeholder>
+          </mat-form-field>
 
           <!-- Zip -->
-          <input
-            type="text"
-            id="defaultLoginFormEmail"
-            class="form-control mb-4 text-center"
-            name="zipcode"
-            placeholder="Zip"
-            ngModel
-          />
+          <mat-form-field>
+            <input
+              matInput
+              id="defaultLoginFormEmail"
+              name="zipcode"
+              ngModel
+            /><mat-placeholder class="placeholder">Zip</mat-placeholder>
+          </mat-form-field>
         </form>
 
         <div class="d-flex justify-content-around text-center"></div>
@@ -154,6 +152,6 @@
         </div>
       </div>
     </div>
-    <div lass='col-sm-1 col-md-4'></div>
+    <div lass="col-sm-1 col-md-4"></div>
   </div>
 </div>
