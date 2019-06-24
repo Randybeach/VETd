@@ -1,5 +1,6 @@
 package com.skilldistillery.vetd.services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -219,7 +220,8 @@ public class UserServiceImpl implements UserService {
 		User user = uRepo.findUserByUsername(name);
 		Collection<Job> jobs = user.getProfile().getMentor().getJobs();
 		System.out.println(jobs);
-		Set<Profile> profiles = new HashSet();
+
+		Set<Profile> profiles = new HashSet<>();
 
 		for (Job job : jobs) {
 			System.out.println(job);
@@ -234,7 +236,26 @@ public class UserServiceImpl implements UserService {
 				continue;
 			}
 		}
-		return profiles;
+
+		Set<Profile> mentorsMenteesList = new HashSet<>();
+
+		mentorsMenteesList = getMenteesByMentorUsername(name);
+		System.out.println("Mentor's Mentee's List *********************** " + mentorsMenteesList);
+		Set<Integer> profileIds = new HashSet<>(mentorsMenteesList.size());
+		Set<Profile> availableMentees = new HashSet<>();
+		System.out.println("**************** All matches on Sector ***************** " + profiles);
+		for (Profile profile : mentorsMenteesList) {
+			profileIds.add(profile.getId());
+		}
+
+		for (Profile profile : profiles) {
+			if (!profileIds.contains(profile.getId())) {
+				availableMentees.add(profile);
+				System.out.println("************** Available Mentees **********************" + availableMentees);
+			}
+		}
+
+		return availableMentees;
 	}
 
 	@Override
@@ -294,7 +315,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Set<Review> getReviewsByProfileId(String name) {
-		
+
 		return rRepo.findReviewByProfileId(uRepo.findUserByUsername(name).getProfile().getId());
 	}
 
