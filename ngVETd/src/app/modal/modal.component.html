@@ -53,9 +53,9 @@
               </div>
         </div>
         <div class='text-center'>
-        <button class='btn btn-success mr-1 mt-1'>Accept</button>
+        <button class='btn btn-success mr-1 mt-1' (click)='addMenteeToMentorMenteeList(data.profile)'>Accept</button>
         <button class='btn btn-danger mt-1'>Decline</button>
-        <button class='btn btn-primary mr-1 mt-1' (onClick)='removeMentee()'>Release</button>
+        <button class='btn btn-primary mr-1 mt-1' (click)='removeMentee(data.profile)'>Release</button>
         <button class='btn btn-success mt-1'>Chat</button>
         <div mat-dialog-actions>
             <button mat-button (click)="onNoClick()">No Thanks</button>

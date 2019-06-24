@@ -258,8 +258,9 @@ public class UserServiceImpl implements UserService {
 			return getMenteesByMentorId(mentorUser.getProfile().getMentor().getId());
 				
 		}
+
 		return null;
-		
+
 	}
 
 	@Override

@@ -146,12 +146,12 @@ export class ProfileService {
     return this.http.put<Profile[]>(this.url + '/mentormentee', profile, {headers: myHeaders});
   }
 
-  removeMenteeFromMentorList(profile){
+  removeMenteeFromMentorList(profile) {
     const myHeaders = {
       'X-Requested-With': 'XMLHttpRequest',
       Authorization: 'Basic ' + this.auth.getCredentials(),
       'Content-Type': 'application/json'
     };
-
+    return this.http.put<Profile[]>(this.url + '/mentormentee/remove', profile, {headers: myHeaders});
   }
 }

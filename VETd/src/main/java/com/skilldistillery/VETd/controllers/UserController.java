@@ -103,6 +103,8 @@ public class UserController {
 	//Remove a mentee from mentors list
 	@PutMapping("mentormentee/remove")
 	public Set<Profile> removeMenteeFromMentorshipList(@RequestBody Profile profile, Principal principal){
+		System.out.println(profile);
+		System.err.println(principal);
 		return svc.removeMenteeFromMentorList(profile, principal.getName());
 	}
 	
