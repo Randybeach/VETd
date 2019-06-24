@@ -16,6 +16,8 @@ export class ModalComponent implements OnInit {
 
   profile = null;
   mentees = [];
+  jobs = [];
+  myProfile = null;
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
@@ -29,6 +31,7 @@ export class ModalComponent implements OnInit {
 
   ngOnInit() {
     this.profile = this.data.profile;
+    this.myProfile = this.data.myprofile;
     console.log(this.profile);
     this.addMenteesOrMentors();
 
@@ -70,8 +73,13 @@ export class ModalComponent implements OnInit {
   addMenteesOrMentors(){
     if(this.profile.mentor != null){
       this.mentees = this.profile.mentor.mentorMentees;
+      this.jobs = this.profile.mentor.jobs;
+      console.log(this.jobs);
+
       console.log(this.mentees);
 
+    }else{
+      this.jobs = this.profile.mentee.jobs;
     }
   }
 

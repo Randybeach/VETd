@@ -31,12 +31,13 @@
               </div>
               <div class='card-footer'>
                 <div class='text-center'><u><b>Job Interests</b></u></div>
+                <div *ngFor='let job of jobs'>{{job.name}}</div>
             </div>
               <div class='card-footer' id='menteeJobs' *ngIf='data.profile.mentee != null'>
-                <div class='pt-1' *ngIf='profile.mentee.jobs.length > 0'>
+                <div class='pt-1' *ngIf='jobs.length > 0'>
                   <ul>
-                  <div *ngFor="let job of profile.mentee.jobs" ngDefaultControl>
-                    <li>{{job.name}}</li>
+                  <div *ngFor="let job of jobs" ngDefaultControl>
+                    <!-- <li></li> -->
                   </div>
                 </ul>
                 </div>
