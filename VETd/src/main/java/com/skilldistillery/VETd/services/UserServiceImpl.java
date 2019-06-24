@@ -272,6 +272,7 @@ public class UserServiceImpl implements UserService {
 		menteeProfile.getMentee().removeMentorMentees(mmRepo.findByMenteeIdAndMentorId(menteeProfile.getMentee().getId(), mentorUser.getProfile().getMentor().getId()));
 		pRepo.saveAndFlush(mentorUser.getProfile());
 		pRepo.saveAndFlush(menteeProfile);
+		mmRepo.delete(mmRepo.findByMenteeIdAndMentorId(menteeProfile.getMentee().getId(), mentorUser.getProfile().getMentor().getId()));
 		
 		Set<Profile> profiles = new HashSet<Profile>();
 		for (MentorMentee men : mentorUser.getProfile().getMentor().getMentorMentees()) {
