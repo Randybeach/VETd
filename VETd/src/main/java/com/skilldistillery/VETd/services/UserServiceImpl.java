@@ -14,6 +14,7 @@ import com.skilldistillery.vetd.entities.Mentee;
 import com.skilldistillery.vetd.entities.Mentor;
 import com.skilldistillery.vetd.entities.MentorMentee;
 import com.skilldistillery.vetd.entities.Profile;
+import com.skilldistillery.vetd.entities.Review;
 import com.skilldistillery.vetd.entities.User;
 import com.skilldistillery.vetd.repositories.JobRepository;
 import com.skilldistillery.vetd.repositories.LocationRepository;
@@ -21,6 +22,7 @@ import com.skilldistillery.vetd.repositories.MenteeRepository;
 import com.skilldistillery.vetd.repositories.MentorMenteeRepository;
 import com.skilldistillery.vetd.repositories.MentorRepository;
 import com.skilldistillery.vetd.repositories.ProfileRepository;
+import com.skilldistillery.vetd.repositories.ReviewRepository;
 import com.skilldistillery.vetd.repositories.UserRepository;
 
 @Service
@@ -40,6 +42,8 @@ public class UserServiceImpl implements UserService {
 	private JobRepository jRepo;
 	@Autowired
 	private LocationRepository lRepo;
+	@Autowired
+	private ReviewRepository rRepo;
 
 	@Override
 	public List<User> index() {
@@ -216,6 +220,7 @@ public class UserServiceImpl implements UserService {
 		User user = uRepo.findUserByUsername(name);
 		Collection<Job> jobs = user.getProfile().getMentor().getJobs();
 		System.out.println(jobs);
+
 		Set<Profile> profiles = new HashSet<>();
 
 		for (Job job : jobs) {
@@ -233,7 +238,7 @@ public class UserServiceImpl implements UserService {
 		}
 
 		Set<Profile> mentorsMenteesList = new HashSet<>();
-		
+
 		mentorsMenteesList = getMenteesByMentorUsername(name);
 		System.out.println("Mentor's Mentee's List *********************** " + mentorsMenteesList);
 		Set<Integer> profileIds = new HashSet<>(mentorsMenteesList.size());
@@ -306,6 +311,19 @@ public class UserServiceImpl implements UserService {
 		mmRepo.delete(mmRepo.findByMenteeIdAndMentorId(menteeProfile.getMentee().getId(),
 				mentorUser.getProfile().getMentor().getId()));
 		getMenteesByMentorUsername(name);
+	}
+
+	@Override
+	public Set<Review> getReviewsByProfileId(String name) {
+
+		return rRepo.findReviewByProfileId(uRepo.findUserByUsername(name).getProfile().getId());
+	}
+
+	@Override
+	public Review addReview(Profile profile) {
+		// TODO Auto-generated method stub
+
+		return null;
 	}
 
 }

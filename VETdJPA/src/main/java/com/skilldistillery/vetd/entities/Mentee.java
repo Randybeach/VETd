@@ -26,15 +26,20 @@ public class Mentee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private String story;
+	
 	@Column(name = "created_at")
 	@CreationTimestamp
 	private Date createdAt;
+	
 	@OneToMany(mappedBy = "mentee")
 	@JsonIgnore
 	private Set<MentorMentee> mentorMentee;
+	
 	@ManyToMany(mappedBy = "mentees", cascade = CascadeType.ALL)
 	private Set<Job> jobs;
+	
 	@OneToOne
 	@JoinColumn(name = "profile_id")
 	@JsonIgnore
@@ -62,6 +67,7 @@ public class Mentee {
 	public void setJobs(Set<Job> jobs) {
 		this.jobs = jobs;
 	}
+
 	public void addJob(Job job) {
 		if(this.jobs == null) {
 			this.jobs = new HashSet<Job>();
