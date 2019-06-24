@@ -255,7 +255,8 @@ public class UserServiceImpl implements UserService {
 			Profile p = pRepo.findByMenteeId(men.getId());
 			profiles.add(p);
 		}
-		return profiles;
+		System.out.println("^^ Mentor's list of Mentees " + profiles);
+		return this.getMenteesByMentorId(mentorUser.getProfile().getMentor().getId());
 	}
 
 	@Override
