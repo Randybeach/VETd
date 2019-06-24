@@ -12,46 +12,56 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Sector {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private String name;
+	
 	@OneToMany(mappedBy = "sector")
 	@JsonIgnore
 	private List<Job> jobs;
-	
-	
+
 	public List<Job> getJobs() {
 		return jobs;
 	}
+
 	public void setJobs(List<Job> jobs) {
 		this.jobs = jobs;
 	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public Sector(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
+
 	public Sector() {
 		super();
 	}
+
 	@Override
 	public String toString() {
 		return "Sector [id=" + id + ", name=" + name + "]";
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -59,6 +69,7 @@ public class Sector {
 		result = prime * result + id;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -73,6 +84,4 @@ public class Sector {
 		return true;
 	}
 
-	
-	
 }

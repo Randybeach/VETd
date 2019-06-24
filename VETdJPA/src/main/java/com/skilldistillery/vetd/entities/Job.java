@@ -19,25 +19,27 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Job {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
 	private String name;
+
 	@ManyToOne
 	@JoinColumn(name = "sector_id")
 	private Sector sector;
+
 	@ManyToMany(cascade = CascadeType.MERGE)
-	@JoinTable(name = "mentor_job", joinColumns=@JoinColumn(name = "job_id"), inverseJoinColumns = @JoinColumn(name = "mentor_id"))
+	@JoinTable(name = "mentor_job", joinColumns = @JoinColumn(name = "job_id"), inverseJoinColumns = @JoinColumn(name = "mentor_id"))
 	@JsonIgnore
 	private Set<Mentor> mentors;
+
 	@ManyToMany(cascade = CascadeType.MERGE)
 	@JoinTable(name = "mentee_job", joinColumns = @JoinColumn(name = "job_id"), inverseJoinColumns = @JoinColumn(name = "mentee_id"))
 	@JsonIgnore
 	private Set<Mentee> mentees;
-	
-	
-	
+
 	public Job(int id, String name, Sector sector, Set<Mentor> mentors, Set<Mentee> mentees) {
 		super();
 		this.id = id;
@@ -46,30 +48,38 @@ public class Job {
 		this.mentors = mentors;
 		this.mentees = mentees;
 	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public Sector getSector() {
 		return sector;
 	}
+
 	public void setSector(Sector sector) {
 		this.sector = sector;
 	}
+
 	public Job() {
-		
+
 		super();
 		this.mentees = new HashSet<Mentee>();
 		this.mentors = new HashSet<Mentor>();
 	}
+
 	public Job(int id, String name, Sector sector) {
 		super();
 		this.id = id;
@@ -78,26 +88,29 @@ public class Job {
 		this.mentees = new HashSet<Mentee>();
 		this.mentors = new HashSet<Mentor>();
 	}
-	
 
 	@Override
 	public String toString() {
 		return "Job [id=" + id + ", name=" + name + ", sector=" + sector + ", mentors=" + mentors.size() + ", mentees="
 				+ mentees.size() + "]";
 	}
+
 	public Set<Mentor> getMentors() {
 		return mentors;
 	}
+
 	public void setMentors(Set<Mentor> mentors) {
 		this.mentors = mentors;
 	}
+
 	public Set<Mentee> getMentees() {
 		return mentees;
 	}
+
 	public void setMentees(Set<Mentee> mentees) {
 		this.mentees = mentees;
 	}
-	
+
 	public void addMentor(Mentor m) {
 		if (mentors == null) {
 			mentors = new HashSet<Mentor>();
@@ -106,8 +119,9 @@ public class Job {
 			mentors.add(m);
 			m.addJob(this);
 		}
-		
+
 	}
+
 	public void addMentee(Mentee m) {
 		if (mentees == null) {
 			mentees = new HashSet<Mentee>();
@@ -116,25 +130,23 @@ public class Job {
 			mentees.add(m);
 			m.addJob(this);
 		}
-		
+
 	}
-	
+
 	public void removeMentor(Mentor m) {
 		if (mentors != null && mentors.contains(m)) {
 			mentors.remove(m);
 			m.removeJob(this);
 		}
-		
+
 	}
+
 	public void removeMentee(Mentee m) {
 		if (mentees != null && mentees.contains(m)) {
 			mentees.remove(m);
 			m.removeJob(this);
 		}
-		
+
 	}
-	
-	
-	
 
 }
