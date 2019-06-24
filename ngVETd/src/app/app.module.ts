@@ -22,8 +22,7 @@ import { MenteeProfileComponent } from './components/mentee-profile/mentee-profi
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { ModalComponent } from './modal/modal.component';
-import { MatSelectModule } from '@angular/material/select';
-
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -60,7 +59,7 @@ import { MatSelectModule } from '@angular/material/select';
     MaterialModule,
     MatSelectModule
   ],
-  providers: [AuthService, ProfileComponent],
+  providers: [AuthService],
   bootstrap: [AppComponent],
   entryComponents: [ModalComponent]
 })

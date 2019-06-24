@@ -2,6 +2,7 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.css";
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
 .background {
   width: 100%;
   height: 100vh;
