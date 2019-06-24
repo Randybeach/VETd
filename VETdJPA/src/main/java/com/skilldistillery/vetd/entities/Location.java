@@ -11,34 +11,45 @@ public class Location {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
 	private String city;
+
 	private String state;
+
 	private String zipcode;
-	
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getCity() {
 		return city;
 	}
+
 	public void setCity(String city) {
 		this.city = city;
 	}
+
 	public String getState() {
 		return state;
 	}
+
 	public void setState(String state) {
 		this.state = state;
 	}
+
 	public String getZipcode() {
 		return zipcode;
 	}
+
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
+
 	public Location(int id, String city, String state, String zipcode) {
 		super();
 		this.id = id;
@@ -46,13 +57,16 @@ public class Location {
 		this.state = state;
 		this.zipcode = zipcode;
 	}
+
 	public Location() {
 		super();
 	}
+
 	@Override
 	public String toString() {
 		return "Location [id=" + id + ", city=" + city + ", state=" + state + ", zipcode=" + zipcode + "]";
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -60,6 +74,7 @@ public class Location {
 		result = prime * result + id;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -73,6 +88,5 @@ public class Location {
 			return false;
 		return true;
 	}
-	
-	
+
 }

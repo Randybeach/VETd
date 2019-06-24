@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.vetd.entities.Job;
 import com.skilldistillery.vetd.entities.Mentee;
-import com.skilldistillery.vetd.entities.MentorMentee;
 import com.skilldistillery.vetd.entities.Profile;
+import com.skilldistillery.vetd.entities.Review;
 import com.skilldistillery.vetd.entities.User;
 import com.skilldistillery.vetd.services.UserService;
 
@@ -29,82 +29,89 @@ public class UserController {
 
 	@Autowired
 	private UserService svc;
-	
-	
+
 	@GetMapping("users")
-	public List<User> getAllUsers(){
+	public List<User> getAllUsers() {
 		return svc.getAllUsers();
 	}
+
 	@GetMapping("mentee/{id}")
-	public Mentee getMenteeById(@PathVariable int id){
-		
+	public Mentee getMenteeById(@PathVariable int id) {
+
 		return svc.getMenteeById(id);
 	}
-	
-	//Get list of Mentors for mentee by Id
+
+	// Get list of Mentors for mentee by Id
 	@GetMapping("mentee/{id}/mentor")
-	public Set<Profile> getMentorsByMenteeId(Principal principal){
-		 
+	public Set<Profile> getMentorsByMenteeId(Principal principal) {
+
 		return svc.getMentorsByMenteeUsername(principal.getName());
 	}
-	
-	//Get list of Mentees for mentor by Id
+
+	// Get list of Mentees for mentor by Id
 	@GetMapping("mentor/{id}/mentee")
-	public Set<Profile> getMenteesByMentorId(Principal principal){
-		System.out.println("************************** Mentees by mentor username *********************************************");
+	public Set<Profile> getMenteesByMentorId(Principal principal) {
+		System.out.println(
+				"************************** Mentees by mentor username *********************************************");
 		return svc.getMenteesByMentorUsername(principal.getName());
 	}
-	
+
 	@GetMapping("search/{name}")
-	public List<User> getUsersByUsername(@PathVariable String name){
+	public List<User> getUsersByUsername(@PathVariable String name) {
 		return svc.getUsersByUsername(name);
 	}
-	
-	//Update Profile
+
+	// Update Profile
 	@PutMapping("profile")
 	public Profile updateMentee(@RequestBody Profile profile) {
 		System.out.println(profile);
-			return svc.updateMentee(profile);
+		return svc.updateMentee(profile);
 	}
-	
-	//Add Job to Mentee
+
+	// Add Job to Mentee
 	@PutMapping("add/jobs")
 	public Profile addJobsToMentee(@RequestBody List<Job> jobs, Principal principal) {
 		return svc.addJobstoMentee(jobs, principal.getName());
 	}
-	
-	//Remove Job from mentee
+
+	// Remove Job from mentee
 	@PutMapping("remove/jobs")
 	public Profile removeJobsFromMentee(@RequestBody Job job, Principal p) {
 		Profile po = svc.removeJobsFromMentee(job, p.getName());
 		System.out.println(po.getMentee());
 		return po;
 	}
-	
+
 	@GetMapping("profile")
 	public Profile getProfile(Principal p, HttpServletResponse response) {
 		System.out.println(p.getName());
 		return svc.getProfile(p.getName());
 	}
-	
-	//Get a list of Mentees that desire mentorship for chosen jobs
+
+	// Get a list of Mentees that desire mentorship for chosen jobs
 	@GetMapping("mentee/job")
-	public Set<Profile> getMenteesWithChosenJobs(Principal p){
+	public Set<Profile> getMenteesWithChosenJobs(Principal p) {
 		return svc.getMenteesWithJobs(p.getName());
 	}
-	
-	//Add a mentee to a mentors list
+
+	// Add a mentee to a mentors list
 	@PutMapping("mentormentee")
-	public Set<Profile> addMenteeToMentorshipList(@RequestBody Profile profile, Principal principal){
+	public Set<Profile> addMenteeToMentorshipList(@RequestBody Profile profile, Principal principal) {
 		System.out.println("trying to add mentor mentee");
 		return svc.addMenteeToMentorList(profile, principal.getName());
 	}
-	//Remove a mentee from mentors list
+
+	// Remove a mentee from mentors list
 	@PutMapping("mentormentee/remove")
-	public void removeMenteeFromMentorshipList(@RequestBody Profile profile, Principal principal){
+	public void removeMenteeFromMentorshipList(@RequestBody Profile profile, Principal principal) {
 		System.out.println(profile);
 		System.err.println(principal);
 		svc.removeMenteeFromMentorList(profile, principal.getName());
 	}
-	
+
+	@GetMapping("review")
+	public Set<Review> getReviews(Principal principal) {
+		return svc.getReviewsByProfileId(principal.getName());
+	}
+
 }

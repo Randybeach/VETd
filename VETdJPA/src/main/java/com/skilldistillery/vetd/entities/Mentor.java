@@ -1,9 +1,7 @@
 package com.skilldistillery.vetd.entities;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -27,93 +25,109 @@ public class Mentor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
 	private String story;
+
 	@Column(name = "created_at")
 	@CreationTimestamp
 	private Date createdAt;
+
 	@OneToMany(mappedBy = "mentor")
 	private Set<MentorMentee> mentorMentees;
+
 	@ManyToMany(mappedBy = "mentors", cascade = CascadeType.ALL)
 	private Set<Job> jobs;
+
 	@OneToOne
 	@JoinColumn(name = "profile_id")
 	@JsonIgnore
 	private Profile profile;
-	
-	
+
 	public void addJob(Job job) {
-		if(this.jobs == null) {
+		if (this.jobs == null) {
 			this.jobs = new HashSet();
 		}
 		this.jobs.add(job);
 		job.getMentors().add(this);
-		
+
 	}
+
 	public void removeJob(Job job) {
-		if(this.jobs == null) {
+		if (this.jobs == null) {
 			return;
 		}
 		this.jobs.remove(job);
 		job.getMentors().remove(this);
 	}
-	
+
 	public void addMentorMentees(MentorMentee mm) {
-		if(this.mentorMentees == null) {
+		if (this.mentorMentees == null) {
 			this.mentorMentees = new HashSet<>();
 		}
 		this.mentorMentees.add(mm);
-			
+
 	}
+
 	public void removeMentorMentees(MentorMentee mm) {
-		if(this.mentorMentees == null) {
+		if (this.mentorMentees == null) {
 			return;
 		}
-		if(this.mentorMentees.contains(mm)) {
+		if (this.mentorMentees.contains(mm)) {
 			this.mentorMentees.remove(mm);
 		}
 	}
-	
+
 	public Set<Job> getJobs() {
 		return jobs;
 	}
+
 	public void setJobs(Set<Job> jobs) {
 		this.jobs = jobs;
 	}
+
 	public Profile getProfile() {
 		return profile;
 	}
+
 	public void setProfile(Profile profile) {
 		this.profile = profile;
 	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getStory() {
 		return story;
 	}
+
 	public void setStory(String story) {
 		this.story = story;
 	}
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}
+
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
+
 	public Mentor(int id, String story, Date createdAt) {
 		super();
 		this.id = id;
 		this.story = story;
 		this.createdAt = createdAt;
 	}
+
 	public Mentor() {
 		super();
 	}
-	
-	
+
 	public Mentor(int id, String story, Date createdAt, Set<MentorMentee> mentorMentees, Set<Job> jobs,
 			Profile profile) {
 		super();
@@ -124,16 +138,20 @@ public class Mentor {
 		this.jobs = jobs;
 		this.profile = profile;
 	}
+
 	public Set<MentorMentee> getMentorMentees() {
 		return mentorMentees;
 	}
+
 	public void setMentorMentees(Set<MentorMentee> mentorMentees) {
 		this.mentorMentees = mentorMentees;
 	}
+
 	@Override
 	public String toString() {
 		return "Mentor [id=" + id + ", story=" + story + ", createdAt=" + createdAt + "]";
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -141,6 +159,7 @@ public class Mentor {
 		result = prime * result + id;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -154,6 +173,5 @@ public class Mentor {
 			return false;
 		return true;
 	}
-	
-	
+
 }
