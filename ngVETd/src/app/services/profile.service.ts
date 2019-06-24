@@ -67,6 +67,8 @@ export class ProfileService {
       Authorization: 'Basic ' + this.auth.getCredentials(),
       'Content-Type': 'application/json'
     };
+    console.log(editProfile);
+
     return this.http.put<Profile>(this.url + '/profile', editProfile, {
       headers: myHeaders
     });
@@ -78,6 +80,7 @@ export class ProfileService {
       Authorization: 'Basic ' + this.auth.getCredentials(),
       'Content-Type': 'application/json'
     };
+      console.log(job.name);
 
     return this.http.put<Profile>(this.url + '/remove/jobs', job, {
       headers: myHeaders
