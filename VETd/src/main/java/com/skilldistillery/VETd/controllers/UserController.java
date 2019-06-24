@@ -2,6 +2,7 @@ package com.skilldistillery.vetd.controllers;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.vetd.entities.Job;
 import com.skilldistillery.vetd.entities.Mentee;
-import com.skilldistillery.vetd.entities.Mentor;
 import com.skilldistillery.vetd.entities.MentorMentee;
 import com.skilldistillery.vetd.entities.Profile;
 import com.skilldistillery.vetd.entities.User;
@@ -50,6 +50,9 @@ public class UserController {
 	//Get list of Mentees for mentor by Id
 	@GetMapping("mentor/{id}/mentee")
 	public List<MentorMentee> getMenteesByMentorId(@PathVariable int id){
+		System.out.println("************************** Mentor Id: " + id + " *********************************************");
+		System.out.println("************************** Mentor Id: " + id + " *********************************************");
+		System.out.println("************************** Mentor Id: " + id + " *********************************************");
 		return svc.getMenteesByMentorId(id);
 	}
 	
@@ -83,6 +86,18 @@ public class UserController {
 	public Profile getProfile(Principal p, HttpServletResponse response) {
 		System.out.println(p.getName());
 		return svc.getProfile(p.getName());
+	}
+	
+	//Get a list of Mentees that desire mentorship for chosen jobs
+	@GetMapping("mentee/job")
+	public Set<Profile> getMenteesWithChosenJobs(Principal p){
+		return svc.getMenteesWithJobs(p.getName());
+	}
+	
+	@PutMapping("mentormentee")
+	public Set<Profile> addMenteeToMentorshipList(@RequestBody Profile profile, Principal principal){
+		System.out.println("trying to add mentor mentee");
+		return svc.addMenteeToMentorList(profile, principal.getName());
 	}
 	
 }

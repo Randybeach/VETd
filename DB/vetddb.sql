@@ -148,7 +148,7 @@ CREATE INDEX `fk_mentee_profile1_idx` ON `mentee` (`profile_id` ASC);
 DROP TABLE IF EXISTS `mentor_mentee` ;
 
 CREATE TABLE IF NOT EXISTS `mentor_mentee` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `created_at` DATETIME NULL,
   `mentee_id` INT NOT NULL,
   `mentor_id` INT NOT NULL,
@@ -210,6 +210,7 @@ DROP TABLE IF EXISTS `mentee_job` ;
 CREATE TABLE IF NOT EXISTS `mentee_job` (
   `job_id` INT NOT NULL,
   `mentee_id` INT NOT NULL,
+  PRIMARY KEY (`job_id`, `mentee_id`),
   CONSTRAINT `fk_table1_Occupation1`
     FOREIGN KEY (`job_id`)
     REFERENCES `job` (`id`)
@@ -233,6 +234,7 @@ DROP TABLE IF EXISTS `mentor_job` ;
 CREATE TABLE IF NOT EXISTS `mentor_job` (
   `job_id` INT NOT NULL,
   `mentor_id` INT NOT NULL,
+  PRIMARY KEY (`job_id`, `mentor_id`),
   CONSTRAINT `fk_table2_Occupation1`
     FOREIGN KEY (`job_id`)
     REFERENCES `job` (`id`)
@@ -267,6 +269,7 @@ START TRANSACTION;
 USE `vetddb`;
 INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`, `enabled`) VALUES (1, 'bob', 'bob@bob.com', '$2a$10$nFSSHSJ5h7bBldsNNiam4OtBilCPqN7AwKrFPyEbSgc.iG9vmMNlS', 'user', true);
 INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`, `enabled`) VALUES (2, 'sue', 'sue@sue.com', '$2a$10$/04TjBk9I69J3gdQZnOGte4H3EsO.2604taVoLqfgdZpVGniUG8yO', 'user', true);
+INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`, `enabled`) VALUES (3, 'admin', 'admin@admin.com', '$2a$10$j.OE/jRHA6ii47n/Kzryu.YXtzuksA251SE4s5BUHcz5zRTfi8wji', 'admin', true);
 
 COMMIT;
 
@@ -278,6 +281,7 @@ START TRANSACTION;
 USE `vetddb`;
 INSERT INTO `profile` (`id`, `first_name`, `last_name`, `summary`, `created_at`, `location_id`, `picture_url`, `resume_url`, `user_id`) VALUES (1, 'bob', 'bobby', 'this is so great', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `profile` (`id`, `first_name`, `last_name`, `summary`, `created_at`, `location_id`, `picture_url`, `resume_url`, `user_id`) VALUES (2, 'sue', 'susie', 'Help me', NULL, NULL, NULL, NULL, 2);
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `summary`, `created_at`, `location_id`, `picture_url`, `resume_url`, `user_id`) VALUES (3, 'admin', NULL, NULL, NULL, NULL, NULL, NULL, 3);
 
 COMMIT;
 

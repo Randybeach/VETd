@@ -1,11 +1,16 @@
+import { User } from 'src/app/models/user';
 import { AuthService } from "src/app/services/auth.service";
 import { ProfileService } from "./../../services/profile.service";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
 import { Sector } from "src/app/models/sector";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Job } from "src/app/models/job";
 import { Mentee } from "src/app/models/mentee";
 import { Mentor } from "src/app/models/mentor";
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { ModalComponent } from 'src/app/modal/modal.component';
+import { DialogData } from 'src/app/DialogData';
+import { Profile } from 'src/app/models/profile';
 
 @Component({
   selector: "app-profile",
@@ -20,29 +25,50 @@ export class ProfileComponent implements OnInit {
   currJobs = [];
   jobs: Job[] = [];
   jobsForSector: Job[] = [];
-  jobName = "nothing";
+  jobName = 'nothing';
   sectors: Sector[] = [];
   profile = null;
   profileJobs = [];
-
+  menteeJobList = [];
+  animal: string;
+  name: string;
+  selectedProfile: Profile = null;
+  mentorMenteesList = [];
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private profileService: ProfileService,
-    private auth: AuthService
+    private auth: AuthService,
+    public dialog: MatDialog
   ) {}
   //
   // M E T H O D S
   //
 
-  ngOnInit() {
-    this.reloadSectors();
-    this.reloadJobs();
-    // console.log(this.auth.getCredentials());
-    this.getProfile();
+    ngOnInit() {
+      this.reloadSectors();
+      this.reloadJobs();
+      // console.log(this.auth.getCredentials());
+      this.getProfile();
+      this.getListOfMenteesWithSelectedJobs();
+    }
+
+  openDialog(profile: Profile): void {
+    const dialogRef = this.dialog.open(ModalComponent, {
+      width: '80%',
+      height: '90%',
+      data: {profile}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.animal = result;
+    });
   }
 
+  viewMenteeProfile(profile: Profile) {
+    this.router.navigateByUrl('mentee_profile');
+  }
   // getProfile() {
 
   //   this.profileService.getProfile(id).subscribe(
@@ -118,35 +144,83 @@ export class ProfileComponent implements OnInit {
         this.profileJobs = [];
         console.log(good);
         this.profile = good;
+        this.getListOfMenteesByMentorId(this.profile);
+        console.log(this.profile.user.role);
+        if(this.profile.user.role === 'admin'){
+          localStorage.setItem('admin', this.profile.user.role);
+        }
 
-        if(this.profile.mentee){
+        if (this.profile.mentee) {
           this.profileJobs = this.profile.mentee.jobs;
-          console.log("mentee jobs" + this.profileJobs);
+          console.log('mentee jobs' + this.profileJobs);
 
-        }else{
+         } else {
           this.profileJobs = [];
           this.profileJobs = this.profile.mentor.jobs;
-          console.log("mentor jobs" + this.profileJobs);
+          console.log('mentor jobs' + this.profileJobs);
         }
+
 
       },
       bad => {
-        console.log("OOPS");
+        console.log('OOPS');
       }
     );
   }
   editProfile() {
-    this.router.navigateByUrl("edit");
+    this.router.navigateByUrl('edit');
   }
-  removeJob(job){
+  removeJob(job) {
     this.profileService.removeJob(job).subscribe(
       good => {
         this.getProfile();
         // this.profile = good;
         // this.profileJobs.filt
-        console.log("removed job " + good);
+        console.log('removed job ' + good);
 
       }
-    )
+    );
+  }
+  getListOfMenteesWithSelectedJobs() {
+    this.profileService.getListOfMenteesWithChosenJobs().subscribe(
+      good => {
+        this.menteeJobList = good;
+      },
+      err => {
+        console.log('problem loading menteeJobList ' + err);
+
+      }
+    );
+  }
+
+  getListOfMenteesByMentorId(profile: Profile) {
+    this.profileService.getMenteesByMentorId(profile.id).subscribe(
+      good => {
+        this.mentorMenteesList = good;
+        console.log(good);
+      },
+      bad => {
+        console.log('error adding mentee');
+
+        console.log(bad);
+
+      }
+    );
+  }
+  addMenteeToMentorMenteeList(profile) {
+    console.log("added " +  profile.firstName + " to list");
+    this.profileService.addMenteeToMentorList(profile).subscribe(
+      good => {
+        this.mentorMenteesList = good;
+        console.log(good);
+
+      },
+      bad => {
+        console.log('error adding mentee');
+
+        console.log(bad);
+
+      }
+    );
   }
 }

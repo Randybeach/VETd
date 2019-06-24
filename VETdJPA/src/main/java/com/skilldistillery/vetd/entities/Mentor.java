@@ -2,7 +2,9 @@ package com.skilldistillery.vetd.entities;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,7 +19,6 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -31,10 +32,9 @@ public class Mentor {
 	@CreationTimestamp
 	private Date createdAt;
 	@OneToMany(mappedBy = "mentor")
-	@JsonIgnore
-	private List<MentorMentee> mentorMentees;
+	private Set<MentorMentee> mentorMentees;
 	@ManyToMany(mappedBy = "mentors", cascade = CascadeType.ALL)
-	private List<Job> jobs;
+	private Set<Job> jobs;
 	@OneToOne
 	@JoinColumn(name = "profile_id")
 	@JsonIgnore
@@ -43,7 +43,7 @@ public class Mentor {
 	
 	public void addJob(Job job) {
 		if(this.jobs == null) {
-			this.jobs = new ArrayList<Job>();
+			this.jobs = new HashSet();
 		}
 		this.jobs.add(job);
 		job.getMentors().add(this);
@@ -57,10 +57,26 @@ public class Mentor {
 		job.getMentors().remove(this);
 	}
 	
-	public List<Job> getJobs() {
+	public void addMentorMentees(MentorMentee mm) {
+		if(this.mentorMentees == null) {
+			this.mentorMentees = new HashSet<>();
+		}
+		this.mentorMentees.add(mm);
+			
+	}
+	public void removeMentorMentees(MentorMentee mm) {
+		if(this.mentorMentees == null) {
+			return;
+		}
+		if(this.mentorMentees.contains(mm)) {
+			this.mentorMentees.remove(mm);
+		}
+	}
+	
+	public Set<Job> getJobs() {
 		return jobs;
 	}
-	public void setJobs(List<Job> jobs) {
+	public void setJobs(Set<Job> jobs) {
 		this.jobs = jobs;
 	}
 	public Profile getProfile() {
@@ -97,10 +113,21 @@ public class Mentor {
 		super();
 	}
 	
-	public List<MentorMentee> getMentorMentees() {
+	
+	public Mentor(int id, String story, Date createdAt, Set<MentorMentee> mentorMentees, Set<Job> jobs,
+			Profile profile) {
+		super();
+		this.id = id;
+		this.story = story;
+		this.createdAt = createdAt;
+		this.mentorMentees = mentorMentees;
+		this.jobs = jobs;
+		this.profile = profile;
+	}
+	public Set<MentorMentee> getMentorMentees() {
 		return mentorMentees;
 	}
-	public void setMentorMentees(List<MentorMentee> mentorMentees) {
+	public void setMentorMentees(Set<MentorMentee> mentorMentees) {
 		this.mentorMentees = mentorMentees;
 	}
 	@Override

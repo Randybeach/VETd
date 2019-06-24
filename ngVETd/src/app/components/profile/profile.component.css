@@ -1,0 +1,62 @@
+#profileJobsCard {
+  height: 650px;
+  background-color: oldlace;
+  background: rgba(255, 252, 252, 0.7);
+  color: black;
+}
+
+.card-footer {
+  overflow: scroll;
+}
+
+#scrollCard {
+  overflow: scroll;
+  background-color: oldlace;
+  background: rgba(255, 252, 252, 0.7);
+  color: black;
+}
+
+#delete:hover {
+  color: red;
+}
+
+#add:hover{
+  color: green;
+}
+
+#viewProfile:hover {
+  color: blue;
+}
+#footerHeight {
+  min-height: 80px;
+  max-height: 100px;
+}
+
+img {
+  width: auto;
+  margin:0 auto;
+  max-height: 150px;
+}
+
+#menteeProfile {
+  height: 650px;
+  background-color: oldlace;
+  background: rgba(255, 252, 252, 0.7);
+  color: black;
+}
+
+#story {
+  min-height: 10px;
+  background-color: oldlace;
+  background: rgba(255, 252, 252, 0.7);
+  color: black;
+}
+
+.selectFields {
+  display: flex;
+  flex-direction: column;
+}
+
+.selectFields > * {
+  width: 100%;
+}

@@ -1,10 +1,11 @@
 package com.skilldistillery.vetd.services;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import com.skilldistillery.vetd.entities.Job;
 import com.skilldistillery.vetd.entities.Mentee;
-import com.skilldistillery.vetd.entities.Mentor;
 import com.skilldistillery.vetd.entities.MentorMentee;
 import com.skilldistillery.vetd.entities.Profile;
 import com.skilldistillery.vetd.entities.User;
@@ -23,7 +24,7 @@ public interface UserService {
 
 	public Profile updateMentee(Profile profile);
 
-	public Profile addJobstoMentee(List<Job> jobs, String username);
+	public Profile addJobstoMentee(Collection<Job> jobs, String username);
 
 	public Profile removeJobsFromMentee(Job job, String name);
 
@@ -32,4 +33,8 @@ public interface UserService {
 	public Profile getProfile(String name);
 
 	public List<User> getUsersByUsername(String name);
+
+	public Set<Profile> getMenteesWithJobs(String name);
+
+	public Set<Profile> addMenteeToMentorList(Profile profile, String name);
 }

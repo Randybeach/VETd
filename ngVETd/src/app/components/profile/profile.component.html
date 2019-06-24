@@ -1,52 +1,203 @@
+<div class='container-fluid' id='profileBackground'>
+    <div class='overlay-mf'></div>
 
-  <br><br><br><br>
-  <div *ngIf='profile.mentee != null'>
-    Welcome mentee {{profile.firstName}}, what jobs would you like to receive mentorship on?
-  </div>
-  <div *ngIf='profile.mentee === null'>
-    Welcome mentor {{profile.firstName}}, what jobs are you qualified to mentor on?
-  </div>
-  <div class="dropdown">
+    <!-- BEGIN Mentee Profile -->
+    <div *ngIf='profile.mentee !== null'>
+    <div class='row mt-4'>
+      <div class='col-sm-1 col-md-2 col-lg-2'></div>
+          <div class='col-sm-5 col-md-3 col-lg-3'>
+              <div class='card shadow' id='menteeProfile'>
+                <div id='profilePic'>
+                <img class="card-img-top" [src]="profile.pictureUrl" alt="Mentee Profile Picture" >
+                </div>
+                <h6 class='text-center'>{{ profile.firstName }} {{ profile.lastName }}
+                    <span><i class="material-icons float-right mr-2" ngbTooltip="Edit Profile" id='viewProfile' (click)='editProfile()'>edit</i></span>
+                </h6>
+                <div class='card-body' id='scroll'>
+                    <b>Username:</b> {{ profile.user.username }}<br>
+                    <b>Email:</b> {{ profile.user.email }}<br>
+                    <b>Location:</b> {{ profile.location.city }}, {{ profile.location.state }} {{ profile.location.zipcode }}<br>
+                    <b>Picture:</b> {{ profile.pictureUrl }}<br>
+                    <b>Resume:</b> {{ profile.resumeUrl }}<br>
+                </div>
+                <!-- <div class='card-footer'>
+                    <div *ngFor='let profile of menteeJobList'>{{profile.firstName}} {{profile.lastName}}
+                        <span><i class="material-icons float-right" ngbTooltip="View Profile" id='viewProfile' (click)='openDialog(profile)'>visibility</i></span>
+                  </div>
+                </div> -->
+              </div>
+          </div>
 
-  <!--Menu-->
-  <div class="dropdown-menu dropdown-primary" *ngFor="let sector of sectors">
-    <a class="dropdown-item" href="#">{{ sector.name }}</a>
+      <div class='col-sm-5 col-md-5 col-lg-5'>
+        <div class='card shadow' id='profileJobsCard'>
+            <div class='card-body text-center'>
+              <h5>Welcome, mentee {{profile.firstName}}!</h5>
+              <p>Select jobs for which you would like to receive mentorship.</p>
+              <div class='form-group'>
+                  <div class="dropdown">
+                    <div class="dropdown-menu dropdown-primary" *ngFor="let sector of sectors">
+                      <a class="dropdown-item" href="#">{{ sector.name }}</a>
+                    </div>
+                    <p>Select a sector...</p>
+                    <div class='selectFields'>
+                      <mat-form-field>
+                        <mat-label>Sector</mat-label>
+                        <mat-select [(ngModel)]="currentSector" (ngModelChange) = 'getJobBySector()'>
+                          <mat-option *ngFor="let sector of sectors" name='currentSector' ngDefaultControl value={{sector.id}} id='option'>
+                            {{ sector.name }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class='pt-1' *ngIf='currentSector'>
+                      <div class='selectFields'>
+                      <p>Select a Job for the chosen sector...</p>
+                      <mat-form-field>
+                        <mat-label>Job</mat-label>
+                        <mat-select  *ngIf="currentSector" [(ngModel)]="jobName" (ngModelChange) = 'setJob()'>
+                          <mat-option *ngFor="let job of jobsForSector" [value]="job.name">
+                            {{ job.name }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+                <div>
+                    <span><i class="material-icons float-center" (click)='addJobs()' ngbTooltip="Add Job" id='add'>add</i></span>
+                </div>
+              </div>
+              <div id='scroll' class='card-footer'>
+                  <div class='text-center' *ngIf='profileJobs.length > 0'><u><b>Saved Jobs</b></u></div>
+                <div *ngIf='profileJobs.length > 0' class='text-left'>
+                  <div *ngFor='let job of profileJobs'>{{job.name}} <span><i class="material-icons float-right" (click)='removeJob(job)' ngbTooltip="Delete" id='delete'>delete</i></span>
+                    <hr>
+                  </div>
+                </div>
+            </div>
+      </div>
+    </div>
+      <div class='col-sm-1 col-md-2 col-lg-2'></div>
+    </div>
 
+    <div class='row'>
+      <div class='col-sm-1 col-md-2 col-lg-2'></div>
+        <div class='col-sm-10 col-md-8 col-lg-8 mt-2'>
+          <div class='card shadow' id='story'>
+            <div class='card-body'>
+              <h4>Story</h4>
+              <p>This is the mentee's story</p>
+              </div>
+            </div>
+          </div>
+        <div class='col-sm-1 col-md-2 col-lg-2'></div>
+      </div>
   </div>
+<!-- END Mentee Profile -->
+
+<!-- BEGIN Mentor Profile -->
+<div *ngIf='profile.mentor !== null'>
+<div class='row mt-4'>
+    <div class='col-sm-1 col-md-2 col-lg-2'></div>
+        <div class='col-sm-5 col-md-3 col-lg-3'>
+            <div class='card shadow' id='menteeProfile'>
+              <img class="card-img-top rounded-circle img-responsive img-center mt-2 mb-2" [src]="profile.pictureUrl" alt="Mentor Profile Picture">
+              <h6 class='text-center'>{{ profile.firstName }} {{ profile.lastName }}
+                  <span><i class="material-icons float-right mr-2" ngbTooltip="Edit Profile" id='viewProfile' (click)='editProfile()'>edit</i></span>
+              </h6>
+              <div class='card-body' id='scroll'>
+                <b>Username:</b> {{ profile.user.username }}<br>
+                <b>Email:</b> {{ profile.user.email }}<br>
+                <b>Location:</b> {{ profile.location.city }}, {{ profile.location.state }} {{ profile.location.zipcode }}<br>
+                <b>Picture:</b> {{ profile.pictureUrl }}<br>
+                <b>Resume:</b> {{ profile.resumeUrl }}<br>
+              </div>
+              <div class='card-body text-center'><u><b>Potential Mentees</b></u></div>
+                <div class='card-footer' id='footerHeight'>
+                    <div *ngFor='let profile of menteeJobList'>{{profile.firstName}} {{profile.lastName}}
+                          <span><i class="material-icons float-right" ngbTooltip="View Profile" id='viewProfile' (click)='openDialog(profile)'>visibility</i></span>
+                          <span><i class="material-icons float-right" (click)='addMenteeToMentorMenteeList(profile)' ngbTooltip="Add Mentee" id='add'>add</i></span>
+                  </div>
+              </div>
+              <div class='card-body text-center'><u><b>Current Mentees</b></u></div>
+              <div class='card-footer' id='footerHeight'>
+                  <div *ngFor='let profile of mentorMenteesList'>{{profile.firstName}} {{profile.lastName}}
+                  <span><i class="material-icons float-right" ngbTooltip="View Profile" id='viewProfile' (click)='openDialog(profile)'>visibility</i></span>
+                  </div>
+              </div>
+            </div>
+        </div>
+
+    <div class='col-sm-5 col-md-5 col-lg-5'>
+      <div class='card shadow' id='profileJobsCard'>
+          <div class='card-body text-center'>
+            <h5>Welcome, mentor {{profile.firstName}}!</h5>
+            <p>Select jobs on which you feel qualified to provide mentorship.</p>
+            <div class='form-group'>
+              <div class="dropdown">
+                <div class="dropdown-menu dropdown-primary" *ngFor="let sector of sectors">
+                  <a class="dropdown-item" href="#">{{ sector.name }}</a>
+                </div>
+                <p>Select a sector...</p>
+                <div class='selectFields'>
+                  <mat-form-field>
+                    <mat-label>Sector</mat-label>
+                    <mat-select [(ngModel)]="currentSector" (ngModelChange) = 'getJobBySector()'>
+                      <mat-option *ngFor="let sector of sectors" name='currentSector' ngDefaultControl value={{sector.id}} id='option'>
+                        {{ sector.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class='pt-1' *ngIf='currentSector'>
+                  <div class='selectFields'>
+                  <p>Select a Job for the chosen sector...</p>
+                  <mat-form-field>
+                    <mat-label>Job</mat-label>
+                    <mat-select  *ngIf="currentSector" [(ngModel)]="jobName" (ngModelChange) = 'setJob()'>
+                      <mat-option *ngFor="let job of jobsForSector" [value]="job.name">
+                        {{ job.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              </div>
+            </div>
+            <div>
+                <span><i class="material-icons float-center" (click)='addJobs()' ngbTooltip="Add Job" id='add'>add</i></span>
+            </div>
+          </div>
+          <div id='scroll' class='card-footer text-center'>
+              <u><b>Saved Jobs</b></u>
+          </div>
+          <div id='scroll' class='card-footer'>
+            <div *ngIf='profileJobs.length > 0' class='text-left'>
+              <div *ngFor='let job of profileJobs'>{{job.name}} <span><i class="material-icons float-right" (click)='removeJob(job)' ngbTooltip="Delete" id='delete'>delete</i></span>
+                <hr>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
+    <div class='col-sm-1 col-md-2 col-lg-2'></div>
 </div>
-<select  [(ngModel)]="currentSector" (ngModelChange) = 'getJobBySector()'>
-  <option *ngFor="let sector of sectors"  name='currentSector' ngDefaultControl value={{sector.id}}>{{sector.name}}</option>
-</select><br>
 
-<select *ngIf="currentSector" [(ngModel)]="jobName" (ngModelChange) = 'setJob()'>
-  <option *ngFor="let job of jobsForSector" value={{job.name}} name='job1' ngDefaultControl>{{job.name}}</option>
-</select>
-<br>
-<button
-mdbBtn
-color="info"
-block="true"
-class="my-4 text-center btn btn-warning"
-type="submit"
-(click)="addJobs()"
->
-Submit
-</button>
-<button
-mdbBtn
-color="info"
-block="true"
-class="my-4 text-center btn btn-warning"
-type="submit"
-(click)="editProfile()"
->
-Edit Profile
-</button>
-<br>
-
-<h2>jobs you have saved</h2>
-
-<div *ngFor='let job of profileJobs'>{{job.name}} <span (click)='removeJob(job)'> Delete X</span>
+  <div class='row'>
+    <div class='col-sm-1 col-md-2 col-lg-2'></div>
+      <div class='col-sm-10 col-md-8 col-lg-8 mt-2'>
+        <div class='card shadow' id='story'>
+          <div class='card-body'>
+            <h4>Story</h4>
+            <p>This is the mentor's story</p>
+            </div>
+          </div>
+        </div>
+      <div class='col-sm-1 col-md-2 col-lg-2'></div>
+    </div>
+</div>
+    <!-- END Mentee Profile -->
 
 </div>
 
