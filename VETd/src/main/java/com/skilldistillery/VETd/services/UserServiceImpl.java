@@ -66,9 +66,6 @@ public class UserServiceImpl implements UserService {
 		mentors = mmRepo.findByMentorId(id);
 		for (MentorMentee mm : mentors) {
 			mentorProfiles.add(pRepo.findByMentorId(mm.getMentor().getId()));
-			System.out.println("***************** Adding mentor profiles");
-			System.out.println("***************** Adding mentor profiles");
-			System.out.println("***************** Adding mentor profiles");
 		}
 		return mentorProfiles;
 	}
@@ -81,10 +78,6 @@ public class UserServiceImpl implements UserService {
 		mentees = mmRepo.findByMentorId(id);
 		for (MentorMentee mm : mentees) {
 			menteeProfiles.add(pRepo.findByMenteeId(mm.getMentee().getId()));
-			System.out.println("***************** Adding mentee profiles");
-			System.out.println("***************** Adding mentee profiles" + mm.getMentee().getId());
-			System.out.println("***************** Adding mentee profiles");
-			System.out.println("***************** Adding mentee profiles");
 		}
 		return menteeProfiles;
 	}
@@ -240,22 +233,33 @@ public class UserServiceImpl implements UserService {
 	public Set<Profile> addMenteeToMentorList(Profile profile, String name) {
 		Profile menteeProfile = pRepo.findProfileById(profile.getId());
 		User mentorUser = uRepo.findUserByUsername(name);
-		MentorMentee mm = new MentorMentee();
-		mm.setMentee(menteeProfile.getMentee());
-		mm.setMentor(mentorUser.getProfile().getMentor());
-		mentorUser.getProfile().getMentor().addMentorMentees(mm);
-		menteeProfile.getMentee().addMentorMentees(mm);
-		
-		mmRepo.saveAndFlush(mm);
-		pRepo.saveAndFlush(menteeProfile);
-		pRepo.saveAndFlush(mentorUser.getProfile());
-		
-		Set<Profile> profiles = new HashSet<Profile>();
-		for (MentorMentee men : mentorUser.getProfile().getMentor().getMentorMentees()) {
-			Profile p = pRepo.findByMenteeId(men.getId());
-			profiles.add(p);
+		Set<MentorMentee> menteeList = mentorUser.getProfile().getMentor().getMentorMentees();
+		if (menteeList.size() > 0) {
+			
+			for (MentorMentee mm : menteeList) {
+				if (menteeProfile.getMentee().getId() == mm.getMentee().getId()) {
+					System.out.println("************ mentee already assigned to mentor");
+					return null;
+				}
+			} 
+
+		} else {
+				
+			MentorMentee mm = new MentorMentee();
+			mm.setMentee(menteeProfile.getMentee());
+			mm.setMentor(mentorUser.getProfile().getMentor());
+			mentorUser.getProfile().getMentor().addMentorMentees(mm);
+			menteeProfile.getMentee().addMentorMentees(mm);
+			
+			mmRepo.saveAndFlush(mm);
+			pRepo.saveAndFlush(menteeProfile);
+			pRepo.saveAndFlush(mentorUser.getProfile());
+			System.out.println(getMenteesByMentorId(mentorUser.getProfile().getMentor().getId()));
+			return getMenteesByMentorId(mentorUser.getProfile().getMentor().getId());
+				
 		}
-		return profiles;
+		return null;
+		
 	}
 
 	@Override
