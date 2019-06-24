@@ -1,32 +1,37 @@
-<!-- <div class="container-fluid background">
-    <div class="row ">
-      <div class='col-sm-1 col-md-3 col-lg-4'></div>
-      <div class="card col-sm-10 col-md-6 col-lg-4">
-        <div class="card-header text-center">
-          <h1 class="h1 mb-4">Review</h1>
-        </div>
-        <div class="card-body">
-  <form #reviewForm="ngForm">
-    <input class="form-control mb-4 text-center"
-      type="text"
-      name="content"
-      placeholder="Username"
-      [(ngModel)]="review.content"
-    />
-    <input class="form-control mb-4 text-center"
-      type="number"
-      name="rating"
-      placeholder="Rating(1-5)"
-      [(ngModel)]="review.rating"
-    />
-    <input class='btn btn-warning btn-sm'
-      type="submit"
-      value="Login"
-      (click)="submitReview(reviewForm)"
-    />
-  </form>
+<div class="container-fluid background">
+  <div class="row ">
+    <div class="col-sm-1 col-md-3 col-lg-4"></div>
+    <div class="card col-sm-10 col-md-6 col-lg-4">
+      <div class="card-header text-center">
+        <h1 class="h1 mb-4">Review</h1>
+      </div>
+      <div class="card-body">
+        <form #reviewForm="ngForm">
+          <mat-form-field class="selectFields text-center">
+            <textarea
+              matInput
+              name="content"
+              [(ngModel)]="review.content"
+            ></textarea
+            ><mat-placeholder class="placeholder"
+              >Summary</mat-placeholder
+            >
+          </mat-form-field>
+          <br />
+          <mat-form-field class="selectFields text-center">
+            <input
+              matInput
+              name="rating"
+              [(ngModel)]="review.rating"
+            /><mat-placeholder class="placeholder">Rating(1-5)</mat-placeholder>
+          </mat-form-field>
+          <br />
+          <input class="btn btn-warning " type="submit" value="Submit" />
+        </form>
+      </div>
+    </div>
+    <div class="col-sm-1 col-md-3 col-lg-4"></div>
   </div>
-  </div>
-  <div class='col-sm-1 col-md-3 col-lg-4'></div>
 </div>
-</div> -->
+
+<!-- (click)="submitReview(reviewForm)" -->
