@@ -1,4 +1,3 @@
-import { IconsModule } from 'angular-bootstrap-md';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -7,8 +6,6 @@ import { Sector } from '../models/sector';
 import { AuthService } from './auth.service';
 import { Job } from '../models/job';
 import { Profile } from '../models/profile';
-import { Mentor } from '../models/mentor';
-import { Mentee } from '../models/mentee';
 import { User } from '../models/user';
 
 @Injectable({
@@ -147,5 +144,14 @@ export class ProfileService {
       'Content-Type': 'application/json'
     };
     return this.http.put<Profile[]>(this.url + '/mentormentee', profile, {headers: myHeaders});
+  }
+
+  removeMenteeFromMentorList(profile){
+    const myHeaders = {
+      'X-Requested-With': 'XMLHttpRequest',
+      Authorization: 'Basic ' + this.auth.getCredentials(),
+      'Content-Type': 'application/json'
+    };
+
   }
 }

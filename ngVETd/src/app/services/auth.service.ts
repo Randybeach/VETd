@@ -61,6 +61,7 @@ export class AuthService {
     console.log(sessionStorage.getItem('username'));
 
     localStorage.removeItem('credentials');
+    localStorage.removeItem('admin');
   }
 
   checkLogin() {
