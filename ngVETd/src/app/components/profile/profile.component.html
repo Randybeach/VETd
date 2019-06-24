@@ -124,8 +124,8 @@
               <div class='card-body text-center'><u><b>Current Mentees</b></u></div>
               <div *ngIf='mentorMenteesList.length > 0'>
               <div class='card-footer' id='footerHeight'>
-                  <div *ngFor='let profile of mentorMenteesList'>{{profile.firstName}} {{profile.lastName}}
-                  <span><i class="material-icons float-right" ngbTooltip="View Profile" id='viewProfile' (click)='openDialog(profile)'>visibility</i></span>
+                  <div *ngFor='let pro of mentorMenteesList'>{{profile.firstName}} {{profile.lastName}}
+                  <span><i class="material-icons float-right" ngbTooltip="View Profile" id='viewProfile' (click)='openDialog2(pro, profile)'>visibility</i></span>
                   </div>
               </div>
             </div>

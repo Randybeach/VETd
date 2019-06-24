@@ -56,7 +56,7 @@ export class ProfileComponent implements OnInit {
     }
 
   openDialog(profile: Profile): void {
-    console.log(profile);
+    console.log(' dia 1 ' + profile);
 
     const dialogRef = this.dialog.open(ModalComponent, {
       width: '80%',
@@ -67,6 +67,19 @@ export class ProfileComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.getListOfMenteesByMentorId(this.profile);
       this.getListOfMenteesWithSelectedJobs();
+    });
+  }
+  openDialog2(profile: Profile, myProfile: Profile): void {
+    console.log('dia 2 ' + profile);
+
+    const dialogRef = this.dialog.open(ModalComponent, {
+      width: '80%',
+      height: '90%',
+      data: {profile, myProfile}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getListOfMenteesByMentorId(this.profile);
     });
   }
 
