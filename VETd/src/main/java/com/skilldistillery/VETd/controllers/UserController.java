@@ -43,17 +43,17 @@ public class UserController {
 	
 	//Get list of Mentors for mentee by Id
 	@GetMapping("mentee/{id}/mentor")
-	public Set<Profile> getMentorsByMenteeId(@PathVariable int id){
-		return svc.getMentorsByMenteeId(id);
+	public Set<Profile> getMentorsByMenteeId(Principal principal){
+		 
+		svc.getMentorsByMenteeUsername(principal.getName());
+		return null;
 	}
 	
 	//Get list of Mentees for mentor by Id
 	@GetMapping("mentor/{id}/mentee")
-	public Set<Profile> getMenteesByMentorId(@PathVariable int id){
-		System.out.println("************************** Mentor Id: " + id + " *********************************************");
-		System.out.println("************************** Mentor Id: " + id + " *********************************************");
-		System.out.println("************************** Mentor Id: " + id + " *********************************************");
-		return svc.getMenteesByMentorId(id);
+	public Set<Profile> getMenteesByMentorId(Principal principal){
+		System.out.println("************************** Mentees by mentor username *********************************************");
+		return svc.getMenteesByMentorUsername(principal.getName());
 	}
 	
 	@GetMapping("search/{name}")
@@ -96,16 +96,16 @@ public class UserController {
 	
 	//Add a mentee to a mentors list
 	@PutMapping("mentormentee")
-	public Set<Profile> addMenteeToMentorshipList(@RequestBody Profile profile, Principal principal){
+	public void addMenteeToMentorshipList(@RequestBody Profile profile, Principal principal){
 		System.out.println("trying to add mentor mentee");
-		return svc.addMenteeToMentorList(profile, principal.getName());
+		svc.addMenteeToMentorList(profile, principal.getName());
 	}
 	//Remove a mentee from mentors list
 	@PutMapping("mentormentee/remove")
-	public Set<Profile> removeMenteeFromMentorshipList(@RequestBody Profile profile, Principal principal){
+	public void removeMenteeFromMentorshipList(@RequestBody Profile profile, Principal principal){
 		System.out.println(profile);
 		System.err.println(principal);
-		return svc.removeMenteeFromMentorList(profile, principal.getName());
+		svc.removeMenteeFromMentorList(profile, principal.getName());
 	}
 	
 }
