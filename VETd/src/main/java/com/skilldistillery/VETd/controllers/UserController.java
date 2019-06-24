@@ -45,8 +45,7 @@ public class UserController {
 	@GetMapping("mentee/{id}/mentor")
 	public Set<Profile> getMentorsByMenteeId(Principal principal){
 		 
-		svc.getMentorsByMenteeUsername(principal.getName());
-		return null;
+		return svc.getMentorsByMenteeUsername(principal.getName());
 	}
 	
 	//Get list of Mentees for mentor by Id
