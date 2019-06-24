@@ -118,6 +118,14 @@ export class ProfileService {
     };
     return this.http.get<Profile[]>(this.url + '/mentee/job', {headers: myHeaders});
   }
+  getMenteesByMentorId(id: number) {
+    const myHeaders = {
+      'X-Requested-With': 'XMLHttpRequest',
+      Authorization: 'Basic ' + this.auth.getCredentials(),
+      'Content-Type': 'application/json'
+    };
+    return this.http.get<Profile[]>(this.url + '/mentor/' + id + '/mentee', {headers: myHeaders});
+  }
 
   addMenteeToMentorList(profile) {
     const myHeaders = {

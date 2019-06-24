@@ -50,6 +50,9 @@ public class UserController {
 	//Get list of Mentees for mentor by Id
 	@GetMapping("mentor/{id}/mentee")
 	public List<MentorMentee> getMenteesByMentorId(@PathVariable int id){
+		System.out.println("************************** Mentor Id: " + id + " *********************************************");
+		System.out.println("************************** Mentor Id: " + id + " *********************************************");
+		System.out.println("************************** Mentor Id: " + id + " *********************************************");
 		return svc.getMenteesByMentorId(id);
 	}
 	

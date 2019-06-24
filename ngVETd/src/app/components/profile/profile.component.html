@@ -2,7 +2,7 @@
     <div class='overlay-mf'></div>
 
     <!-- BEGIN Mentee Profile -->
-    <div *ngIf='profile.mentte != null'>
+    <div *ngIf='profile.mentee !== null'>
     <div class='row mt-4'>
       <div class='col-sm-1 col-md-2 col-lg-2'></div>
           <div class='col-sm-5 col-md-3 col-lg-3'>
@@ -97,12 +97,12 @@
 <!-- END Mentee Profile -->
 
 <!-- BEGIN Mentor Profile -->
-<div *ngIf='profile.mentor != null'>
+<div *ngIf='profile.mentor !== null'>
 <div class='row mt-4'>
     <div class='col-sm-1 col-md-2 col-lg-2'></div>
         <div class='col-sm-5 col-md-3 col-lg-3'>
             <div class='card shadow' id='menteeProfile'>
-              <img class="card-img-top" [src]="profile.pictureUrl" alt="Mentor Profile Picture" style='height: 200px'>
+              <img class="card-img-top rounded-circle img-responsive img-center mt-2 mb-2" [src]="profile.pictureUrl" alt="Mentor Profile Picture">
               <h6 class='text-center'>{{ profile.firstName }} {{ profile.lastName }}
                   <span><i class="material-icons float-right mr-2" ngbTooltip="Edit Profile" id='viewProfile' (click)='editProfile()'>edit</i></span>
               </h6>
@@ -122,7 +122,7 @@
               </div>
               <div class='card-body text-center'><u><b>Current Mentees</b></u></div>
               <div class='card-footer' id='footerHeight'>
-                  <div *ngFor='let profile of profile.mentor.mentorMentees'>{{profile.firstName}} {{profile.lastName}}
+                  <div *ngFor='let profile of mentorMenteesList'>{{profile.firstName}} {{profile.lastName}}
                   <span><i class="material-icons float-right" ngbTooltip="View Profile" id='viewProfile' (click)='openDialog(profile)'>visibility</i></span>
                   </div>
               </div>
@@ -169,8 +169,10 @@
                 <span><i class="material-icons float-center" (click)='addJobs()' ngbTooltip="Add Job" id='add'>add</i></span>
             </div>
           </div>
+          <div id='scroll' class='card-footer text-center'>
+              <u><b>Saved Jobs</b></u>
+          </div>
           <div id='scroll' class='card-footer'>
-              <div class='text-center' *ngIf='profileJobs.length > 0'><u><b>Saved Jobs</b></u></div>
             <div *ngIf='profileJobs.length > 0' class='text-left'>
               <div *ngFor='let job of profileJobs'>{{job.name}} <span><i class="material-icons float-right" (click)='removeJob(job)' ngbTooltip="Delete" id='delete'>delete</i></span>
                 <hr>
