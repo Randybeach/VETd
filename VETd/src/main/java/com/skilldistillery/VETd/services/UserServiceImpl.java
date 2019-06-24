@@ -60,10 +60,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Set<Profile> getMentorsByMenteeId(int id) {
-		System.out.println("********************" + mmRepo.findByMenteeId(id));
+		System.out.println("********************" + pRepo.findByMenteeId(id));
 		Set<MentorMentee> mentors = new HashSet<MentorMentee>();
 		Set<Profile> mentorProfiles = new HashSet<Profile>();
-		mentors = mmRepo.findByMentorId(id);
+		mentors = mmRepo.findByMenteeId(pRepo.findByMenteeId(id).getMentee().getId());
 		for (MentorMentee mm : mentors) {
 			mentorProfiles.add(pRepo.findByMentorId(mm.getMentor().getId()));
 		}
@@ -72,10 +72,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Set<Profile> getMenteesByMentorId(int id) {
-		System.out.println("***************************" + mmRepo.findByMentorId(id));
+		System.out.println("***************************" + pRepo.findById(id));
 		Set<MentorMentee> mentees = new HashSet<MentorMentee>();
 		Set<Profile> menteeProfiles = new HashSet<Profile>();
-		mentees = mmRepo.findByMentorId(id);
+		System.out.println("***************************** mentor Id through pRepo" + pRepo.findProfileById(id).getMentor().getId());
+		mentees = mmRepo.findByMentorId(pRepo.findProfileById(id).getMentor().getId());
 		for (MentorMentee mm : mentees) {
 			menteeProfiles.add(pRepo.findByMenteeId(mm.getMentee().getId()));
 		}
@@ -267,19 +268,20 @@ public class UserServiceImpl implements UserService {
 	public Set<Profile> removeMenteeFromMentorList(Profile profile, String name) {
 		Profile menteeProfile = pRepo.findProfileById(profile.getId());
 		User mentorUser = uRepo.findUserByUsername(name);
-		
+		System.out.println(" *****************************" + mentorUser);
 		mentorUser.getProfile().getMentor().removeMentorMentees(mmRepo.findByMenteeIdAndMentorId(menteeProfile.getMentee().getId(), mentorUser.getProfile().getMentor().getId()));
 		menteeProfile.getMentee().removeMentorMentees(mmRepo.findByMenteeIdAndMentorId(menteeProfile.getMentee().getId(), mentorUser.getProfile().getMentor().getId()));
 		pRepo.saveAndFlush(mentorUser.getProfile());
 		pRepo.saveAndFlush(menteeProfile);
+		System.out.println("*********** removed mentee ********* from mentor list");
+//		Set<Profile> profiles = new HashSet<Profile>();
+//		for (MentorMentee men : mentorUser.getProfile().getMentor().getMentorMentees()) {
+//			Profile p = pRepo.findByMenteeId(men.getId());
+//			profiles.add(p);
+//		}
 		mmRepo.delete(mmRepo.findByMenteeIdAndMentorId(menteeProfile.getMentee().getId(), mentorUser.getProfile().getMentor().getId()));
-		
-		Set<Profile> profiles = new HashSet<Profile>();
-		for (MentorMentee men : mentorUser.getProfile().getMentor().getMentorMentees()) {
-			Profile p = pRepo.findByMenteeId(men.getId());
-			profiles.add(p);
-		}
-		return profiles;
+		return getMenteesByMentorId(mentorUser.getProfile().getId());
+
 	}
 
 }

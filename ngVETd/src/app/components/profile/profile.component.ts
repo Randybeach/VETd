@@ -63,7 +63,7 @@ export class ProfileComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.animal = result;
+      this.getListOfMenteesByMentorId(this.profile);
     });
   }
 
@@ -139,7 +139,7 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
-  getProfile() {
+  getProfile(): Profile {
     this.profileService.getProfile().subscribe(
       good => {
         this.profileJobs = [];
@@ -164,13 +164,14 @@ export class ProfileComponent implements OnInit {
           this.getListOfMenteesByMentorId(this.profile);
           console.log('mentor jobs' + this.profileJobs);
         }
-
+        return this.profile;
 
       },
       bad => {
         console.log('OOPS');
       }
     );
+    return null;
   }
 
   editProfile() {
@@ -214,7 +215,9 @@ export class ProfileComponent implements OnInit {
   }
 
   getListOfMenteesByMentorId(profile: Profile) {
+    console.log(profile.id + "mentors id");
     this.profileService.getMenteesByMentorId(profile.id).subscribe(
+
       good => {
         this.mentorMenteesList = good;
         console.log(good);

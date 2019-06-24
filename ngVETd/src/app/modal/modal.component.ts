@@ -1,8 +1,10 @@
+import { ProfileComponent } from './../components/profile/profile.component';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { DialogData } from '../DialogData';
 import { Profile } from '../models/profile';
 import { ProfileService } from '../services/profile.service';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -16,7 +18,9 @@ export class ModalComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData, private profileService: ProfileService) {}
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private profileService: ProfileService
+    ) {}
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -34,6 +38,8 @@ export class ModalComponent implements OnInit {
       good => {
         console.log(good);
         console.log('closing window');
+        // this.profile = this.profileComp.getProfile();
+        // this.profileComp.getListOfMenteesByMentorId(this.profile);
         this.onNoClick();
       }
     )
