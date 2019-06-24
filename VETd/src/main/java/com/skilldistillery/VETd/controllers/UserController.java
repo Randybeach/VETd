@@ -95,9 +95,9 @@ public class UserController {
 	
 	//Add a mentee to a mentors list
 	@PutMapping("mentormentee")
-	public void addMenteeToMentorshipList(@RequestBody Profile profile, Principal principal){
+	public Set<Profile> addMenteeToMentorshipList(@RequestBody Profile profile, Principal principal){
 		System.out.println("trying to add mentor mentee");
-		svc.addMenteeToMentorList(profile, principal.getName());
+		return svc.addMenteeToMentorList(profile, principal.getName());
 	}
 	//Remove a mentee from mentors list
 	@PutMapping("mentormentee/remove")

@@ -72,18 +72,6 @@ export class ProfileComponent implements OnInit {
   viewMenteeProfile(profile: Profile) {
     this.router.navigateByUrl('mentee_profile');
   }
-  // getProfile() {
-
-  //   this.profileService.getProfile(id).subscribe(
-  //     good => {
-  //       console.log(good);
-
-  //     },
-  //     err => {
-  //       console.log(err);
-  //     }
-  //   );
-  // }
 
   reloadSectors() {
     this.profileService.getSectors().subscribe(
@@ -164,6 +152,7 @@ export class ProfileComponent implements OnInit {
           this.profileJobs = [];
           this.profileJobs = this.profile.mentor.jobs;
           this.getListOfMenteesByMentorId(this.profile);
+          // this.removeCurrentMenteesFromPotential();
           console.log('mentor jobs' + this.profileJobs);
         }
         return this.profile;
@@ -183,8 +172,6 @@ export class ProfileComponent implements OnInit {
     this.profileService.removeJob(job).subscribe(
       good => {
         this.getProfile();
-        // this.profile = good;
-        // this.profileJobs.filt
         console.log('removed job ' + good);
 
       }
@@ -200,6 +187,7 @@ export class ProfileComponent implements OnInit {
 
       }
     );
+
   }
 
   getListOfMentorsByMenteeId(profile) {
@@ -234,11 +222,33 @@ export class ProfileComponent implements OnInit {
     );
   }
 
+  // removeCurrentMenteesFromPotential() {
+  //   console.log('in remove mentees from potential list');
+
+  //   let potentialMentees = this.menteeJobList;
+  //   if (this.mentorMenteesList.length > 0) {
+  //     let availableMentees = [];
+
+  //     for (let i = 0; i < potentialMentees.length; i++) {
+  //       if (potentialMentees[i].id === this.mentorMenteesList[i]) {
+  //         console.log('matched a potential mentee in the mentorMenteesList' + potentialMentees[i]);
+
+  //         continue;
+  //       } else {
+  //         availableMentees[i] = potentialMentees[i];
+  //         console.log('added mentee to potential list' + 'potentialMentees[i]');
+  //       }
+  //       this.menteeJobList = potentialMentees;
+  //     }
+  //   }
+  // }
+
   addMenteeToMentorMenteeList(profile) {
     console.log("added " +  profile.firstName + " to list");
     this.profileService.addMenteeToMentorList(profile).subscribe(
       good => {
         this.mentorMenteesList = good;
+        this.getListOfMenteesWithSelectedJobs();
         console.log(good);
 
       },

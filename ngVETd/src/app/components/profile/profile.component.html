@@ -115,7 +115,7 @@
                 <b>Resume:</b> {{ profile.resumeUrl }}<br>
               </div>
               <div class='card-body text-center'><u><b>Potential Mentees</b></u></div>
-                <div class='card-footer' id='footerHeight'>
+                <div class='card-footer' id='footerHeight' *ngIf='menteeJobList !== null'>
                     <div *ngFor='let profile of menteeJobList'>{{profile.firstName}} {{profile.lastName}}
                           <span><i class="material-icons float-right" ngbTooltip="View Profile" id='viewProfile' (click)='openDialog(profile)'>visibility</i></span>
                           <span><i class="material-icons float-right" (click)='addMenteeToMentorMenteeList(profile)' ngbTooltip="Add Mentee" id='add'>add</i></span>
