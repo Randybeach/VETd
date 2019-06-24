@@ -33,6 +33,13 @@ div {
   margin-bottom: 0px !important;
 }
 
+li {
+  color: white;
+  list-style: none;
+  font-size: 30px;
+  align-content: center;
+}
+
 hr {
   color: black;
   border: 1px solid white;

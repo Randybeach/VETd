@@ -1,4 +1,3 @@
-import { IconsModule } from 'angular-bootstrap-md';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -7,8 +6,6 @@ import { Sector } from '../models/sector';
 import { AuthService } from './auth.service';
 import { Job } from '../models/job';
 import { Profile } from '../models/profile';
-import { Mentor } from '../models/mentor';
-import { Mentee } from '../models/mentee';
 import { User } from '../models/user';
 
 @Injectable({
@@ -118,12 +115,25 @@ export class ProfileService {
     };
     return this.http.get<Profile[]>(this.url + '/mentee/job', {headers: myHeaders});
   }
-  getMenteesByMentorId(id: number) {
+  getMentorsByMenteeId(id): Observable<Profile[]> {
     const myHeaders = {
       'X-Requested-With': 'XMLHttpRequest',
       Authorization: 'Basic ' + this.auth.getCredentials(),
       'Content-Type': 'application/json'
     };
+    console.log('In profile service for mentor list by mentee id');
+    console.log(this.http.get<Profile[]>(this.url + '/mentee/' + id + '/mentor', {headers: myHeaders}));
+    return this.http.get<Profile[]>(this.url + '/mentee/' + id + '/mentor', {headers: myHeaders});
+  }
+
+  getMenteesByMentorId(id): Observable<Profile[]> {
+    const myHeaders = {
+      'X-Requested-With': 'XMLHttpRequest',
+      Authorization: 'Basic ' + this.auth.getCredentials(),
+      'Content-Type': 'application/json'
+    };
+    console.log('In profile service for mentee list by mentor id');
+    console.log(this.http.get<Profile[]>(this.url + '/mentor/' + id + '/mentee', {headers: myHeaders}));
     return this.http.get<Profile[]>(this.url + '/mentor/' + id + '/mentee', {headers: myHeaders});
   }
 
@@ -134,5 +144,14 @@ export class ProfileService {
       'Content-Type': 'application/json'
     };
     return this.http.put<Profile[]>(this.url + '/mentormentee', profile, {headers: myHeaders});
+  }
+
+  removeMenteeFromMentorList(profile){
+    const myHeaders = {
+      'X-Requested-With': 'XMLHttpRequest',
+      Authorization: 'Basic ' + this.auth.getCredentials(),
+      'Content-Type': 'application/json'
+    };
+
   }
 }
