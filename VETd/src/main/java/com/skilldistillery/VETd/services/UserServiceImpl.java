@@ -66,8 +66,11 @@ public class UserServiceImpl implements UserService {
 		Set<Profile> mentorProfiles = new HashSet<Profile>();
 		mentors = mmRepo.findByMenteeId(u.getProfile().getMentee().getId());
 		for (MentorMentee mm : mentors) {
+			Profile p = pRepo.findByMentorId(mm.getMentor().getId());
+			System.out.println(p.getUser());
 			mentorProfiles.add(pRepo.findByMentorId(mm.getMentor().getId()));
 		}
+		System.out.println("&&& " + mentorProfiles);
 		return mentorProfiles;
 	}
 

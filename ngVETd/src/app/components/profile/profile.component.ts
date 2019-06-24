@@ -56,6 +56,8 @@ export class ProfileComponent implements OnInit {
     }
 
   openDialog(profile: Profile): void {
+    console.log(profile);
+
     const dialogRef = this.dialog.open(ModalComponent, {
       width: '80%',
       height: '90%',
@@ -190,6 +192,8 @@ export class ProfileComponent implements OnInit {
   }
 
   getListOfMentorsByMenteeId(profile) {
+    console.log(profile.id);
+
     this.profileService.getMentorsByMenteeId(profile.id).subscribe(
       good => {
         this.menteeMentorsList = good;

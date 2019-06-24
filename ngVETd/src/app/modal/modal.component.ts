@@ -15,6 +15,7 @@ import { AuthService } from '../services/auth.service';
 export class ModalComponent implements OnInit {
 
   profile = null;
+  mentees = [];
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
@@ -27,7 +28,12 @@ export class ModalComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.profile = this.data.profile;
+    console.log(this.profile);
+    this.addMenteesOrMentors();
+
     console.log("in init");
+
 
   }
 
@@ -60,6 +66,13 @@ export class ModalComponent implements OnInit {
 
       }
     );
+  }
+  addMenteesOrMentors(){
+    if(this.profile.mentor != null){
+      this.mentees = this.profile.mentor.mentorMentees;
+      console.log(this.mentees);
+
+    }
   }
 
 }

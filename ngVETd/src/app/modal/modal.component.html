@@ -18,24 +18,24 @@
       <div class='row'>
       <div class='col-sm-5 col-md-5 col-lg-5 mt-4'>
             <div class='card shadow' id='menteeProfile'>
-              <img class="card-img-top" [src]="data.profile.pictureUrl" alt="Mentee Profile Picture" style='min-height: 200px'>
+              <img class="card-img-top" [src]="profile.pictureUrl" alt="Mentee Profile Picture" style='min-height: 200px'>
               <div class='card-header text-center'>
-                <b>{{ data.profile.firstName }} {{ data.profile.lastName }}</b>
+                <b>{{ profile.firstName }} {{ profile.lastName }}</b>
               </div>
               <div class='card-body'>
-                  <b>Username:</b> {{ data.profile.user.username }}<br>
-                  <b>Email:</b> {{ data.profile.user.email }}<br>
-                  <b>Location:</b> {{ data.profile.location.city }}, {{ data.profile.location.state }} {{ data.profile.location.zipcode }}<br>
-                  <b>Picture:</b> {{ data.profile.pictureUrl }}<br>
-                  <b>Resume:</b> {{ data.profile.resumeUrl }}<br>
+                  <b>Username:</b> {{profile.user.username }}<br>
+                  <b>Email:</b> {{profile.user.email }}<br>
+                  <b>Location:</b> {{profile.location.city }}, {{profile.location.state }} {{profile.location.zipcode }}<br>
+                  <b>Picture:</b> {{profile.pictureUrl }}<br>
+                  <b>Resume:</b> {{profile.resumeUrl }}<br>
               </div>
               <div class='card-footer'>
                 <div class='text-center'><u><b>Job Interests</b></u></div>
             </div>
-              <div class='card-footer' id='menteeJobs'>
-                <div class='pt-1' *ngIf='data.profile.mentee.jobs.length > 0'>
+              <div class='card-footer' id='menteeJobs' *ngIf='data.profile.mentee != null'>
+                <div class='pt-1' *ngIf='profile.mentee.jobs.length > 0'>
                   <ul>
-                  <div *ngFor="let job of data.profile.mentee.jobs" ngDefaultControl>
+                  <div *ngFor="let job of profile.mentee.jobs" ngDefaultControl>
                     <li>{{job.name}}</li>
                   </div>
                 </ul>
@@ -53,9 +53,9 @@
               </div>
         </div>
         <div class='text-center'>
-        <button class='btn btn-success mr-1 mt-1' (click)='addMenteeToMentorMenteeList(data.profile)'>Accept</button>
+        <button class='btn btn-success mr-1 mt-1' (click)='addMenteeToMentorMenteeList(profile)'>Accept</button>
         <button class='btn btn-danger mt-1'>Decline</button>
-        <button class='btn btn-primary mr-1 mt-1' (click)='removeMentee(data.profile)'>Release</button>
+        <button class='btn btn-primary mr-1 mt-1' (click)='removeMentee(profile)'>Release</button>
         <button class='btn btn-success mt-1'>Chat</button>
         <div mat-dialog-actions>
             <button mat-button (click)="onNoClick()">No Thanks</button>
@@ -63,10 +63,13 @@
         <div class='mt-2'>
           <div class='card shadow' id='menteeInteractions'>
             <div class='card-header text-center'>
-              <b>Interactions</b>
+              <b>Relationship start</b>
             </div>
             <div class='card-body text-left'>
-              <p>Date/Time </p>
+              <div *ngFor='let ment of mentees'>
+                <p>{{ment.createdAt | date:'shortDate'}} </p>
+
+              </div>
             </div>
           </div>
         </div>
@@ -102,7 +105,7 @@
         <div class='card shadow' id='menteeStory'>
           <div class='card-body'>
             <h4>Story</h4>
-            <p>This is the mentee's story</p>
+            <p>{{profile.summary}}</p>
           </div>
         </div>
       </div>
