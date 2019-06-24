@@ -59,13 +59,34 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<MentorMentee> getMentorsByMenteeId(int id) {
-		return mmRepo.findByMenteeId(id);
+	public Set<Profile> getMentorsByMenteeId(int id) {
+		System.out.println("********************" + mmRepo.findByMenteeId(id));
+		Set<MentorMentee> mentors = new HashSet<MentorMentee>();
+		Set<Profile> mentorProfiles = new HashSet<Profile>();
+		mentors = mmRepo.findByMentorId(id);
+		for (MentorMentee mm : mentors) {
+			mentorProfiles.add(pRepo.findByMentorId(mm.getMentor().getId()));
+			System.out.println("***************** Adding mentor profiles");
+			System.out.println("***************** Adding mentor profiles");
+			System.out.println("***************** Adding mentor profiles");
+		}
+		return mentorProfiles;
 	}
 
 	@Override
-	public List<MentorMentee> getMenteesByMentorId(int id) {
-		return mmRepo.findByMentorId(id);
+	public Set<Profile> getMenteesByMentorId(int id) {
+		System.out.println("***************************" + mmRepo.findByMentorId(id));
+		Set<MentorMentee> mentees = new HashSet<MentorMentee>();
+		Set<Profile> menteeProfiles = new HashSet<Profile>();
+		mentees = mmRepo.findByMentorId(id);
+		for (MentorMentee mm : mentees) {
+			menteeProfiles.add(pRepo.findByMenteeId(mm.getMentee().getId()));
+			System.out.println("***************** Adding mentee profiles");
+			System.out.println("***************** Adding mentee profiles" + mm.getMentee().getId());
+			System.out.println("***************** Adding mentee profiles");
+			System.out.println("***************** Adding mentee profiles");
+		}
+		return menteeProfiles;
 	}
 
 	@Override
