@@ -3,6 +3,7 @@ import { Mentor } from 'src/app/models/mentor';
 import { Location } from './location';
 import { User } from './user';
 import { MentorMentee } from './mentor-mentee';
+import { Review } from './review';
 
 export class Profile {
   id: number;
@@ -17,6 +18,7 @@ export class Profile {
   resumeUrl: string;
   user: User;
   mentormentee: MentorMentee [];
+  reviews: Review [];
 
   constructor(
     id?: number,
@@ -29,7 +31,7 @@ export class Profile {
     mentee?: Mentee,
     pictureUrl?: string,
     resumeUrl?: string,
-    user?: User
+    user?: User,
   ) {
     this.id = id;
     this.firstName = firstName;

@@ -66,6 +66,7 @@ export class ProfileComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.getListOfMenteesByMentorId(this.profile);
+      this.getListOfMenteesWithSelectedJobs();
     });
   }
   openDialog2(profile: Profile, myProfile: Profile): void {
@@ -234,27 +235,6 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
-
-  // removeCurrentMenteesFromPotential() {
-  //   console.log('in remove mentees from potential list');
-
-  //   let potentialMentees = this.menteeJobList;
-  //   if (this.mentorMenteesList.length > 0) {
-  //     let availableMentees = [];
-
-  //     for (let i = 0; i < potentialMentees.length; i++) {
-  //       if (potentialMentees[i].id === this.mentorMenteesList[i]) {
-  //         console.log('matched a potential mentee in the mentorMenteesList' + potentialMentees[i]);
-
-  //         continue;
-  //       } else {
-  //         availableMentees[i] = potentialMentees[i];
-  //         console.log('added mentee to potential list' + 'potentialMentees[i]');
-  //       }
-  //       this.menteeJobList = potentialMentees;
-  //     }
-  //   }
-  // }
 
   addMenteeToMentorMenteeList(profile) {
     console.log("added " +  profile.firstName + " to list");
