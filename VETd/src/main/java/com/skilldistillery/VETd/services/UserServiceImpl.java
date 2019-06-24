@@ -1,5 +1,6 @@
 package com.skilldistillery.vetd.services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -91,44 +92,42 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Profile updateMentee(Profile profile) {
 		System.out.println(profile);
-		
-		if(profile.getMentee() != null) {
+
+		if (profile.getMentee() != null) {
 			profile.getMentee().setProfile(profile);
 			pRepo.saveAndFlush(profile);
 			menteeRepo.saveAndFlush(profile.getMentee());
-			if(profile.getMentee().getJobs() != null) {
+			if (profile.getMentee().getJobs() != null) {
 				Collection<Job> jobs = profile.getMentee().getJobs();
 				for (Job job : jobs) {
 					profile = this.removeJobsFromMentee(job, profile.getUser().getUsername());
 				}
 				profile = this.addJobstoMentee(jobs, profile.getUser().getUsername());
 			}
-			
-			
-		}else {
+
+		} else {
 			profile.getMentor().setProfile(profile);
 			pRepo.saveAndFlush(profile);
 			mentorRepo.saveAndFlush(profile.getMentor());
-			if(profile.getMentor().getJobs() != null) {
+			if (profile.getMentor().getJobs() != null) {
 				Collection<Job> jobs = profile.getMentor().getJobs();
-				for(Job job : jobs) {
+				for (Job job : jobs) {
 					profile = this.removeJobsFromMentee(job, profile.getUser().getUsername());
 				}
-				profile = this.addJobstoMentee(jobs, profile.getUser().getUsername()); 
+				profile = this.addJobstoMentee(jobs, profile.getUser().getUsername());
 			}
-			
+
 		}
 		lRepo.saveAndFlush(profile.getLocation());
 		uRepo.saveAndFlush(profile.getUser());
 		System.out.println("* " + profile);
-		
+
 		return profile;
 	}
 
-
 	@Override
 	public Profile addJobstoMentee(Collection<Job> jobs, String username) {
-		
+
 		User user = uRepo.findUserByUsername(username);
 		Profile p = user.getProfile();
 
@@ -138,7 +137,7 @@ public class UserServiceImpl implements UserService {
 				if (job == null) {
 					continue;
 				}
-				System.out.println("This jobs mentors"+job.getMentors());
+				System.out.println("This jobs mentors" + job.getMentors());
 				Job j = jRepo.findById(job.getId()).get();
 				System.out.println("adding " + j + " to " + mentee);
 				mentee.addJob(j);
@@ -215,10 +214,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Set<Profile> getMenteesWithJobs(String name) {
 		User user = uRepo.findUserByUsername(name);
-		Collection<Job> jobs =  user.getProfile().getMentor().getJobs();
+		Collection<Job> jobs = user.getProfile().getMentor().getJobs();
 		System.out.println(jobs);
-		Set<Profile> profiles = new HashSet();
-		
+		Set<Profile> profiles = new HashSet<>();
+
 		for (Job job : jobs) {
 			System.out.println(job);
 			try {
@@ -232,7 +231,26 @@ public class UserServiceImpl implements UserService {
 				continue;
 			}
 		}
-		return profiles;
+
+		Set<Profile> mentorsMenteesList = new HashSet<>();
+		
+		mentorsMenteesList = getMenteesByMentorUsername(name);
+		System.out.println("Mentor's Mentee's List *********************** " + mentorsMenteesList);
+		Set<Integer> profileIds = new HashSet<>(mentorsMenteesList.size());
+		Set<Profile> availableMentees = new HashSet<>();
+		System.out.println("**************** All matches on Sector ***************** " + profiles);
+		for (Profile profile : mentorsMenteesList) {
+			profileIds.add(profile.getId());
+		}
+
+		for (Profile profile : profiles) {
+			if (!profileIds.contains(profile.getId())) {
+				availableMentees.add(profile);
+				System.out.println("************** Available Mentees **********************" + availableMentees);
+			}
+		}
+
+		return availableMentees;
 	}
 
 	@Override
@@ -241,27 +259,27 @@ public class UserServiceImpl implements UserService {
 		User mentorUser = uRepo.findUserByUsername(name);
 		Set<MentorMentee> menteeList = mentorUser.getProfile().getMentor().getMentorMentees();
 		if (menteeList.size() > 0) {
-			
+
 			for (MentorMentee mm : menteeList) {
 				if (menteeProfile.getMentee().getId() == mm.getMentee().getId()) {
 					System.out.println("************ mentee already assigned to mentor");
 				}
-			} 
+			}
 
 		} else {
-				
+
 			MentorMentee mm = new MentorMentee();
 			mm.setMentee(menteeProfile.getMentee());
 			mm.setMentor(mentorUser.getProfile().getMentor());
 			mentorUser.getProfile().getMentor().addMentorMentees(mm);
 			menteeProfile.getMentee().addMentorMentees(mm);
-			
+
 			mmRepo.saveAndFlush(mm);
 			pRepo.saveAndFlush(menteeProfile);
 			System.out.println("*************************** " + mentorUser.getProfile());
 			pRepo.saveAndFlush(mentorUser.getProfile());
 			System.out.println(getMenteesByMentorUsername(mentorUser.getUsername()));
-				
+
 		}
 		System.out.println(getMenteesByMentorUsername(mentorUser.getUsername()));
 		return getMenteesByMentorUsername(mentorUser.getUsername());
@@ -273,8 +291,10 @@ public class UserServiceImpl implements UserService {
 		Profile menteeProfile = pRepo.findProfileById(profile.getId());
 		User mentorUser = uRepo.findUserByUsername(name);
 		System.out.println(" ***************************** mentorUser in remove mentee from mentor list" + mentorUser);
-		mentorUser.getProfile().getMentor().removeMentorMentees(mmRepo.findByMenteeIdAndMentorId(menteeProfile.getMentee().getId(), mentorUser.getProfile().getMentor().getId()));
-		menteeProfile.getMentee().removeMentorMentees(mmRepo.findByMenteeIdAndMentorId(menteeProfile.getMentee().getId(), mentorUser.getProfile().getMentor().getId()));
+		mentorUser.getProfile().getMentor().removeMentorMentees(mmRepo.findByMenteeIdAndMentorId(
+				menteeProfile.getMentee().getId(), mentorUser.getProfile().getMentor().getId()));
+		menteeProfile.getMentee().removeMentorMentees(mmRepo.findByMenteeIdAndMentorId(
+				menteeProfile.getMentee().getId(), mentorUser.getProfile().getMentor().getId()));
 		pRepo.saveAndFlush(mentorUser.getProfile());
 		pRepo.saveAndFlush(menteeProfile);
 		System.out.println("*********** removed mentee ********* from mentor list");
@@ -283,7 +303,8 @@ public class UserServiceImpl implements UserService {
 //			Profile p = pRepo.findByMenteeId(men.getId());
 //			profiles.add(p);
 //		}
-		mmRepo.delete(mmRepo.findByMenteeIdAndMentorId(menteeProfile.getMentee().getId(), mentorUser.getProfile().getMentor().getId()));
+		mmRepo.delete(mmRepo.findByMenteeIdAndMentorId(menteeProfile.getMentee().getId(),
+				mentorUser.getProfile().getMentor().getId()));
 		getMenteesByMentorUsername(name);
 	}
 
