@@ -18,9 +18,9 @@ public interface UserService {
 
 	public Mentee getMenteeById(int id);
 
-	public Set<Profile> getMentorsByMenteeId(int id);
+	public Set<Profile> getMentorsByMenteeUsername(String name);
 
-	public Set<Profile> getMenteesByMentorId(int id);
+	public Set<Profile> getMenteesByMentorUsername(String name);
 
 	public Profile updateMentee(Profile profile);
 
@@ -38,5 +38,5 @@ public interface UserService {
 
 	public Set<Profile> addMenteeToMentorList(Profile profile, String name);
 
-	public Set<Profile> removeMenteeFromMentorList(Profile profile, String name);
+	public void removeMenteeFromMentorList(Profile profile, String name);
 }

@@ -215,7 +215,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getListOfMenteesByMentorId(profile: Profile) {
-    console.log(profile.id + "mentors id");
+    console.log(profile.id + " mentors id");
     this.profileService.getMenteesByMentorId(profile.id).subscribe(
 
       good => {
