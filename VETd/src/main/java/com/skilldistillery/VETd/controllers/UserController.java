@@ -43,13 +43,13 @@ public class UserController {
 	
 	//Get list of Mentors for mentee by Id
 	@GetMapping("mentee/{id}/mentor")
-	public List<MentorMentee> getMentorsByMenteeId(@PathVariable int id){
+	public Set<MentorMentee> getMentorsByMenteeId(@PathVariable int id){
 		return svc.getMentorsByMenteeId(id);
 	}
 	
 	//Get list of Mentees for mentor by Id
 	@GetMapping("mentor/{id}/mentee")
-	public List<MentorMentee> getMenteesByMentorId(@PathVariable int id){
+	public Set<MentorMentee> getMenteesByMentorId(@PathVariable int id){
 		System.out.println("************************** Mentor Id: " + id + " *********************************************");
 		System.out.println("************************** Mentor Id: " + id + " *********************************************");
 		System.out.println("************************** Mentor Id: " + id + " *********************************************");
@@ -94,10 +94,16 @@ public class UserController {
 		return svc.getMenteesWithJobs(p.getName());
 	}
 	
+	//Add a mentee to a mentors list
 	@PutMapping("mentormentee")
 	public Set<Profile> addMenteeToMentorshipList(@RequestBody Profile profile, Principal principal){
 		System.out.println("trying to add mentor mentee");
 		return svc.addMenteeToMentorList(profile, principal.getName());
+	}
+	//Remove a mentee from mentors list
+	@PutMapping("mentormentee/remove")
+	public Set<Profile> removeMenteeFromMentorshipList(@RequestBody Profile profile, Principal principal){
+		return svc.removeMenteeFromMentorList(profile, principal.getName());
 	}
 	
 }

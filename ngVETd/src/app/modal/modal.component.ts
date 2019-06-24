@@ -20,4 +20,9 @@ export class ModalComponent implements OnInit {
   ngOnInit() {
   }
 
+  removeMentee(){
+    console.log('trying to remove');
+
+  }
+
 }
