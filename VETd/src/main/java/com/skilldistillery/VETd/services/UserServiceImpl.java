@@ -279,7 +279,9 @@ public class UserServiceImpl implements UserService {
 //			Profile p = pRepo.findByMenteeId(men.getId());
 //			profiles.add(p);
 //		}
+		mmRepo.delete(mmRepo.findByMenteeIdAndMentorId(menteeProfile.getMentee().getId(), mentorUser.getProfile().getMentor().getId()));
 		return getMenteesByMentorId(mentorUser.getProfile().getId());
+
 	}
 
 }
