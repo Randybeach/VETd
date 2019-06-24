@@ -18,9 +18,9 @@ public interface UserService {
 
 	public Mentee getMenteeById(int id);
 
-	public List<MentorMentee> getMentorsByMenteeId(int id);
+	public Set<Profile> getMentorsByMenteeId(int id);
 
-	public List<MentorMentee> getMenteesByMentorId(int id);
+	public Set<Profile> getMenteesByMentorId(int id);
 
 	public Profile updateMentee(Profile profile);
 
