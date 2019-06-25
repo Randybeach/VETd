@@ -40,10 +40,9 @@ public interface UserService {
 	public Set<Profile> addMenteeToMentorList(Profile profile, String name);
 
 	public void removeMenteeFromMentorList(Profile profile, String name);
-	
+
 	public Set<Review> getReviewsByProfileId(String name);
-	
-	public Review addReview(Profile profile);
 
 	public Object addMessage(Message message, String name);
+
 }
