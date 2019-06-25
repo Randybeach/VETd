@@ -48,12 +48,10 @@
           </h6>
         </div>
         <div class="card-body">
-          <b>Username:</b> {{ profile.user.username }}<br />
           <b>Email:</b> {{ profile.user.email }}<br />
           <b>Location:</b> {{ profile.location.city }},
           {{ profile.location.state }} {{ profile.location.zipcode }}<br />
-          <b>Picture:</b> {{ profile.pictureUrl }}<br />
-          <b>Resume:</b> {{ profile.resumeUrl }}<br />
+          <a href='{{ profile.resumeUrl }}'><b>Resume</b></a> <br />
         </div>
         <div class="card-footer">
           <div class="text-center">
@@ -79,32 +77,26 @@
     </div>
     <div class="col-sm-3 col-md-2 col-lg-3 mt-4">
       <div class="card shadow" id="menteeStatus">
-        <div class="card-header text-center">
-          <b>Mentoring Status</b>
+        <div class="card-header text-center" *ngIf='myProfile'>
+          <b>Currently Mentoring</b>
         </div>
         <div class="card-body">
           <p>Sector / Job Matches</p>
         </div>
       </div>
       <div class="text-center">
-        <button
-          class="btn btn-success mr-1 mt-1"
-          (click)="addMenteeToMentorMenteeList(profile)"
-        >
-          Accept
-        </button>
-        <button class="btn btn-danger mt-1">Decline</button>
-        <button
-          class="btn btn-primary mr-1 mt-1"
-          (click)="removeMentee(profile)"
-        >
-          Release
-        </button>
-        <button class="btn btn-success mt-1">Chat</button>
+        <div class="text-center" *ngIf='! myProfile'>
+          <button class="btn btn-sm btn-success mr-1 mt-1" (click)="addMenteeToMentorMenteeList(profile)">Accept</button>
+          <button class="btn btn-sm btn-danger mt-1">Decline</button>
+        </div>
+        <div *ngIf='myProfile'>
+          <button class="btn btn-sm btn-primary mr-1 mt-1" (click)="removeMentee(profile)">Release</button>
+          <button class="btn btn-sm btn-success mt-1">Chat</button>
+       </div>
         <div class="mt-2">
-          <div class="card shadow" id="menteeInteractions">
+          <div class="card shadow" id="menteeInteractions" *ngIf='myProfile'>
             <div class="card-header text-center">
-              <b>Relationship start</b>
+              <b>History</b>
             </div>
             <div class="card-body text-left">
               <div *ngFor="let ment of mentees">
@@ -118,9 +110,9 @@
     <div class="col-sm-3 col-md-3 col-lg-3 mt-4">
       <div class="card shadow" id="menteeChat">
         <div class="card-header text-center">
-          <h4>Chat window</h4>
+          <h6><b>Chat window</b></h6>
         </div>
-        <div class="card-body" id="scroll">
+        <div class="card-body" id="scroll" style='font-size: .7rem'>
           <p>
             Appears only when chat initiated.<br />
             Role - First Last Date/Timestamp: Message…<br />
@@ -141,26 +133,19 @@
       </div>
       <div class="card shadow">
         <div class="card-header text-center">
-          <h1 class="h4 mb-4">Review</h1>
+          <h6><b>Review</b></h6>
         </div>
         <div class="card-body" id="reviewCard">
           <form #reviewForm="ngForm">
             <mat-form-field class="selectFields text-center">
-              <textarea
-                matInput
-                name="content"
-                [(ngModel)]="review.content"
-              ></textarea
-              ><mat-placeholder class="placeholder">Summary</mat-placeholder>
+              <textarea matInput name="content" [(ngModel)]="review.content">
+              </textarea>
+              <mat-placeholder class="placeholder">Summary</mat-placeholder>
             </mat-form-field>
-            <br />
+            <br>
             <mat-form-field class="selectFields text-center">
-              <input
-                matInput
-                name="rating"
-                [(ngModel)]="review.rating"
-              /><mat-placeholder class="placeholder"
-                >Rating(1-5)</mat-placeholder
+              <input matInput name="rating" [(ngModel)]="review.rating" />
+              <mat-placeholder class="placeholder" >Rating(1-5)</mat-placeholder
               >
             </mat-form-field>
             <br />
