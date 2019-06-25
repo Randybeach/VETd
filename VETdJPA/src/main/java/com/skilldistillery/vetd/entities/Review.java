@@ -17,34 +17,35 @@ public class Review {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String content;
-	
+
 	private int rating;
-	
+
 	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "profile_id")
 	private Profile profile;
-	
-	@Column(name = "reviewed_id")
-	private int reviewedId;
 
-	public Review(int id, String content, int rating, Profile profile, int reviewedId) {
+	@ManyToOne
+	@JoinColumn(name = "reviewed_id")
+	private User reviewer;
+
+	public Review(int id, String content, int rating, Profile profile, User reviewer) {
 		super();
 		this.id = id;
 		this.content = content;
 		this.rating = rating;
 		this.profile = profile;
-		this.reviewedId = reviewedId;
+		this.reviewer = reviewer;
 	}
 
-	public int getReviewedId() {
-		return reviewedId;
+	public User getReviewer() {
+		return reviewer;
 	}
 
-	public void setReviewedId(int reviewedId) {
-		this.reviewedId = reviewedId;
+	public void setReviewer(User reviewer) {
+		this.reviewer = reviewer;
 	}
 
 	public Review(int id, String content, int rating) {

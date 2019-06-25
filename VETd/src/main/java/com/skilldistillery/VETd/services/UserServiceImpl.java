@@ -3,6 +3,7 @@ package com.skilldistillery.vetd.services;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -335,5 +336,16 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+	@Override
+	public Review postNewReview(Review review, String name, int pid) {
+		User user = uRepo.findUserByUsername(name);
+		Optional<Profile> profileOpt = pRepo.findById(pid);
+		if (profileOpt.isPresent()) {
+			Profile profile = profileOpt.get();
+			review.setProfile(profile);
+		}
+		review.setReviewer(user);
+		return rRepo.saveAndFlush(review);
+	}
 
 }

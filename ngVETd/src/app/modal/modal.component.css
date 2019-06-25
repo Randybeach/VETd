@@ -11,7 +11,7 @@
 }
 
 #menteeProfile {
-  height: 550px;
+  height: 450px;
   background-color: oldlace;
   background: rgba(255, 252, 252, 0.7);
   color: black;
@@ -36,7 +36,7 @@
 }
 
 #profileCardStyling {
-  height: 650px;
+  height: 550px;
   background-color: oldlace;
   background: rgba(255, 252, 252, 0.7);
   color: black;
@@ -46,6 +46,7 @@ img {
   width: auto;
   margin:0 auto;
   max-height: 150px;
+  max-width: 150px;
 }
 
 #reviewProfile:hover {
@@ -58,7 +59,13 @@ img {
 }
 
 #reviewCard {
+  height: 200px;
+  padding: 0px;
+}
+
+#reviewCardBody {
   color: black !important;
+  overflow: scroll;
 }
 
 mat-placeholder {
@@ -67,4 +74,30 @@ mat-placeholder {
 
 #add:hover{
   color: green;
+}
+
+mat-slider {
+  width: 150px;
+}
+
+mat-slider:hover {
+  background-color: lightgray;
+}
+
+::ng-deep .mat-accent .mat-slider-thumb {
+  background-color: black;
+}
+::ng-deep .mat-accent .mat-slider-thumb-label {
+  background-color: black;
+}
+::ng-deep .mat-accent .mat-slider-track-fill {
+  background-color: black;
+}
+
+::ng-deep .mat-label .textarea .mat-form-field {
+  background-color: black;
+}
+
+textarea {
+  min-height: 40px;
 }
