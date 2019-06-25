@@ -80,6 +80,7 @@ public class UserController {
 	@PutMapping("remove/jobs")
 	public Profile removeJobsFromMentee(@RequestBody Job job, Principal p) {
 		Profile po = svc.removeJobsFromMentee(job, p.getName());
+		
 		System.out.println(po.getMentee());
 		return po;
 	}
@@ -120,7 +121,7 @@ public class UserController {
 	// Add a message to mentor_mentee
 	@PostMapping("message/{recipientId}")
 	public void addMessage(@RequestBody Message message, Principal principal, @PathVariable int recipientId) {
-		
+		System.out.println("$$$ " + message);
 		 svc.addMessage(message, principal.getName());
 	}
 

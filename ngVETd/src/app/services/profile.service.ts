@@ -192,4 +192,14 @@ export class ProfileService {
       }
     );
   }
+
+  submitMessage(message, id){
+    const myHeaders = {
+      'X-Requested-With': 'XMLHttpRequest',
+      Authorization: 'Basic ' + this.auth.getCredentials(),
+      'Content-Type': 'application/json'
+    };
+
+    return this.http.post<Profile[]>(this.url + '/message/' + id, message, {headers: myHeaders});
+  }
 }

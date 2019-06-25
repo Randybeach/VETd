@@ -35,7 +35,7 @@
           alt="Profile Picture"
         />
         <div class="card-header text-center">
-          <h6>
+          <h6 class='pt-2'>
             {{ profile.firstName }} {{ profile.lastName }}
             <span
               ><i
@@ -78,25 +78,43 @@
     <div class="col-sm-3 col-md-2 col-lg-3 mt-4">
       <div class="card shadow" id="menteeStatus">
         <div class="card-header text-center" *ngIf='myProfile'>
-          <b>Currently Mentoring</b>
+          <h6 class='pt-2'><b>Currently Mentoring</b></h6>
         </div>
         <div class="card-body">
           <p>Sector / Job Matches</p>
         </div>
       </div>
       <div class="text-center">
+
         <div class="text-center" *ngIf='! myProfile'>
           <button class="btn btn-sm btn-success mr-1 mt-1" (click)="addMenteeToMentorMenteeList(profile)">Accept</button>
           <button class="btn btn-sm btn-danger mt-1">Decline</button>
         </div>
         <div *ngIf='myProfile'>
           <button class="btn btn-sm btn-primary mr-1 mt-1" (click)="removeMentee(profile)">Release</button>
-          <button class="btn btn-sm btn-success mt-1">Chat</button>
+          <button class="btn btn-sm btn-success mt-1" (click)='chat()'>Chat</button>
        </div>
+       <div class="card-body" *ngIf='showChat'>
+          <form #messageForm="ngForm">
+            <mat-form-field class="selectFields text-center">
+              <textarea
+                matInput
+                name="content"
+                [(ngModel)]="message.text"
+              ></textarea
+              ><mat-placeholder class="placeholder"
+                >Message</mat-placeholder
+              >
+            </mat-form-field>
+
+            <br />
+            <input class="btn btn-warning " type="submit" value="Submit" (click)='submitMessage()' />
+          </form>
+        </div>
         <div class="mt-2">
           <div class="card shadow" id="menteeInteractions" *ngIf='myProfile'>
             <div class="card-header text-center">
-              <b>History</b>
+              <h6 class='pt-2'><b>History</b></h6>
             </div>
             <div class="card-body text-left">
               <div *ngFor="let ment of mentees">
@@ -110,9 +128,9 @@
     <div class="col-sm-3 col-md-3 col-lg-3 mt-4">
       <div class="card shadow" id="menteeChat">
         <div class="card-header text-center">
-          <h6><b>Chat window</b></h6>
+          <h6 class='pt-2'><b>Chat</b></h6>
         </div>
-        <div class="card-body" id="scroll" style='font-size: .7rem'>
+        <div class="card-body py-2" id="scroll" style='font-size: .7rem'>
           <p>
             Appears only when chat initiated.<br />
             Role - First Last Date/Timestamp: Message…<br />
@@ -131,16 +149,21 @@
           </p>
         </div>
       </div>
-      <div class="card shadow">
+      <div class="card shadow mt-2" id='reviewCard'>
         <div class="card-header text-center">
-          <h6><b>Review</b></h6>
+          <h6 class='pl-2 pt-2'><b>Review</b>
+            <span><i class="material-icons float-right" id="add" ngbTooltip="Leave a review" >add</i></span>
+          </h6>
         </div>
-        <div class="card-body" id="reviewCard">
+        <div class="card-body text-center" id="reviewCardBody">
           <form #reviewForm="ngForm">
+            <span><mat-slider thumbLabel tickInterval="1" min="1" max="5"></mat-slider>
+            </span>
             <mat-form-field class="selectFields text-center">
-              <textarea matInput name="content" [(ngModel)]="review.content">
+                <mat-label>Summary</mat-label>
+              <textarea matInput name="content" [(ngModel)]="review.content" id='textarea'>
               </textarea>
-              <mat-placeholder class="placeholder">Summary</mat-placeholder>
+              <!-- <mat-placeholder class="placeholder">Summary</mat-placeholder> -->
             </mat-form-field>
             <br>
             <mat-form-field class="selectFields text-center">
@@ -169,7 +192,7 @@
       <div class="card shadow" id="menteeStory">
         <div class="card-body">
           <h4>Story</h4>
-          <p>{{ profile.summary }}</p>
+          <p>{{ profile.mentee.story }}</p>
         </div>
       </div>
     </div>
