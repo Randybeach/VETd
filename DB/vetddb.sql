@@ -249,6 +249,28 @@ ENGINE = InnoDB;
 
 CREATE INDEX `fk_table2_Mentor1_idx` ON `mentor_job` (`mentor_id` ASC);
 
+
+-- -----------------------------------------------------
+-- Table `message`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `message` ;
+
+CREATE TABLE IF NOT EXISTS `message` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `mentor_mentee_id` INT NOT NULL,
+  `text` TEXT NULL,
+  `profile_id` INT NULL,
+  `created_at` DATETIME NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_table1_mentor_mentee1`
+    FOREIGN KEY (`mentor_mentee_id`)
+    REFERENCES `mentor_mentee` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_table1_mentor_mentee1_idx` ON `message` (`mentor_mentee_id` ASC);
+
 SET SQL_MODE = '';
 GRANT USAGE ON *.* TO vet@localhost;
  DROP USER vet@localhost;
@@ -281,7 +303,6 @@ START TRANSACTION;
 USE `vetddb`;
 INSERT INTO `profile` (`id`, `first_name`, `last_name`, `summary`, `created_at`, `location_id`, `picture_url`, `resume_url`, `user_id`) VALUES (1, 'bob', 'bobby', 'this is so great', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `profile` (`id`, `first_name`, `last_name`, `summary`, `created_at`, `location_id`, `picture_url`, `resume_url`, `user_id`) VALUES (2, 'sue', 'susie', 'Help me', NULL, NULL, NULL, NULL, 2);
-INSERT INTO `profile` (`id`, `first_name`, `last_name`, `summary`, `created_at`, `location_id`, `picture_url`, `resume_url`, `user_id`) VALUES (3, 'admin', NULL, NULL, NULL, NULL, NULL, NULL, 3);
 
 COMMIT;
 

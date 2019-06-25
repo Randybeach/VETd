@@ -35,6 +35,8 @@ export class ModalComponent implements OnInit {
     this.myProfile = this.data.myprofile;
     console.log(this.profile);
     this.addMenteesOrMentors();
+    console.log(this.myProfile);
+
 
     console.log("in init");
   }
@@ -75,6 +77,7 @@ export class ModalComponent implements OnInit {
       console.log(this.mentees);
     } else {
       this.jobs = this.profile.mentee.jobs;
+      this.mentees = this.myProfile.mentor.mentorMentees;
     }
   }
 }

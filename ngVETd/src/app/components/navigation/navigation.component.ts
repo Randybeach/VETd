@@ -1,6 +1,7 @@
 import { ProfileService } from "src/app/services/profile.service";
 import { AuthService } from "./../../services/auth.service";
 import { Component, OnInit } from "@angular/core";
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-navigation",
@@ -10,11 +11,15 @@ import { Component, OnInit } from "@angular/core";
 export class NavigationComponent implements OnInit {
   constructor(
     private auth: AuthService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private router: Router
   ) {}
   //
   // F E I L D S
   //
+  getCurrentRoute(): string {
+    return this.router.url;
+  }
 
   ngOnInit() {
   }

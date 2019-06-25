@@ -6,6 +6,10 @@ import java.util.Set;
 
 import com.skilldistillery.vetd.entities.Job;
 import com.skilldistillery.vetd.entities.Mentee;
+<<<<<<< HEAD
+=======
+import com.skilldistillery.vetd.entities.Message;
+>>>>>>> eadddf7d5bb01b8c4dbc7421cffec8e83912860f
 import com.skilldistillery.vetd.entities.Profile;
 import com.skilldistillery.vetd.entities.Review;
 import com.skilldistillery.vetd.entities.User;
@@ -41,5 +45,12 @@ public interface UserService {
 	public void removeMenteeFromMentorList(Profile profile, String name);
 	
 	public Set<Review> getReviewsByProfileId(String name);
+<<<<<<< HEAD
 
+=======
+	
+	public Review addReview(Profile profile);
+
+	public Object addMessage(Message message, String name);
+>>>>>>> eadddf7d5bb01b8c4dbc7421cffec8e83912860f
 }
