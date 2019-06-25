@@ -1,12 +1,12 @@
-import { ProfileComponent } from './../components/profile/profile.component';
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { DialogData } from '../DialogData';
-import { Profile } from '../models/profile';
-import { ProfileService } from '../services/profile.service';
-import { AuthService } from '../services/auth.service';
-import { Review } from '../models/review';
-
+import { User } from 'src/app/models/user';
+import { ProfileComponent } from "./../components/profile/profile.component";
+import { Component, OnInit, Inject } from "@angular/core";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+import { DialogData } from "../DialogData";
+import { Profile } from "../models/profile";
+import { ProfileService } from "../services/profile.service";
+import { AuthService } from "../services/auth.service";
+import { Review } from "../models/review";
 
 @Component({
   selector: "app-modal",
@@ -33,8 +33,7 @@ export class ModalComponent implements OnInit {
   ngOnInit() {
     this.profile = this.data.profile;
     console.log(this.data.myProfile);
-    console.log('mentors profile myProfile');
-
+    console.log("mentors profile myProfile");
 
     this.myProfile = this.data.myProfile;
 
@@ -82,5 +81,25 @@ export class ModalComponent implements OnInit {
       this.jobs = this.profile.mentee.jobs;
       this.mentees = this.myProfile.mentor.mentorMentees;
     }
+  }
+
+  addReview(form) {
+    this.review = form.value;
+    this.review.profileId = this.profile.user.id;
+    this.review.reviewer = this.myProfile.user;
+    console.log("review", this.review);
+    console.log("pid", this.review.profileId);
+    console.log("reviewer", this.review.reviewer);
+
+    this.profileService.addReview(this.review, this.review.profileId).subscribe(
+      good => {
+        console.log(good);
+      },
+      bad => {
+        console.log("error adding review");
+
+        console.log(bad);
+      }
+    );
   }
 }

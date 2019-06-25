@@ -1,21 +1,23 @@
+import { User } from './user';
+
 export class Review {
   id: number;
   content: string;
   rating: number;
   profileId: number;
-  reviewedId: number;
+  reviewer: User;
 
   constructor(
     id?: number,
     content?: string,
     rating?: number,
     profileId?: number,
-    reviewedId?: number,
+    reviewer?: User,
   ) {
     this.id = id;
     this.content = content;
     this.rating = rating;
     this.profileId = profileId;
-    this.reviewedId = reviewedId;
+    this.reviewer = reviewer;
   }
 }
