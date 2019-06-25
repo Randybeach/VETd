@@ -1,3 +1,4 @@
+import { MentorMentee } from './../models/mentor-mentee';
 import { ProfileComponent } from './../components/profile/profile.component';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
@@ -24,6 +25,7 @@ export class ModalComponent implements OnInit {
   message = new Message();
   menteeId = 0;
   mentorId = 0;
+  mentorMenteeId = 0;
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
@@ -87,19 +89,33 @@ export class ModalComponent implements OnInit {
       this.jobs = this.profile.mentor.jobs;
       this.mentorId = this.profile.mentor.id;
       this.menteeId = this.myProfile.mentee.id;
-      console.log(this.menteeId);
-      console.log(this.mentorId);
+
 
       console.log(this.mentees);
+
+      for(let i = 0; i < this.mentees.length; i++) {
+        console.log('mentee'+this.mentees[1].mentee.id);
+        console.log('mentees'+this.mentees[1].mentees.id);
+
+      }
     } else {
       this.mentorId = this.myProfile.mentor.id;
       this.menteeId = this.profile.mentee.id;
-      console.log(this.mentorId);
-      console.log(this.menteeId);
+
 
       this.jobs = this.profile.mentee.jobs;
       this.mentees = this.myProfile.mentor.mentorMentees;
 
+      console.log(this.mentees.length);
+
+      for(let i = 0; i < this.mentees.length; i++) {
+          console.log('mentee'+this.mentees[i].mentee.id);
+          console.log('mentees'+this.mentees[i].mentees.id);
+          if(this.mentees[i].mentee.id === this.myProfile.mentee.id){
+
+          }
+
+      }
     }
   }
   chat(){
