@@ -32,7 +32,7 @@ export class ModalComponent implements OnInit {
 
   ngOnInit() {
     this.profile = this.data.profile;
-    this.myProfile = this.data.myProfile;
+    this.myProfile = this.myProfile;
     console.log(this.profile);
     this.addMenteesOrMentors();
     console.log(this.myProfile);
