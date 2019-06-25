@@ -264,14 +264,28 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Set<Profile> addMenteeToMentorList(Profile profile, String name) {
+		System.out.println("@@ new Mentees profile " + profile );
 		Profile menteeProfile = pRepo.findProfileById(profile.getId());
 		User mentorUser = uRepo.findUserByUsername(name);
 		Set<MentorMentee> menteeList = mentorUser.getProfile().getMentor().getMentorMentees();
 		if (menteeList.size() > 0) {
-
+			
 			for (MentorMentee mm : menteeList) {
 				if (menteeProfile.getMentee().getId() == mm.getMentee().getId()) {
 					System.out.println("************ mentee already assigned to mentor");
+				}else {
+					MentorMentee m = new MentorMentee();
+					m.setMentee(menteeProfile.getMentee());
+					m.setMentor(mentorUser.getProfile().getMentor());
+					
+					mentorUser.getProfile().getMentor().addMentorMentees(m);
+					menteeProfile.getMentee().addMentorMentees(m);
+
+					mmRepo.saveAndFlush(m);
+					pRepo.saveAndFlush(menteeProfile);
+					System.out.println("&^% " + mentorUser.getProfile());
+					pRepo.saveAndFlush(mentorUser.getProfile());
+					System.out.println(getMenteesByMentorUsername(mentorUser.getUsername()));
 				}
 			}
 
@@ -285,7 +299,7 @@ public class UserServiceImpl implements UserService {
 
 			mmRepo.saveAndFlush(mm);
 			pRepo.saveAndFlush(menteeProfile);
-			System.out.println("*************************** " + mentorUser.getProfile());
+			System.out.println("&^% " + mentorUser.getProfile());
 			pRepo.saveAndFlush(mentorUser.getProfile());
 			System.out.println(getMenteesByMentorUsername(mentorUser.getUsername()));
 
