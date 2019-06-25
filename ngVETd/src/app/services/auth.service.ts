@@ -62,6 +62,8 @@ export class AuthService {
 
     localStorage.removeItem('credentials');
     localStorage.removeItem('admin');
+    localStorage.removeItem('mentee');
+    localStorage.removeItem('mentor');
   }
 
   checkLogin() {
