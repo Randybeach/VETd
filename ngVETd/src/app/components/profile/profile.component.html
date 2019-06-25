@@ -71,6 +71,8 @@
               </div>
               <div id='scroll' class='card-footer'>
                   <div class='text-center' *ngIf='profileJobs.length > 0'><u><b>Saved Jobs</b></u></div>
+                </div>
+                  <div class='card-footer'>
                 <div *ngIf='profileJobs.length > 0' class='text-left'>
                   <div *ngFor='let job of profileJobs'>{{job.name}} <span><i class="material-icons float-right" (click)='removeJob(job)' ngbTooltip="Delete" id='delete'>delete</i></span>
                     <hr>
