@@ -43,6 +43,17 @@ export class ModalComponent implements OnInit {
     console.log(this.myProfile);
     console.log("in init");
   }
+  formatLabel(value: number | null) {
+    if (!value) {
+      return 0;
+    }
+
+    if (value >= 1) {
+      return Math.round(value / 5);
+    }
+
+    return value;
+  }
 
   removeMentee(p) {
     this.profile = p;
