@@ -335,4 +335,14 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+	@Override
+	public Review postNewReview(Review review, String name) {
+		User user = uRepo.findUserByUsername(name);
+		Profile profile = user.getProfile();
+		List<Review> reviews = profile.getReviews();
+		reviews.add(review);
+		profile.setReviews(reviews);
+		return rRepo.saveAndFlush(review);
+	}
+
 }

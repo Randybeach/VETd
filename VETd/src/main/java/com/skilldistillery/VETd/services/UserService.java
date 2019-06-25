@@ -45,4 +45,8 @@ public interface UserService {
 
 	public Object addMessage(Message message, String name);
 
+//	public Review postNewReview(Review review, Integer pid);
+
+	public Review postNewReview(Review review, String name);
+
 }

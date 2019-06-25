@@ -111,10 +111,12 @@ public class UserController {
 		svc.removeMenteeFromMentorList(profile, principal.getName());
 	}
 
+	//Get reviews by profile id
 	@GetMapping("review")
 	public Set<Review> getReviews(Principal principal) {
 		return svc.getReviewsByProfileId(principal.getName());
 	}
+	
 	// Add a message to mentor_mentee
 	@PostMapping("message/{recipientId}")
 	public void addMessage(@RequestBody Message message, Principal principal, @PathVariable int recipientId) {
@@ -122,4 +124,8 @@ public class UserController {
 		 svc.addMessage(message, principal.getName());
 	}
 
+	@PostMapping("review")
+	public Review postNewReview(@RequestBody Review review, Principal principal) {
+		return svc.postNewReview(review, principal.getName());
+	}
 }
