@@ -18,6 +18,8 @@ export class NavigationComponent implements OnInit {
   // F E I L D S
   //
   getCurrentRoute(): string {
+    console.log(this.router.url);
+
     return this.router.url;
   }
 
