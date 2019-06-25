@@ -152,7 +152,7 @@
       <div class="card shadow mt-2" id='reviewCard'>
         <div class="card-header text-center">
           <h6 class='pl-2 pt-2'><b>Review</b>
-            <span><i class="material-icons float-right" id="add" ngbTooltip="Leave a review" >add</i></span>
+            <span><i (click)="addReview(reviewForm)" class="material-icons float-right" id="add" ngbTooltip="Leave a review" >add</i></span>
           </h6>
         </div>
         <div class="card-body text-center" id="reviewCardBody">
@@ -165,22 +165,6 @@
               </textarea>
               <!-- <mat-placeholder class="placeholder">Summary</mat-placeholder> -->
             </mat-form-field>
-            <br>
-            <mat-form-field class="selectFields text-center">
-              <input matInput name="rating" [(ngModel)]="review.rating" />
-              <mat-placeholder class="placeholder" >Rating(1-5)</mat-placeholder
-              >
-            </mat-form-field>
-            <br />
-            <!-- <input class="btn btn-warning " type="submit" value="Submit" /> -->
-            <span
-              ><i
-                (click)="addReview(reviewForm)"
-                class="material-icons float-center text-center" id="add"
-                ngbTooltip="Leave a review"
-                >add</i
-              ></span
-            >
           </form>
         </div>
       </div>
