@@ -1,5 +1,7 @@
 package com.skilldistillery.vetd.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -8,6 +10,7 @@ import com.skilldistillery.vetd.entities.Location;
 import com.skilldistillery.vetd.entities.Mentee;
 import com.skilldistillery.vetd.entities.Mentor;
 import com.skilldistillery.vetd.entities.Profile;
+import com.skilldistillery.vetd.entities.Review;
 import com.skilldistillery.vetd.entities.User;
 import com.skilldistillery.vetd.repositories.LocationRepository;
 import com.skilldistillery.vetd.repositories.MenteeRepository;
@@ -77,6 +80,7 @@ public class AuthServiceImpl implements AuthService {
 		Profile profile = mentor.getProfile();
 		Location location = profile.getLocation();
 		User user = profile.getUser();
+		
 		
 		repo.saveAndFlush(user);
 		profile.setUser(user);
