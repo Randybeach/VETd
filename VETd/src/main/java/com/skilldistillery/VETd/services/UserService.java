@@ -47,6 +47,6 @@ public interface UserService {
 
 //	public Review postNewReview(Review review, Integer pid);
 
-	public Review postNewReview(Review review, String name);
+	public Review postNewReview(Review review, String name, int pid);
 
 }

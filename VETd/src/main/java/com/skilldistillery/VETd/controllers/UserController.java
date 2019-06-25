@@ -124,8 +124,8 @@ public class UserController {
 		 svc.addMessage(message, principal.getName());
 	}
 
-	@PostMapping("review")
-	public Review postNewReview(@RequestBody Review review, Principal principal) {
-		return svc.postNewReview(review, principal.getName());
+	@PostMapping("profile/{pid}/review")
+	public Review postNewReview(@RequestBody Review review, Principal principal, @PathVariable int pid) {
+		return svc.postNewReview(review, principal.getName(), pid);
 	}
 }
