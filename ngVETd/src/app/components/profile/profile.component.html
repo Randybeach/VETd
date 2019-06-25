@@ -111,8 +111,7 @@
                 <b>Username:</b> {{ profile.user.username }}<br>
                 <b>Email:</b> {{ profile.user.email }}<br>
                 <b>Location:</b> {{ profile.location.city }}, {{ profile.location.state }} {{ profile.location.zipcode }}<br>
-                <b>Picture:</b> {{ profile.pictureUrl }}<br>
-                <b>Resume:</b> {{ profile.resumeUrl }}<br>
+                <a href='{{ profile.resumeUrl }}'><b>Resume</b></a>
               </div>
               <div class='card-body text-center'><u><b>Potential Mentees</b></u></div>
                 <div class='card-footer' id='footerHeight' *ngIf='menteeJobList !== null'>

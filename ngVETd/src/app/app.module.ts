@@ -13,7 +13,7 @@ import { NavbarModule, WavesModule } from 'angular-bootstrap-md';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './components/register/register.component';
-import { MatExpansionModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatIconModule } from '@angular/material';
+import { MatExpansionModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatIconModule, MatSliderModule, MatSlider } from '@angular/material';
 import { EditComponent } from './components/edit/edit.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AdminComponent } from './components/admin/admin.component';
@@ -57,7 +57,8 @@ import {MatSelectModule} from '@angular/material/select';
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSliderModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
