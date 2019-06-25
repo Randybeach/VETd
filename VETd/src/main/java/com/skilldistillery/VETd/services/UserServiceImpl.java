@@ -328,7 +328,7 @@ public class UserServiceImpl implements UserService {
 		messageRepo.saveAndFlush(message);
 		if (user.getProfile().getMentee() == null) {
 			Set<MentorMentee> mm = user.getProfile().getMentor().getMentorMentees();
-
+			
 		} else {
 
 		}
