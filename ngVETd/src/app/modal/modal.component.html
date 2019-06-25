@@ -152,7 +152,7 @@
       <div class="card shadow mt-2" id='reviewCard'>
         <div class="card-header text-center">
           <h6 class='pl-2 pt-2'><b>Review</b>
-            <span><i class="material-icons float-right" id="add" ngbTooltip="Leave a review" >add</i></span>
+            <span><i (click)="addReview(reviewForm)" class="material-icons float-right" id="add" ngbTooltip="Leave a review" >add</i></span>
           </h6>
         </div>
         <div class="card-body text-center" id="reviewCardBody">

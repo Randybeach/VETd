@@ -1,14 +1,13 @@
-import { MentorMentee } from './../models/mentor-mentee';
-import { ProfileComponent } from './../components/profile/profile.component';
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { DialogData } from '../DialogData';
-import { Profile } from '../models/profile';
-import { ProfileService } from '../services/profile.service';
-import { AuthService } from '../services/auth.service';
-import { Review } from '../models/review';
-import { Message } from '../models/message';
-
+import { MentorMentee } from "./../models/mentor-mentee";
+import { ProfileComponent } from "./../components/profile/profile.component";
+import { Component, OnInit, Inject } from "@angular/core";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+import { DialogData } from "../DialogData";
+import { Profile } from "../models/profile";
+import { ProfileService } from "../services/profile.service";
+import { AuthService } from "../services/auth.service";
+import { Review } from "../models/review";
+import { Message } from "../models/message";
 
 @Component({
   selector: "app-modal",
@@ -75,11 +74,9 @@ export class ModalComponent implements OnInit {
     this.profile = p;
     console.log("added " + this.profile.firstName + " to list");
     this.profileService.addMenteeToMentorList(this.profile).subscribe(
-      good => {
-      },
+      good => {},
       bad => {
         console.log("error adding mentee");
-
       }
     );
   }
@@ -90,50 +87,62 @@ export class ModalComponent implements OnInit {
       this.mentorId = this.profile.mentor.id;
       this.menteeId = this.myProfile.mentee.id;
 
-
       console.log(this.mentees);
 
-      for(let i = 0; i < this.mentees.length; i++) {
-        console.log('mentee'+this.mentees[1].mentee.id);
-        console.log('mentees'+this.mentees[1].mentees.id);
-
+      for (let i = 0; i < this.mentees.length; i++) {
+        console.log("mentee" + this.mentees[1].mentee.id);
+        console.log("mentees" + this.mentees[1].mentees.id);
       }
     } else {
       this.mentorId = this.myProfile.mentor.id;
       this.menteeId = this.profile.mentee.id;
-
 
       this.jobs = this.profile.mentee.jobs;
       this.mentees = this.myProfile.mentor.mentorMentees;
 
       console.log(this.mentees.length);
 
-      for(let i = 0; i < this.mentees.length; i++) {
-          console.log('mentee'+this.mentees[i].mentee.id);
-          console.log('mentees'+this.mentees[i].mentees.id);
-          if(this.mentees[i].mentee.id === this.myProfile.mentee.id){
-
-          }
-
+      for (let i = 0; i < this.mentees.length; i++) {
+        console.log("mentee" + this.mentees[i].mentee.id);
+        console.log("mentees" + this.mentees[i].mentees.id);
+        if (this.mentees[i].mentee.id === this.myProfile.mentee.id) {
+        }
       }
     }
   }
-  chat(){
+  chat() {
     this.showChat = true;
-    console.log('new message');
-
+    console.log("new message");
   }
-  submitMessage(){
+  submitMessage() {
     this.message.profileId = this.myProfile.id;
     console.log(this.message.text);
     console.log(this.message.profileId);
-    this.profileService.submitMessage(this.message, this.profile.id).subscribe(
-        good => {
-          console.log(good);
-
-
-        }
-      );
+    this.profileService
+      .submitMessage(this.message, this.profile.id)
+      .subscribe(good => {
+        console.log(good);
+      });
     this.message = new Message();
+  }
+
+  addReview(form) {
+    this.review = form.value;
+    this.review.profileId = this.profile.user.id;
+    this.review.reviewer = this.myProfile.user;
+    console.log("review", this.review);
+    console.log("pid", this.review.profileId);
+    console.log("reviewer", this.review.reviewer);
+
+    this.profileService.addReview(this.review, this.review.profileId).subscribe(
+      good => {
+        console.log(good);
+      },
+      bad => {
+        console.log("error adding review");
+
+        console.log(bad);
+      }
+    );
   }
 }
