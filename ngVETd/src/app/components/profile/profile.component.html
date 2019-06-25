@@ -22,7 +22,7 @@
                 <div *ngIf='menteeMentorsList.length > 0'>
                 <div class='card-footer' id='footerHeight'>
                     <div *ngFor='let pro of menteeMentorsList'>{{pro.firstName}} {{pro.lastName}}
-                    <span><i class="material-icons float-right" ngbTooltip="View Profile" id='viewProfile' (click)='openDialog(pro)'>visibility</i></span>
+                    <span><i class="material-icons float-right" ngbTooltip="View Profile" id='viewProfile' (click)='openDialog2(pro, profile)'>visibility</i></span>
                     </div>
                 </div>
               </div>
@@ -124,7 +124,7 @@
               <div class='card-body text-center'><u><b>Current Mentees</b></u></div>
               <div *ngIf='mentorMenteesList.length > 0'>
               <div class='card-footer' id='footerHeight'>
-                  <div *ngFor='let pro of mentorMenteesList'>{{profile.firstName}} {{profile.lastName}}
+                  <div *ngFor='let pro of mentorMenteesList'>{{pro.firstName}} {{pro.lastName}}
                   <span><i class="material-icons float-right" ngbTooltip="View Profile" id='viewProfile' (click)='openDialog2(pro, profile)'>visibility</i></span>
                   </div>
               </div>

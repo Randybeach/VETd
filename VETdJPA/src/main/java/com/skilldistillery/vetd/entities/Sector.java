@@ -22,6 +22,8 @@ public class Sector {
 	@OneToMany(mappedBy = "sector")
 	@JsonIgnore
 	private List<Job> jobs;
+	
+	
 
 	public List<Job> getJobs() {
 		return jobs;

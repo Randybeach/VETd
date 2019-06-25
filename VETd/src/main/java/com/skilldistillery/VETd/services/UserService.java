@@ -6,7 +6,7 @@ import java.util.Set;
 
 import com.skilldistillery.vetd.entities.Job;
 import com.skilldistillery.vetd.entities.Mentee;
-import com.skilldistillery.vetd.entities.MentorMentee;
+import com.skilldistillery.vetd.entities.Message;
 import com.skilldistillery.vetd.entities.Profile;
 import com.skilldistillery.vetd.entities.Review;
 import com.skilldistillery.vetd.entities.User;
@@ -44,4 +44,6 @@ public interface UserService {
 	public Set<Review> getReviewsByProfileId(String name);
 	
 	public Review addReview(Profile profile);
+
+	public Object addMessage(Message message, String name);
 }
