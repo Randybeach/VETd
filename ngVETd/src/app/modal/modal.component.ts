@@ -32,11 +32,9 @@ export class ModalComponent implements OnInit {
 
   ngOnInit() {
     this.profile = this.data.profile;
-    this.myProfile = this.myProfile;
+    this.myProfile = this.data.myProfile;
 
-    console.log(this.profile);
     this.addMenteesOrMentors();
-    console.log(this.myProfile);
 
 
     console.log("in init");
@@ -48,7 +46,6 @@ export class ModalComponent implements OnInit {
     this.profileService
       .removeMenteeFromMentorList(this.profile)
       .subscribe(good => {
-        console.log(good);
         console.log("closing window");
         // this.profile = this.profileComp.getProfile();
         // this.profileComp.getListOfMenteesByMentorId(this.profile);
@@ -60,12 +57,10 @@ export class ModalComponent implements OnInit {
     console.log("added " + this.profile.firstName + " to list");
     this.profileService.addMenteeToMentorList(this.profile).subscribe(
       good => {
-        console.log(good);
       },
       bad => {
         console.log("error adding mentee");
 
-        console.log(bad);
       }
     );
   }
@@ -73,12 +68,16 @@ export class ModalComponent implements OnInit {
     if (this.profile.mentor != null) {
       this.mentees = this.profile.mentor.mentorMentees;
       this.jobs = this.profile.mentor.jobs;
-      console.log(this.jobs);
 
       console.log(this.mentees);
     } else {
       this.jobs = this.profile.mentee.jobs;
       this.mentees = this.myProfile.mentor.mentorMentees;
+
     }
+  }
+  chat(){
+    console.log('new message');
+
   }
 }
