@@ -11,6 +11,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ModalComponent } from 'src/app/modal/modal.component';
 import { DialogData } from 'src/app/DialogData';
 import { Profile } from 'src/app/models/profile';
+import { Message } from 'src/app/models/message';
 
 @Component({
   selector: "app-profile",
@@ -35,6 +36,7 @@ export class ProfileComponent implements OnInit {
   selectedProfile: Profile = null;
   mentorMenteesList = [];
   menteeMentorsList = [];
+  messages: Message [] = [];
 
   constructor(
     private router: Router,
@@ -55,13 +57,13 @@ export class ProfileComponent implements OnInit {
       this.getListOfMenteesWithSelectedJobs();
     }
 
-  openDialog(profile: Profile): void {
+  openDialog(profile: Profile, messages: Message[]): void {
     console.log(' dia 1 ' + profile);
 
     const dialogRef = this.dialog.open(ModalComponent, {
       width: '80%',
       height: '90%',
-      data: {profile}
+      data: {profile, messages}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -69,13 +71,13 @@ export class ProfileComponent implements OnInit {
       this.getListOfMenteesWithSelectedJobs();
     });
   }
-  openDialog2(profile: Profile, myProfile: Profile): void {
+  openDialog2(profile: Profile, myProfile: Profile, messages: Message[]): void {
     console.log('dia 2 ' + profile);
 
     const dialogRef = this.dialog.open(ModalComponent, {
       width: '80%',
       height: '90%',
-      data: {profile, myProfile}
+      data: {profile, myProfile, messages}
     });
 
     dialogRef.afterClosed().subscribe(result => {
