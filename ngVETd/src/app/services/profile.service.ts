@@ -157,4 +157,14 @@ export class ProfileService {
     };
     return this.http.put<Profile[]>(this.url + '/mentormentee/remove', profile, {headers: myHeaders});
   }
+
+  submitMessage(message, id){
+    const myHeaders = {
+      'X-Requested-With': 'XMLHttpRequest',
+      Authorization: 'Basic ' + this.auth.getCredentials(),
+      'Content-Type': 'application/json'
+    };
+
+    return this.http.post<Profile[]>(this.url + '/message/' + id, message, {headers: myHeaders});
+  }
 }

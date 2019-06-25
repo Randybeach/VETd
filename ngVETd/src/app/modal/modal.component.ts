@@ -6,6 +6,7 @@ import { Profile } from '../models/profile';
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
 import { Review } from '../models/review';
+import { Message } from '../models/message';
 
 
 @Component({
@@ -19,6 +20,10 @@ export class ModalComponent implements OnInit {
   jobs = [];
   myProfile = null;
   review = new Review();
+  showChat = false;
+  message = new Message();
+  menteeId = 0;
+  mentorId = 0;
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
@@ -32,14 +37,11 @@ export class ModalComponent implements OnInit {
 
   ngOnInit() {
     this.profile = this.data.profile;
-    console.log(this.data.myProfile);
-    console.log('mentors profile myProfile');
-
-
     this.myProfile = this.data.myProfile;
 
-    console.log(this.profile);
     this.addMenteesOrMentors();
+
+    console.log(this.profile);
     console.log(this.myProfile);
     console.log("in init");
   }
@@ -61,7 +63,6 @@ export class ModalComponent implements OnInit {
     this.profileService
       .removeMenteeFromMentorList(this.profile)
       .subscribe(good => {
-        console.log(good);
         console.log("closing window");
         // this.profile = this.profileComp.getProfile();
         // this.profileComp.getListOfMenteesByMentorId(this.profile);
@@ -73,12 +74,10 @@ export class ModalComponent implements OnInit {
     console.log("added " + this.profile.firstName + " to list");
     this.profileService.addMenteeToMentorList(this.profile).subscribe(
       good => {
-        console.log(good);
       },
       bad => {
         console.log("error adding mentee");
 
-        console.log(bad);
       }
     );
   }
@@ -86,12 +85,39 @@ export class ModalComponent implements OnInit {
     if (this.profile.mentor != null) {
       this.mentees = this.profile.mentor.mentorMentees;
       this.jobs = this.profile.mentor.jobs;
-      console.log(this.jobs);
+      this.mentorId = this.profile.mentor.id;
+      this.menteeId = this.myProfile.mentee.id;
+      console.log(this.menteeId);
+      console.log(this.mentorId);
 
       console.log(this.mentees);
     } else {
+      this.mentorId = this.myProfile.mentor.id;
+      this.menteeId = this.profile.mentee.id;
+      console.log(this.mentorId);
+      console.log(this.menteeId);
+
       this.jobs = this.profile.mentee.jobs;
       this.mentees = this.myProfile.mentor.mentorMentees;
+
     }
+  }
+  chat(){
+    this.showChat = true;
+    console.log('new message');
+
+  }
+  submitMessage(){
+    this.message.profileId = this.myProfile.id;
+    console.log(this.message.text);
+    console.log(this.message.profileId);
+    this.profileService.submitMessage(this.message, this.profile.id).subscribe(
+        good => {
+          console.log(good);
+
+
+        }
+      );
+    this.message = new Message();
   }
 }

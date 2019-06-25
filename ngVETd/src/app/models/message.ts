@@ -6,7 +6,7 @@ export class Message {
   id: number;
   mentormentee: MentorMentee;
   text: string;
-  profile: Profile;
+  profileId: number;
   createdAt: string;
 
 
@@ -14,13 +14,13 @@ constructor(
     id?: number,
     mentormentee?: MentorMentee,
     text?: string,
-    profile?: Profile,
+    profileId?: number,
     createdAt?: string
 ) {
   this.id = id;
   this.mentormentee = mentormentee;
   this.text = text;
-  this.profile = profile;
+  this.profileId = profileId;
   this.createdAt = createdAt;
   }
 }

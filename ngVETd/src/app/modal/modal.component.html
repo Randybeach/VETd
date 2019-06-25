@@ -85,14 +85,32 @@
         </div>
       </div>
       <div class="text-center">
+
         <div class="text-center" *ngIf='! myProfile'>
           <button class="btn btn-sm btn-success mr-1 mt-1" (click)="addMenteeToMentorMenteeList(profile)">Accept</button>
           <button class="btn btn-sm btn-danger mt-1">Decline</button>
         </div>
         <div *ngIf='myProfile'>
           <button class="btn btn-sm btn-primary mr-1 mt-1" (click)="removeMentee(profile)">Release</button>
-          <button class="btn btn-sm btn-success mt-1">Chat</button>
+          <button class="btn btn-sm btn-success mt-1" (click)='chat()'>Chat</button>
        </div>
+       <div class="card-body" *ngIf='showChat'>
+          <form #messageForm="ngForm">
+            <mat-form-field class="selectFields text-center">
+              <textarea
+                matInput
+                name="content"
+                [(ngModel)]="message.text"
+              ></textarea
+              ><mat-placeholder class="placeholder"
+                >Message</mat-placeholder
+              >
+            </mat-form-field>
+
+            <br />
+            <input class="btn btn-warning " type="submit" value="Submit" (click)='submitMessage()' />
+          </form>
+        </div>
         <div class="mt-2">
           <div class="card shadow" id="menteeInteractions" *ngIf='myProfile'>
             <div class="card-header text-center">
