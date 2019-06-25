@@ -107,22 +107,6 @@ public class Profile {
 		this.mentee = mentee;
 	}
 
-	public String getPic() {
-		return pictureUrl;
-	}
-
-	public void setPic(String pic) {
-		this.pictureUrl = pic;
-	}
-
-	public String getResume() {
-		return resumeUrl;
-	}
-
-	public void setResume(String resume) {
-		this.resumeUrl = resume;
-	}
-
 	public int getId() {
 		return id;
 	}

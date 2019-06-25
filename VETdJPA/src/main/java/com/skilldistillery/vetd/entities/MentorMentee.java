@@ -1,6 +1,8 @@
 package com.skilldistillery.vetd.entities;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -32,6 +35,35 @@ public class MentorMentee {
 	@JoinColumn(name = "mentor_id")
 	@JsonIgnore
 	private Mentor mentor;
+	
+	@OneToMany(mappedBy = "mentorMentee")
+	
+	private Set<Message> messages;
+	
+	
+	public void addMessage(Message m) {
+		if (this.messages == null) {
+			this.messages = new HashSet();
+		}
+		this.messages.add(m);
+
+	}
+
+	public void removeMessage(Message m) {
+		if (this.messages == null) {
+			return;
+		}
+		this.messages.remove(m);
+	}
+	
+
+	public Set<Message> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(Set<Message> messages) {
+		this.messages = messages;
+	}
 
 	public Date getDate() {
 		return createdAt;

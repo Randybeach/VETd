@@ -4,7 +4,7 @@
 }
 
 #menteeChat {
-  height: 550px;
+  height: 350px;
   background-color: oldlace;
   background: rgba(255, 252, 252, 0.7);
   color: black;
@@ -50,4 +50,21 @@ img {
 
 #reviewProfile:hover {
   color: rgb(22, 221, 228);
+}
+
+.selectFields {
+  display: flex;
+  flex-direction: column;
+}
+
+#reviewCard {
+  color: black !important;
+}
+
+mat-placeholder {
+  color: black !important;
+}
+
+#add:hover{
+  color: green;
 }

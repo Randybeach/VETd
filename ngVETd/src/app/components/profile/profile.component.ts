@@ -71,8 +71,9 @@ export class ProfileComponent implements OnInit {
       this.getListOfMenteesWithSelectedJobs();
     });
   }
+
   openDialog2(profile: Profile, myProfile: Profile, messages: Message[]): void {
-    console.log('dia 2 ' + profile);
+    console.log('dia 2 ' + profile.firstName + ' ' + myProfile.firstName);
 
     const dialogRef = this.dialog.open(ModalComponent, {
       width: '80%',

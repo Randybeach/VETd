@@ -1,6 +1,5 @@
 package com.skilldistillery.vetd.services;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -13,6 +12,7 @@ import com.skilldistillery.vetd.entities.Job;
 import com.skilldistillery.vetd.entities.Mentee;
 import com.skilldistillery.vetd.entities.Mentor;
 import com.skilldistillery.vetd.entities.MentorMentee;
+import com.skilldistillery.vetd.entities.Message;
 import com.skilldistillery.vetd.entities.Profile;
 import com.skilldistillery.vetd.entities.Review;
 import com.skilldistillery.vetd.entities.User;
@@ -21,6 +21,7 @@ import com.skilldistillery.vetd.repositories.LocationRepository;
 import com.skilldistillery.vetd.repositories.MenteeRepository;
 import com.skilldistillery.vetd.repositories.MentorMenteeRepository;
 import com.skilldistillery.vetd.repositories.MentorRepository;
+import com.skilldistillery.vetd.repositories.MessageRepository;
 import com.skilldistillery.vetd.repositories.ProfileRepository;
 import com.skilldistillery.vetd.repositories.ReviewRepository;
 import com.skilldistillery.vetd.repositories.UserRepository;
@@ -44,6 +45,8 @@ public class UserServiceImpl implements UserService {
 	private LocationRepository lRepo;
 	@Autowired
 	private ReviewRepository rRepo;
+	@Autowired
+	private MessageRepository messageRepo;
 
 	@Override
 	public List<User> index() {
@@ -323,6 +326,23 @@ public class UserServiceImpl implements UserService {
 	public Review addReview(Profile profile) {
 		// TODO Auto-generated method stub
 
+		return null;
+	}
+
+	
+	
+	
+	
+	@Override
+	public Object addMessage(Message message, String name) {
+		User user = uRepo.findUserByUsername(name);
+		messageRepo.saveAndFlush(message);
+		if(user.getProfile().getMentee() == null) {
+			Set<MentorMentee> mm = user.getProfile().getMentor().getMentorMentees();
+			
+		}else {
+			
+		}
 		return null;
 	}
 

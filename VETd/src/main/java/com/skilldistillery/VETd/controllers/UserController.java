@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.vetd.entities.Job;
 import com.skilldistillery.vetd.entities.Mentee;
+import com.skilldistillery.vetd.entities.Message;
 import com.skilldistillery.vetd.entities.Profile;
 import com.skilldistillery.vetd.entities.Review;
 import com.skilldistillery.vetd.entities.User;
@@ -64,7 +66,7 @@ public class UserController {
 	// Update Profile
 	@PutMapping("profile")
 	public Profile updateMentee(@RequestBody Profile profile) {
-		System.out.println(profile);
+		System.out.println(" ^^^" + profile);
 		return svc.updateMentee(profile);
 	}
 
@@ -112,6 +114,12 @@ public class UserController {
 	@GetMapping("review")
 	public Set<Review> getReviews(Principal principal) {
 		return svc.getReviewsByProfileId(principal.getName());
+	}
+	// Add a message to mentor_mentee
+	@PostMapping("message/{recipientId}")
+	public void addMessage(@RequestBody Message message, Principal principal, @PathVariable int recipientId) {
+		
+		 svc.addMessage(message, principal.getName());
 	}
 
 }
