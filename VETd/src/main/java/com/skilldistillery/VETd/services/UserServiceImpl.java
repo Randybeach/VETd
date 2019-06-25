@@ -322,31 +322,17 @@ public class UserServiceImpl implements UserService {
 		return rRepo.findReviewByProfileId(uRepo.findUserByUsername(name).getProfile().getId());
 	}
 
-<<<<<<< HEAD
-=======
-	@Override
-	public Review addReview(Profile profile) {
-		// TODO Auto-generated method stub
-
-		return null;
-	}
-
-	
-	
-	
-	
 	@Override
 	public Object addMessage(Message message, String name) {
 		User user = uRepo.findUserByUsername(name);
 		messageRepo.saveAndFlush(message);
-		if(user.getProfile().getMentee() == null) {
+		if (user.getProfile().getMentee() == null) {
 			Set<MentorMentee> mm = user.getProfile().getMentor().getMentorMentees();
-			
-		}else {
-			
+
+		} else {
+
 		}
 		return null;
 	}
 
->>>>>>> eadddf7d5bb01b8c4dbc7421cffec8e83912860f
 }
