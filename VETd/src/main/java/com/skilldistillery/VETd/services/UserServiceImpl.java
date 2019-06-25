@@ -319,11 +319,4 @@ public class UserServiceImpl implements UserService {
 		return rRepo.findReviewByProfileId(uRepo.findUserByUsername(name).getProfile().getId());
 	}
 
-	@Override
-	public Review addReview(Profile profile) {
-		// TODO Auto-generated method stub
-
-		return null;
-	}
-
 }
