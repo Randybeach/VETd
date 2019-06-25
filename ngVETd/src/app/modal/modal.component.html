@@ -10,107 +10,182 @@
   <button mat-button [mat-dialog-close]="data.profile.lastName" cdkFocusInitial>Ok</button>
 </div> -->
 
-<div class='container-fluid' >
-    <div class='overlay-mf'></div>
-    <div class='row'>
-      <div class='float-right col-12'><span><i class="material-icons float-right" ngbTooltip="Close" id='closeIcon' (click)='onNoClick()'>close</i></span></div>
+<div class="container-fluid">
+  <div class="overlay-mf"></div>
+  <div class="row">
+    <div class="float-right col-12">
+      <span
+        ><i
+          class="material-icons float-right"
+          ngbTooltip="Close"
+          id="closeIcon"
+          (click)="onNoClick()"
+          >close</i
+        ></span
+      >
     </div>
-      <div class='row'>
-        <div class='col-1'></div>
-      <div class='col-sm-5 col-md-3 col-lg-3 mt-4'>
-            <div class='card shadow' id='profileCardStyling'>
-                <img class="card-img-top rounded-circle img-responsive img-center mt-2 mb-2" [src]="profile.pictureUrl" alt="Profile Picture">
-              <div class='card-header text-center'>
-                <h6>{{ profile.firstName }} {{ profile.lastName }}
-                <span><i class="material-icons float-right mr-2" ngbTooltip="Leave a review" id='reviewProfile'>rate_review</i></span>
-              </h6>
-              </div>
-              <div class='card-body'>
-                  <b>Username:</b> {{profile.user.username }}<br>
-                  <b>Email:</b> {{profile.user.email }}<br>
-                  <b>Location:</b> {{profile.location.city }}, {{profile.location.state }} {{profile.location.zipcode }}<br>
-                  <b>Picture:</b> {{profile.pictureUrl }}<br>
-                  <b>Resume:</b> {{profile.resumeUrl }}<br>
-              </div>
-              <div class='card-footer'>
-                <div class='text-center'><u><b>Job Interests</b></u></div>
-              </div>
-              <div class='card-footer' id='menteeJobs' *ngIf='data.profile.mentee != null'>
-                <div class='pt-1' *ngIf='jobs.length > 0'>
-                  <ul>
-                    <div *ngFor="let job of jobs" ngDefaultControl>
-                        <div *ngFor='let job of jobs'>
-                          <li>{{job.name}}</li>
-                        </div>
-                    </div>
-                </ul>
-                </div>
-              </div>
-              </div>
-            </div>
-        <div class='col-sm-3 col-md-2 col-lg-3 mt-4'>
-            <div class='card shadow' id='menteeStatus'>
-                <div class='card-header text-center'>
-                  <b>Mentoring Status</b>
-                </div>
-                <div class='card-body'>
-                  <p>Sector / Job Matches </p>
-              </div>
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-sm-5 col-md-3 col-lg-3 mt-4">
+      <div class="card shadow" id="profileCardStyling">
+        <img
+          class="card-img-top rounded-circle img-responsive img-center mt-2 mb-2"
+          [src]="profile.pictureUrl"
+          alt="Profile Picture"
+        />
+        <div class="card-header text-center">
+          <h6>
+            {{ profile.firstName }} {{ profile.lastName }}
+            <span
+              ><i
+                class="material-icons float-right mr-2"
+                ngbTooltip="Leave a review"
+                id="reviewProfile"
+                >rate_review</i
+              ></span
+            >
+          </h6>
         </div>
-        <div class='text-center'>
-        <button class='btn btn-success mr-1 mt-1' (click)='addMenteeToMentorMenteeList(profile)'>Accept</button>
-        <button class='btn btn-danger mt-1'>Decline</button>
-        <button class='btn btn-primary mr-1 mt-1' (click)='removeMentee(profile)'>Release</button>
-        <button class='btn btn-success mt-1'>Chat</button>
-        <div class='mt-2'>
-          <div class='card shadow' id='menteeInteractions'>
-            <div class='card-header text-center'>
+        <div class="card-body">
+          <b>Username:</b> {{ profile.user.username }}<br />
+          <b>Email:</b> {{ profile.user.email }}<br />
+          <b>Location:</b> {{ profile.location.city }},
+          {{ profile.location.state }} {{ profile.location.zipcode }}<br />
+          <b>Picture:</b> {{ profile.pictureUrl }}<br />
+          <b>Resume:</b> {{ profile.resumeUrl }}<br />
+        </div>
+        <div class="card-footer">
+          <div class="text-center">
+            <u><b>Job Interests</b></u>
+          </div>
+        </div>
+        <div
+          class="card-footer"
+          id="menteeJobs"
+          *ngIf="data.profile.mentee != null"
+        >
+          <div class="pt-1" *ngIf="jobs.length > 0">
+            <ul>
+              <div *ngFor="let job of jobs" ngDefaultControl>
+                <div *ngFor="let job of jobs">
+                  <li>{{ job.name }}</li>
+                </div>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3 col-md-2 col-lg-3 mt-4">
+      <div class="card shadow" id="menteeStatus">
+        <div class="card-header text-center">
+          <b>Mentoring Status</b>
+        </div>
+        <div class="card-body">
+          <p>Sector / Job Matches</p>
+        </div>
+      </div>
+      <div class="text-center">
+        <button
+          class="btn btn-success mr-1 mt-1"
+          (click)="addMenteeToMentorMenteeList(profile)"
+        >
+          Accept
+        </button>
+        <button class="btn btn-danger mt-1">Decline</button>
+        <button
+          class="btn btn-primary mr-1 mt-1"
+          (click)="removeMentee(profile)"
+        >
+          Release
+        </button>
+        <button class="btn btn-success mt-1">Chat</button>
+        <div class="mt-2">
+          <div class="card shadow" id="menteeInteractions">
+            <div class="card-header text-center">
               <b>Relationship start</b>
             </div>
-            <div class='card-body text-left'>
-              <div *ngFor='let ment of mentees'>
-                <p>{{ment.createdAt | date:'shortDate'}} </p>
-
+            <div class="card-body text-left">
+              <div *ngFor="let ment of mentees">
+                <p>{{ ment.createdAt | date: "shortDate" }}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      </div>
-        <div class='col-sm-3 col-md-3 col-lg-3 mt-4'>
-            <div class='card shadow' id='menteeChat'>
-              <div class='card-header text-center'>
-                <h4>Chat window</h4>
-              </div>
-              <div class='card-body' id='scroll'>
-                  <p>Appears only when chat initiated.<br>
-                      Role - First Last Date/Timestamp: Message…<br>
-                      Role - First Last Date/Timestamp: Message…<br>
-                      Role - First Last Date/Timestamp: Message…<br>
-                      Role - First Last Date/Timestamp: Message…<br>
-                      .<br>
-                      .<br>
-                      .<br>
-                      .<br>
-                      .<br>
-                      .<br>
-                      .<br>
-                      .<br>
-                      .</p>
-            </div>
-          </div>
-        </div>
     </div>
+    <div class="col-sm-3 col-md-3 col-lg-3 mt-4">
+      <div class="card shadow" id="menteeChat">
+        <div class="card-header text-center">
+          <h4>Chat window</h4>
+        </div>
+        <div class="card-body" id="scroll">
+          <p>
+            Appears only when chat initiated.<br />
+            Role - First Last Date/Timestamp: Message…<br />
+            Role - First Last Date/Timestamp: Message…<br />
+            Role - First Last Date/Timestamp: Message…<br />
+            Role - First Last Date/Timestamp: Message…<br />
+            .<br />
+            .<br />
+            .<br />
+            .<br />
+            .<br />
+            .<br />
+            .<br />
+            .<br />
+            .
+          </p>
+        </div>
+      </div>
+      <div class="card shadow">
+        <div class="card-header text-center">
+          <h1 class="h4 mb-4">Review</h1>
+        </div>
+        <div class="card-body" id="reviewCard">
+          <form #reviewForm="ngForm">
+            <mat-form-field class="selectFields text-center">
+              <textarea
+                matInput
+                name="content"
+                [(ngModel)]="review.content"
+              ></textarea
+              ><mat-placeholder class="placeholder">Summary</mat-placeholder>
+            </mat-form-field>
+            <br />
+            <mat-form-field class="selectFields text-center">
+              <input
+                matInput
+                name="rating"
+                [(ngModel)]="review.rating"
+              /><mat-placeholder class="placeholder"
+                >Rating(1-5)</mat-placeholder
+              >
+            </mat-form-field>
+            <br />
+            <!-- <input class="btn btn-warning " type="submit" value="Submit" /> -->
+            <span
+              ><i
+                class="material-icons float-center text-center" id="add"
+                ngbTooltip="Leave a review"
+                >add</i
+              ></span
+            >
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <div class='row'>
-      <div class='col-sm-11 col-md-11 col-lg-11 mt-2 ml-4'>
-        <div class='card shadow' id='menteeStory'>
-          <div class='card-body'>
-            <h4>Story</h4>
-            <p>{{profile.summary}}</p>
-          </div>
+  <div class="row">
+    <div class="col-sm-11 col-md-11 col-lg-11 mt-2 ml-4">
+      <div class="card shadow" id="menteeStory">
+        <div class="card-body">
+          <h4>Story</h4>
+          <p>{{ profile.summary }}</p>
         </div>
       </div>
     </div>
+  </div>
 </div>
-
