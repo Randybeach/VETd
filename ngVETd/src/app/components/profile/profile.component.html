@@ -3,9 +3,9 @@
 
     <!-- BEGIN Mentee Profile -->
     <div *ngIf='profile.mentee !== null'>
-    <div class='row mt-4'>
-      <div class='col-sm-1 col-md-2 col-lg-2'></div>
-          <div class='col-sm-5 col-md-3 col-lg-3'>
+    <div class='row mt-3'>
+      <div class='col-sm-1 col-md-2 col-lg-2 mt-1'></div>
+          <div class='col-sm-5 col-md-3 col-lg-3 mt-1'>
               <div class='card shadow' id='menteeProfile'>
                 <img class="card-img-top rounded-circle img-responsive img-center mt-2 mb-2" [src]="profile.pictureUrl" alt="Mentee Profile Picture">
                 <h6 class='text-center'>{{ profile.firstName }} {{ profile.lastName }}
@@ -37,7 +37,7 @@
               </div>
           </div>
 
-      <div class='col-sm-5 col-md-5 col-lg-5'>
+      <div class='col-sm-5 col-md-5 col-lg-5 mt-1'>
         <div class='card shadow' id='profileJobsCard'>
             <div class='card-body text-center'>
               <h5>Welcome, mentee {{profile.firstName}}!</h5>
@@ -89,7 +89,7 @@
             </div>
       </div>
     </div>
-      <div class='col-sm-1 col-md-2 col-lg-2'></div>
+      <div class='col-sm-1 col-md-2 col-lg-2 mt-1'></div>
     </div>
 
     <div class='row'>
@@ -98,7 +98,7 @@
           <div class='card shadow' id='story'>
             <div class='card-body'>
               <h4>Story</h4>
-              <p>This is the mentee's story</p>
+              <p>{{ profile.summary }}</p>
               </div>
             </div>
           </div>
@@ -202,7 +202,7 @@
         <div class='card shadow' id='story'>
           <div class='card-body'>
             <h4>Story</h4>
-            <p>This is the mentor's story</p>
+            <p>{{ profile.summary }}</p>
             </div>
           </div>
         </div>
