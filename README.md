@@ -14,6 +14,9 @@ Users will be prompted to register as either a mentor or mentee and create a pro
 ## Database Schema
 ![](assets/README-b35842ce.png)
 
+## UML Diagram
+![](assets/README-1f9cd025.png)
+
 ## Techniques
 - Pair programming
 - Git collaboration
