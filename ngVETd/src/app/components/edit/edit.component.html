@@ -1,5 +1,5 @@
 <div class="container-fluid background">
-  <div class="row ">
+  <div class="row cardDiv">
     <div class="col-3"></div>
     <div class="card col-6">
       <div class="card-header text-center">
@@ -36,64 +36,90 @@
           />
         </form> -->
 
+
         <!-- ---------------------------------------------------------------- -->
         <!-- Profile Form -->
         <!-- ---------------------------------------------------------------- -->
 
         <form class="text-center">
           <!-- First Name -->
-          <mat-form-field class="selectFields text-center">
-            <input
-              matInput
-              id="defaultLoginFormEmail"
-              name="firstName"
-              [(ngModel)]="editProfile.firstName"
-            /><mat-placeholder class="placeholder">First Name</mat-placeholder>
-          </mat-form-field>
-          <br />
-          <!-- Last Name -->
-          <mat-form-field class="selectFields text-center">
-            <input
-              matInput
-              id="defaultLoginFormEmail"
-              name="lastName"
-              [(ngModel)]="editProfile.lastName"
-            /><mat-placeholder class="placeholder">Last Name</mat-placeholder>
-          </mat-form-field>
-          <br />
+
+          <div fxLayout="row" fxLayoutAlign="space-evenly stretch" class="row">
+            <div
+              fxLayout="row"
+              fxFlex="calc(50% - 25px)"
+              fxLayoutAlign="space-evenly stretch"
+              class="row-example"
+            >
+              <mat-form-field class="selectFields text-center">
+                <input
+                  matInput
+                  id="defaultLoginFormEmail"
+                  name="firstName"
+                  [(ngModel)]="editProfile.firstName"
+                /><mat-placeholder class="placeholder"
+                  >First Name</mat-placeholder
+                >
+              </mat-form-field>
+              <!-- Last Name -->
+              <mat-form-field class="selectFields text-center">
+                <input
+                  matInput
+                  id="defaultLoginFormEmail"
+                  name="lastName"
+                  [(ngModel)]="editProfile.lastName"
+                /><mat-placeholder class="placeholder"
+                  >Last Name</mat-placeholder
+                >
+              </mat-form-field>
+            </div>
+          </div>
 
           <!-- Summary -->
-          <mat-form-field class="selectFields text-center">
+          <mat-form-field
+            class="example-full-width text-center"
+            id="emailField"
+          >
             <input
               matInput
               id="defaultLoginFormEmail"
               name="summary"
               [(ngModel)]="editProfile.summary"
-            /><mat-placeholder class="placeholder">Summary</mat-placeholder>
+            /><mat-placeholder class="placeholder">Story</mat-placeholder>
           </mat-form-field>
-          <br />
 
-          <!-- Picture Url -->
-          <mat-form-field class="selectFields text-center">
-            <input
-              matInput
-              id="defaultLoginFormEmail"
-              name="pictureUrl"
-              [(ngModel)]="editProfile.pictureUrl"
-            /><mat-placeholder class="placeholder">Picture Url</mat-placeholder>
-          </mat-form-field>
-          <br />
+          <div fxLayout="row" fxLayoutAlign="space-evenly stretch" class="row">
+            <div
+              fxLayout="row"
+              fxFlex="calc(50% - 25px)"
+              fxLayoutAlign="space-evenly stretch"
+              class="row-example"
+            >
+              <!-- Picture Url -->
+              <mat-form-field class="selectFields text-center">
+                <input
+                  matInput
+                  id="defaultLoginFormEmail"
+                  name="pictureUrl"
+                  [(ngModel)]="editProfile.pictureUrl"
+                /><mat-placeholder class="placeholder"
+                  >Picture Url</mat-placeholder
+                >
+              </mat-form-field>
 
-          <!-- Resume Url -->
-          <mat-form-field class="selectFields text-center">
-            <input
-              matInput
-              id="defaultLoginFormEmail"
-              name="resumeUrl"
-              [(ngModel)]="editProfile.resumeUrl"
-            /><mat-placeholder class="placeholder">Resume Url</mat-placeholder>
-          </mat-form-field>
-          <br />
+              <!-- Resume Url -->
+              <mat-form-field class="selectFields text-center">
+                <input
+                  matInput
+                  id="defaultLoginFormEmail"
+                  name="resumeUrl"
+                  [(ngModel)]="editProfile.resumeUrl"
+                /><mat-placeholder class="placeholder"
+                  >Resume Url</mat-placeholder
+                >
+              </mat-form-field>
+            </div>
+          </div>
         </form>
 
         <!-- ---------------------------------------------------------------- -->
@@ -102,7 +128,10 @@
 
         <form class="text-center">
           <!-- City -->
-          <mat-form-field class="selectFields text-center">
+          <mat-form-field
+            class="example-full-width text-center"
+            id="emailField"
+          >
             <input
               matInput
               id="defaultLoginFormEmail"
@@ -112,27 +141,34 @@
           </mat-form-field>
           <br />
 
-          <!-- State -->
-          <mat-form-field class="selectFields text-center">
-            <input
-              matInput
-              id="defaultLoginFormEmail"
-              name="state"
-              [(ngModel)]="editProfile.location.state"
-            /><mat-placeholder class="placeholder">State</mat-placeholder>
-          </mat-form-field>
-          <br />
+          <div fxLayout="row" fxLayoutAlign="space-evenly stretch" class="row">
+            <div
+              fxLayout="row"
+              fxFlex="calc(50% - 25px)"
+              fxLayoutAlign="space-evenly stretch"
+              class="row-example"
+            >
+              <!-- State -->
+              <mat-form-field class="selectFields text-center">
+                <input
+                  matInput
+                  id="defaultLoginFormEmail"
+                  name="state"
+                  [(ngModel)]="editProfile.location.state"
+                /><mat-placeholder class="placeholder">State</mat-placeholder>
+              </mat-form-field>
 
-          <!-- Zip -->
-          <mat-form-field class="selectFields text-center">
-            <input
-              matInput
-              id="defaultLoginFormEmail"
-              name="zipcode"
-              [(ngModel)]="editProfile.location.zipcode"
-            /><mat-placeholder class="placeholder">Zip</mat-placeholder>
-          </mat-form-field>
-          <br />
+              <!-- Zip -->
+              <mat-form-field class="selectFields text-center">
+                <input
+                  matInput
+                  id="defaultLoginFormEmail"
+                  name="zipcode"
+                  [(ngModel)]="editProfile.location.zipcode"
+                /><mat-placeholder class="placeholder">Zip</mat-placeholder>
+              </mat-form-field>
+            </div>
+          </div>
         </form>
 
         <div class="d-flex justify-content-around text-center"></div>

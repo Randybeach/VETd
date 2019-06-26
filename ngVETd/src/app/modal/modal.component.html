@@ -15,19 +15,19 @@
   <div class="row">
     <div class="float-right col-12">
       <span
-        ><i
-          class="material-icons float-right"
-          ngbTooltip="Close"
-          id="closeIcon"
-          (click)="onNoClick()"
-          >close</i
-        ></span
+      ><i
+      class="material-icons float-right"
+      ngbTooltip="Close"
+      id="closeIcon"
+      (click)="onNoClick()"
+      >close</i
+      ></span
       >
     </div>
   </div>
   <div class="row">
-    <div class="col-1"></div>
-    <div class="col-sm-5 col-md-3 col-lg-3 mt-4">
+    <div class="col-sm-0 col-md-1 col-lg-1"></div>
+    <div class="col-sm-5 col-md-4 col-lg-4 mt-4">
       <div class="card shadow" id="profileCardStyling">
         <img
           class="card-img-top rounded-circle img-responsive img-center mt-2 mb-2"
@@ -76,7 +76,7 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-3 col-md-2 col-lg-3 mt-4">
+    <div class="col-sm-3 col-md-3 col-lg-3 mt-4">
       <div class="card shadow" id="menteeStatus">
         <div class="card-header text-center" *ngIf='myProfile'>
           <h6 class='pt-2'><b>Currently Mentoring</b></h6>
@@ -120,13 +120,14 @@
             <div class="card-body text-left">
               <div >
                 <p>{{ mentees[num].createdAt | date: "shortDate" }}</p>
+
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-sm-3 col-md-3 col-lg-3 mt-4">
+    <div class="col-sm-4 col-md-3 col-lg-3 mt-4">
       <div class="card shadow" id="menteeChat">
         <div class="card-header text-center">
           <h6 class='pt-2'><b>Chat</b></h6>
@@ -163,11 +164,12 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-11 col-md-11 col-lg-11 mt-2 ml-4">
+    <div class='col-sm-0 col-md-1 col-lg-1'></div>
+    <div class="col-sm-10 col-md-8 col-lg-10 mt-2">
       <div class="card shadow" id="menteeStory">
         <div class="card-body">
           <h4>Story</h4>
-          <p>{{ profile.mentee.story }}</p>
+          <p>{{ profile.summary }}</p>
         </div>
       </div>
     </div>

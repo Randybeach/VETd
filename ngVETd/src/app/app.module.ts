@@ -24,6 +24,7 @@ import { MaterialModule } from './material.module';
 import { ModalComponent } from './modal/modal.component';
 import {MatSelectModule} from '@angular/material/select';
 import { SortbyidPipe } from './pipes/sortbyid.pipe';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { SortbyidPipe } from './pipes/sortbyid.pipe';
     MaterialModule,
     MatSelectModule,
     MatSliderModule,
-    NgbRatingModule
+    NgbRatingModule,
+    FlexLayoutModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
