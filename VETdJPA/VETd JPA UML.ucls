@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="com.skilldistillery.vetd.entities.Review" project="VETdJPA" 
     file="/VETdJPA/src/main/java/com/skilldistillery/vetd/entities/Review.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="983" y="57"/>    
+    <position height="-1" width="-1" x="955" y="57"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="com.skilldistillery.vetd.entities.User" project="VETdJPA" 
     file="/VETdJPA/src/main/java/com/skilldistillery/vetd/entities/User.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1004" y="561"/>    
+    <position height="-1" width="-1" x="970" y="559"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -164,10 +164,10 @@
   <association id="27">    
     <end type="SOURCE" refId="4" navigable="false">      
       <attribute id="28" name="reviewer">        
-        <position height="0" width="0" x="-300" y="-2"/>      
+        <position height="0" width="0" x="-334" y="-4"/>      
       </attribute>      
       <multiplicity id="29" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-300" y="-2"/>      
+        <position height="0" width="0" x="-334" y="-4"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
@@ -200,10 +200,10 @@
   <association id="36">    
     <end type="SOURCE" refId="3" navigable="false">      
       <attribute id="37" name="reviews">        
-        <position height="0" width="0" x="-318" y="-16"/>      
+        <position height="0" width="0" x="-346" y="-16"/>      
       </attribute>      
       <multiplicity id="38" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-318" y="-16"/>      
+        <position height="0" width="0" x="-346" y="-16"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
@@ -320,10 +320,10 @@
   <association id="66">    
     <end type="SOURCE" refId="3" navigable="false">      
       <attribute id="67" name="user">        
-        <position height="0" width="0" x="-300" y="-2"/>      
+        <position height="0" width="0" x="-334" y="-4"/>      
       </attribute>      
       <multiplicity id="68" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-300" y="-2"/>      
+        <position height="0" width="0" x="-334" y="-4"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
