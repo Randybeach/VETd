@@ -182,7 +182,8 @@ public class UserServiceImpl implements UserService {
 		if (user.getProfile().getMentee() != null) {
 			Mentee mentee = user.getProfile().getMentee();
 			mentee.removeJob(job);
-
+			job.removeMentee(mentee);
+			jRepo.saveAndFlush(job);
 			System.out.println(mentee);
 			menteeRepo.saveAndFlush(mentee);
 			p.setMentee(mentee);
@@ -191,12 +192,14 @@ public class UserServiceImpl implements UserService {
 			return p;
 		} else {
 			Mentor mentor = user.getProfile().getMentor();
-
+			
 			mentor.removeJob(job);
-
+			job.removeMentor(mentor);
+			jRepo.saveAndFlush(job);
 			System.out.println(mentor);
 			mentorRepo.saveAndFlush(mentor);
 			p.setMentor(mentor);
+			pRepo.saveAndFlush(p);
 			return p;
 		}
 
@@ -338,19 +341,20 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Object addMessage(Message message, String name, int id) {
+	public Set<MentorMentee> addMessage(Message message, String name, int id) {
 		MentorMentee ment = mmRepo.findById(id).get();
 		message.setMentorMentee(ment);
 		System.out.println("#@ " + message);
 		User user = uRepo.findUserByUsername(name);
 		messageRepo.saveAndFlush(message);
+		Set<MentorMentee> mm = null;
 		if (user.getProfile().getMentee() == null) {
-			Set<MentorMentee> mm = user.getProfile().getMentor().getMentorMentees();
+			mm = user.getProfile().getMentor().getMentorMentees();
 			
 		} else {
-
+			mm = user.getProfile().getMentee().getMentorMentee();
 		}
-		return null;
+		return mm;
 	}
 
 	@Override

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.vetd.entities.Job;
 import com.skilldistillery.vetd.entities.Mentee;
+import com.skilldistillery.vetd.entities.MentorMentee;
 import com.skilldistillery.vetd.entities.Message;
 import com.skilldistillery.vetd.entities.Profile;
 import com.skilldistillery.vetd.entities.Review;
@@ -80,8 +81,7 @@ public class UserController {
 	@PutMapping("remove/jobs")
 	public Profile removeJobsFromMentee(@RequestBody Job job, Principal p) {
 		Profile po = svc.removeJobsFromMentee(job, p.getName());
-		
-		System.out.println(po.getMentee());
+			System.out.println("%$#"+po.getMentee());
 		return po;
 	}
 
@@ -120,9 +120,9 @@ public class UserController {
 	
 	// Add a message to mentor_mentee
 	@PostMapping("message/{recipientId}/{mmId}")
-	public void addMessage(@RequestBody Message message, Principal principal, @PathVariable int recipientId, @PathVariable int mmId) {
+	public Set<MentorMentee> addMessage(@RequestBody Message message, Principal principal, @PathVariable int recipientId, @PathVariable int mmId) {
 		System.out.println("$$$ " + message);
-		 svc.addMessage(message, principal.getName(), mmId);
+		return svc.addMessage(message, principal.getName(), mmId);
 	}
 
 	@PostMapping("profile/{pid}/review")
