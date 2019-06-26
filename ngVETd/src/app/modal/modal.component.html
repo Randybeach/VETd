@@ -157,11 +157,11 @@
         </div>
         <div class="card-body text-center" id="reviewCardBody">
           <form #reviewForm="ngForm">
-            <span><mat-slider thumbLabel tickInterval="1" min="1" max="5"></mat-slider>
+            <span><mat-slider thumbLabel tickInterval="1" min="1" max="5" ngModel name='rating'></mat-slider>
             </span>
             <mat-form-field class="selectFields text-center">
                 <mat-label>Summary</mat-label>
-              <textarea matInput name="content" [(ngModel)]="review.content" id='textarea'>
+              <textarea matInput name="content" ngModel id='textarea'>
               </textarea>
               <!-- <mat-placeholder class="placeholder">Summary</mat-placeholder> -->
             </mat-form-field>

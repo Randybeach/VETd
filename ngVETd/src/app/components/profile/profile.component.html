@@ -17,6 +17,14 @@
                     <b>Location:</b> {{ profile.location.city }}, {{ profile.location.state }} {{ profile.location.zipcode }}<br>
                     <b>Picture:</b> {{ profile.pictureUrl }}<br>
                     <b>Resume:</b> {{ profile.resumeUrl }}<br>
+                  </div>
+                    <div class='card-body'>
+                    <b>Reviews:</b>
+                    <div *ngFor='let review of profile.reviews'>
+                        <!-- <span><i *ngFor='let in of counter([review.rating]);let i = index' class="material-icons float-right" style='padding: 0px 0px 0px 0px' ngbTooltip="Star rating" id='ratingStars' (click)='editProfile()'>star {{i}}</i></span> -->
+                        <span><ngb-rating [rate]="review.rating" max="5" class='float-right'></ngb-rating></span>
+                      {{ review.content }}
+                    </div>
                 </div>
                 <div class='card-body text-center'><u><b>Current Mentor</b></u></div>
                 <div *ngIf='menteeMentorsList.length > 0'>

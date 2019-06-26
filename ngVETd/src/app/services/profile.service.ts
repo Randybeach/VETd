@@ -184,7 +184,7 @@ export class ProfileService {
       Authorization: "Basic " + this.auth.getCredentials(),
       "Content-Type": "application/json"
     };
-    return this.http.put<Profile[]>(
+    return this.http.post<Profile[]>(
       this.url + "/profile/" + pid + "/review",
       review,
       {

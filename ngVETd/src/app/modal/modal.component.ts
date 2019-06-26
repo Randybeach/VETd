@@ -8,6 +8,7 @@ import { ProfileService } from "../services/profile.service";
 import { AuthService } from "../services/auth.service";
 import { Review } from "../models/review";
 import { Message } from "../models/message";
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: "app-modal",
@@ -126,13 +127,13 @@ export class ModalComponent implements OnInit {
     this.message = new Message();
   }
 
-  addReview(form) {
+  addReview(form: NgForm) {
     this.review = form.value;
-    this.review.profileId = this.profile.user.id;
-    this.review.reviewer = this.myProfile.user;
+    this.review.profileId = this.profile.id;
+    // this.review.reviewer = this.myProfile.user;
     console.log("review", this.review);
     console.log("pid", this.review.profileId);
-    console.log("reviewer", this.review.reviewer);
+    // console.log("reviewer", this.review.reviewer);
 
     this.profileService.addReview(this.review, this.review.profileId).subscribe(
       good => {
