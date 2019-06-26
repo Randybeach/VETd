@@ -31,7 +31,7 @@ export class ModalComponent implements OnInit {
   menteeId = 0;
   mentorId = 0;
   mentorMentee = null;
-  messageList = null;
+  messageList = [];
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
@@ -148,20 +148,24 @@ export class ModalComponent implements OnInit {
   submitMessage() {
     this.message.profileId = this.myProfile.id;
     this.message.mentorMentee = this.mentorMentee;
-    console.log(this.message.mentorMentee);
-    console.log(this.message.profileId);
     console.log(this.message);
+    this.message.createdAt = Date.now().toString();
     this.messageList.push(this.message.text);
-    console.log(this.messageList);
+    console.log(this.message.createdAt);
 
 
 
     this.profileService.submitMessage(this.message, this.profile.id).subscribe(
-        good => {
-          console.log(good);
+      good => {
+        console.log(good);
+        this.addMenteesOrMentors();
+        console.log(this.messageList);
+
+        this.refreshDiv();
         }
       );
     this.message = new Message();
+    this.showChat = false;
 
   }
 
@@ -203,6 +207,7 @@ export class ModalComponent implements OnInit {
           if(this.myProfile.mentee.id === this.profile.mentor.mentorMentees[i].id){
             this.messageList = this.profile.mentor.mentorMentees[i].messages;
 
+
         }
       }
     }
@@ -210,4 +215,10 @@ export class ModalComponent implements OnInit {
   refreshMessages(){
 
   }
+
+  refreshDiv() {
+    var curDivContent = document.getElementById('menteeChat').innerHTML;
+
+    document.getElementById('menteeChat').innerHTML = curDivContent;
+    }
 }
