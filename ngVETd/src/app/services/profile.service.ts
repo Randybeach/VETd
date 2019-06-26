@@ -11,13 +11,13 @@ import { User } from '../models/user';
 import { Message } from '../models/message';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class ProfileService {
   //
   // F E I L D S
   //
-  private url = environment.baseUrl + 'api';
+  private url = environment.baseUrl + "api";
   constructor(private http: HttpClient, private auth: AuthService) {}
   //
   // M E T H O D S
@@ -25,10 +25,10 @@ export class ProfileService {
   getSectors(): Observable<Sector[]> {
     const credentials = this.auth.getCredentials();
     const myHeaders = {
-      'X-Requested-With': 'XMLHttpRequest',
-      Authorization: 'Basic ' + this.auth.getCredentials()
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials()
     };
-    return this.http.get<Sector[]>(this.url + '/sectors', {
+    return this.http.get<Sector[]>(this.url + "/sectors", {
       headers: myHeaders
     });
   }
@@ -36,28 +36,28 @@ export class ProfileService {
   getJobs(): Observable<Job[]> {
     const credentials = this.auth.getCredentials();
     const myHeaders = {
-      'X-Requested-With': 'XMLHttpRequest',
-      Authorization: 'Basic ' + this.auth.getCredentials()
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials()
     };
-    return this.http.get<Job[]>(this.url + '/jobs', { headers: myHeaders });
+    return this.http.get<Job[]>(this.url + "/jobs", { headers: myHeaders });
   }
 
   getUsers(): Observable<User[]> {
     const credentials = this.auth.getCredentials();
     const myHeaders = {
-      'X-Requested-With': 'XMLHttpRequest',
-      Authorization: 'Basic ' + this.auth.getCredentials()
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials()
     };
-    return this.http.get<User[]>(this.url + '/users', { headers: myHeaders });
+    return this.http.get<User[]>(this.url + "/users", { headers: myHeaders });
   }
 
   addJobs(newJobs: Job[]) {
     const myHeaders = {
-      'X-Requested-With': 'XMLHttpRequest',
-      Authorization: 'Basic ' + this.auth.getCredentials(),
-      'Content-Type': 'application/json'
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials(),
+      "Content-Type": "application/json"
     };
-    return this.http.put<Job[]>(this.url + '/add/jobs', newJobs, {
+    return this.http.put<Job[]>(this.url + "/add/jobs", newJobs, {
       headers: myHeaders
     });
   }
@@ -65,99 +65,134 @@ export class ProfileService {
   update(editProfile) {
     // const upUrl = this.url + "/" + updateTodo.id;
     const myHeaders = {
-      'X-Requested-With': 'XMLHttpRequest',
-      Authorization: 'Basic ' + this.auth.getCredentials(),
-      'Content-Type': 'application/json'
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials(),
+      "Content-Type": "application/json"
     };
     console.log(editProfile);
 
-    return this.http.put<Profile>(this.url + '/profile', editProfile, {
+    return this.http.put<Profile>(this.url + "/profile", editProfile, {
       headers: myHeaders
     });
   }
 
   removeJob(job) {
     const myHeaders = {
-      'X-Requested-With': 'XMLHttpRequest',
-      Authorization: 'Basic ' + this.auth.getCredentials(),
-      'Content-Type': 'application/json'
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials(),
+      "Content-Type": "application/json"
     };
-      console.log(job.name);
+    console.log(job.name);
 
-    return this.http.put<Profile>(this.url + '/remove/jobs', job, {
+    return this.http.put<Profile>(this.url + "/remove/jobs", job, {
       headers: myHeaders
     });
   }
 
   getProfile() {
     const myHeaders = {
-      'X-Requested-With': 'XMLHttpRequest',
-      Authorization: 'Basic ' + this.auth.getCredentials(),
-      'Content-Type': 'application/json'
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials(),
+      "Content-Type": "application/json"
     };
 
-    return this.http.get<Profile>(this.url + '/profile', {
+    return this.http.get<Profile>(this.url + "/profile", {
       headers: myHeaders
     });
   }
 
   searchUsers(keyword) {
     const myHeaders = {
-      'X-Requested-With': 'XMLHttpRequest',
-      Authorization: 'Basic ' + this.auth.getCredentials(),
-      'Content-Type': 'application/json'
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials(),
+      "Content-Type": "application/json"
     };
 
-    return this.http.get<User[]>(this.url + '/search/' + keyword, {
+    return this.http.get<User[]>(this.url + "/search/" + keyword, {
       headers: myHeaders
     });
   }
   getListOfMenteesWithChosenJobs() {
     const myHeaders = {
-      'X-Requested-With': 'XMLHttpRequest',
-      Authorization: 'Basic ' + this.auth.getCredentials(),
-      'Content-Type': 'application/json'
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials(),
+      "Content-Type": "application/json"
     };
-    return this.http.get<Profile[]>(this.url + '/mentee/job', {headers: myHeaders});
+    return this.http.get<Profile[]>(this.url + "/mentee/job", {
+      headers: myHeaders
+    });
   }
   getMentorsByMenteeId(id): Observable<Profile[]> {
     const myHeaders = {
-      'X-Requested-With': 'XMLHttpRequest',
-      Authorization: 'Basic ' + this.auth.getCredentials(),
-      'Content-Type': 'application/json'
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials(),
+      "Content-Type": "application/json"
     };
-    console.log('In profile service for mentor list by mentee id');
-    console.log(this.http.get<Profile[]>(this.url + '/mentee/' + id + '/mentor', {headers: myHeaders}));
-    return this.http.get<Profile[]>(this.url + '/mentee/' + id + '/mentor', {headers: myHeaders});
+    console.log("In profile service for mentor list by mentee id");
+    console.log(
+      this.http.get<Profile[]>(this.url + "/mentee/" + id + "/mentor", {
+        headers: myHeaders
+      })
+    );
+    return this.http.get<Profile[]>(this.url + "/mentee/" + id + "/mentor", {
+      headers: myHeaders
+    });
   }
 
   getMenteesByMentorId(id): Observable<Profile[]> {
     const myHeaders = {
-      'X-Requested-With': 'XMLHttpRequest',
-      Authorization: 'Basic ' + this.auth.getCredentials(),
-      'Content-Type': 'application/json'
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials(),
+      "Content-Type": "application/json"
     };
-    console.log('In profile service for mentee list by mentor id');
-    console.log(this.http.get<Profile[]>(this.url + '/mentor/' + id + '/mentee', {headers: myHeaders}));
-    return this.http.get<Profile[]>(this.url + '/mentor/' + id + '/mentee', {headers: myHeaders});
+    console.log("In profile service for mentee list by mentor id");
+    console.log(
+      this.http.get<Profile[]>(this.url + "/mentor/" + id + "/mentee", {
+        headers: myHeaders
+      })
+    );
+    return this.http.get<Profile[]>(this.url + "/mentor/" + id + "/mentee", {
+      headers: myHeaders
+    });
   }
 
   addMenteeToMentorList(profile) {
     const myHeaders = {
-      'X-Requested-With': 'XMLHttpRequest',
-      Authorization: 'Basic ' + this.auth.getCredentials(),
-      'Content-Type': 'application/json'
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials(),
+      "Content-Type": "application/json"
     };
-    return this.http.put<Profile[]>(this.url + '/mentormentee', profile, {headers: myHeaders});
+    return this.http.put<Profile[]>(this.url + "/mentormentee", profile, {
+      headers: myHeaders
+    });
   }
 
   removeMenteeFromMentorList(profile) {
     const myHeaders = {
-      'X-Requested-With': 'XMLHttpRequest',
-      Authorization: 'Basic ' + this.auth.getCredentials(),
-      'Content-Type': 'application/json'
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials(),
+      "Content-Type": "application/json"
     };
-    return this.http.put<Profile[]>(this.url + '/mentormentee/remove', profile, {headers: myHeaders});
+    return this.http.put<Profile[]>(
+      this.url + "/mentormentee/remove",
+      profile,
+      { headers: myHeaders }
+    );
+  }
+
+  addReview(review, pid) {
+    const myHeaders = {
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Basic " + this.auth.getCredentials(),
+      "Content-Type": "application/json"
+    };
+    return this.http.post<Profile[]>(
+      this.url + "/profile/" + pid + "/review",
+      review,
+      {
+        headers: myHeaders
+      }
+    );
   }
 
   submitMessage(message, id){

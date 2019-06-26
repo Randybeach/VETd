@@ -142,16 +142,16 @@
       <div class="card shadow mt-2" id='reviewCard'>
         <div class="card-header text-center">
           <h6 class='pl-2 pt-2'><b>Review</b>
-            <span><i class="material-icons float-right" id="add" ngbTooltip="Leave a review" >add</i></span>
+            <span><i (click)="addReview(reviewForm)" class="material-icons float-right" id="add" ngbTooltip="Leave a review" >add</i></span>
           </h6>
         </div>
         <div class="card-body text-center" id="reviewCardBody">
           <form #reviewForm="ngForm">
-            <span><mat-slider thumbLabel tickInterval="1" min="1" max="5"></mat-slider>
+            <span><mat-slider thumbLabel tickInterval="1" min="1" max="5" ngModel name='rating'></mat-slider>
             </span>
             <mat-form-field class="selectFields text-center">
                 <mat-label>Summary</mat-label>
-              <textarea matInput name="content" [(ngModel)]="review.content" id='textarea'>
+              <textarea matInput name="content" ngModel id='textarea'>
               </textarea>
               <!-- <mat-placeholder class="placeholder">Summary</mat-placeholder> -->
             </mat-form-field>
