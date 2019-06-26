@@ -141,6 +141,8 @@ export class ProfileComponent implements OnInit {
         console.log(good);
         this.getProfile();
         this.getListOfMenteesWithSelectedJobs();
+        this.currentSector = null;
+        this.jobName = 'nothing';
       },
       err => {
         console.log(err);
