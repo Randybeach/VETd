@@ -3,7 +3,7 @@
 ### Full Stack Final Project for Skill Distillery
 ---
 ## Team Members
-- Alexa (Developer, Scrum Master)
+- Alexa Veigel (Developer, Scrum Master)
 - Randy Beach (Developer, DBA)
 - Rob Lounsbury (Developer, Repo Owner)
 
