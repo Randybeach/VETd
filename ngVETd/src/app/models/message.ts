@@ -4,7 +4,7 @@ import { Profile } from './profile';
 export class Message {
 
   id: number;
-  mentormentee: MentorMentee;
+  mentorMentee: MentorMentee;
   text: string;
   profileId: number;
   createdAt: string;
@@ -12,13 +12,13 @@ export class Message {
 
 constructor(
     id?: number,
-    mentormentee?: MentorMentee,
+    mentorMentee?: MentorMentee,
     text?: string,
     profileId?: number,
     createdAt?: string
 ) {
   this.id = id;
-  this.mentormentee = mentormentee;
+  this.mentorMentee = mentorMentee;
   this.text = text;
   this.profileId = profileId;
   this.createdAt = createdAt;

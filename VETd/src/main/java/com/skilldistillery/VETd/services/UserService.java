@@ -43,10 +43,12 @@ public interface UserService {
 
 	public Set<Review> getReviewsByProfileId(String name);
 
-	public Object addMessage(Message message, String name);
+	public Object addMessage(Message message, String name, int id);
 
 //	public Review postNewReview(Review review, Integer pid);
 
 	public Review postNewReview(Review review, String name, int pid);
+
+	public List<Message> getMessages();
 
 }

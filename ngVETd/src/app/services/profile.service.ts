@@ -1,12 +1,14 @@
-import { environment } from "src/environments/environment";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { Sector } from "../models/sector";
-import { AuthService } from "./auth.service";
-import { Job } from "../models/job";
-import { Profile } from "../models/profile";
-import { User } from "../models/user";
+import { MentorMentee } from './../models/mentor-mentee';
+import { environment } from 'src/environments/environment';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Sector } from '../models/sector';
+import { AuthService } from './auth.service';
+import { Job } from '../models/job';
+import { Profile } from '../models/profile';
+import { User } from '../models/user';
+import { Message } from '../models/message';
 
 @Injectable({
   providedIn: "root"
@@ -200,6 +202,15 @@ export class ProfileService {
       'Content-Type': 'application/json'
     };
 
-    return this.http.post<Profile[]>(this.url + '/message/' + id, message, {headers: myHeaders});
+    return this.http.post<Profile[]>(this.url + '/message/' + id + '/' + message.mentorMentee.id, message, {headers: myHeaders});
+  }
+
+  reloadMessages(){
+    const myHeaders = {
+      'X-Requested-With': 'XMLHttpRequest',
+      Authorization: 'Basic ' + this.auth.getCredentials(),
+      'Content-Type': 'application/json'
+    };
+    return this.http.get<Message[]>(this.url + 'messages', {headers: myHeaders});
   }
 }

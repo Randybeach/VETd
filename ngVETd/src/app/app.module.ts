@@ -23,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { ModalComponent } from './modal/modal.component';
 import {MatSelectModule} from '@angular/material/select';
+import { SortbyidPipe } from './pipes/sortbyid.pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {MatSelectModule} from '@angular/material/select';
     ProfileComponent,
     AdminComponent,
     MenteeProfileComponent,
-    ModalComponent
+    ModalComponent,
+    SortbyidPipe
   ],
   imports: [
     BrowserModule,

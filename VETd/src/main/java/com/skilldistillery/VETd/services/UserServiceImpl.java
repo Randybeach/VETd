@@ -338,7 +338,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Object addMessage(Message message, String name) {
+	public Object addMessage(Message message, String name, int id) {
+		MentorMentee ment = mmRepo.findById(id).get();
+		message.setMentorMentee(ment);
+		System.out.println("#@ " + message);
 		User user = uRepo.findUserByUsername(name);
 		messageRepo.saveAndFlush(message);
 		if (user.getProfile().getMentee() == null) {
@@ -360,6 +363,12 @@ public class UserServiceImpl implements UserService {
 		}
 		review.setReviewer(user);
 		return rRepo.saveAndFlush(review);
+	}
+
+	@Override
+	public List<Message> getMessages() {
+		
+		return messageRepo.findAll();
 	}
 
 }

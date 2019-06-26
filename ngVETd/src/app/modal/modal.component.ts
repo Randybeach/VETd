@@ -1,14 +1,19 @@
-import { MentorMentee } from "./../models/mentor-mentee";
-import { ProfileComponent } from "./../components/profile/profile.component";
-import { Component, OnInit, Inject } from "@angular/core";
-import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
-import { DialogData } from "../DialogData";
-import { Profile } from "../models/profile";
-import { ProfileService } from "../services/profile.service";
-import { AuthService } from "../services/auth.service";
-import { Review } from "../models/review";
-import { Message } from "../models/message";
+import { SortbyidPipe } from './../pipes/sortbyid.pipe';
+import { MentorMentee } from './../models/mentor-mentee';
+import { ProfileComponent } from './../components/profile/profile.component';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { DialogData } from '../DialogData';
+import { Profile } from '../models/profile';
+import { ProfileService } from '../services/profile.service';
+import { AuthService } from '../services/auth.service';
+import { Review } from '../models/review';
+import { Message } from '../models/message';
+import { throwError } from 'rxjs';
+import { log } from 'util';
 import { NgForm } from '@angular/forms';
+
+
 
 @Component({
   selector: "app-modal",
@@ -25,12 +30,13 @@ export class ModalComponent implements OnInit {
   message = new Message();
   menteeId = 0;
   mentorId = 0;
-  mentorMenteeId = 0;
+  mentorMentee = null;
+  messageList = null;
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private profileService: ProfileService
+    private profileService: ProfileService,
   ) {}
 
   onNoClick(): void {
@@ -40,11 +46,12 @@ export class ModalComponent implements OnInit {
   ngOnInit() {
     this.profile = this.data.profile;
     this.myProfile = this.data.myProfile;
+    console.log(this.profile);
+
+    console.log(this.myProfile);
 
     this.addMenteesOrMentors();
 
-    console.log(this.profile);
-    console.log(this.myProfile);
     console.log("in init");
   }
   formatLabel(value: number | null) {
@@ -83,6 +90,7 @@ export class ModalComponent implements OnInit {
   }
   addMenteesOrMentors() {
     if (this.profile.mentor != null) {
+      //I am a mentee
       this.mentees = this.profile.mentor.mentorMentees;
       this.jobs = this.profile.mentor.jobs;
       this.mentorId = this.profile.mentor.id;
@@ -90,25 +98,47 @@ export class ModalComponent implements OnInit {
 
       console.log(this.mentees);
 
-      for (let i = 0; i < this.mentees.length; i++) {
-        console.log("mentee" + this.mentees[1].mentee.id);
-        console.log("mentees" + this.mentees[1].mentees.id);
+      for(let i = 0; i < this.mentees.length; i++) {
+        console.log('mentee'+this.mentees[i].mentee.id);
+        console.log('mentees'+this.mentees[i].mentees.id);
+        if(this.mentees[i].mentee.id === this.myProfile.mentee.id){
+          console.log('its a match for being a mentee');
+          console.log(this.mentees[i].id);
+          this.mentorMentee = this.mentees[i];
+
+
+          console.log('message 1')
+        }
+
+
       }
+      this.loadMessages();
+
     } else {
+      //I am a mentor
       this.mentorId = this.myProfile.mentor.id;
       this.menteeId = this.profile.mentee.id;
 
       this.jobs = this.profile.mentee.jobs;
       this.mentees = this.myProfile.mentor.mentorMentees;
 
-      console.log(this.mentees.length);
+      // console.log(this.mentees.length);
+      // console.log(this.myProfile.mentor.id);
 
-      for (let i = 0; i < this.mentees.length; i++) {
-        console.log("mentee" + this.mentees[i].mentee.id);
-        console.log("mentees" + this.mentees[i].mentees.id);
-        if (this.mentees[i].mentee.id === this.myProfile.mentee.id) {
-        }
+      for(let i = 0; i < this.mentees.length; i++) {
+        console.log('mentee id'+this.mentees[i].mentee.id);
+        if(this.mentees[i].mentee.id === this.profile.mentee.id){
+          this.mentorMentee = this.mentees[i];
+
+          console.log('its a match');
+
+          }
+        console.log('id '+this.mentees[i].id);
+
+
+
       }
+      this.loadMessages();
     }
   }
   chat() {
@@ -117,14 +147,22 @@ export class ModalComponent implements OnInit {
   }
   submitMessage() {
     this.message.profileId = this.myProfile.id;
-    console.log(this.message.text);
+    this.message.mentorMentee = this.mentorMentee;
+    console.log(this.message.mentorMentee);
     console.log(this.message.profileId);
-    this.profileService
-      .submitMessage(this.message, this.profile.id)
-      .subscribe(good => {
-        console.log(good);
-      });
+    console.log(this.message);
+    this.messageList.push(this.message.text);
+    console.log(this.messageList);
+
+
+
+    this.profileService.submitMessage(this.message, this.profile.id).subscribe(
+        good => {
+          console.log(good);
+        }
+      );
     this.message = new Message();
+
   }
 
   addReview(form: NgForm) {
@@ -145,5 +183,31 @@ export class ModalComponent implements OnInit {
         console.log(bad);
       }
     );
+  }
+  loadMessages(){
+    console.log('loading');
+
+    if(this.profile.mentee !== null){
+      for(let i = 0; i < this.myProfile.mentor.mentorMentees.length; i++){
+        console.log('looping');
+
+
+        if(this.profile.mentee.id === this.myProfile.mentor.mentorMentees[i].id){
+
+            this.messageList = this.myProfile.mentor.mentorMentees[i].messages;
+
+          }
+        }
+      }else{
+        for(let i =0; i < this.profile.mentor.mentorMentees.length; i++){
+          if(this.myProfile.mentee.id === this.profile.mentor.mentorMentees[i].id){
+            this.messageList = this.profile.mentor.mentorMentees[i].messages;
+
+        }
+      }
+    }
+  }
+  refreshMessages(){
+
   }
 }
