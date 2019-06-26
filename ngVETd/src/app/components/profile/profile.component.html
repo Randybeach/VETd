@@ -144,7 +144,7 @@
     <div class='col-sm-5 col-md-5 col-lg-5'>
       <div class='card shadow' id='profileJobsCard'>
           <div class='card-body text-center'>
-            <h5>Welcome, mentor {{profile.firstName}}!</h5>
+            <h5>Welcome, {{profile.firstName | titlecase}}!</h5>
             <p>Select jobs on which you feel qualified to provide mentorship.</p>
             <div class='form-group'>
               <div class="dropdown">
