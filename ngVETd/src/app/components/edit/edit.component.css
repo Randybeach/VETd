@@ -4,7 +4,7 @@
   background: rgba(255, 252, 252, 0.6);
 }
 
-.row {
+.cardDiv {
   padding: 60px;
 }
 
@@ -40,5 +40,5 @@ div {
 #emailField {
   width: 100%;
   align-items: stretch;
-  max-width: 380px;
+  max-width: 415px;
 }
