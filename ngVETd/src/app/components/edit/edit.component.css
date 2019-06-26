@@ -36,3 +36,9 @@ div {
   display: flex;
   flex-direction: column;
 }
+
+#emailField {
+  width: 100%;
+  align-items: stretch;
+  max-width: 380px;
+}

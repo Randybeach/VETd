@@ -4,7 +4,7 @@
   background: rgba(255, 252, 252, 0.6);
 }
 
-.row {
+.cardDiv {
   padding: 60px;
 }
 
@@ -35,6 +35,12 @@ div {
 .selectFields {
   display: flex;
   flex-direction: column;
+}
+
+#emailField {
+  width: 100%;
+  align-items: stretch;
+  max-width: 415px;
 }
 
 
