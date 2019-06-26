@@ -117,8 +117,8 @@
               <h6 class='pt-2'><b>History</b></h6>
             </div>
             <div class="card-body text-left">
-              <div *ngFor="let ment of mentees">
-                <p>{{ ment.createdAt | date: "shortDate" }}</p>
+              <div >
+                <p>{{ mentees[1].createdAt | date: "shortDate" }}</p>
               </div>
             </div>
           </div>
@@ -131,23 +131,13 @@
           <h6 class='pt-2'><b>Chat</b></h6>
         </div>
         <div class="card-body py-2" id="scroll" style='font-size: .7rem'>
-          <p>
-            Appears only when chat initiated.<br />
-            Role - First Last Date/Timestamp: Message…<br />
-            Role - First Last Date/Timestamp: Message…<br />
-            Role - First Last Date/Timestamp: Message…<br />
-            Role - First Last Date/Timestamp: Message…<br />
-            .<br />
-            .<br />
-            .<br />
-            .<br />
-            .<br />
-            .<br />
-            .<br />
-            .<br />
-            .
+          <p *ngFor='let mes of messageList | sortbyid'>
+           <span *ngIf='mes.profileId === profile.id '>{{profile.firstName}}: {{mes.text}} - {{mes.createdAt | date:'shortDate'}}</span>
+           <span *ngIf='mes.profileId === myProfile.id '>{{myProfile.firstName}}: {{mes.text}} - {{mes.createdAt | date:'shortDate'}}</span>
+
           </p>
         </div>
+
       </div>
       <div class="card shadow mt-2" id='reviewCard'>
         <div class="card-header text-center">

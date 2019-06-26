@@ -119,14 +119,18 @@ public class UserController {
 	}
 	
 	// Add a message to mentor_mentee
-	@PostMapping("message/{recipientId}")
-	public void addMessage(@RequestBody Message message, Principal principal, @PathVariable int recipientId) {
+	@PostMapping("message/{recipientId}/{mmId}")
+	public void addMessage(@RequestBody Message message, Principal principal, @PathVariable int recipientId, @PathVariable int mmId) {
 		System.out.println("$$$ " + message);
-		 svc.addMessage(message, principal.getName());
+		 svc.addMessage(message, principal.getName(), mmId);
 	}
 
 	@PostMapping("profile/{pid}/review")
 	public Review postNewReview(@RequestBody Review review, Principal principal, @PathVariable int pid) {
 		return svc.postNewReview(review, principal.getName(), pid);
+	}
+	@GetMapping("messages")
+	public List<Message> getMessages(){
+		return svc.getMessages();
 	}
 }
