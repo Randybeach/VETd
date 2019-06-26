@@ -101,3 +101,11 @@ mat-slider:hover {
 textarea {
   min-height: 40px;
 }
+
+#resume > img{
+}
+#resume{
+  height: 100vh;
+  max-width: 1000px;
+
+}

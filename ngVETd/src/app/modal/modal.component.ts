@@ -33,6 +33,9 @@ export class ModalComponent implements OnInit {
   mentorMentee = null;
   messageList = [];
   num = 0;
+  resUrl = false;
+  admin = null;
+
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
@@ -45,6 +48,8 @@ export class ModalComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.admin = localStorage.getItem('admin')
+
     this.profile = this.data.profile;
     this.myProfile = this.data.myProfile;
     console.log(this.profile);
@@ -219,5 +224,10 @@ export class ModalComponent implements OnInit {
   refreshMessages(){
 
   }
+  showResume(){
+  console.log("resume");
+    this.resUrl = !this.resUrl;
+  }
+
 
 }
