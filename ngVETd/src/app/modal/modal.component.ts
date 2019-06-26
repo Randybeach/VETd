@@ -32,6 +32,7 @@ export class ModalComponent implements OnInit {
   mentorId = 0;
   mentorMentee = null;
   messageList = [];
+  num = 0;
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
@@ -93,6 +94,8 @@ export class ModalComponent implements OnInit {
       //I am a mentee
       this.mentees = this.profile.mentor.mentorMentees;
       this.jobs = this.profile.mentor.jobs;
+      console.log(this.jobs);
+
       this.mentorId = this.profile.mentor.id;
       this.menteeId = this.myProfile.mentee.id;
 
@@ -103,6 +106,7 @@ export class ModalComponent implements OnInit {
         console.log('mentees'+this.mentees[i].mentees.id);
         if(this.mentees[i].mentee.id === this.myProfile.mentee.id){
           console.log('its a match for being a mentee');
+          this.num = i;
           console.log(this.mentees[i].id);
           this.mentorMentee = this.mentees[i];
 
@@ -116,10 +120,11 @@ export class ModalComponent implements OnInit {
 
     } else {
       //I am a mentor
+      this.jobs = this.profile.mentee.jobs;
+      console.log(this.jobs);
       this.mentorId = this.myProfile.mentor.id;
       this.menteeId = this.profile.mentee.id;
 
-      this.jobs = this.profile.mentee.jobs;
       this.mentees = this.myProfile.mentor.mentorMentees;
 
       // console.log(this.mentees.length);
@@ -129,6 +134,7 @@ export class ModalComponent implements OnInit {
         console.log('mentee id'+this.mentees[i].mentee.id);
         if(this.mentees[i].mentee.id === this.profile.mentee.id){
           this.mentorMentee = this.mentees[i];
+          this.num = i;
 
           console.log('its a match');
 
@@ -161,7 +167,6 @@ export class ModalComponent implements OnInit {
         this.addMenteesOrMentors();
         console.log(this.messageList);
 
-        this.refreshDiv();
         }
       );
     this.message = new Message();
@@ -193,10 +198,9 @@ export class ModalComponent implements OnInit {
 
     if(this.profile.mentee !== null){
       for(let i = 0; i < this.myProfile.mentor.mentorMentees.length; i++){
-        console.log('looping');
 
 
-        if(this.profile.mentee.id === this.myProfile.mentor.mentorMentees[i].id){
+        if(this.profile.mentee.id === this.myProfile.mentor.mentorMentees[i].mentee.id){
 
             this.messageList = this.myProfile.mentor.mentorMentees[i].messages;
 
@@ -204,7 +208,7 @@ export class ModalComponent implements OnInit {
         }
       }else{
         for(let i =0; i < this.profile.mentor.mentorMentees.length; i++){
-          if(this.myProfile.mentee.id === this.profile.mentor.mentorMentees[i].id){
+          if(this.myProfile.mentee.id === this.profile.mentor.mentorMentees[i].mentee.id){
             this.messageList = this.profile.mentor.mentorMentees[i].messages;
 
 
@@ -216,9 +220,4 @@ export class ModalComponent implements OnInit {
 
   }
 
-  refreshDiv() {
-    var curDivContent = document.getElementById('menteeChat').innerHTML;
-
-    document.getElementById('menteeChat').innerHTML = curDivContent;
-    }
 }
