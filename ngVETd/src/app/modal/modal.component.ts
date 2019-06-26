@@ -11,6 +11,8 @@ import { Review } from '../models/review';
 import { Message } from '../models/message';
 import { throwError } from 'rxjs';
 import { log } from 'util';
+import { NgForm } from '@angular/forms';
+
 
 
 @Component({
@@ -80,11 +82,9 @@ export class ModalComponent implements OnInit {
     this.profile = p;
     console.log("added " + this.profile.firstName + " to list");
     this.profileService.addMenteeToMentorList(this.profile).subscribe(
-      good => {
-      },
+      good => {},
       bad => {
         console.log("error adding mentee");
-
       }
     );
   }
@@ -95,7 +95,6 @@ export class ModalComponent implements OnInit {
       this.jobs = this.profile.mentor.jobs;
       this.mentorId = this.profile.mentor.id;
       this.menteeId = this.myProfile.mentee.id;
-
 
       console.log(this.mentees);
 
@@ -111,6 +110,7 @@ export class ModalComponent implements OnInit {
           console.log('message 1')
         }
 
+
       }
       this.loadMessages();
 
@@ -118,7 +118,6 @@ export class ModalComponent implements OnInit {
       //I am a mentor
       this.mentorId = this.myProfile.mentor.id;
       this.menteeId = this.profile.mentee.id;
-
 
       this.jobs = this.profile.mentee.jobs;
       this.mentees = this.myProfile.mentor.mentorMentees;
@@ -137,16 +136,16 @@ export class ModalComponent implements OnInit {
         console.log('id '+this.mentees[i].id);
 
 
+
       }
       this.loadMessages();
     }
   }
   chat() {
     this.showChat = true;
-    console.log('new message');
-
+    console.log("new message");
   }
-  submitMessage(){
+  submitMessage() {
     this.message.profileId = this.myProfile.id;
     this.message.mentorMentee = this.mentorMentee;
     console.log(this.message);
@@ -167,6 +166,27 @@ export class ModalComponent implements OnInit {
       );
     this.message = new Message();
     this.showChat = false;
+
+  }
+
+  addReview(form: NgForm) {
+    this.review = form.value;
+    this.review.profileId = this.profile.id;
+    // this.review.reviewer = this.myProfile.user;
+    console.log("review", this.review);
+    console.log("pid", this.review.profileId);
+    // console.log("reviewer", this.review.reviewer);
+
+    this.profileService.addReview(this.review, this.review.profileId).subscribe(
+      good => {
+        console.log(good);
+      },
+      bad => {
+        console.log("error adding review");
+
+        console.log(bad);
+      }
+    );
   }
   loadMessages(){
     console.log('loading');

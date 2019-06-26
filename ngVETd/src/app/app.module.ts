@@ -11,7 +11,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { NavbarModule, WavesModule } from 'angular-bootstrap-md';
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './components/register/register.component';
 import { MatExpansionModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatIconModule, MatSliderModule, MatSlider } from '@angular/material';
 import { EditComponent } from './components/edit/edit.component';
@@ -60,7 +60,8 @@ import { SortbyidPipe } from './pipes/sortbyid.pipe';
     BrowserAnimationsModule,
     MaterialModule,
     MatSelectModule,
-    MatSliderModule
+    MatSliderModule,
+    NgbRatingModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
