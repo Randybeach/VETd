@@ -37,6 +37,10 @@ public class UserController {
 	public List<User> getAllUsers() {
 		return svc.getAllUsers();
 	}
+	@GetMapping("profiles")
+	public List<Profile> getAllProfiles() {
+		return svc.getAllProfiles();
+	}
 
 	@GetMapping("mentee/{id}")
 	public Mentee getMenteeById(@PathVariable int id) {
@@ -60,8 +64,8 @@ public class UserController {
 	}
 
 	@GetMapping("search/{name}")
-	public List<User> getUsersByUsername(@PathVariable String name) {
-		return svc.getUsersByUsername(name);
+	public List<Profile> getProfilesByUsername(@PathVariable String name) {
+		return svc.getProfilesByUser_Username(name);
 	}
 
 	// Update Profile

@@ -34,7 +34,7 @@ public interface UserService {
 
 	public Profile getProfile(String name);
 
-	public List<User> getUsersByUsername(String name);
+	public List<Profile> getProfilesByUser_Username(String name);
 
 	public Set<Profile> getMenteesWithJobs(String name);
 
@@ -51,5 +51,7 @@ public interface UserService {
 	public Review postNewReview(Review review, String name, int pid);
 
 	public List<Message> getMessages();
+
+	public List<Profile> getAllProfiles();
 
 }

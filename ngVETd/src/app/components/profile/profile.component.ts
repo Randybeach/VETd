@@ -150,13 +150,16 @@ export class ProfileComponent implements OnInit {
   getProfile(): Profile {
     this.profileService.getProfile().subscribe(
       good => {
+        if(good === null) {
+          localStorage.setItem('admin', 'admin');
+          console.log('setting admin');
+          this.router.navigateByUrl('admin');
+
+        }
         this.profileJobs = [];
         console.log(good);
         this.profile = good;
         console.log(this.profile.user.role);
-        if(this.profile.user.role === 'admin') {
-          localStorage.setItem('admin', this.profile.user.role);
-        }
 
         if (this.profile.mentee) {
           localStorage.setItem('mentee', this.profile.user.role);
