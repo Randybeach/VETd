@@ -2,11 +2,16 @@
 # VETd
 ### Full Stack Final Project for Skill Distillery
 ---
+## Team Members
+- Alexa (Developer, Scrum Master)
+- Randy Beach (Developer, DBA)
+- Rob Lounsbury (Developer, Repo Owner)
+
 ## Overview
 This application implements full C.R.U.D functionality, using Spring Data JPA and RESTful services to connect mentors with mentees.
 
 ## Program Purpose
-The purpose of this program is to connect already established veterans who are subject matter experts  with transitioning veterans who need mentors. Users will be able to create an account as either a mentee or mertor. A mentee will be able to choose from different job fields in which they would like a mentor and a mentor will be able to select fields in which they are subject matter experts. Upon being matched, users will also be able to review their experience.
+The purpose of this program is to connect already established veterans who are subject matter experts  with transitioning veterans who need mentors. Users will be able to create an account as either a mentee or mentor. A mentee will be able to choose from different job fields in which they would like a mentor and a mentor will be able to select fields in which they are subject matter experts. Upon being matched, users will also be able to review their experience.
 
 ## Login
 Users will be prompted to register as either a mentor or mentee and create a profile with basic information such as name and location. Upon creation, the user will be directed to their profile page where they can manage their account and add preferred job fields.
