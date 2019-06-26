@@ -48,16 +48,12 @@
       <div>
         <div class="text-left" *ngFor="let user of users">
           <p>
-            {{ user.username }}
-            <button
-              mdbBtn
-              color="info"
-              block="true"
-              class="my-4 btn btn-sm btn-warning button float-right"
-              type="Go to Profile"
-              (click)="gotoProfile()"
-            >
-              Submit
+            {{ user.firstName }}
+            <button mdbBtn color="info" block="true"  class="my-4 btn btn-sm btn-warning button float-right" type="Go to Profile" (click)="gotoProfile(user)" *ngIf='user.mentor'>
+              View Mentor
+            </button>
+            <button mdbBtn color="info" block="true"  class="my-4 btn btn-sm btn-warning button float-right" type="Go to Profile" (click)="gotoProfile(user)" *ngIf='user.mentee'>
+              View Mentee
             </button>
           </p>
           <hr />

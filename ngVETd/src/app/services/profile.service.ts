@@ -108,7 +108,7 @@ export class ProfileService {
       "Content-Type": "application/json"
     };
 
-    return this.http.get<User[]>(this.url + "/search/" + keyword, {
+    return this.http.get<Profile[]>(this.url + "/search/" + keyword, {
       headers: myHeaders
     });
   }

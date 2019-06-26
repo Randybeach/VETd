@@ -35,7 +35,7 @@ export class NavigationComponent implements OnInit {
       return false;
     }
     if (!this.auth.checkAdmin()){
-      // console.log('checking admin');
+      console.log('checking admin');
 
       return false;
     }

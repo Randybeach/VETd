@@ -1,3 +1,4 @@
+import { ModalComponent } from './modal/modal.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { EditComponent } from './components/edit/edit.component';
 import { HomeComponent } from './components/home/home.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'register/mentee', component: RegisterComponent },
   { path: 'register/mentor', component: RegisterComponent },
+  { path: 'modal', component: ModalComponent },
   { path: 'mentee_profile', component: MenteeProfileComponent}
 ];
 

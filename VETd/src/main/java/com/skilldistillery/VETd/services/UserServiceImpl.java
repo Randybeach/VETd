@@ -1,5 +1,6 @@
 package com.skilldistillery.vetd.services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -57,8 +58,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> getAllUsers() {
-
-		return uRepo.findAll();
+		List<User> users = uRepo.findAll();
+		for (User user : users) {
+			user.setProfile(pRepo.findByUser_Username(user.getUsername()));
+			
+		}
+		return users;
 	}
 
 	@Override
@@ -87,13 +92,12 @@ public class UserServiceImpl implements UserService {
 		User u = uRepo.findUserByUsername(name);
 		Set<MentorMentee> mentees = new HashSet<MentorMentee>();
 		Set<Profile> menteeProfiles = new HashSet<Profile>();
-		System.out.println("***************************** in mentees by mentor");
 		mentees = mmRepo.findByMentorId(u.getProfile().getMentor().getId());
 		for (MentorMentee mm : mentees) {
-			System.out.println("***************************** in mentees by mentor  for loop");
+			System.out.println("### Adding " + pRepo.findByMenteeId(mm.getMentee().getId()));
 			menteeProfiles.add(pRepo.findByMenteeId(mm.getMentee().getId()));
 		}
-		System.out.println("************* Mentees ***********" + menteeProfiles);
+		System.out.println("!!! Mentee profiles" + menteeProfiles);
 		return menteeProfiles;
 	}
 
@@ -217,9 +221,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> getUsersByUsername(String name) {
+	public List<Profile> getProfilesByUser_Username(String name) {
 		name = "%" + name + "%";
-		return uRepo.findUserByUsernameLike(name);
+		System.out.println(" *&^ " + name);
+		return pRepo.findByUser_UsernameLike(name);
 	}
 
 	@Override
@@ -270,44 +275,21 @@ public class UserServiceImpl implements UserService {
 		System.out.println("@@ new Mentees profile " + profile );
 		Profile menteeProfile = pRepo.findProfileById(profile.getId());
 		User mentorUser = uRepo.findUserByUsername(name);
-		Set<MentorMentee> menteeList = mentorUser.getProfile().getMentor().getMentorMentees();
-		if (menteeList.size() > 0) {
-			
-			for (MentorMentee mm : menteeList) {
-				if (menteeProfile.getMentee().getId() == mm.getMentee().getId()) {
-					System.out.println("************ mentee already assigned to mentor");
-				}else {
+		Collection<MentorMentee> menteeList = new ArrayList<MentorMentee>();
+			menteeList.addAll(mentorUser.getProfile().getMentor().getMentorMentees());
+
+					
 					MentorMentee m = new MentorMentee();
 					m.setMentee(menteeProfile.getMentee());
 					m.setMentor(mentorUser.getProfile().getMentor());
 					
 					mentorUser.getProfile().getMentor().addMentorMentees(m);
 					menteeProfile.getMentee().addMentorMentees(m);
-
+					
 					mmRepo.saveAndFlush(m);
-					pRepo.saveAndFlush(menteeProfile);
-					System.out.println("&^% " + mentorUser.getProfile());
+					System.out.println("%%% " + mentorUser.getProfile());
 					pRepo.saveAndFlush(mentorUser.getProfile());
 					System.out.println(getMenteesByMentorUsername(mentorUser.getUsername()));
-				}
-			}
-
-		} else {
-
-			MentorMentee mm = new MentorMentee();
-			mm.setMentee(menteeProfile.getMentee());
-			mm.setMentor(mentorUser.getProfile().getMentor());
-			mentorUser.getProfile().getMentor().addMentorMentees(mm);
-			menteeProfile.getMentee().addMentorMentees(mm);
-
-			mmRepo.saveAndFlush(mm);
-			pRepo.saveAndFlush(menteeProfile);
-			System.out.println("&^% " + mentorUser.getProfile());
-			pRepo.saveAndFlush(mentorUser.getProfile());
-			System.out.println(getMenteesByMentorUsername(mentorUser.getUsername()));
-
-		}
-		System.out.println(getMenteesByMentorUsername(mentorUser.getUsername()));
 		return getMenteesByMentorUsername(mentorUser.getUsername());
 
 	}
@@ -373,6 +355,12 @@ public class UserServiceImpl implements UserService {
 	public List<Message> getMessages() {
 		
 		return messageRepo.findAll();
+	}
+
+	@Override
+	public List<Profile> getAllProfiles() {
+		// TODO Auto-generated method stub
+		return pRepo.findAll();
 	}
 
 }
