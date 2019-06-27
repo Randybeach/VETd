@@ -15,23 +15,23 @@
                     <b>Username:</b> {{ profile.user.username }}<br>
                     <b>Email:</b> {{ profile.user.email }}<br>
                     <b>Location:</b> {{ profile.location.city }}, {{ profile.location.state }} {{ profile.location.zipcode }}<br>
-                    <b>Picture:</b> {{ profile.pictureUrl }}<br>
-                    <b>Resume:</b> {{ profile.resumeUrl }}<br>
+                    <a href='{{ profile.resumeUrl }}'><b>Resume</b></a>
                   </div>
                   <div *ngIf='profile.reviews.length > 0'>
-                      <div class='card-footer text-center'>
-                        <u><b>Reviews</b></u>
-                      </div>
-                        <div class='card-footer' id='scroll' style='max-height: 130px' >
-                        <div *ngFor='let review of profile.reviews'>
-                            <!-- <span><i *ngFor='let in of counter([review.rating]);let i = index' class="material-icons float-right" style='padding: 0px 0px 0px 0px' ngbTooltip="Star rating" id='ratingStars' (click)='editProfile()'>star {{i}}</i></span> -->
-                            <span><ngb-rating [rate]="review.rating" max="5" class='float-right'></ngb-rating></span>
-                          {{ review.content }}
-                        </div>
-                    </div>
-                  </div>
                 <div class='card-body text-center'><u><b>Current Mentor</b></u></div>
+                  <div class='card-footer text-center'>
+                    <u><b>Reviews</b></u>
+                  </div>
+                    <div class='card-footer' id='scroll' style='max-height: 130px' >
+                    <div *ngFor='let review of profile.reviews'>
+                        <!-- <span><i *ngFor='let in of counter([review.rating]);let i = index' class="material-icons float-right" style='padding: 0px 0px 0px 0px' ngbTooltip="Star rating" id='ratingStars' (click)='editProfile()'>star {{i}}</i></span> -->
+                        <span><ngb-rating [rate]="review.rating" max="5" class='float-right'></ngb-rating></span>
+                      {{ review.content }}
+                    </div>
+                </div>
+              </div>
                 <div *ngIf='menteeMentorsList.length > 0'>
+                  <div class='card-footer text-center'><u><b>Current Mentor</b></u></div>
                 <div class='card-footer' id='footerHeight'>
                     <div *ngFor='let pro of menteeMentorsList'>{{pro.firstName}} {{pro.lastName}}
                     <span><i class="material-icons float-right" ngbTooltip="View Profile" id='viewProfile' (click)='openDialog2(pro, profile)'>visibility</i></span>
