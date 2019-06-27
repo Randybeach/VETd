@@ -42,6 +42,7 @@
                 class="material-icons float-right mr-2"
                 ngbTooltip="Leave a review"
                 id="reviewProfile"
+                (click)='showReview()'
                 >rate_review</i
               ></span
             >
@@ -51,7 +52,7 @@
           <b>Email:</b> {{ profile.user.email }}<br />
           <b>Location:</b> {{ profile.location.city }},
           {{ profile.location.state }} {{ profile.location.zipcode }}<br />
-          <a (click)=showResume()><b>Resume</b></a> <br />
+          <a href="" (click)=showResume()><b>Resume</b></a> <br />
         </div>
         <div class="card-footer" *ngIf='profile.mentor !== null'>
           <div class="text-center">
@@ -141,7 +142,7 @@
         </div>
 
       </div>
-      <div class="card shadow mt-2" id='reviewCard'>
+      <div class="card shadow mt-2" id='reviewCard' *ngIf='showReviewCard'>
         <div class="card-header text-center">
           <h6 class='pl-2 pt-2'><b>Review</b>
             <span><i (click)="addReview(reviewForm)" class="material-icons float-right" id="add" ngbTooltip="Leave a review" >add</i></span>
