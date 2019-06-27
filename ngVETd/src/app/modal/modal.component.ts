@@ -88,7 +88,9 @@ export class ModalComponent implements OnInit {
     this.profile = p;
     console.log("added " + this.profile.firstName + " to list");
     this.profileService.addMenteeToMentorList(this.profile).subscribe(
-      good => {},
+      good => {
+        this.onNoClick();
+      },
       bad => {
         console.log("error adding mentee");
       }
