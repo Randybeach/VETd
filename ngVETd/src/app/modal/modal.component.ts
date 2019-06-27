@@ -35,6 +35,7 @@ export class ModalComponent implements OnInit {
   num = 0;
   resUrl = false;
   admin = null;
+  showReviewCard = false;
 
 
   constructor(
@@ -43,6 +44,13 @@ export class ModalComponent implements OnInit {
     private profileService: ProfileService,
   ) {}
 
+  showReview() {
+    if (this.showReviewCard === false){
+      this.showReviewCard = true;
+    } else {
+      this.showReviewCard = false;
+    }
+  }
   onNoClick(): void {
     this.dialogRef.close();
   }

@@ -4,11 +4,12 @@
 }
 
 #menteeChat {
-  height: 350px;
+  height: 340px;
   background-color: oldlace;
   background: rgba(255, 252, 252, 0.7);
   color: black;
 }
+
 
 #menteeProfile {
   height: 450px;
@@ -50,7 +51,7 @@ img {
 }
 
 #reviewProfile:hover {
-  color: rgb(22, 221, 228);
+  color: rgb(22, 77, 228);
 }
 
 .selectFields {
@@ -102,10 +103,9 @@ textarea {
   min-height: 40px;
 }
 
-#resume > img{
-}
 #resume{
   height: 100vh;
   max-width: 1000px;
 
 }
+
