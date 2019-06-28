@@ -8,19 +8,20 @@
 - Rob Lounsbury (Developer, Repo Owner)
 
 ## Overview
-This application implements full C.R.U.D functionality, using Spring Data JPA and RESTful services to connect mentors with mentees.
+This application implements full C.R.U.D functionality, using Spring Data JPA, RESTful services, and Angular 8 to connect mentors with mentees. It was developed under Agile methodologies and is the result of a one week sprint.
 
-## Program Purpose
-The purpose of this program is to connect already established veterans who are subject matter experts  with transitioning veterans who need mentors. Users will be able to create an account as either a mentee or mentor. A mentee will be able to choose from different job fields in which they would like a mentor and a mentor will be able to select fields in which they are subject matter experts. Upon being matched, users will also be able to review their experience.
+## Program Purpose and Functionality
+The purpose of this program is to connect veterans who have successfully navigated the career transition waters and have become subject matter experts in their field with transitioning veterans just begining their transition journey. Users can create an account as either a mentee or mentor. A mentee is able to choose sectors and jobs in which they would like to recieve mentorship. A mentor can select sectors and jobs in which they are subject matter experts review potential mentees who are also interested in those sectors. Once a mentor accepts a mentee chat is available to facilitate the relationship.  Once the mentor feels the mentee has been set on a successful path, they can release the mentee and leave a review.
 
 ## Login
-Users will be prompted to register as either a mentor or mentee and create a profile with basic information such as name and location. Upon creation, the user will be directed to their profile page where they can manage their account and add preferred job fields.
+Users are prompted to register as either a mentor or mentee and create a profile with basic information such as name and location. Upon creation, the user will be directed to their profile page where they can manage their account and add sectors and jobs of interest. For mentors, they will see a list of potential mentees.
 
-## Database Schema
+## Entity Relationship Diagram
 ![](assets/README-b35842ce.png)
 
 ## UML Diagram
 ![](assets/README-1f9cd025.png)
+![](https://github.com/robrides/VETd/blob/master/VETdJPA/VETd%20UML.png)
 
 ## Techniques
 - Pair programming
@@ -28,37 +29,13 @@ Users will be prompted to register as either a mentor or mentee and create a pro
 - Agile/Scrum
 
 ## Technologies Used
-- Java
-- SQL
-- Javascript
-- Angular
-- Spring Tool Suite
-- MySQL Workbench
-- VS Code
-- Spring Boot
-- Gradle
-- C.R.U.D
-- Bash Terminal
-- Github
-- Postman
-- Trello
-- MAMP
-- Bootstrap
-- Apache Tomcat
-- Amazon Web Services
-- Slack
-- MacDown
-- Atom
-- Gimp
-- Stack Overflow
+Java, SQL, Javascript, Angular, Spring Tool Suite, Hibernate, MySQL, VS Code, Spring Boot, Gradle, C.R.U.D, Bash Terminal, Github, Postman, Trello, MAMP, Bootstrap, Apache Tomcat, Amazon Web Services (AWS), Slack, MacDown, Atom, Gimp, Stack Overflow
 
 ## Lessons Learned
-- Restart your server before you test in postman
-- If something is broken, restart everything multiple times and it will magically work
 - Don't underestimate the complexity of your application
-- Npm install after pulling down updates to the front end
+- Npm install for the team after adding new packages
+- Working with asyncronous applications
 
 ## Stretch Goals
 - Live Chat/messaging
-- Ability to add new jobs and sectors
-- File upload for resume and picture
+- File upload for resume and profile picture
